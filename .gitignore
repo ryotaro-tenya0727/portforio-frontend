@@ -24,4 +24,6 @@ yarn-error.log*
 
 # environment variables
 /.env
+
+# yarn
 /yarn.lock
