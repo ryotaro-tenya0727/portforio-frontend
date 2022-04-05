@@ -32,8 +32,8 @@ function App() {
   // 追加
   const createPosts = () => {
     const data = {
-      title: 'タイトル4',
-      caption: '説明4',
+      title: 'ほにたん',
+      caption: 'ほにたん',
     };
     axios.post('http://localhost:3000/api/v1/posts', data, headers);
   };
