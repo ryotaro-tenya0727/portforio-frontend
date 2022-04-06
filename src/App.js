@@ -35,7 +35,7 @@ function App() {
       title: 'ほにたん',
       caption: 'ほにたん',
     };
-    axios.post('http://localhost:3000/api/v1/posts', data, headers);
+    axios.post('http://localhost:8000/api/v1/posts', data, headers);
   };
   useEffect(() => {
     const getToken = async () => {
