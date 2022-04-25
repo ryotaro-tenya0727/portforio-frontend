@@ -4,6 +4,7 @@ import axios from 'axios';
 import './App.css';
 
 const postIndex = `${process.env.REACT_APP_REST_URL}/posts`;
+const domain = process.env.REACT_APP_AUTH0_DOMAIN || '';
 
 function App() {
   const {
@@ -13,7 +14,6 @@ function App() {
     logout,
     getAccessTokenSilently,
   } = useAuth0();
-
   const [token, setToken] = useState('');
   // 追加
   const [posts, setPosts] = useState([]);
@@ -37,6 +37,26 @@ function App() {
     };
     axios.post('http://localhost:8000/api/v1/posts', data, headers);
   };
+
+  const createUsers = () => {
+    const data = {
+      name: user.name,
+    };
+    axios.post('http://localhost:8000/api/v1/users', data, headers);
+  };
+
+  const fetchUserInfo = () => {
+    axios
+      .get(`https://${domain}/userinfo`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
+  };
+
   useEffect(() => {
     const getToken = async () => {
       try {
@@ -47,7 +67,7 @@ function App() {
       }
     };
     getToken();
-  }, [getAccessTokenSilently]);
+  }, []);
 
   return (
     <div className='App'>
@@ -58,6 +78,7 @@ function App() {
         <button onClick={() => logout()}>ログアウト</button>
         <h2>ログイン状態</h2>
         {isAuthenticated ? <p>{user.name}</p> : <p> ログアウト</p>}
+        <button onClick={createUsers}>ユーザー作成</button>
         <h2>投稿作成</h2>
         <button onClick={createPosts}>投稿作成</button>
         <h2>投稿一覧</h2>
@@ -68,6 +89,7 @@ function App() {
             <p>{post.caption}</p>
           </div>
         ))}
+        {user && <img src={user.picture}></img>}
       </div>
     </div>
   );
