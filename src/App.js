@@ -72,7 +72,7 @@ function App() {
   return (
     <div className='App'>
       <div style={{ padding: '20px' }}>
-        <h2>ログインボタン</h2>
+        <h2>ログインボタンはここ</h2>
         <button onClick={() => loginWithRedirect()}>ログイン</button>
         <h2>ログアウトボタン</h2>
         <button onClick={() => logout()}>ログアウト</button>
