@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import './App.css';
@@ -38,12 +38,12 @@ function App() {
     axios.post('http://localhost:8000/api/v1/posts', data, headers);
   };
 
-  const createUsers = () => {
+  const createUsers = useCallback(() => {
     const data = {
-      name: user.name,
+      name: user.nickname,
     };
     axios.post('http://localhost:8000/api/v1/users', data, headers);
-  };
+  }, []);
 
   const fetchUserInfo = () => {
     axios
@@ -66,8 +66,18 @@ function App() {
         console.log(e.message);
       }
     };
-    getToken();
-  }, []);
+
+    if (isAuthenticated !== true) {
+      getToken();
+    }
+
+    let set_interval_id = setInterval(function () {
+      if (isAuthenticated === true) {
+        createUsers();
+        clearInterval(set_interval_id);
+      }
+    }, 300);
+  }, [isAuthenticated, getAccessTokenSilently, createUsers]);
 
   return (
     <div className='App'>
