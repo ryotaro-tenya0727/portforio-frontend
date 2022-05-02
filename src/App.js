@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import './App.css';
 
-const postIndex = `${process.env.REACT_APP_REST_URL}/posts`;
+const postUrl = `${process.env.REACT_APP_REST_URL}/posts`;
 const domain = process.env.REACT_APP_AUTH0_DOMAIN || '';
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
   };
   // 追加
   const fetchPosts = () => {
-    axios.get(postIndex, headers).then((res) => {
+    axios.get(postUrl, headers).then((res) => {
       setPosts(res.data);
     });
   };
@@ -35,14 +35,17 @@ function App() {
       title: 'ほにたん',
       caption: 'ほにたん',
     };
-    axios.post('http://localhost:8000/api/v1/posts', data, headers);
+    axios.post(postUrl, data, headers);
   };
 
-  const createUsers = useCallback(() => {
-    const data = {
-      name: user.nickname,
-    };
-    axios.post('http://localhost:8000/api/v1/users', data, headers);
+  const createUsers = useCallback((user_name) => {
+    axios.post(
+      `${process.env.REACT_APP_REST_URL}/users`,
+      {
+        name: user_name,
+      },
+      headers
+    );
   }, []);
 
   const fetchUserInfo = () => {
@@ -71,12 +74,9 @@ function App() {
       getToken();
     }
 
-    let set_interval_id = setInterval(function () {
-      if (isAuthenticated === true) {
-        createUsers();
-        clearInterval(set_interval_id);
-      }
-    }, 300);
+    if (isAuthenticated === true) {
+      createUsers(user.name);
+    }
   }, [isAuthenticated, getAccessTokenSilently, createUsers]);
 
   return (
