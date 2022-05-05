@@ -16,49 +16,26 @@ function App() {
   } = useAuth0();
   const [token, setToken] = useState('');
   // 追加
-  const [posts, setPosts] = useState([]);
   const headers = {
     headers: {
       Authorization: token,
       'Content-Type': 'application/json',
     },
   };
-  // 追加
-  const fetchPosts = () => {
-    axios.get(postUrl, headers).then((res) => {
-      setPosts(res.data);
-    });
-  };
-  // 追加
-  const createPosts = () => {
-    const data = {
-      title: 'ほにたん',
-      caption: 'ほにたん',
-    };
-    axios.post(postUrl, data, headers);
-  };
-
-  const createUsers = useCallback((user_name) => {
+  const createUsers = useCallback((user_name, token) => {
     axios.post(
       `${process.env.REACT_APP_REST_URL}/users`,
       {
         name: user_name,
       },
-      headers
+      {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
     );
   }, []);
-
-  const fetchUserInfo = () => {
-    axios
-      .get(`https://${domain}/userinfo`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-      });
-  };
 
   useEffect(() => {
     const getToken = async () => {
@@ -69,15 +46,10 @@ function App() {
         console.log(e.message);
       }
     };
-
-    if (isAuthenticated !== true) {
-      getToken();
-    }
-
-    if (isAuthenticated === true) {
-      createUsers(user.name);
-    }
-  }, [isAuthenticated, getAccessTokenSilently, createUsers]);
+    // stateはリロードしたら初期値
+    isAuthenticated || getToken();
+    isAuthenticated && user && createUsers(user.name, token);
+  }, [isAuthenticated, getAccessTokenSilently, createUsers, token, user]);
 
   return (
     <div className='App'>
@@ -88,17 +60,8 @@ function App() {
         <button onClick={() => logout()}>ログアウト</button>
         <h2>ログイン状態</h2>
         {isAuthenticated ? <p>{user.name}</p> : <p> ログアウト</p>}
-        <button onClick={createUsers}>ユーザー作成</button>
-        <h2>投稿作成</h2>
-        <button onClick={createPosts}>投稿作成</button>
-        <h2>投稿一覧</h2>
-        <button onClick={fetchPosts}>投稿取得</button>
-        {posts?.map((post, index) => (
-          <div key={index}>
-            <p>{post.title}</p>
-            <p>{post.caption}</p>
-          </div>
-        ))}
+        <button onClick={() => createUsers(user.name)}>ユーザー作成</button>
+
         {user && <img src={user.picture}></img>}
       </div>
     </div>
