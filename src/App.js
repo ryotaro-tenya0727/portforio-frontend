@@ -14,12 +14,13 @@ function App() {
   const [token, setToken] = useState('');
   const [members, setMembers] = useState([]);
   // 追加
-  const createUsers = useCallback((user_name, token) => {
+  const createUsers = useCallback((user_name, token, user_image) => {
     axios.post(
       `${process.env.REACT_APP_REST_URL}/users`,
       {
         user: {
           name: user_name,
+          user_image: user_image,
         },
       },
       {
@@ -37,7 +38,7 @@ function App() {
         `${process.env.REACT_APP_REST_URL}/user/recommended_members`,
         {
           recommended_member: {
-            nickname: 'えみり',
+            nickname: 'aa',
             group: 'Queens',
             first_met_date: '2021-03-21',
           },
@@ -49,8 +50,8 @@ function App() {
           },
         }
       )
-      .then((res) => {
-        res.data.register_member && console.log('ok');
+      .catch((error) => {
+        console.error(error.response.data);
       });
   }, []);
 
@@ -68,6 +69,30 @@ function App() {
       )
       .then((res) => {
         setMembers(res.data.data);
+        console.log(res.data.data);
+      });
+  }, []);
+
+  const updateRecommendedMembers = useCallback((token, uuid) => {
+    axios
+      .put(
+        `${process.env.REACT_APP_REST_URL}/user/recommended_members/${uuid}`,
+        {
+          recommended_member: {
+            nickname: 'aaaaa',
+            group: '編集Queens33',
+            first_met_date: '2021-03-21',
+          },
+        },
+        {
+          headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .catch((error) => {
+        console.error(error.response.data);
       });
   }, []);
 
@@ -81,13 +106,58 @@ function App() {
       }
     };
     // stateはリロードしたら初期化される
-    isAuthenticated || getToken();
-    isAuthenticated && user && token && createUsers(user.name, token);
+    // isAuthenticated || getToken();
+    // isAuthenticated &&
+    //   user &&
+    //   token &&
+    //   createUsers(user.name, token, user.picture);
   }, [isAuthenticated, token, user, getAccessTokenSilently, createUsers]);
-  console.log(members);
+  console.log(user);
+  const upLoadImageToS3 = useCallback(async (token, e) => {
+    const file = e.target.files[0];
+    const {
+      data: { presigned_url },
+    } = await axios
+      .post(
+        `${process.env.REACT_APP_REST_URL}/user/s3_presigned_url`,
+        {
+          presigned_url: {
+            filename: file.name,
+          },
+        },
+        {
+          headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .catch((error) => {
+        console.error(error.response.data);
+      });
+    console.log(presigned_url);
+
+    await axios.put(presigned_url, file, {
+      headers: {
+        'Content-Type': 'image/*',
+      },
+    });
+  }, []);
+
   return (
     <div className='App'>
+      <img
+        src='https://d2dshvnpldvez1.cloudfront.net/user_diary_images/2fabde55-1be4-4b4e-a71c-f2165bd0d4b7/diary/icons8-unicorn-64.png'
+        alt=''
+      />
       <div style={{ padding: '20px' }}>
+        <p>写真追加</p>
+        <input
+          type='file'
+          accept='image/*'
+          multiple
+          onChange={(e) => upLoadImageToS3(token, e)}
+        />
         <h2>ログインボタンはここ</h2>
         <button onClick={() => loginWithRedirect()}>ログイン</button>
         <h2>ログアウトボタン</h2>
@@ -105,7 +175,14 @@ function App() {
             <p>{member.attributes.nickname}</p>
             <p>{member.attributes.group}</p>
             <p>{member.attributes.first_met_date}</p>
-            <p>{member.attributes.uuid}</p>
+            <p>{member.attributes.recommend_user}</p>
+            <button
+              onClick={() =>
+                updateRecommendedMembers(token, member.attributes.id)
+              }
+            >
+              推しメン編集
+            </button>
           </div>
         ))}
         {user && <img src={user.picture}></img>}
