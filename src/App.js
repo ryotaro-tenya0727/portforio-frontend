@@ -2,15 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+
+import { Router } from './router/Router';
 
 function App() {
-  const {
-    user,
-    isAuthenticated,
-    loginWithRedirect,
-    logout,
-    getAccessTokenSilently,
-  } = useAuth0();
   const [token, setToken] = useState('');
   const [members, setMembers] = useState([]);
   // 追加
@@ -96,75 +92,88 @@ function App() {
   //     });
   // }, []);
 
-  useEffect(() => {
-    const getToken = async () => {
-      try {
-        const accessToken = await getAccessTokenSilently({});
-        setToken(accessToken);
-      } catch (e) {
-        console.log(e.message);
-      }
-    };
-    // stateはリロードしたら初期化される
-    // isAuthenticated || getToken();
-    // isAuthenticated &&
-    //   user &&
-    //   token &&
-    //   createUsers(user.name, token, user.picture);
-  }, [isAuthenticated, token, user, getAccessTokenSilently]);
-  console.log(user);
-  const upLoadImageToS3 = useCallback(async (token, e) => {
-    const file = e.target.files[0];
-    const {
-      data: { presigned_url },
-    } = await axios
-      .post(
-        `${process.env.REACT_APP_REST_URL}/user/s3_presigned_url`,
-        {
-          presigned_url: {
-            filename: file.name,
-          },
-        },
-        {
-          headers: {
-            Authorization: token,
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-      .catch((error) => {
-        console.error(error.response.data);
-      });
-    console.log(presigned_url);
+  // useEffect(() => {
+  //   const getToken = async () => {
+  //     try {
+  //       const accessToken = await getAccessTokenSilently({});
+  //       setToken(accessToken);
+  //     } catch (e) {
+  //       console.log(e.message);
+  //     }
+  //   };
+  //   // stateはリロードしたら初期化される
+  //   // isAuthenticated || getToken();
+  //   // isAuthenticated &&
+  //   //   user &&
+  //   //   token &&
+  //   //   createUsers(user.name, token, user.picture);
+  // }, [isAuthenticated, token, user, getAccessTokenSilently]);
+  // console.log(user);
+  // const upLoadImageToS3 = useCallback(async (token, e) => {
+  //   const file = e.target.files[0];
+  //   const {
+  //     data: { presigned_url },
+  //   } = await axios
+  //     .post(
+  //       `${process.env.REACT_APP_REST_URL}/user/s3_presigned_url`,
+  //       {
+  //         presigned_url: {
+  //           filename: file.name,
+  //         },
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: token,
+  //           'Content-Type': 'application/json',
+  //         },
+  //       }
+  //     )
+  //     .catch((error) => {
+  //       console.error(error.response.data);
+  //     });
+  //   console.log(presigned_url);
 
-    await axios.put(presigned_url, file, {
-      headers: {
-        'Content-Type': 'image/*',
-      },
-    });
-  }, []);
+  //   await axios.put(presigned_url, file, {
+  //     headers: {
+  //       'Content-Type': 'image/*',
+  //     },
+  //   });
+  // }, []);
+
+  const {
+    user,
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+    getAccessTokenSilently,
+  } = useAuth0();
 
   return (
-    <div className='App'>
-      <img
-        src='https://d2dshvnpldvez1.cloudfront.net/user_diary_images/2fabde55-1be4-4b4e-a71c-f2165bd0d4b7/diary/icons8-unicorn-64.png'
-        alt=''
-      />
-      <div style={{ padding: '20px' }}>
-        <h2>ログインボタンはここ</h2>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+/* <h2>ログインボタンはここ</h2>
         <button onClick={() => loginWithRedirect()}>ログイン</button>
         <h2>ログアウトボタン</h2>
         <button onClick={() => logout()}>ログアウト</button>
         <h2>ログイン状態</h2>
-        {isAuthenticated ? <p>{user.name}</p> : <p> ログアウト</p>}
-        {/* <p>写真追加</p> */}
-        {/* <input
+        {isAuthenticated ? <p>{user.name}</p> : <p> ログアウト</p>} */
+
+/* <p>写真追加</p> */
+
+/* <input
           type='file'
           accept='image/*'
           multiple
           onChange={(e) => upLoadImageToS3(token, e)}
-        /> */}
-        {/* <button onClick={() => createRecommendedMembers(token)}>
+        /> */
+
+/* <button onClick={() => createRecommendedMembers(token)}>
           推しメン作成
         </button>
         <button onClick={() => fetchRecommendedMembers(token)}>
@@ -185,10 +194,4 @@ function App() {
             </button>
           </div>
         ))}
-        {user && <img src={user.picture}></img>} */}
-      </div>
-    </div>
-  );
-}
-
-export default App;
+        {user && <img src={user.picture}></img>} */
