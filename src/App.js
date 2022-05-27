@@ -4,7 +4,7 @@ import axios from 'axios';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 
-import { Router } from './router/Router';
+import { Routers } from './route/Routers';
 
 function App() {
   const [token, setToken] = useState('');
@@ -150,7 +150,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Router />
+      <Routers />
     </BrowserRouter>
   );
 }

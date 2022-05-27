@@ -13,6 +13,8 @@ const Home = () => {
       <button onClick={() => loginWithRedirect()}>ログイン</button>
       <h1>{user && user.name}</h1>
       <h1>Home</h1>
+      <h2>ログアウトボタン</h2>
+      <button onClick={() => logout()}>ログアウト</button>
     </div>
   );
 };
