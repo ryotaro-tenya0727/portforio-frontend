@@ -14,87 +14,87 @@ function App() {
   const [token, setToken] = useState('');
   const [members, setMembers] = useState([]);
   // 追加
-  const createUsers = useCallback((user_name, token, user_image) => {
-    axios.post(
-      `${process.env.REACT_APP_REST_URL}/users`,
-      {
-        user: {
-          name: user_name,
-          user_image: user_image,
-        },
-      },
-      {
-        headers: {
-          Authorization: token,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-  }, []);
+  // const createUsers = useCallback((user_name, token, user_image) => {
+  //   axios.post(
+  //     `${process.env.REACT_APP_REST_URL}/users`,
+  //     {
+  //       user: {
+  //         name: user_name,
+  //         user_image: user_image,
+  //       },
+  //     },
+  //     {
+  //       headers: {
+  //         Authorization: token,
+  //         'Content-Type': 'application/json',
+  //       },
+  //     }
+  //   );
+  // }, []);
 
-  const createRecommendedMembers = useCallback((token) => {
-    axios
-      .post(
-        `${process.env.REACT_APP_REST_URL}/user/recommended_members`,
-        {
-          recommended_member: {
-            nickname: 'aa',
-            group: 'Queens',
-            first_met_date: '2021-03-21',
-          },
-        },
-        {
-          headers: {
-            Authorization: token,
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-      .catch((error) => {
-        console.error(error.response.data);
-      });
-  }, []);
+  // const createRecommendedMembers = useCallback((token) => {
+  //   axios
+  //     .post(
+  //       `${process.env.REACT_APP_REST_URL}/user/recommended_members`,
+  //       {
+  //         recommended_member: {
+  //           nickname: 'aa',
+  //           group: 'Queens',
+  //           first_met_date: '2021-03-21',
+  //         },
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: token,
+  //           'Content-Type': 'application/json',
+  //         },
+  //       }
+  //     )
+  //     .catch((error) => {
+  //       console.error(error.response.data);
+  //     });
+  // }, []);
 
-  const fetchRecommendedMembers = useCallback((token) => {
-    axios
-      .get(
-        `${process.env.REACT_APP_REST_URL}/user/recommended_members`,
+  // const fetchRecommendedMembers = useCallback((token) => {
+  //   axios
+  //     .get(
+  //       `${process.env.REACT_APP_REST_URL}/user/recommended_members`,
 
-        {
-          headers: {
-            Authorization: token,
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-      .then((res) => {
-        setMembers(res.data.data);
-        console.log(res.data.data);
-      });
-  }, []);
+  //       {
+  //         headers: {
+  //           Authorization: token,
+  //           'Content-Type': 'application/json',
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       setMembers(res.data.data);
+  //       console.log(res.data.data);
+  //     });
+  // }, []);
 
-  const updateRecommendedMembers = useCallback((token, uuid) => {
-    axios
-      .put(
-        `${process.env.REACT_APP_REST_URL}/user/recommended_members/${uuid}`,
-        {
-          recommended_member: {
-            nickname: 'aaaaa',
-            group: '編集Queens33',
-            first_met_date: '2021-03-21',
-          },
-        },
-        {
-          headers: {
-            Authorization: token,
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-      .catch((error) => {
-        console.error(error.response.data);
-      });
-  }, []);
+  // const updateRecommendedMembers = useCallback((token, uuid) => {
+  //   axios
+  //     .put(
+  //       `${process.env.REACT_APP_REST_URL}/user/recommended_members/${uuid}`,
+  //       {
+  //         recommended_member: {
+  //           nickname: 'aaaaa',
+  //           group: '編集Queens33',
+  //           first_met_date: '2021-03-21',
+  //         },
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: token,
+  //           'Content-Type': 'application/json',
+  //         },
+  //       }
+  //     )
+  //     .catch((error) => {
+  //       console.error(error.response.data);
+  //     });
+  // }, []);
 
   useEffect(() => {
     const getToken = async () => {
@@ -111,7 +111,7 @@ function App() {
     //   user &&
     //   token &&
     //   createUsers(user.name, token, user.picture);
-  }, [isAuthenticated, token, user, getAccessTokenSilently, createUsers]);
+  }, [isAuthenticated, token, user, getAccessTokenSilently]);
   console.log(user);
   const upLoadImageToS3 = useCallback(async (token, e) => {
     const file = e.target.files[0];
@@ -151,20 +151,20 @@ function App() {
         alt=''
       />
       <div style={{ padding: '20px' }}>
-        <p>写真追加</p>
-        <input
-          type='file'
-          accept='image/*'
-          multiple
-          onChange={(e) => upLoadImageToS3(token, e)}
-        />
         <h2>ログインボタンはここ</h2>
         <button onClick={() => loginWithRedirect()}>ログイン</button>
         <h2>ログアウトボタン</h2>
         <button onClick={() => logout()}>ログアウト</button>
         <h2>ログイン状態</h2>
         {isAuthenticated ? <p>{user.name}</p> : <p> ログアウト</p>}
-        <button onClick={() => createRecommendedMembers(token)}>
+        {/* <p>写真追加</p> */}
+        {/* <input
+          type='file'
+          accept='image/*'
+          multiple
+          onChange={(e) => upLoadImageToS3(token, e)}
+        /> */}
+        {/* <button onClick={() => createRecommendedMembers(token)}>
           推しメン作成
         </button>
         <button onClick={() => fetchRecommendedMembers(token)}>
@@ -185,7 +185,7 @@ function App() {
             </button>
           </div>
         ))}
-        {user && <img src={user.picture}></img>}
+        {user && <img src={user.picture}></img>} */}
       </div>
     </div>
   );
