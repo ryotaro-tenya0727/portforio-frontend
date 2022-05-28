@@ -1,7 +1,9 @@
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
-import { AuthGuardProvider } from './providers/AuthGuard';
+import { QueryClientProvider } from 'react-query';
 
+import { queryClient } from './lib/queryClient';
+import { AuthGuardProvider } from './providers/AuthGuard';
 import { Routers } from './route/Routers';
 
 function App() {
@@ -11,8 +13,8 @@ function App() {
   //     `${process.env.REACT_APP_REST_URL}/users`,
   //     {
   //       user: {
-  //         name: user_name,
-  //         user_image: user_image,
+  // name: user_name,
+  // user_image: user_image,
   //       },
   //     },
   //     {
@@ -137,11 +139,13 @@ function App() {
   // }, []);
 
   return (
-    <AuthGuardProvider>
-      <BrowserRouter>
-        <Routers />
-      </BrowserRouter>
-    </AuthGuardProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthGuardProvider>
+        <BrowserRouter>
+          <Routers />
+        </BrowserRouter>
+      </AuthGuardProvider>
+    </QueryClientProvider>
   );
 }
 
