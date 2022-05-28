@@ -1,21 +1,26 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const AuthGuardContext = createContext({});
-
-export const useAuthGuardContext = () => {
-  useContext(AuthGuardContext);
-};
+export const AuthGuardContext = createContext({});
 
 export const AuthGuardProvider = ({ children }) => {
-  const {
-    user,
-    isAuthenticated,
-    loginWithRedirect,
-    logout,
-    getAccessTokenSilently,
-  } = useAuth0();
+  const [accessToken, setAccessToken] = useState(null);
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+  const getAccessToken = async () => {
+    const token = await getAccessTokenSilently();
+    setAccessToken(token);
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      getAccessToken();
+    }
+  }, [isAuthenticated]);
+
   return (
-    <AuthGuardContext.Provider value={{}}>{children}</AuthGuardContext.Provider>
+    <AuthGuardContext.Provider value={{ accessToken }}>
+      {children}
+    </AuthGuardContext.Provider>
   );
 };

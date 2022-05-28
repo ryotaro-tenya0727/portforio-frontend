@@ -1,14 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
+import { AuthGuardProvider } from './providers/AuthGuard';
 
 import { Routers } from './route/Routers';
 
 function App() {
-  const [token, setToken] = useState('');
-  const [members, setMembers] = useState([]);
   // 追加
   // const createUsers = useCallback((user_name, token, user_image) => {
   //   axios.post(
@@ -140,18 +136,12 @@ function App() {
   //   });
   // }, []);
 
-  const {
-    user,
-    isAuthenticated,
-    loginWithRedirect,
-    logout,
-    getAccessTokenSilently,
-  } = useAuth0();
-
   return (
-    <BrowserRouter>
-      <Routers />
-    </BrowserRouter>
+    <AuthGuardProvider>
+      <BrowserRouter>
+        <Routers />
+      </BrowserRouter>
+    </AuthGuardProvider>
   );
 }
 
