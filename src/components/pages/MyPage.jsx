@@ -1,14 +1,12 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { AuthGuardContext } from './../../providers/AuthGuard';
 import { useUsersApi } from './../../hooks/useUsers';
 
 const Mypage = () => {
   const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
   const { useAddUser } = useUsersApi();
   const createUser = useAddUser();
-  const { accessToken } = useContext(AuthGuardContext);
 
   useEffect(() => {
     if (isAuthenticated && user) {
@@ -30,7 +28,11 @@ const Mypage = () => {
   }, [isAuthenticated, user]);
   return (
     <div>
-      {/* {createUser.isSuccess && <p>succces</p>} */}
+      {createUser.data &&
+        [createUser.data].map((user) => {
+          return <p key={user.id}>{user.name}</p>;
+        })}
+
       <h1>Mypage</h1>
     </div>
   );

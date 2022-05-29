@@ -4,4 +4,10 @@ export function generateQueryClient() {
   return new QueryClient();
 }
 
-export const queryClient = generateQueryClient();
+export const queryClient = generateQueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+});
