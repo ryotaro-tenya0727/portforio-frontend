@@ -1,6 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
-import { useUsersApi } from './../hooks/useUsers';
+import { createContext, useState } from 'react';
 
 export const AuthGuardContext = createContext({});
 
