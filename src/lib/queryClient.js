@@ -5,7 +5,5 @@ export function generateQueryClient() {
 }
 
 export const queryClient = generateQueryClient({
-  defaultOptions: {
-    queries: {},
-  },
+  defaultOptions: {},
 });

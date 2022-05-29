@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { AuthGuardContext } from './../providers/AuthGuard';
 import { useContext } from 'react';
 

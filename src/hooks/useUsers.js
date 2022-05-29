@@ -17,7 +17,7 @@ export const useUsersApi = () => {
           setAccessToken(token);
         })();
       }
-    }, [isAuthenticated, user]);
+    }, [user]);
   };
 
   const useAddUser = () => {
@@ -33,7 +33,6 @@ export const useUsersApi = () => {
       {
         onSuccess: (data) => {
           queryClient.setQueryData('users', data);
-          // dataにAPIの戻り値入っている。
         },
       }
     );
@@ -58,7 +57,7 @@ export const useUsersApi = () => {
           }
         })();
       }
-    }, [isAuthenticated, user]);
+    }, [user]);
     return createUser;
   };
   return {

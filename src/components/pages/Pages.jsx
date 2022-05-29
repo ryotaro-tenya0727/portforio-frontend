@@ -1,6 +1,12 @@
+export { default as FollowerUsers } from './FollowerUsers';
+export { default as FollowerUserShow } from './FollowerUserShow';
+export { default as FollowingUsers } from './FollowingUsers';
+export { default as FollowingUserShow } from './FollowingUserShow';
 export { default as Home } from './Home';
 export { default as MyPage } from './MyPage';
-export { default as RecommenedMembersNew } from './RecommendedMembersNew';
-export { default as RecommenedMembersEdit } from './RecommendedMembersEdit';
-export { default as RecommenedMemberDiaries } from './RecommendedMemberDiaries';
 export { default as RecommenedMemberShow } from './RecommendedMemberDiaryShow';
+export { default as RecommenedMemberDiaries } from './RecommendedMemberDiaries';
+export { default as RecommenedMemberDiariesNew } from './RecommendedMemberDiariesNew';
+export { default as RecommendedMemberDiaryEdit } from './RecommendedMemberDiaryEdit';
+export { default as RecommenedMemberEdit } from './RecommendedMemberEdit';
+export { default as RecommenedMembersNew } from './RecommendedMembersNew';
