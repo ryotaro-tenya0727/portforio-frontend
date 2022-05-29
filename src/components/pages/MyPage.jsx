@@ -1,22 +1,43 @@
 import { useUsersApi } from './../../hooks/useUsers';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Link } from 'react-router-dom';
+import { useQueryClient } from 'react-query';
 
 const Mypage = () => {
   const { useGetAccesstokenAndCreateUser } = useUsersApi();
-  const { data, isSuccess } = useGetAccesstokenAndCreateUser();
+  const queryClient = useQueryClient();
+  const user_data = queryClient.getQueryData('users');
+  const { data, isSuccess, isLoading, isIdle } =
+    useGetAccesstokenAndCreateUser();
 
   return (
     <div>
-      {isSuccess && <p>a</p>}
-      {data &&
+      {/* {data &&
         [data].map((user) => {
           return <p key={user.id}>{user.name}</p>;
-        })}
-
-      <h1>Mypage</h1>
-      <Link to='/recommendedmambers/new'>推しメン登録ページへ</Link>
-      <ReactQueryDevtools initialIsOpen={false} />
+        })} */}
+      {user_data === undefined ? (
+        isIdle || isLoading ? (
+          <p>load</p>
+        ) : (
+          <>
+            {[data].map((user) => {
+              return <p key={user.id}>{user.name}</p>;
+            })}
+            <h1>Mypage</h1>
+            <Link to='/recommendedmambers/new'>推しメン登録ページへ</Link>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </>
+        )
+      ) : (
+        <>
+          <p key={user_data.id}>{user_data.name}</p>
+          <h1>Mypage</h1>
+          <Link to='/recommendedmambers/new'>推しメン登録ページへ</Link>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </>
+      )}
+      <h1>推しメン一覧</h1>
     </div>
   );
 };
