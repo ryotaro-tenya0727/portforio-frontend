@@ -1,9 +1,8 @@
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { AuthGuardContext } from './../providers/AuthGuard';
 import { useContext } from 'react';
 
 import { userRepository } from '../repositories/userRepository';
-import { useGenericMutation } from './useApi';
 
 export const useUsersApi = () => {
   const { setAccessToken } = useContext(AuthGuardContext);

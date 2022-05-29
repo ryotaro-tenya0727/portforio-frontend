@@ -6,8 +6,6 @@ import { queryClient } from './lib/queryClient';
 import { AuthGuardProvider } from './providers/AuthGuard';
 import { Routers } from './route/Routers';
 
-import { Home, MyPage } from './components/pages/Pages';
-
 function App() {
   // 追加
   // const createUsers = useCallback((user_name, token, user_image) => {
