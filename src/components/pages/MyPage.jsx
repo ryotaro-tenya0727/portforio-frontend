@@ -1,7 +1,10 @@
 import { useUsersApi } from './../../hooks/useUsers';
+import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
+
+import { RecommendedMembersList } from './../organisms/Organisms';
 
 const Mypage = () => {
   const { useGetAccesstokenAndCreateUser } = useUsersApi();
@@ -23,6 +26,7 @@ const Mypage = () => {
             <h1>Mypage</h1>
             <Link to='/recommendedmambers/new'>推しメン登録ページへ</Link>
             <ReactQueryDevtools initialIsOpen={false} />
+            <RecommendedMembersList />
           </>
         )
       ) : (
@@ -31,6 +35,7 @@ const Mypage = () => {
           <h1>Mypage</h1>
           <Link to='/recommendedmambers/new'>推しメン登録ページへ</Link>
           <ReactQueryDevtools initialIsOpen={false} />
+          <RecommendedMembersList />
         </>
       )}
       <h1>推しメン一覧</h1>
