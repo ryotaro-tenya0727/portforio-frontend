@@ -12,10 +12,6 @@ const Mypage = () => {
 
   return (
     <div>
-      {/* {data &&
-        [data].map((user) => {
-          return <p key={user.id}>{user.name}</p>;
-        })} */}
       {user_data === undefined ? (
         isIdle || isLoading ? (
           <p>load</p>
