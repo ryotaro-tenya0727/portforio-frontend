@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { useQueryClient } from 'react-query';
-import { Link } from 'react-router-dom';
-
 import { useContext, useEffect } from 'react';
+
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { useUsersApi } from './../../hooks/useUsers';
+import { RecommenedMembersNewForm } from './../organisms/Organisms';
 
 const RecommenedMembersNew = () => {
   const queryClient = useQueryClient();
@@ -30,6 +31,8 @@ const RecommenedMembersNew = () => {
             <ReactQueryDevtools initialIsOpen={false} />
             <Link to='/mypage'>マイページへ</Link>
             <p>{data.name}さんログイン中</p>
+            <h1>推しメン登録</h1>
+            <RecommenedMembersNewForm />
           </>
         )
       ) : (
@@ -38,8 +41,8 @@ const RecommenedMembersNew = () => {
           <ReactQueryDevtools initialIsOpen={false} />
           <Link to='/mypage'>マイページへ</Link>
           <p>{user_data.name}さんログイン中</p>
-
           <h1>推しメン登録</h1>
+          <RecommenedMembersNewForm />
         </>
       )}
     </>
