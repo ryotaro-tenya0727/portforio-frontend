@@ -2,10 +2,12 @@ import { useForm } from 'react-hook-form';
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { useContext } from 'react';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RecommenedMembersNewForm = () => {
   const { useCreateRecommendedMember } = useRecommendedMembersApi();
   const createRecommendedMember = useCreateRecommendedMember();
+  const navigate = useNavigate();
 
   const { register, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
@@ -18,6 +20,7 @@ const RecommenedMembersNewForm = () => {
     } catch (error) {
       console.error(error.response.data);
     }
+    navigate('/mypage');
   };
   return (
     <>

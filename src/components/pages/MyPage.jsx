@@ -38,7 +38,6 @@ const Mypage = () => {
           <RecommendedMembersList />
         </>
       )}
-      <h1>推しメン一覧</h1>
     </div>
   );
 };
