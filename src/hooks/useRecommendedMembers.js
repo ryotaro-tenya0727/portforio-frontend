@@ -54,7 +54,6 @@ export const useRecommendedMembersApi = () => {
         // 失敗した場合は旧データに更新
         onSettled: () => {
           queryClient.invalidateQueries(queryKey);
-          // console.log('更新');
         },
       }
     );

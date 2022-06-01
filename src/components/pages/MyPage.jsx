@@ -24,7 +24,7 @@ const Mypage = () => {
               return <p key={user.id}>{user.name}</p>;
             })}
             <h1>Mypage</h1>
-            <Link to='/recommendedmambers/new'>推しメン登録ページへ</Link>
+            <Link to='/recommended-members/new'>推しメン登録ページへ</Link>
             <ReactQueryDevtools initialIsOpen={false} />
             <RecommendedMembersList />
           </>
@@ -33,7 +33,7 @@ const Mypage = () => {
         <>
           <p key={user_data.id}>{user_data.name}</p>
           <h1>Mypage</h1>
-          <Link to='/recommendedmambers/new'>推しメン登録ページへ</Link>
+          <Link to='/recommended-members/new'>推しメン登録ページへ</Link>
           <ReactQueryDevtools initialIsOpen={false} />
           <RecommendedMembersList />
         </>

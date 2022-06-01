@@ -1,5 +1,5 @@
 import { useQueryClient } from 'react-query';
-
+import { Link } from 'react-router-dom';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 
 const RecommendedMembersList = () => {
@@ -13,8 +13,9 @@ const RecommendedMembersList = () => {
     data: recommendedMembers,
     isLoading,
     isIdle,
+    isSuccess,
   } = useGetRecommendedMembers();
-  // console.log(recommendedMembers_data);
+  console.log(recommendedMembers_data);
   return (
     <>
       <h2>推しメン一覧</h2>
@@ -24,18 +25,35 @@ const RecommendedMembersList = () => {
         ) : (
           recommendedMembers.data.map((recommendedMember) => {
             return (
-              <p key={recommendedMember.attributes.nickname}>
-                {recommendedMember.attributes.nickname}
-              </p>
+              <>
+                <p key={recommendedMember.attributes.nickname}>
+                  {recommendedMember.attributes.nickname}
+
+                  <Link
+                    to={`/recommended-member/${recommendedMember.attributes.uuid}/diaries`}
+                  >
+                    日記一覧または追加へ
+                  </Link>
+                </p>
+              </>
             );
           })
         )
       ) : (
         recommendedMembers_data.data.map((recommendedMember) => {
           return (
-            <p key={recommendedMember.attributes.nickname}>
-              {recommendedMember.attributes.nickname}
-            </p>
+            <>
+              <p key={recommendedMember.attributes.nickname}>
+                {recommendedMember.attributes.nickname}
+                {recommendedMember.attributes.uuid === undefined || (
+                  <Link
+                    to={`/recommended-member/${recommendedMember.attributes.uuid}/diaries`}
+                  >
+                    日記一覧または追加へ
+                  </Link>
+                )}
+              </p>
+            </>
           );
         })
       )}
