@@ -17,9 +17,11 @@ export const Routers = () => {
         path='/recommended-members/new'
         element={<RecommenedMembersNew />}
       />
-
-      <Route path='/recommended-member/:recommended_member_uuid/diaries'>
+      <Route path='/recommended-member/:recommended_member_uuid/diaries/:recommended_member_id'>
         <Route index element={<RecommenedMemberDiaries />} />
+        <Route path='new'>
+          <Route index element={<RecommenedMemberDiariesNew />} />
+        </Route>
       </Route>
     </Routes>
   );

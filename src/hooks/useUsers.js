@@ -6,22 +6,12 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { userRepository } from '../repositories/userRepository';
 
 export const useUsersApi = () => {
-  const { setAccessToken } = useContext(AuthGuardContext);
+  const { setAccessToken, accessToken } = useContext(AuthGuardContext);
   const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
-
-  const useGetAccesstoken = () => {
-    useEffect(() => {
-      if (isAuthenticated && user) {
-        (async () => {
-          const token = await getAccessTokenSilently();
-          setAccessToken(token);
-        })();
-      }
-    }, [user]);
-  };
 
   const useAddUser = () => {
     const queryClient = useQueryClient();
+    // mutateメソッドの引数がmutate関数の引数になる。
     return useMutation(
       async (params) => {
         setAccessToken(params.accessToken);
@@ -60,8 +50,27 @@ export const useUsersApi = () => {
     }, [user]);
     return createUser;
   };
+
+  const useGetAccesstoken = () => {
+    useEffect(() => {
+      (async () => {
+        const token = await getAccessTokenSilently();
+        setAccessToken(token);
+      })();
+    }, []);
+  };
+
+  const useGetUser = async () => {
+    return useQuery({
+      queryKey: 'users',
+      queryFn: () => userRepository.getUser(accessToken || ''),
+      staleTime: 30000000,
+      cacheTime: 30000000,
+    });
+  };
   return {
     useGetAccesstokenAndCreateUser,
     useGetAccesstoken,
+    useGetUser,
   };
 };

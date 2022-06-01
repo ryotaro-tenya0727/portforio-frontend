@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { registerUserUrl } from '../urls';
+import { registerUserUrl, getUserUrl } from '../urls';
 
 export const userRepository = {
   createUser: async (params, token) => {
@@ -10,6 +10,17 @@ export const userRepository = {
         'Content-Type': 'application/json',
       },
     });
+    return response.data;
+  },
+
+  getUser: async (token) => {
+    const response = await axios.get(getUserUrl, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log(response);
     return response.data;
   },
 };

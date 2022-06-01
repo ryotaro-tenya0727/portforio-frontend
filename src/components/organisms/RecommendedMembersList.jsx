@@ -23,37 +23,32 @@ const RecommendedMembersList = () => {
         isIdle || isLoading ? (
           <h2>推しメンローディング中</h2>
         ) : (
-          recommendedMembers.data.map((recommendedMember) => {
+          recommendedMembers.data.map((recommendedMember, index) => {
             return (
-              <>
-                <p key={recommendedMember.attributes.nickname}>
-                  {recommendedMember.attributes.nickname}
-
-                  <Link
-                    to={`/recommended-member/${recommendedMember.attributes.uuid}/diaries`}
-                  >
-                    日記一覧または追加へ
-                  </Link>
-                </p>
-              </>
+              <p key={index}>
+                {recommendedMember.attributes.nickname}
+                <Link
+                  to={`/recommended-member/${recommendedMember.attributes.uuid}/diaries/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
+                >
+                  日記一覧を表示または追加へ
+                </Link>
+              </p>
             );
           })
         )
       ) : (
-        recommendedMembers_data.data.map((recommendedMember) => {
+        recommendedMembers_data.data.map((recommendedMember, index) => {
           return (
-            <>
-              <p key={recommendedMember.attributes.nickname}>
-                {recommendedMember.attributes.nickname}
-                {recommendedMember.attributes.uuid === undefined || (
-                  <Link
-                    to={`/recommended-member/${recommendedMember.attributes.uuid}/diaries`}
-                  >
-                    日記一覧または追加へ
-                  </Link>
-                )}
-              </p>
-            </>
+            <p key={index}>
+              {recommendedMember.attributes.nickname}
+              {recommendedMember.attributes.uuid === undefined || (
+                <Link
+                  to={`/recommended-member/${recommendedMember.attributes.uuid}/diaries/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
+                >
+                  日記一覧を表示または追加へ
+                </Link>
+              )}
+            </p>
           );
         })
       )}
