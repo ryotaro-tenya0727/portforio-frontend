@@ -19,7 +19,7 @@ const Mypage = () => {
           <p>load</p>
         ) : (
           <>
-            <p>{data.name}</p>
+            <p>{data.name}さんログイン中</p>
             <h1>Mypage</h1>
             <Link to='/recommended-members/new'>推しメン登録ページへ</Link>
             <ReactQueryDevtools initialIsOpen={false} />
@@ -28,7 +28,7 @@ const Mypage = () => {
         )
       ) : (
         <>
-          <p key={user_data.id}>{user_data.name}</p>
+          <p key={user_data.id}>{user_data.name}さんログイン中</p>
           <h1>Mypage</h1>
           <Link to='/recommended-members/new'>推しメン登録ページへ</Link>
           <ReactQueryDevtools initialIsOpen={false} />

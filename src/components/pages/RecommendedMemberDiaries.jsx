@@ -21,13 +21,15 @@ const RecommenedMembersDiaries = () => {
           <p>load</p>
         ) : (
           <>
-            <p>{data.name}</p>
+            <p>{data.name}さんログイン中</p>
             <Link to='/mypage'>マイページへ</Link>
-            <p>{`${query.get('nickname')}との日記(グループ：　${query.get(
+            <h1>{`${query.get('nickname')}との日記(グループ：　${query.get(
               'group'
-            )})`}</p>
+            )})`}</h1>
             <Link
-              to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new`}
+              to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new?nickname=${query.get(
+                'nickname'
+              )}`}
             >
               日記を追加する
             </Link>
@@ -36,13 +38,15 @@ const RecommenedMembersDiaries = () => {
         )
       ) : (
         <>
-          <p> {user_data.name}</p>
+          <p> {user_data.name}さんログイン中</p>
           <Link to='/mypage'>マイページへ</Link>
-          <p>{`${query.get('nickname')}との日記(グループ：${query.get(
+          <h1>{`${query.get('nickname')}との日記(グループ：${query.get(
             'group'
-          )})`}</p>
+          )})`}</h1>
           <Link
-            to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new`}
+            to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new?nickname=${query.get(
+              'nickname'
+            )}`}
           >
             日記を追加する
           </Link>

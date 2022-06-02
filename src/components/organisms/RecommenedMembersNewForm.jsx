@@ -5,8 +5,8 @@ import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { Link, useNavigate } from 'react-router-dom';
 
 const RecommenedMembersNewForm = () => {
-  const { useCreateRecommendedMember } = useRecommendedMembersApi();
-  const createRecommendedMember = useCreateRecommendedMember();
+  const { useCreateRecommendedMembers } = useRecommendedMembersApi();
+  const createRecommendedMember = useCreateRecommendedMembers();
   const navigate = useNavigate();
 
   const { register, handleSubmit, formState } = useForm({

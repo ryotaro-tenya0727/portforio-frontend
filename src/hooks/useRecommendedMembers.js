@@ -3,20 +3,18 @@ import { AuthGuardContext } from './../providers/AuthGuard';
 import { useContext, useEffect, useCallback } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { recommendedMembersRepository } from './../repositories/recommendedMemberRepository';
+import { recommendedMemberRepository } from './../repositories/recommendedMemberRepository';
 
 export const useRecommendedMembersApi = () => {
   const { accessToken } = useContext(AuthGuardContext);
 
-  const useCreateRecommendedMember = () => {
+  const useCreateRecommendedMembers = () => {
     const queryClient = useQueryClient();
     const queryKey = 'recommended_members';
 
     const updater = (previousData, data) => {
-      // const id = previousData.data[0].attributes.id + 1;
       previousData.data.unshift({
         attributes: {
-          // id: id,
           nickname: data.recommended_member.nickname,
           group: data.recommended_member.group,
         },
@@ -26,12 +24,13 @@ export const useRecommendedMembersApi = () => {
 
     return useMutation(
       async (params) => {
-        return await recommendedMembersRepository.createRecommendedMember(
+        return await recommendedMemberRepository.createRecommendedMember(
           params,
           accessToken || ''
         );
       },
       //mutateAsyncを開始したタイミングで実行
+      // dataはmutatecに渡した引数
       {
         onMutate: async (data) => {
           await queryClient.cancelQueries(queryKey);
@@ -63,11 +62,11 @@ export const useRecommendedMembersApi = () => {
     return useQuery({
       queryKey: 'recommended_members',
       queryFn: () =>
-        recommendedMembersRepository.getRecommendedMembers(accessToken || ''),
+        recommendedMemberRepository.getRecommendedMember(accessToken || ''),
       staleTime: 30000000,
       cacheTime: 30000000,
     });
   };
 
-  return { useCreateRecommendedMember, useGetRecommendedMembers };
+  return { useCreateRecommendedMembers, useGetRecommendedMembers };
 };

@@ -4,23 +4,31 @@ import {
   recommendedMembersIndexUrl,
 } from '../urls';
 
-export const recommendedMembersRepository = {
+export const recommendedMemberRepository = {
   createRecommendedMember: async (params, token) => {
-    await axios.post(recommendedMembersCreateUrl, params, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
+    await axios
+      .post(recommendedMembersCreateUrl, params, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+      });
   },
 
-  getRecommendedMembers: async (token) => {
-    const response = await axios.get(recommendedMembersIndexUrl, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
+  getRecommendedMember: async (token) => {
+    const response = await axios
+      .get(recommendedMembersIndexUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+      });
     return response.data;
   },
 };
