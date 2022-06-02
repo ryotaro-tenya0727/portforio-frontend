@@ -8,16 +8,23 @@ import { recommendedMemberRepository } from './../repositories/recommendedMember
 export const useRecommendedMembersApi = () => {
   const { accessToken } = useContext(AuthGuardContext);
 
+  const useGetRecommendedMembers = () => {
+    return useQuery({
+      queryKey: 'recommended_members',
+      queryFn: () =>
+        recommendedMemberRepository.getRecommendedMember(accessToken || ''),
+      staleTime: 30000000,
+      cacheTime: 30000000,
+    });
+  };
+
   const useCreateRecommendedMembers = () => {
     const queryClient = useQueryClient();
     const queryKey = 'recommended_members';
 
     const updater = (previousData, data) => {
       previousData.data.unshift({
-        attributes: {
-          nickname: data.recommended_member.nickname,
-          group: data.recommended_member.group,
-        },
+        attributes: data.recommended_member,
       });
       return previousData;
     };
@@ -56,16 +63,6 @@ export const useRecommendedMembersApi = () => {
         },
       }
     );
-  };
-
-  const useGetRecommendedMembers = () => {
-    return useQuery({
-      queryKey: 'recommended_members',
-      queryFn: () =>
-        recommendedMemberRepository.getRecommendedMember(accessToken || ''),
-      staleTime: 30000000,
-      cacheTime: 30000000,
-    });
   };
 
   return { useCreateRecommendedMembers, useGetRecommendedMembers };

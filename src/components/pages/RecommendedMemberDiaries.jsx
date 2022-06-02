@@ -3,20 +3,21 @@ import { Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
 import { useUsersApi } from './../../hooks/useUsers';
+import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
+import { RecommendedMemberDiariesList } from './../organisms/Organisms';
 
 const RecommenedMembersDiaries = () => {
-  const { useGetAccesstokenAndGetUser } = useUsersApi();
   let { recommended_member_uuid, recommended_member_id } = useParams();
   const { search } = useLocation();
   const query = new URLSearchParams(search);
+  const { useGetAccesstokenAndGetUser } = useUsersApi();
   const queryClient = useQueryClient();
-  const user_data = queryClient.getQueryData('users');
-
+  const userData = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
-  // console.log(data);
+
   return (
     <>
-      {user_data === undefined ? (
+      {userData === undefined ? (
         isIdle || isLoading ? (
           <p>load</p>
         ) : (
@@ -34,11 +35,15 @@ const RecommenedMembersDiaries = () => {
               日記を追加する
             </Link>
             <div>推しメンの日記一覧 </div>
+            <RecommendedMemberDiariesList
+              recommended_member_id={recommended_member_id}
+              recommended_member_nickname={query.get('nickname')}
+            />
           </>
         )
       ) : (
         <>
-          <p> {user_data.name}さんログイン中</p>
+          <p> {userData.name}さんログイン中</p>
           <Link to='/mypage'>マイページへ</Link>
           <h1>{`${query.get('nickname')}との日記(グループ：${query.get(
             'group'
@@ -51,6 +56,10 @@ const RecommenedMembersDiaries = () => {
             日記を追加する
           </Link>
           <div>推しメンの日記一覧 </div>
+          <RecommendedMemberDiariesList
+            recommended_member_id={recommended_member_id}
+            recommended_member_nickname={query.get('nickname')}
+          />
         </>
       )}
       <br />

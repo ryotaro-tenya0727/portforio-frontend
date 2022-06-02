@@ -26,7 +26,8 @@ const RecommendedMembersList = () => {
           recommendedMembers.data.map((recommendedMember, index) => {
             return (
               <p key={index}>
-                {recommendedMember.attributes.nickname}
+                {recommendedMember.attributes.nickname}:
+                {recommendedMember.attributes.group}
                 <Link
                   to={`/recommended-member/${recommendedMember.attributes.uuid}/diaries/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
                 >
@@ -40,7 +41,8 @@ const RecommendedMembersList = () => {
         recommendedMembers_data.data.map((recommendedMember, index) => {
           return (
             <p key={index}>
-              {recommendedMember.attributes.nickname}
+              {recommendedMember.attributes.nickname}:
+              {recommendedMember.attributes.group}
               {recommendedMember.attributes.uuid === undefined || (
                 <Link
                   to={`/recommended-member/${recommendedMember.attributes.uuid}/diaries/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
