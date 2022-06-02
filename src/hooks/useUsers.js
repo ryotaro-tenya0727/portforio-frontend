@@ -35,13 +35,10 @@ export const useUsersApi = () => {
         (async () => {
           const token = await getAccessTokenSilently();
           try {
-            createUser.mutate(
-              {
-                value: { user: { name: user.name, user_image: user.picture } },
-                accessToken: token,
-              },
-              token
-            );
+            createUser.mutate({
+              value: { user: { name: user.name, user_image: user.picture } },
+              accessToken: token,
+            });
           } catch (error) {
             console.error(error.response.data);
           }
@@ -51,26 +48,42 @@ export const useUsersApi = () => {
     return createUser;
   };
 
-  const useGetAccesstoken = () => {
-    useEffect(() => {
-      (async () => {
-        const token = await getAccessTokenSilently();
-        setAccessToken(token);
-      })();
-    }, []);
+  const useGetUser = () => {
+    const queryClient = useQueryClient();
+    // mutateメソッドの引数がmutate関数の引数になる。
+    return useMutation(
+      async (accessToken) => {
+        setAccessToken(accessToken);
+        return await userRepository.getUser(accessToken || '');
+      },
+      {
+        onSuccess: (data) => {
+          queryClient.setQueryData('users', data);
+        },
+      }
+    );
   };
 
-  const useGetUser = async () => {
-    return useQuery({
-      queryKey: 'users',
-      queryFn: () => userRepository.getUser(accessToken || ''),
-      staleTime: 30000000,
-      cacheTime: 30000000,
-    });
+  const useGetAccesstokenAndGetUser = () => {
+    const getUser = useGetUser();
+
+    useEffect(() => {
+      if (isAuthenticated && user) {
+        (async () => {
+          const token = await getAccessTokenSilently();
+          try {
+            getUser.mutate(token);
+          } catch (error) {
+            console.error(error);
+          }
+        })();
+      }
+    }, [user]);
+    return getUser;
   };
+
   return {
     useGetAccesstokenAndCreateUser,
-    useGetAccesstoken,
-    useGetUser,
+    useGetAccesstokenAndGetUser,
   };
 };

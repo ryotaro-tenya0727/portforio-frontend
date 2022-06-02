@@ -12,7 +12,6 @@ const Mypage = () => {
   const user_data = queryClient.getQueryData('users');
   const { data, isSuccess, isLoading, isIdle } =
     useGetAccesstokenAndCreateUser();
-
   return (
     <div>
       {user_data === undefined ? (
@@ -20,9 +19,7 @@ const Mypage = () => {
           <p>load</p>
         ) : (
           <>
-            {[data].map((user) => {
-              return <p key={user.id}>{user.name}</p>;
-            })}
+            <p>{data.name}</p>
             <h1>Mypage</h1>
             <Link to='/recommended-members/new'>推しメン登録ページへ</Link>
             <ReactQueryDevtools initialIsOpen={false} />

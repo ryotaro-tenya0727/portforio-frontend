@@ -5,16 +5,15 @@ import { useQueryClient } from 'react-query';
 import { useUsersApi } from './../../hooks/useUsers';
 
 const RecommenedMembersDiaries = () => {
-  const { useGetAccesstokenAndCreateUser } = useUsersApi();
+  const { useGetAccesstokenAndGetUser } = useUsersApi();
   let { recommended_member_uuid, recommended_member_id } = useParams();
   const { search } = useLocation();
   const query = new URLSearchParams(search);
   const queryClient = useQueryClient();
   const user_data = queryClient.getQueryData('users');
 
-  const { data, isIdle, isLoading } = useGetAccesstokenAndCreateUser();
+  const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
   // console.log(data);
-
   return (
     <>
       {user_data === undefined ? (
