@@ -8,6 +8,7 @@ import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemb
 const RecommendedMemberDiariesList = ({
   recommended_member_id,
   recommended_member_nickname,
+  recommended_member_uuid,
 }) => {
   const queryClient = useQueryClient();
   const { useGetRecommendedMemberDiaries } = useRecommendedMemberDiariesApi();
@@ -20,7 +21,7 @@ const RecommendedMemberDiariesList = ({
     isIdle,
     isLoading,
   } = useGetRecommendedMemberDiaries(recommended_member_id);
-  console.log(recommendedMemberDiaries);
+  // console.log(recommendedMemberDiaries);
   return (
     <>
       <ReactQueryDevtools initialIsOpen={false} />
@@ -32,8 +33,14 @@ const RecommendedMemberDiariesList = ({
           recommendedMemberDiaries.data.map((diary, index) => {
             return (
               <p key={index}>
+                {diary.attributes.diary_member_nickname}
+                <br />
                 {diary.attributes.event_name}:{diary.attributes.event_venue}
-                <Link to={`#`}>日記詳細</Link>
+                <Link
+                  to={`/recommended-member/${recommended_member_uuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommended_member_nickname}`}
+                >
+                  日記詳細
+                </Link>
               </p>
             );
           })
@@ -41,12 +48,21 @@ const RecommendedMemberDiariesList = ({
       ) : (
         recommendedMemberDiaries_data.data.map((diary, index) => {
           return (
-            <p key={index}>
-              {diary.attributes.event_name}:{diary.attributes.event_venue}
-              {diary.attributes.uuid === undefined || (
-                <Link to={`#`}>日記詳細</Link>
+            <div key={index}>
+              {diary.attributes.uuid === undefined ? (
+                <h1>作成中</h1>
+              ) : (
+                <>
+                  {' '}
+                  {diary.attributes.event_name}:{diary.attributes.event_venue}
+                  <Link
+                    to={`/recommended-member/${recommended_member_uuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommended_member_nickname}`}
+                  >
+                    日記詳細
+                  </Link>
+                </>
               )}
-            </p>
+            </div>
           );
         })
       )}

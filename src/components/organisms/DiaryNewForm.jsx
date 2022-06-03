@@ -4,21 +4,29 @@ import { useContext } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { recommendedMemberDiaryRepository } from './../../repositories/recommendedMemberDiaryRepository';
+import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
-const DiaryNewForm = ({ recommended_member_id }) => {
-  const { accessToken } = useContext(AuthGuardContext);
-  const navigate = useNavigate();
-
+const DiaryNewForm = ({
+  recommendedMemberId,
+  recommendedMemberUuid,
+  recommendedMemberNickname,
+  recommendedMemberGroup,
+}) => {
   const { register, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
+  // const { accessToken } = useContext(AuthGuardContext);
+  const { useCreateRecommendedMemberDiaries } =
+    useRecommendedMemberDiariesApi();
+  const createRecommendedMemberDiary =
+    useCreateRecommendedMemberDiaries(recommendedMemberId);
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    recommendedMemberDiaryRepository.createRecommendedMemberDiary(
-      data,
-      recommended_member_id,
-      accessToken
+    createRecommendedMemberDiary.mutate(data);
+    navigate(
+      `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
     );
   };
   return (

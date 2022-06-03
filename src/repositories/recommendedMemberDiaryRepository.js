@@ -16,7 +16,6 @@ export const recommendedMemberDiaryRepository = {
       .catch((error) => {
         console.error(error.response.data);
       });
-    console.log('実行');
     return response.data;
   },
 
@@ -39,5 +38,19 @@ export const recommendedMemberDiaryRepository = {
       .catch((error) => {
         console.error(error.response.data);
       });
+  },
+
+  getRecommendedMemberDiaryShow: async (diaryId, token) => {
+    const response = await axios
+      .get(`${REST_API_URL}/user/diaries/${diaryId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+      });
+    return response.data;
   },
 };

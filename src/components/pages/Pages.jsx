@@ -8,5 +8,6 @@ export { default as RecommenedMemberShow } from './RecommendedMemberDiaryShow';
 export { default as RecommenedMemberDiaries } from './RecommendedMemberDiaries';
 export { default as RecommenedMemberDiariesNew } from './RecommendedMemberDiariesNew';
 export { default as RecommendedMemberDiaryEdit } from './RecommendedMemberDiaryEdit';
+export { default as RecommenedMemberDiaryShow } from './RecommendedMemberDiaryShow';
 export { default as RecommenedMemberEdit } from './RecommendedMemberEdit';
 export { default as RecommenedMembersNew } from './RecommendedMembersNew';

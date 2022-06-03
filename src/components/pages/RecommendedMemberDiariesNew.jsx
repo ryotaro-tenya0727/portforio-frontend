@@ -25,7 +25,12 @@ const RecommenedMemberDiariesNew = () => {
             <div>
               <h1>{`${query.get('nickname')}との日記追加中`}</h1>
             </div>
-            <DiaryNewForm recommended_member_id={recommended_member_id} />
+            <DiaryNewForm
+              recommendedMemberId={recommended_member_id}
+              recommendedMemberUuid={recommended_member_uuid}
+              recommendedMemberNickname={`${query.get('nickname')}`}
+              recommendedMemberGroup={`${query.get('group')}`}
+            />
           </>
         )
       ) : (
@@ -34,7 +39,12 @@ const RecommenedMemberDiariesNew = () => {
           <div>
             <h1>{`${query.get('nickname')}との日記追加中`}</h1>
           </div>
-          <DiaryNewForm recommended_member_id={recommended_member_id} />
+          <DiaryNewForm
+            recommendedMemberId={recommended_member_id}
+            recommendedMemberUuid={recommended_member_uuid}
+            recommendedMemberNickname={`${query.get('nickname')}`}
+            recommendedMemberGroup={`${query.get('group')}`}
+          />
         </>
       )}
       <br />
