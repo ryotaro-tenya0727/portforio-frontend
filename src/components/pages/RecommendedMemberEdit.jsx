@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { useUsersApi } from './../../hooks/useUsers';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
+import { RecommenedMemberEditForm } from './../organisms/Organisms';
 
 const RecommenedMemberEdit = () => {
   const { recommended_member_uuid, recommended_member_id } = useParams();
@@ -12,6 +13,7 @@ const RecommenedMemberEdit = () => {
   const deleteRecommendedMember = useDeleteRecommendedMember(
     recommended_member_id
   );
+
   const { search } = useLocation();
   const query = new URLSearchParams(search);
   const queryClient = useQueryClient();
@@ -30,6 +32,8 @@ const RecommenedMemberEdit = () => {
     navigate('/mypage');
   };
 
+  const putMember = (data) => {};
+
   return (
     <>
       <h1>
@@ -44,12 +48,20 @@ const RecommenedMemberEdit = () => {
           <>
             <p>{data.name}さんログイン中</p>
             <button onClick={deleteMember}>推しメンを削除</button>
+            <RecommenedMemberEditForm
+              recommendedMemberUuid={recommended_member_uuid}
+              recommendedMemberId={recommended_member_id}
+            />
           </>
         )
       ) : (
         <>
           <p> {user_data.name}さんログイン中</p>
           <button onClick={deleteMember}>推しメンを削除</button>
+          <RecommenedMemberEditForm
+            recommendedMemberUuid={recommended_member_uuid}
+            recommendedMemberId={recommended_member_id}
+          />
         </>
       )}
       <br />

@@ -3,7 +3,7 @@ import { AuthGuardContext } from './../../providers/AuthGuard';
 import { useContext } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
-import { recommendedMemberDiaryRepository } from './../../repositories/recommendedMemberDiaryRepository';
+
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
 const DiaryNewForm = ({

@@ -25,6 +25,12 @@ const RecommenedMembersNewForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
+        {formState.errors.recommended_member && (
+          <>
+            {formState.errors.recommended_member.nickname && 'ニックネーム必要'}
+          </>
+        )}
+        <br />
         <label htmlFor='nickname'>推しメンのニックネーム</label>
         <br />
         <input
@@ -35,9 +41,7 @@ const RecommenedMembersNewForm = () => {
           })}
         />
         <br />
-        {formState.errors.recommended_member && (
-          <span>This field is required</span>
-        )}
+
         <br />
 
         <br />
@@ -45,6 +49,15 @@ const RecommenedMembersNewForm = () => {
         <br />
         <input id='group' {...register('recommended_member.group')} />
         <p>空白でも登録可能です</p>
+
+        <label htmlFor='first_met_date'>初めて会った日</label>
+        <p>
+          <input
+            id='first_met_date'
+            {...register('recommended_member.first_met_date')}
+            type='date'
+          />
+        </p>
 
         <input type='submit' />
       </form>

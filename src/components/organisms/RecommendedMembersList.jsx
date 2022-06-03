@@ -28,6 +28,7 @@ const RecommendedMembersList = () => {
               <p key={index}>
                 {(recommendedMember = recommendedMember.attributes)}
                 {recommendedMember.nickname}:{recommendedMember.group}
+                <br />
                 <Link
                   to={`/recommended-member/${recommendedMember.uuid}/diaries/${recommendedMember.id}?nickname=${recommendedMember.nickname}&group=${recommendedMember.group}`}
                 >
@@ -49,6 +50,7 @@ const RecommendedMembersList = () => {
             <p key={index}>
               {recommendedMember.attributes.nickname}:
               {recommendedMember.attributes.group}
+              <br />
               {recommendedMember.attributes.uuid === undefined || (
                 <>
                   <Link
