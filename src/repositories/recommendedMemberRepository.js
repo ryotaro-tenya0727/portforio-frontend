@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   recommendedMembersCreateUrl,
   recommendedMembersIndexUrl,
+  REST_API_URL,
 } from '../urls';
 
 export const recommendedMemberRepository = {
@@ -26,6 +27,21 @@ export const recommendedMemberRepository = {
           'Content-Type': 'application/json',
         },
       })
+      .catch((error) => {
+        console.error(error.response.data);
+      });
+  },
+  deleteRecommendedMember: async (recommendedMemberId, token) => {
+    await axios
+      .delete(
+        `${REST_API_URL}/user/recommended_members/${recommendedMemberId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
       .catch((error) => {
         console.error(error.response.data);
       });

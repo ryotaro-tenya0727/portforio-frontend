@@ -7,6 +7,8 @@ import {
   RecommenedMemberDiariesNew,
   RecommenedMemberDiaries,
   RecommenedMemberDiaryShow,
+  RecommendedMemberDiaryEdit,
+  RecommenedMemberEdit,
 } from '../components/pages/Pages';
 
 export const Routers = () => {
@@ -18,6 +20,11 @@ export const Routers = () => {
         path='/recommended-members/new'
         element={<RecommenedMembersNew />}
       />
+      <Route path='/recommended-member/:recommended_member_uuid'>
+        <Route path='edit/:recommended_member_id'>
+          <Route index element={<RecommenedMemberEdit />} />
+        </Route>
+      </Route>
       <Route path='/recommended-member/:recommended_member_uuid/diaries'>
         <Route path=':recommended_member_id'>
           <Route index element={<RecommenedMemberDiaries />} />

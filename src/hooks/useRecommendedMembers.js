@@ -65,5 +65,55 @@ export const useRecommendedMembersApi = () => {
     );
   };
 
-  return { useCreateRecommendedMembers, useGetRecommendedMembers };
+  const useDeleteRecommendedMember = (recommendedMemberId) => {
+    const queryClient = useQueryClient();
+    const queryKey = 'recommended_members';
+
+    const updater = (previousData) => {
+      previousData.data = previousData.data.filter(
+        (member) => member.id !== recommendedMemberId
+      );
+      return previousData;
+    };
+
+    return useMutation(
+      async () => {
+        return await recommendedMemberRepository.deleteRecommendedMember(
+          recommendedMemberId,
+          accessToken || ''
+        );
+      },
+      //mutateAsyncを開始したタイミングで実行
+      // dataはmutatecに渡した引数
+      {
+        onMutate: async () => {
+          await queryClient.cancelQueries(queryKey);
+          const previousData = await queryClient.getQueryData(queryKey);
+          if (previousData) {
+            queryClient.setQueryData(queryKey, () => {
+              return updater(previousData);
+            });
+          }
+          return previousData;
+        },
+        onError: (err, _, context) => {
+          // contextにはonMutateの戻り値が入る
+          queryClient.setQueryData(queryKey, context);
+          console.warn(err);
+        },
+        // すべての処理が終了した際にキャッシュを更新する
+        // APIから取得成功した場合は仮のデータから取得したデータに更新
+        // 失敗した場合は旧データに更新
+        onSettled: () => {
+          queryClient.invalidateQueries(queryKey);
+        },
+      }
+    );
+  };
+
+  return {
+    useCreateRecommendedMembers,
+    useGetRecommendedMembers,
+    useDeleteRecommendedMember,
+  };
 };
