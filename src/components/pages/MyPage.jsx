@@ -1,5 +1,4 @@
 import { useUsersApi } from './../../hooks/useUsers';
-import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
@@ -10,8 +9,7 @@ const Mypage = () => {
   const { useGetAccesstokenAndCreateUser } = useUsersApi();
   const queryClient = useQueryClient();
   const user_data = queryClient.getQueryData('users');
-  const { data, isSuccess, isLoading, isIdle } =
-    useGetAccesstokenAndCreateUser();
+  const { data, isLoading, isIdle } = useGetAccesstokenAndCreateUser();
   return (
     <div>
       {user_data === undefined ? (

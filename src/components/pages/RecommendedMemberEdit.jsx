@@ -7,19 +7,18 @@ import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { RecommenedMemberEditForm } from './../organisms/Organisms';
 
 const RecommenedMemberEdit = () => {
+  const navigate = useNavigate();
   const { recommended_member_uuid, recommended_member_id } = useParams();
-  const { useGetAccesstokenAndGetUser } = useUsersApi();
+  const { search } = useLocation();
+  const query = new URLSearchParams(search);
   const { useDeleteRecommendedMember } = useRecommendedMembersApi();
   const deleteRecommendedMember = useDeleteRecommendedMember(
     recommended_member_id
   );
-
-  const { search } = useLocation();
-  const query = new URLSearchParams(search);
+  const { useGetAccesstokenAndGetUser } = useUsersApi();
   const queryClient = useQueryClient();
   const user_data = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
-  const navigate = useNavigate();
 
   const deleteMember = () => {
     alert(

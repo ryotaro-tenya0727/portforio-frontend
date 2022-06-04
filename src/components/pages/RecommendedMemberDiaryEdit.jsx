@@ -7,17 +7,17 @@ import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemb
 import { RecommenedMemberDiaryEditForm } from './../organisms/Organisms';
 
 const RecommendedMemberDiaryEdit = () => {
+  const navigate = useNavigate();
   const { recommended_member_uuid, recommended_member_id, diary_id } =
     useParams();
   const { search } = useLocation();
-  const navigate = useNavigate();
   const query = new URLSearchParams(search);
-  const { useGetAccesstokenAndGetUser } = useUsersApi();
   const { useDeleteRecommendedMemberDiary } = useRecommendedMemberDiariesApi();
   const deleteRecommendedMemberDiary = useDeleteRecommendedMemberDiary(
     recommended_member_id,
     diary_id
   );
+  const { useGetAccesstokenAndGetUser } = useUsersApi();
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();

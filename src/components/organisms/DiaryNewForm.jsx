@@ -1,8 +1,6 @@
 import { useForm } from 'react-hook-form';
-import { AuthGuardContext } from './../../providers/AuthGuard';
-import { useContext } from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
@@ -12,16 +10,17 @@ const DiaryNewForm = ({
   recommendedMemberNickname,
   recommendedMemberGroup,
 }) => {
+  const navigate = useNavigate();
   const { register, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
-  // const { accessToken } = useContext(AuthGuardContext);
+
   const { useCreateRecommendedMemberDiaries } =
     useRecommendedMemberDiariesApi();
+
   const createRecommendedMemberDiary =
     useCreateRecommendedMemberDiaries(recommendedMemberId);
-  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     createRecommendedMemberDiary.mutate(data);
@@ -29,6 +28,7 @@ const DiaryNewForm = ({
       `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
     );
   };
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>

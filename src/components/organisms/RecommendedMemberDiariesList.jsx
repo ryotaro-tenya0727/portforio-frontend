@@ -11,8 +11,8 @@ const RecommendedMemberDiariesList = ({
   recommendedMemberNickname,
   recommendedMemberGroup,
 }) => {
-  const queryClient = useQueryClient();
   const { useGetRecommendedMemberDiaries } = useRecommendedMemberDiariesApi();
+  const queryClient = useQueryClient();
   const recommendedMemberDiaries_data = queryClient.getQueryData([
     'recommended_member_diaries',
     { recommendedMemberId: recommendedMemberId },
@@ -22,7 +22,7 @@ const RecommendedMemberDiariesList = ({
     isIdle,
     isLoading,
   } = useGetRecommendedMemberDiaries(recommendedMemberId);
-  // console.log(recommendedMemberDiaries);
+
   return (
     <>
       <ReactQueryDevtools initialIsOpen={false} />

@@ -1,13 +1,12 @@
 import { useForm } from 'react-hook-form';
-import { AuthGuardContext } from './../../providers/AuthGuard';
-import { useContext } from 'react';
+
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const RecommenedMembersNewForm = () => {
+  const navigate = useNavigate();
   const { useCreateRecommendedMembers } = useRecommendedMembersApi();
   const createRecommendedMember = useCreateRecommendedMembers();
-  const navigate = useNavigate();
 
   const { register, handleSubmit, formState } = useForm({
     mode: 'onSubmit',

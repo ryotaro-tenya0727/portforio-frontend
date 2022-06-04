@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
-import { useQueryClient } from 'react-query';
-import { Link, useNavigate } from 'react-router-dom';
+
+import { useNavigate } from 'react-router-dom';
 
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
@@ -16,8 +16,10 @@ const RecommenedMemberDiaryEditForm = ({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
+
   const { useShowRecommendedMemberDiary, usePutRecommendedMemberDiary } =
     useRecommendedMemberDiariesApi();
+
   const putRecommendedMemberDiary = usePutRecommendedMemberDiary(
     recommendedMemberId,
     diaryId

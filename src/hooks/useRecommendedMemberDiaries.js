@@ -105,8 +105,6 @@ export const useRecommendedMemberDiariesApi = () => {
           accessToken || ''
         );
       },
-      //mutateAsyncを開始したタイミングで実行
-      // dataはmutatecに渡した引数
       {
         onMutate: async (params) => {
           await queryClient.cancelQueries(queryKey);
@@ -119,13 +117,9 @@ export const useRecommendedMemberDiariesApi = () => {
           return previousData;
         },
         onError: (err, _, context) => {
-          // contextにはonMutateの戻り値が入る
           queryClient.setQueryData(queryKey, context);
           console.warn(err);
         },
-        // すべての処理が終了した際にキャッシュを更新する
-        // APIから取得成功した場合は仮のデータから取得したデータに更新
-        // 失敗した場合は旧データに更新
         onSettled: () => {
           queryClient.invalidateQueries(queryKey);
         },
@@ -154,28 +148,21 @@ export const useRecommendedMemberDiariesApi = () => {
           accessToken || ''
         );
       },
-      //mutateAsyncを開始したタイミングで実行
-      // dataはmutatecに渡した引数
       {
         onMutate: async () => {
           await queryClient.cancelQueries(queryKey);
           const previousData = await queryClient.getQueryData(queryKey);
           if (previousData) {
             queryClient.setQueryData(queryKey, () => {
-              // previousDataにdataを加える。
               return updater(previousData);
             });
           }
           return previousData;
         },
         onError: (err, _, context) => {
-          // contextにはonMutateの戻り値が入る
           queryClient.setQueryData(queryKey, context);
           console.warn(err);
         },
-        // すべての処理が終了した際にキャッシュを更新する
-        // APIから取得成功した場合は仮のデータから取得したデータに更新
-        // 失敗した場合は旧データに更新
         onSettled: () => {
           queryClient.invalidateQueries(queryKey);
         },
@@ -200,8 +187,8 @@ export const useRecommendedMemberDiariesApi = () => {
   return {
     useGetRecommendedMemberDiaries,
     useCreateRecommendedMemberDiaries,
-    useDeleteRecommendedMemberDiary,
     usePutRecommendedMemberDiary,
+    useDeleteRecommendedMemberDiary,
     useShowRecommendedMemberDiary,
   };
 };

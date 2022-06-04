@@ -1,24 +1,15 @@
 import { Link } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { useQueryClient } from 'react-query';
-import { useContext, useEffect } from 'react';
 
-import { AuthGuardContext } from './../../providers/AuthGuard';
 import { useUsersApi } from './../../hooks/useUsers';
 import { RecommenedMembersNewForm } from './../organisms/Organisms';
 
 const RecommenedMembersNew = () => {
+  const { useGetAccesstokenAndCreateUser } = useUsersApi();
   const queryClient = useQueryClient();
-  const { useGetAccesstoken, useGetAccesstokenAndCreateUser } = useUsersApi();
-  // useGetAccesstoken();
-
   const user_data = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndCreateUser();
-
-  // console.log(data);
-  // const { useGetAccesstokenAndCreateUser } = useUsersApi();
-  // const { data, isSuccess } = useGetAccesstokenAndCreateUser();
-  // console.log(queryClient.getQueriesData('users'));
 
   return (
     <>

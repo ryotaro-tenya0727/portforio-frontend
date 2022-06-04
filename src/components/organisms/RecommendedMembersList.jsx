@@ -13,9 +13,8 @@ const RecommendedMembersList = () => {
     data: recommendedMembers,
     isLoading,
     isIdle,
-    isSuccess,
   } = useGetRecommendedMembers();
-  // console.log(recommendedMembers_data);
+
   return (
     <>
       <h2>推しメン一覧</h2>

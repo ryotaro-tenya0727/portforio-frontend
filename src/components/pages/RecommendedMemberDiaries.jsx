@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
 import { useUsersApi } from './../../hooks/useUsers';
-import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import { RecommendedMemberDiariesList } from './../organisms/Organisms';
 
 const RecommenedMembersDiaries = () => {

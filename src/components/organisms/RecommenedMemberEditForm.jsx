@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
-import { useQueryClient } from 'react-query';
-import { Link, useNavigate } from 'react-router-dom';
+
+import { useNavigate } from 'react-router-dom';
 
 const RecommenedMemberEditForm = ({
   recommendedMemberUuid,

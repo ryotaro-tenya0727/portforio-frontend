@@ -1,12 +1,8 @@
-import { useParams, useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
-import { useUsersApi } from './../../hooks/useUsers';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
 const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
-  // console.log(diaryId);
   const { useShowRecommendedMemberDiary } = useRecommendedMemberDiariesApi();
   const queryClient = useQueryClient();
   let recommended_member_diary_show_data = queryClient.getQueryData([
@@ -22,7 +18,6 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
     isIdle,
     isLoading,
   } = useShowRecommendedMemberDiary(diaryId);
-  // console.log(recommended_member_diary_show);
 
   return (
     <>

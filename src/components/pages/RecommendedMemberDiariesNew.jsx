@@ -5,13 +5,12 @@ import { Link } from 'react-router-dom';
 import { useUsersApi } from './../../hooks/useUsers';
 import { DiaryNewForm } from './../organisms/Organisms';
 const RecommenedMemberDiariesNew = () => {
-  const { useGetAccesstokenAndGetUser } = useUsersApi();
   let { recommended_member_uuid, recommended_member_id } = useParams();
   const { search } = useLocation();
   const query = new URLSearchParams(search);
+  const { useGetAccesstokenAndGetUser } = useUsersApi();
   const queryClient = useQueryClient();
   const user_data = queryClient.getQueryData('users');
-
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
   return (
     <>
