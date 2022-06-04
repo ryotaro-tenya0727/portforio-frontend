@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { useUsersApi } from './../../hooks/useUsers';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
-import { RecommenedMemberEditForm } from './../organisms/Organisms';
+import { RecommenedMemberEditForm } from './../templates/Templates';
 
 const RecommenedMemberEdit = () => {
   const navigate = useNavigate();

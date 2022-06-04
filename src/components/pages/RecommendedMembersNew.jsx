@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { useQueryClient } from 'react-query';
 
 import { useUsersApi } from './../../hooks/useUsers';
-import { RecommenedMembersNewForm } from './../organisms/Organisms';
+import { RecommenedMembersNewForm } from './../templates/Templates';
 
 const RecommenedMembersNew = () => {
   const { useGetAccesstokenAndCreateUser } = useUsersApi();

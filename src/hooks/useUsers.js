@@ -7,7 +7,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { userRepository } from '../repositories/userRepository';
 
 export const useUsersApi = () => {
-  const { setAccessToken, accessToken } = useContext(AuthGuardContext);
+  const { setAccessToken } = useContext(AuthGuardContext);
   const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
 
   const useAddUser = () => {
@@ -51,7 +51,6 @@ export const useUsersApi = () => {
 
   const useGetUser = () => {
     const queryClient = useQueryClient();
-    // mutateメソッドの引数がmutate関数の引数になる。
     return useMutation(
       async (accessToken) => {
         setAccessToken(accessToken);

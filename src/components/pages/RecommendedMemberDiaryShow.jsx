@@ -4,7 +4,7 @@ import { useQueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { useUsersApi } from './../../hooks/useUsers';
-import { RecommenedMemberDiaryShowDetail } from './../organisms/Organisms';
+import { RecommenedMemberDiaryShowDetail } from './../templates/Templates';
 
 const RecommenedMemberDiaryShow = () => {
   const { diary_id } = useParams();

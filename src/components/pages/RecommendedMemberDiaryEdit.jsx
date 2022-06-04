@@ -4,7 +4,7 @@ import { useQueryClient } from 'react-query';
 
 import { useUsersApi } from './../../hooks/useUsers';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
-import { RecommenedMemberDiaryEditForm } from './../organisms/Organisms';
+import { RecommenedMemberDiaryEditForm } from './../templates/Templates';
 
 const RecommendedMemberDiaryEdit = () => {
   const navigate = useNavigate();

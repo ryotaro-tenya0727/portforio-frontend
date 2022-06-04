@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
 import { useUsersApi } from './../../hooks/useUsers';
-import { RecommendedMemberDiariesList } from './../organisms/Organisms';
+import { RecommendedMemberDiariesList } from './../templates/Templates';
 
 const RecommenedMembersDiaries = () => {
   const { recommended_member_uuid, recommended_member_id } = useParams();

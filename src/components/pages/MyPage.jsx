@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
-import { RecommendedMembersList } from './../organisms/Organisms';
+import { RecommendedMembersList } from './../templates/Templates';
 
 const Mypage = () => {
   const { useGetAccesstokenAndCreateUser } = useUsersApi();

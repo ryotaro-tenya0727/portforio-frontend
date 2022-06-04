@@ -3,7 +3,7 @@ import { useQueryClient } from 'react-query';
 import { Link } from 'react-router-dom';
 
 import { useUsersApi } from './../../hooks/useUsers';
-import { DiaryNewForm } from './../organisms/Organisms';
+import { DiaryNewForm } from './../templates/Templates';
 const RecommenedMemberDiariesNew = () => {
   let { recommended_member_uuid, recommended_member_id } = useParams();
   const { search } = useLocation();
