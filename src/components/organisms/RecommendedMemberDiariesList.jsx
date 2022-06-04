@@ -1,4 +1,3 @@
-import { useParams, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -61,7 +60,6 @@ const RecommendedMemberDiariesList = ({
                 <h1>作成中</h1>
               ) : (
                 <>
-                  {' '}
                   {diary.attributes.event_name}:{diary.attributes.event_venue}
                   <br />
                   <Link
