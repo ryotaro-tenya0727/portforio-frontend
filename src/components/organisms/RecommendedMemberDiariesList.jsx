@@ -6,27 +6,27 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
 const RecommendedMemberDiariesList = ({
-  recommended_member_id,
-  recommended_member_nickname,
-  recommended_member_uuid,
-  recommended_member_group,
+  recommendedMemberId,
+  recommendedMemberUuid,
+  recommendedMemberNickname,
+  recommendedMemberGroup,
 }) => {
   const queryClient = useQueryClient();
   const { useGetRecommendedMemberDiaries } = useRecommendedMemberDiariesApi();
   const recommendedMemberDiaries_data = queryClient.getQueryData([
     'recommended_member_diaries',
-    { recommendedMemberId: recommended_member_id },
+    { recommendedMemberId: recommendedMemberId },
   ]);
   const {
     data: recommendedMemberDiaries,
     isIdle,
     isLoading,
-  } = useGetRecommendedMemberDiaries(recommended_member_id);
+  } = useGetRecommendedMemberDiaries(recommendedMemberId);
   // console.log(recommendedMemberDiaries);
   return (
     <>
       <ReactQueryDevtools initialIsOpen={false} />
-      <h2>{recommended_member_nickname}の日記一覧</h2>
+      <h2>{recommendedMemberNickname}の日記一覧</h2>
       {recommendedMemberDiaries_data === undefined ? (
         isIdle || isLoading ? (
           <h2>日記ローディング中</h2>
@@ -39,13 +39,13 @@ const RecommendedMemberDiariesList = ({
                 {diary.attributes.event_name}:{diary.attributes.event_venue}
                 <br />
                 <Link
-                  to={`/recommended-member/${recommended_member_uuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommended_member_nickname}`}
+                  to={`/recommended-member/${recommendedMemberUuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                 >
                   日記詳細
                 </Link>
                 <br />
                 <Link
-                  to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/edit/${diary.attributes.id}?nickname=${recommended_member_nickname}&group=${recommended_member_group}`}
+                  to={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/edit/${diary.attributes.id}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                 >
                   日記を編集
                 </Link>
@@ -65,13 +65,13 @@ const RecommendedMemberDiariesList = ({
                   {diary.attributes.event_name}:{diary.attributes.event_venue}
                   <br />
                   <Link
-                    to={`/recommended-member/${recommended_member_uuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommended_member_nickname}`}
+                    to={`/recommended-member/${recommendedMemberUuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                   >
                     日記詳細
                   </Link>
                   <br />
                   <Link
-                    to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/edit/${diary.attributes.id}?nickname=${recommended_member_nickname}&group=${recommended_member_group}`}
+                    to={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/edit/${diary.attributes.id}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                   >
                     日記を編集
                   </Link>

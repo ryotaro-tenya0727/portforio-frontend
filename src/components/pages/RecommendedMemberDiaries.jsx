@@ -36,9 +36,10 @@ const RecommenedMembersDiaries = () => {
             </Link>
 
             <RecommendedMemberDiariesList
-              recommended_member_id={recommended_member_id}
-              recommended_member_nickname={query.get('nickname')}
-              recommended_member_uuid={recommended_member_uuid}
+              recommendedMemberId={recommended_member_id}
+              recommendedMemberUuid={recommended_member_uuid}
+              recommendedMemberNickname={query.get('nickname')}
+              recommendedMemberGroup={query.get('group')}
             />
           </>
         )
@@ -58,10 +59,10 @@ const RecommenedMembersDiaries = () => {
           </Link>
 
           <RecommendedMemberDiariesList
-            recommended_member_id={recommended_member_id}
-            recommended_member_uuid={recommended_member_uuid}
-            recommended_member_nickname={query.get('nickname')}
-            recommended_member_group={query.get('group')}
+            recommendedMemberId={recommended_member_id}
+            recommendedMemberUuid={recommended_member_uuid}
+            recommendedMemberNickname={query.get('nickname')}
+            recommendedMemberGroup={query.get('group')}
           />
         </>
       )}

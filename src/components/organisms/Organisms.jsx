@@ -4,3 +4,4 @@ export { default as DiaryNewForm } from './DiaryNewForm';
 export { default as RecommendedMemberDiariesList } from './RecommendedMemberDiariesList';
 export { default as RecommenedMemberDiaryShowDetail } from './RecommenedMemberDiaryShowDetail';
 export { default as RecommenedMemberEditForm } from './RecommenedMemberEditForm';
+export { default as RecommenedMemberDiaryEditForm } from './RecommenedMemberDiaryEditForm';

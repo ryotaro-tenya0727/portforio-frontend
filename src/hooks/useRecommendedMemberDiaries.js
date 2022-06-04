@@ -76,18 +76,61 @@ export const useRecommendedMemberDiariesApi = () => {
     );
   };
 
-  const useShowRecommendedMemberDiary = (diaryId) => {
-    return useQuery({
-      queryKey: ['recommended_member_diary_show', { diaryId: diaryId }],
-      queryFn: () =>
-        recommendedMemberDiaryRepository.getRecommendedMemberDiaryShow(
+  const usePutRecommendedMemberDiary = (recommendedMemberId, diaryId) => {
+    const queryClient = useQueryClient();
+    const queryKey = [
+      'recommended_member_diaries',
+      { recommendedMemberId: recommendedMemberId },
+    ];
+
+    const updater = (previousData, params) => {
+      previousData.data = previousData.data.map((diary) => {
+        if (diary.id === diaryId) {
+          return {
+            attributes: { ...diary.attributes, ...params.diary },
+          };
+        } else {
+          return diary;
+        }
+      });
+
+      return previousData;
+    };
+
+    return useMutation(
+      async (params) => {
+        return await recommendedMemberDiaryRepository.putRecommendedMemberDiary(
+          params,
           diaryId,
           accessToken || ''
-        ),
-      enabled: !!diaryId,
-      staleTime: 30000000,
-      cacheTime: 30000000,
-    });
+        );
+      },
+      //mutateAsyncを開始したタイミングで実行
+      // dataはmutatecに渡した引数
+      {
+        onMutate: async (params) => {
+          await queryClient.cancelQueries(queryKey);
+          const previousData = await queryClient.getQueryData(queryKey);
+          if (previousData) {
+            queryClient.setQueryData(queryKey, () => {
+              return updater(previousData, params);
+            });
+          }
+          return previousData;
+        },
+        onError: (err, _, context) => {
+          // contextにはonMutateの戻り値が入る
+          queryClient.setQueryData(queryKey, context);
+          console.warn(err);
+        },
+        // すべての処理が終了した際にキャッシュを更新する
+        // APIから取得成功した場合は仮のデータから取得したデータに更新
+        // 失敗した場合は旧データに更新
+        onSettled: () => {
+          queryClient.invalidateQueries(queryKey);
+        },
+      }
+    );
   };
 
   const useDeleteRecommendedMemberDiary = (recommendedMemberId, diaryId) => {
@@ -140,10 +183,25 @@ export const useRecommendedMemberDiariesApi = () => {
     );
   };
 
+  const useShowRecommendedMemberDiary = (diaryId) => {
+    return useQuery({
+      queryKey: ['recommended_member_diary_show', { diaryId: diaryId }],
+      queryFn: () =>
+        recommendedMemberDiaryRepository.getRecommendedMemberDiaryShow(
+          diaryId,
+          accessToken || ''
+        ),
+      enabled: !!diaryId,
+      staleTime: 30000000,
+      cacheTime: 0,
+    });
+  };
+
   return {
     useGetRecommendedMemberDiaries,
     useCreateRecommendedMemberDiaries,
-    useShowRecommendedMemberDiary,
     useDeleteRecommendedMemberDiary,
+    usePutRecommendedMemberDiary,
+    useShowRecommendedMemberDiary,
   };
 };
