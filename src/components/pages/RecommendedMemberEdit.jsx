@@ -32,8 +32,6 @@ const RecommenedMemberEdit = () => {
     navigate('/mypage');
   };
 
-  const putMember = (data) => {};
-
   return (
     <>
       <h1>

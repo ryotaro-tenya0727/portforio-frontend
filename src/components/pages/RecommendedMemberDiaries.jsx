@@ -59,8 +59,9 @@ const RecommenedMembersDiaries = () => {
 
           <RecommendedMemberDiariesList
             recommended_member_id={recommended_member_id}
-            recommended_member_nickname={query.get('nickname')}
             recommended_member_uuid={recommended_member_uuid}
+            recommended_member_nickname={query.get('nickname')}
+            recommended_member_group={query.get('group')}
           />
         </>
       )}

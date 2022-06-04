@@ -51,7 +51,9 @@ const RecommendedMembersList = () => {
               {recommendedMember.attributes.nickname}:
               {recommendedMember.attributes.group}
               <br />
-              {recommendedMember.attributes.uuid === undefined || (
+              {recommendedMember.attributes.uuid === undefined ? (
+                <h2>推しメン作成中</h2>
+              ) : (
                 <>
                   <Link
                     to={`/recommended-member/${recommendedMember.attributes.uuid}/diaries/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}

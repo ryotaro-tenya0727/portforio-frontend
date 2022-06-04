@@ -53,4 +53,17 @@ export const recommendedMemberDiaryRepository = {
       });
     return response.data;
   },
+
+  deleteRecommendedMemberDiary: async (diaryId, token) => {
+    await axios
+      .delete(`${REST_API_URL}/user/diaries/${diaryId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+      });
+  },
 };

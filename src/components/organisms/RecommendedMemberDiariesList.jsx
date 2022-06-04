@@ -9,6 +9,7 @@ const RecommendedMemberDiariesList = ({
   recommended_member_id,
   recommended_member_nickname,
   recommended_member_uuid,
+  recommended_member_group,
 }) => {
   const queryClient = useQueryClient();
   const { useGetRecommendedMemberDiaries } = useRecommendedMemberDiariesApi();
@@ -36,10 +37,17 @@ const RecommendedMemberDiariesList = ({
                 {diary.attributes.diary_member_nickname}
                 <br />
                 {diary.attributes.event_name}:{diary.attributes.event_venue}
+                <br />
                 <Link
                   to={`/recommended-member/${recommended_member_uuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommended_member_nickname}`}
                 >
                   日記詳細
+                </Link>
+                <br />
+                <Link
+                  to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/edit/${diary.attributes.id}?nickname=${recommended_member_nickname}&group=${recommended_member_group}`}
+                >
+                  日記を編集
                 </Link>
               </p>
             );
@@ -55,10 +63,17 @@ const RecommendedMemberDiariesList = ({
                 <>
                   {' '}
                   {diary.attributes.event_name}:{diary.attributes.event_venue}
+                  <br />
                   <Link
                     to={`/recommended-member/${recommended_member_uuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommended_member_nickname}`}
                   >
                     日記詳細
+                  </Link>
+                  <br />
+                  <Link
+                    to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/edit/${diary.attributes.id}?nickname=${recommended_member_nickname}&group=${recommended_member_group}`}
+                  >
+                    日記を編集
                   </Link>
                 </>
               )}

@@ -31,6 +31,11 @@ export const Routers = () => {
           <Route path='new'>
             <Route index element={<RecommenedMemberDiariesNew />} />
           </Route>
+          <Route path='edit'>
+            <Route path=':diary_id'>
+              <Route index element={<RecommendedMemberDiaryEdit />} />
+            </Route>
+          </Route>
         </Route>
         <Route path='show'>
           <Route path=':diary_id'>

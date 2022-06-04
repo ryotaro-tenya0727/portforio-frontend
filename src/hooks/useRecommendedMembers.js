@@ -165,7 +165,7 @@ export const useRecommendedMembersApi = () => {
     );
   };
 
-  const useShowRecommendedMembers = (recommendedMemberId) => {
+  const useShowRecommendedMember = (recommendedMemberId) => {
     return useQuery({
       queryKey: [
         'recommended_member_show',
@@ -186,6 +186,6 @@ export const useRecommendedMembersApi = () => {
     useGetRecommendedMembers,
     useDeleteRecommendedMember,
     usePutRecommendedMember,
-    useShowRecommendedMembers,
+    useShowRecommendedMember,
   };
 };
