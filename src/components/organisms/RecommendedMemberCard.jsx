@@ -1,4 +1,3 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
@@ -9,7 +8,7 @@ const RecommendedMemberCard = ({
   firstMetDate,
   diaryUrl,
   editUrl,
-  recommendedMemberUuid,
+  recommendedMemberId,
   totalMemberPolaroidCount,
   DiariesCount,
 }) => {
@@ -20,15 +19,15 @@ const RecommendedMemberCard = ({
         <p>{group}</p>
         <p>{firstMetDate}</p>
 
-        {recommendedMemberUuid === undefined ? (
+        {recommendedMemberId === undefined ? (
           <p>推しメン作成中</p>
         ) : (
           <>
             <p>トータルチェキ数: {totalMemberPolaroidCount}</p>
             <p>日記数: {DiariesCount}</p>
-            <Link to={diaryUrl}>推しメンの日記を見る・追加する</Link>
+            <Link to={diaryUrl}>{nickname}の日記を見る・追加する</Link>
             <br />
-            <Link to={editUrl}>推しメンの情報を編集</Link>
+            <Link to={editUrl}>{nickname}推しメンの情報を編集</Link>
           </>
         )}
       </Paper>

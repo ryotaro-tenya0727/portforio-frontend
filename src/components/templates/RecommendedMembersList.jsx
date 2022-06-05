@@ -1,9 +1,7 @@
 import { useQueryClient } from 'react-query';
-import { Link } from 'react-router-dom';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 
 import { RecommendedMemberCard } from './../organisms/Organisms';
 
@@ -50,7 +48,7 @@ const RecommendedMembersList = () => {
                       nickname={recommendedMember.nickname}
                       group={recommendedMember.group}
                       firstMetDate={recommendedMember.first_met_date}
-                      recommendedMemberUuid={recommendedMember.uuid}
+                      recommendedMemberId={recommendedMember.id}
                       totalMemberPolaroidCount={
                         recommendedMember.total_member_polaroid_count
                       }
@@ -72,7 +70,7 @@ const RecommendedMembersList = () => {
                   nickname={recommendedMember.attributes.nickname}
                   group={recommendedMember.attributes.group}
                   firstMetDate={recommendedMember.attributes.first_met_date}
-                  recommendedMemberUuid={recommendedMember.attributes.uuid}
+                  recommendedMemberId={recommendedMember.id}
                   totalMemberPolaroidCount={
                     recommendedMember.attributes.total_member_polaroid_count
                   }
