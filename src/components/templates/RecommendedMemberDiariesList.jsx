@@ -56,11 +56,11 @@ const RecommendedMemberDiariesList = ({
         recommendedMemberDiaries_data.data.map((diary, index) => {
           return (
             <div key={index}>
+              {diary.attributes.event_name}:{diary.attributes.event_venue}
               {diary.attributes.uuid === undefined ? (
                 <h1>作成中</h1>
               ) : (
                 <>
-                  {diary.attributes.event_name}:{diary.attributes.event_venue}
                   <br />
                   <Link
                     to={`/recommended-member/${recommendedMemberUuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}

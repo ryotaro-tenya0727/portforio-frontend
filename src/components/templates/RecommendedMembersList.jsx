@@ -53,6 +53,9 @@ const RecommendedMembersList = () => {
                       group={recommendedMember.group}
                       firstMetDate={recommendedMember.first_met_date}
                       recommendedMemberUuid={recommendedMember.uuid}
+                      totalMemberPolaroidCount={
+                        recommendedMember.total_member_polaroid_count
+                      }
                       diaryUrl={`/recommended-member/${recommendedMember.uuid}/diaries/${recommendedMember.id}?nickname=${recommendedMember.nickname}&group=${recommendedMember.group}`}
                       editUrl={`/recommended-member/${recommendedMember.uuid}/edit/${recommendedMember.id}?nickname=${recommendedMember.nickname}&group=${recommendedMember.group}`}
                     />
@@ -72,6 +75,9 @@ const RecommendedMembersList = () => {
                     group={recommendedMember.attributes.group}
                     firstMetDate={recommendedMember.attributes.first_met_date}
                     recommendedMemberUuid={recommendedMember.attributes.uuid}
+                    totalMemberPolaroidCount={
+                      recommendedMember.attributes.total_member_polaroid_count
+                    }
                     diaryUrl={`/recommended-member/${recommendedMember.attributes.uuid}/diaries/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
                     editUrl={`/recommended-member/${recommendedMember.attributes.uuid}/edit/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
                   />
