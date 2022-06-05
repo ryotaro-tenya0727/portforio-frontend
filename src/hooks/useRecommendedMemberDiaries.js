@@ -50,6 +50,9 @@ export const useRecommendedMemberDiariesApi = () => {
                   Number(data.event_polaroid_count) +
                   recommendedMember.attributes.total_member_polaroid_count,
               },
+              ...{
+                diaries_count: recommendedMember.attributes.diaries_count + 1,
+              },
             },
           };
         } else {
