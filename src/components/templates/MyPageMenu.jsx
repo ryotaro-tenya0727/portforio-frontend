@@ -25,6 +25,9 @@ const MyPageMenu = () => {
       primary: {
         main: '#ffa5e4',
       },
+      secondary: {
+        main: '#fff',
+      },
     },
   });
   return (
@@ -37,7 +40,12 @@ const MyPageMenu = () => {
             aria-label='icon position tabs example'
             textColor={'primary'}
             indicatorColor={'primary'}
-            sx={{ width: 1 }}
+            sx={{
+              width: 1,
+              bgcolor: '#fff',
+              borderRadius: '8px',
+              border: 'solid 2px #EEEEEE',
+            }}
           >
             <Tab
               icon={<NotificationsIcon sx={{ fontSize: 39 }} />}
@@ -79,9 +87,14 @@ const MyPageMenu = () => {
               value='3'
             />
           </Tabs>
-          <TabPanel value={'3'}>プロフィール</TabPanel>
-          <TabPanel value={'2'}>
+          <TabPanel value={'0'} sx={{ padding: 0 }}>
+            通知
+          </TabPanel>
+          <TabPanel value={'2'} sx={{ padding: 0 }}>
             <RecommendedMembersList />
+          </TabPanel>
+          <TabPanel value={'3'} sx={{ padding: 0 }}>
+            プロフィール
           </TabPanel>
         </TabContext>
       </ThemeProvider>

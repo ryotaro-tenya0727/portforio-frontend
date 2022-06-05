@@ -16,6 +16,9 @@ const RecommenedMembersDiaries = () => {
 
   return (
     <>
+      <h1>{`${query.get('nickname')}との日記(グループ：　${query.get(
+        'group'
+      )})`}</h1>
       {userData === undefined ? (
         isIdle || isLoading ? (
           <p>load</p>
@@ -23,9 +26,7 @@ const RecommenedMembersDiaries = () => {
           <>
             <p>{data.name}さんログイン中</p>
             <Link to='/mypage'>マイページへ</Link>
-            <h1>{`${query.get('nickname')}との日記(グループ：　${query.get(
-              'group'
-            )})`}</h1>
+            <br />
             <Link
               to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new?nickname=${query.get(
                 'nickname'
@@ -46,9 +47,7 @@ const RecommenedMembersDiaries = () => {
         <>
           <p> {userData.name}さんログイン中</p>
           <Link to='/mypage'>マイページへ</Link>
-          <h1>{`${query.get('nickname')}との日記(グループ：${query.get(
-            'group'
-          )})`}</h1>
+          <br />
           <Link
             to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new?nickname=${query.get(
               'nickname'

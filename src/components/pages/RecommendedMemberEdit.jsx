@@ -34,8 +34,7 @@ const RecommenedMemberEdit = () => {
   return (
     <>
       <h1>
-        推しメン{`${query.get('nickname')}`}: {`${query.get('group')}`}
-        :を編集中
+        推しメン{`${query.get('nickname')}`}: {`${query.get('group')}`}を編集中
       </h1>
       <Link to='/mypage'>マイページへ</Link>
       {user_data === undefined ? (
