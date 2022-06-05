@@ -38,6 +38,27 @@ export const useRecommendedMemberDiariesApi = () => {
       return previousData;
     };
 
+    const recommendedMemberUpdater = (previousData, data) => {
+      previousData.data = previousData.data.map((recommendedMember) => {
+        // recommendedMemberIdはstringなので数値に変換
+        if (recommendedMember.attributes.id === Number(recommendedMemberId)) {
+          return {
+            attributes: {
+              ...recommendedMember.attributes,
+              ...{
+                total_member_polaroid_count:
+                  Number(data.event_polaroid_count) +
+                  recommendedMember.attributes.total_member_polaroid_count,
+              },
+            },
+          };
+        } else {
+          return recommendedMember;
+        }
+      });
+      return previousData;
+    };
+
     return useMutation(
       async (params) => {
         return await recommendedMemberDiaryRepository.createRecommendedMemberDiary(
@@ -56,6 +77,18 @@ export const useRecommendedMemberDiariesApi = () => {
             queryClient.setQueryData(queryKey, () => {
               // previousDataにdataを加える。
               return updater(previousData, data);
+            });
+          }
+          const previousRecommendedMemberData = await queryClient.getQueryData(
+            'recommended_members'
+          );
+
+          if (previousRecommendedMemberData) {
+            queryClient.setQueryData('recommended_members', () => {
+              return recommendedMemberUpdater(
+                previousRecommendedMemberData,
+                data.diary
+              );
             });
           }
           return previousData;
@@ -107,13 +140,14 @@ export const useRecommendedMemberDiariesApi = () => {
       {
         onMutate: async (params) => {
           await queryClient.cancelQueries(queryKey);
-          const previousData = await queryClient.getQueryData(queryKey);
-          if (previousData) {
+          const previousDiaryData = await queryClient.getQueryData(queryKey);
+          if (previousDiaryData) {
             queryClient.setQueryData(queryKey, () => {
-              return updater(previousData, params);
+              return updater(previousDiaryData, params);
             });
           }
-          return previousData;
+
+          return previousDiaryData;
         },
         onError: (err, _, context) => {
           queryClient.setQueryData(queryKey, context);

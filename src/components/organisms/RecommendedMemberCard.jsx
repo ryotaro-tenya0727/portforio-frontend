@@ -11,6 +11,7 @@ const RecommendedMemberCard = ({
   editUrl,
   recommendedMemberUuid,
   totalMemberPolaroidCount,
+  isLoading,
 }) => {
   return (
     <Grid item xs={12} sm={6}>
@@ -18,11 +19,12 @@ const RecommendedMemberCard = ({
         <p>{nickname}</p>
         <p>{group}</p>
         <p>{firstMetDate}</p>
-        <p>トータルチェキ数: {totalMemberPolaroidCount}</p>
+
         {recommendedMemberUuid === undefined ? (
           <p>推しメン作成中</p>
         ) : (
           <>
+            <p>トータルチェキ数: {totalMemberPolaroidCount}</p>
             <Link to={diaryUrl}>推しメンの日記を見る・追加する</Link>
             <br />
             <Link to={editUrl}>推しメンの情報を編集</Link>
