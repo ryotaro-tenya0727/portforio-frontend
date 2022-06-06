@@ -3,8 +3,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
-import { RecommendedMembersList, MyPageMenu } from './../templates/Templates';
-import mypage from './../../css/pages/mypage.module.css';
+import { MyPageMenu } from './../templates/Templates';
 
 const MyPage = () => {
   const { useGetAccesstokenAndCreateUser } = useUsersApi();

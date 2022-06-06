@@ -60,23 +60,6 @@ const RecommendedMemberDiariesList = ({
                     showUrl={`/recommended-member/${recommendedMemberUuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                     editUrl={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/edit/${diary.attributes.id}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                   />
-                  //               <p key={index}>
-                  //   {diary.attributes.diary_member_nickname}
-                  //   <br />
-                  //   {diary.attributes.event_name}:{diary.attributes.event_venue}
-                  //   <br />
-                  //   <Link
-                  //     to={`/recommended-member/${recommendedMemberUuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
-                  //   >
-                  //     日記詳細
-                  //   </Link>
-                  //   <br />
-                  //   <Link
-                  //     to={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/edit/${diary.attributes.id}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
-                  //   >
-                  //     日記を編集
-                  //   </Link>
-                  // </p>
                 );
               })}
             </Grid>

@@ -2,13 +2,12 @@ import { useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import TabPanel from '@mui/lab/TabPanel';
 import TabContext from '@mui/lab/TabContext';
-import PhoneMissedIcon from '@mui/icons-material/PhoneMissed';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import MonochromePhotosIcon from '@mui/icons-material/MonochromePhotos';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
 
@@ -50,7 +49,7 @@ const MyPageMenu = () => {
             <Tab
               icon={<NotificationsIcon sx={{ fontSize: 39 }} />}
               iconPosition='bottom'
-              label='通知'
+              label={<span className={MypageMenu.menu_text}>通知</span>}
               sx={{ width: 1 / 4 }}
               value='0'
             />
@@ -58,7 +57,11 @@ const MyPageMenu = () => {
             <Tab
               icon={<MonochromePhotosIcon sx={{ fontSize: 39 }} />}
               iconPosition='bottom'
-              label='メンバー別チェキグラフ'
+              label={
+                <span className={MypageMenu.menu_text}>
+                  メンバー別チェきグラフ
+                </span>
+              }
               sx={{ width: 1 / 4 }}
               value='1'
             />
@@ -75,14 +78,16 @@ const MyPageMenu = () => {
                 </>
               }
               iconPosition='bottom'
-              label={'推しメンリスト'}
+              label={
+                <span className={MypageMenu.menu_text}>推しメンリスト</span>
+              }
               sx={{ width: 1 / 4 }}
               value='2'
             />
             <Tab
               icon={<AccountBoxIcon sx={{ fontSize: 40 }} />}
               iconPosition='bottom'
-              label='プロフィール'
+              label={<span className={MypageMenu.menu_text}>プロフィール</span>}
               sx={{ width: 1 / 4 }}
               value='3'
             />

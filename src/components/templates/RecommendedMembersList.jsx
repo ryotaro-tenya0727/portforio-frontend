@@ -70,7 +70,7 @@ const RecommendedMembersList = () => {
                   nickname={recommendedMember.attributes.nickname}
                   group={recommendedMember.attributes.group}
                   firstMetDate={recommendedMember.attributes.first_met_date}
-                  recommendedMemberId={recommendedMember.id}
+                  recommendedMemberId={recommendedMember.attributes.id}
                   totalMemberPolaroidCount={
                     recommendedMember.attributes.total_member_polaroid_count
                   }

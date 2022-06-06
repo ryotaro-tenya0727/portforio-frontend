@@ -59,6 +59,7 @@ export const useRecommendedMemberDiariesApi = () => {
           return recommendedMember;
         }
       });
+      console.log(previousData);
       return previousData;
     };
 

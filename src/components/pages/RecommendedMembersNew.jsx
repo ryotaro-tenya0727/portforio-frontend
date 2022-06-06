@@ -18,21 +18,19 @@ const RecommenedMembersNew = () => {
           <p>load</p>
         ) : (
           <>
-            <h1>RecommenedMembersNew</h1>
             <ReactQueryDevtools initialIsOpen={false} />
             <Link to='/mypage'>マイページへ</Link>
             <p>{data.name}さんログイン中</p>
-            <h1>推しメン登録</h1>
+
             <RecommenedMembersNewForm />
           </>
         )
       ) : (
         <>
-          <h1>RecommenedMembersNew</h1>
           <ReactQueryDevtools initialIsOpen={false} />
           <Link to='/mypage'>マイページへ</Link>
           <p>{user_data.name}さんログイン中</p>
-          <h1>推しメン登録</h1>
+
           <RecommenedMembersNewForm />
         </>
       )}
