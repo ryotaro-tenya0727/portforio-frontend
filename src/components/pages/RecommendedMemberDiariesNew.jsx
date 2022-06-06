@@ -21,9 +21,7 @@ const RecommenedMemberDiariesNew = () => {
         ) : (
           <>
             <p>{data.name}さんログイン中</p>
-            <div>
-              <h1>{`${query.get('nickname')}との日記追加中`}</h1>
-            </div>
+
             <DiaryNewForm
               recommendedMemberId={recommended_member_id}
               recommendedMemberUuid={recommended_member_uuid}
@@ -35,9 +33,6 @@ const RecommenedMemberDiariesNew = () => {
       ) : (
         <>
           <p> {user_data.name}さんログイン中</p>
-          <div>
-            <h1>{`${query.get('nickname')}との日記追加中`}</h1>
-          </div>
           <DiaryNewForm
             recommendedMemberId={recommended_member_id}
             recommendedMemberUuid={recommended_member_uuid}
