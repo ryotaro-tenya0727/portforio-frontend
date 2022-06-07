@@ -7,6 +7,7 @@ import { recommendedMemberDiaryRepository } from './../repositories/recommendedM
 export const useRecommendedMemberDiariesApi = () => {
   const { accessToken } = useContext(AuthGuardContext);
 
+  // 推しメンの日記一覧取得
   const useGetRecommendedMemberDiaries = (recommendedMemberId) => {
     return useQuery({
       queryKey: [
@@ -24,6 +25,7 @@ export const useRecommendedMemberDiariesApi = () => {
     });
   };
 
+  //推しメンの日記作成
   const useCreateRecommendedMemberDiaries = (recommendedMemberId) => {
     const queryClient = useQueryClient();
     const queryKey = [
@@ -59,7 +61,7 @@ export const useRecommendedMemberDiariesApi = () => {
           return recommendedMember;
         }
       });
-      console.log(previousData);
+
       return previousData;
     };
 
@@ -74,13 +76,13 @@ export const useRecommendedMemberDiariesApi = () => {
       //mutateAsyncを開始したタイミングで実行
       // dataはmutatecに渡した引数
       {
-        onMutate: async (data) => {
+        onMutate: async (params) => {
           await queryClient.cancelQueries(queryKey);
           const previousData = await queryClient.getQueryData(queryKey);
           if (previousData) {
             queryClient.setQueryData(queryKey, () => {
               // previousDataにdataを加える。
-              return updater(previousData, data);
+              return updater(previousData, params);
             });
           }
           const previousRecommendedMemberData = await queryClient.getQueryData(
@@ -91,7 +93,7 @@ export const useRecommendedMemberDiariesApi = () => {
             queryClient.setQueryData('recommended_members', () => {
               return recommendedMemberUpdater(
                 previousRecommendedMemberData,
-                data.diary
+                params.diary
               );
             });
           }
@@ -112,6 +114,7 @@ export const useRecommendedMemberDiariesApi = () => {
     );
   };
 
+  // 推しメンの日記編集
   const usePutRecommendedMemberDiary = (recommendedMemberId, diaryId) => {
     const queryClient = useQueryClient();
     const queryKey = [
@@ -133,6 +136,36 @@ export const useRecommendedMemberDiariesApi = () => {
       return previousData;
     };
 
+    const recommendedMemberUpdater = (
+      previousData,
+      data,
+      previousPolaroidCount
+    ) => {
+      previousData.data = previousData.data.map((recommendedMember) => {
+        // recommendedMemberIdはstringなので数値に変換
+        if (recommendedMember.attributes.id === Number(recommendedMemberId)) {
+          return {
+            attributes: {
+              ...recommendedMember.attributes,
+              ...{
+                total_member_polaroid_count:
+                  Number(data.event_polaroid_count) +
+                  recommendedMember.attributes.total_member_polaroid_count -
+                  previousPolaroidCount,
+              },
+              ...{
+                diaries_count: recommendedMember.attributes.diaries_count + 1,
+              },
+            },
+          };
+        } else {
+          return recommendedMember;
+        }
+      });
+
+      return previousData;
+    };
+
     return useMutation(
       async (params) => {
         return await recommendedMemberDiaryRepository.putRecommendedMemberDiary(
@@ -145,9 +178,30 @@ export const useRecommendedMemberDiariesApi = () => {
         onMutate: async (params) => {
           await queryClient.cancelQueries(queryKey);
           const previousDiaryData = await queryClient.getQueryData(queryKey);
+          let previousPolaroidCount;
+          previousDiaryData.data.forEach((diary) => {
+            if (diary.attributes.id === Number(diaryId)) {
+              previousPolaroidCount = diary.attributes.event_polaroid_count;
+            }
+          });
+
           if (previousDiaryData) {
             queryClient.setQueryData(queryKey, () => {
               return updater(previousDiaryData, params);
+            });
+          }
+
+          const previousRecommendedMemberData = await queryClient.getQueryData(
+            'recommended_members'
+          );
+
+          if (previousRecommendedMemberData) {
+            queryClient.setQueryData('recommended_members', () => {
+              return recommendedMemberUpdater(
+                previousRecommendedMemberData,
+                params.diary,
+                previousPolaroidCount
+              );
             });
           }
 
