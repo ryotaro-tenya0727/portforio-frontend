@@ -1,0 +1,16 @@
+.button_card{
+  text-align: center;
+  cursor: pointer;
+  background-color: #ff96df;
+  border-radius: 5px;
+  border: none;
+  padding: 15px 5px 15px 5px;
+  margin: 3px 0px 0px 10px;
+  font-weight: bold;
+  font-family: 'Kiwi Maru', serif;
+  box-shadow: 2.7px 3.2px 2px 0.3px #938d90;
+}
+
+.button_card:hover {
+  opacity: 0.7
+}
