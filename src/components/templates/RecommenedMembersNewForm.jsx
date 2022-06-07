@@ -42,24 +42,50 @@ const RecommenedMembersNewForm = () => {
           <h2 className={Form.form_title}>推しメン登録</h2>
           {formState.errors.recommended_member && (
             <>
-              {formState.errors.recommended_member.nickname && (
+              {formState.errors.recommended_member && (
                 <>
-                  <br />
-                  <span className={Form.text_error}>
-                    ・ニックネームが未入力です
-                  </span>
-                  <br />
+                  {formState.errors.recommended_member.nickname.type ===
+                    'required' && (
+                    <>
+                      <br />
+                      <span className={Form.text_error}>
+                        ・ニックネームが未入力です
+                      </span>
+                      <br />
+                    </>
+                  )}
+                  {formState.errors.recommended_member.nickname.type ===
+                    'maxLength' && (
+                    <>
+                      <br />
+                      <span className={Form.text_error}>
+                        ・ニックネームが文字数を超過しています
+                      </span>
+                      <br />
+                    </>
+                  )}
+
+                  {formState.errors.recommended_member.group && (
+                    <>
+                      {console.log(formState.errors)}
+                      <br />
+                      <span className={Form.text_error}>
+                        ・所属グループが文字数を超過しています
+                      </span>
+                      <br />
+                    </>
+                  )}
                 </>
               )}
             </>
           )}
           <br />
 
-          <label htmlFor='nickname'>推しメンのニックネーム</label>
+          <label htmlFor='nickname'>推しメンのニックネーム (8文字以内)</label>
 
           <Controller
             name='recommended_member.nickname'
-            rules={{ required: true }}
+            rules={{ required: true, maxLength: 8 }}
             control={control}
             render={({ field }) => (
               <TextField
@@ -78,11 +104,12 @@ const RecommenedMembersNewForm = () => {
           />
           <br />
           <br />
-          <label htmlFor='group'>推しメンの所属グループ</label>
+          <label htmlFor='group'>推しメンの所属グループ (8文字以内)</label>
 
           <Controller
             name='recommended_member.group'
             control={control}
+            rules={{ maxLength: 8 }}
             render={({ field }) => (
               <TextField
                 id='group'

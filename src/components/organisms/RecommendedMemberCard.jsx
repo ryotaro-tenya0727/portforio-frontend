@@ -2,6 +2,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 
+import { Button } from './../atoms/atoms';
 import card from './../../css/organisms/card.module.css';
 
 const RecommendedMemberCard = ({
@@ -15,7 +16,7 @@ const RecommendedMemberCard = ({
   DiariesCount,
 }) => {
   return (
-    <Grid item xs={12} sm={6} lg={4}>
+    <Grid item xs={12} sm={6} md={4}>
       <Paper className={card.card_whole}>
         <div>
           <p className={card.card_text}>
@@ -50,16 +51,21 @@ const RecommendedMemberCard = ({
                 </p>
               </div>
               <div className={card.card_right_whole}>
-                <Link to={diaryUrl}>
-                  日記を見る
-                  <br />
-                  追加する
-                </Link>
-                <br />
-                <Link to={editUrl}>
-                  {nickname}の<br />
-                  情報を編集
-                </Link>
+                <Button>
+                  <Link to={diaryUrl} style={{ color: '#fff' }}>
+                    日記を見る
+                    <br />
+                    追加する
+                  </Link>
+                </Button>
+
+                <Button>
+                  <Link to={editUrl} style={{ color: '#fff' }}>
+                    {nickname}
+                    <br />
+                    の情報を編集
+                  </Link>
+                </Button>
               </div>
             </div>
           )}

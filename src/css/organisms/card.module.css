@@ -1,5 +1,5 @@
 .card_whole{
-  background-color:#fffcfc;
+  background-color:#ffffff;
   padding: 10px 10px 5px 10px;
 
 }
@@ -11,11 +11,11 @@
 
 .card_right_whole{
   margin: 0px 0px 0px 0px;
-  margin: 0 auto
+ margin: 0 0 0 auto;
 }
 
 .card_left_whole{
-  width: 50%;
+  width: 35%;
 }
 .card_text{
 
