@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -12,7 +11,7 @@ const RecommenedMembersNewForm = () => {
   const { useCreateRecommendedMembers } = useRecommendedMembersApi();
   const createRecommendedMember = useCreateRecommendedMembers();
 
-  const { control, register, handleSubmit, formState } = useForm({
+  const { control, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
@@ -40,7 +39,7 @@ const RecommenedMembersNewForm = () => {
     <>
       <ThemeProvider theme={theme}>
         <form onSubmit={handleSubmit(onSubmit)} className={Form.form}>
-          <h1 className={Form.form_title}>推しメン登録</h1>
+          <h2 className={Form.form_title}>推しメン登録</h2>
           {formState.errors.recommended_member && (
             <>
               {formState.errors.recommended_member.nickname && (

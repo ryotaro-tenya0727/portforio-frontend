@@ -33,9 +33,6 @@ const RecommenedMemberEdit = () => {
 
   return (
     <>
-      <h1>
-        推しメン{`${query.get('nickname')}`}: {`${query.get('group')}`}を編集中
-      </h1>
       <Link to='/mypage'>マイページへ</Link>
       {user_data === undefined ? (
         isIdle || isLoading ? (
@@ -43,21 +40,25 @@ const RecommenedMemberEdit = () => {
         ) : (
           <>
             <p>{data.name}さんログイン中</p>
-            <button onClick={deleteMember}>推しメンを削除</button>
             <RecommenedMemberEditForm
               recommendedMemberUuid={recommended_member_uuid}
               recommendedMemberId={recommended_member_id}
+              recommendedMemberNickname={query.get('nickname')}
+              recommendedMemberGroup={query.get('group')}
             />
+            <button onClick={deleteMember}>推しメンを削除</button>
           </>
         )
       ) : (
         <>
           <p> {user_data.name}さんログイン中</p>
-          <button onClick={deleteMember}>推しメンを削除</button>
           <RecommenedMemberEditForm
             recommendedMemberUuid={recommended_member_uuid}
             recommendedMemberId={recommended_member_id}
+            recommendedMemberNickname={query.get('nickname')}
+            recommendedMemberGroup={query.get('group')}
           />
+          <button onClick={deleteMember}>推しメンを削除</button>
         </>
       )}
       <br />

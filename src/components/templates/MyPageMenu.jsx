@@ -59,7 +59,7 @@ const MyPageMenu = () => {
               iconPosition='bottom'
               label={
                 <span className={MypageMenu.menu_text}>
-                  メンバー別チェきグラフ
+                  メンバー別チェキグラフ
                 </span>
               }
               sx={{ width: 1 / 4 }}

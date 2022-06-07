@@ -33,7 +33,7 @@ const RecommendedMembersList = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <h2>推しメン一覧</h2>
+        <br />
         {recommendedMembers_data === undefined ? (
           isIdle || isLoading ? (
             <p>推しメンローディング中</p>

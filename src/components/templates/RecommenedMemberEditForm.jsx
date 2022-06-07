@@ -1,16 +1,32 @@
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
+import Form from './../../css/templates/Form.module.css';
 
 const RecommenedMemberEditForm = ({
   recommendedMemberUuid,
   recommendedMemberId,
+  recommendedMemberNickname,
+  recommendedMemberGroup,
 }) => {
   const navigate = useNavigate();
-  const { register, handleSubmit, formState } = useForm({
+  const { control, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
+  });
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#ff96df',
+      },
+      secondary: {
+        main: '#000',
+      },
+    },
   });
 
   const { useShowRecommendedMember, usePutRecommendedMember } =
@@ -35,56 +51,111 @@ const RecommenedMemberEditForm = ({
 
   return (
     <>
-      <h2>編集フォーム</h2>
+      <ThemeProvider theme={theme}>
+        <h2>編集フォーム</h2>
 
-      {isIdle || isLoading ? (
-        <h2>編集フォームローディング</h2>
-      ) : (
-        <>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            {formState.errors.recommended_member && (
-              <>
-                {formState.errors.recommended_member.nickname &&
-                  'ニックネーム必要'}
-              </>
-            )}
-            <br />
-            <label htmlFor='nickname'>推しメンのニックネーム</label>
-            <br />
-            <input
-              id='nickname'
-              defaultValue={`${recommendedMemberShow.data.attributes.nickname}`}
-              {...register('recommended_member.nickname', {
-                required: true,
-              })}
-            />
-            <br />
-
-            <br />
-
-            <br />
-            <label htmlFor='group'>推しメンの所属グループ</label>
-            <br />
-            <input
-              id='group'
-              defaultValue={`${recommendedMemberShow.data.attributes.group}`}
-              {...register('recommended_member.group')}
-            />
-            <p>空白でも登録可能です</p>
-
-            <label htmlFor='first_met_date'>初めて会った日</label>
-            <p>
-              <input
-                id='first_met_date'
-                {...register('recommended_member.first_met_date')}
-                type='date'
+        {isIdle || isLoading ? (
+          <h2>編集フォームローディング</h2>
+        ) : (
+          <>
+            <form onSubmit={handleSubmit(onSubmit)} className={Form.form}>
+              <h2 className={Form.form_title}>
+                {`${recommendedMemberNickname}`}(グループ：{' '}
+                {`${recommendedMemberGroup}`}) を編集中
+              </h2>
+              {formState.errors.recommended_member && (
+                <>
+                  {formState.errors.recommended_member.nickname && (
+                    <>
+                      <br />
+                      <span className={Form.text_error}>
+                        ・ニックネームが未入力です
+                      </span>
+                      <br />
+                    </>
+                  )}
+                </>
+              )}
+              <br />
+              <label htmlFor='nickname'>推しメンのニックネーム</label>
+              <Controller
+                defaultValue={`${recommendedMemberShow.data.attributes.nickname}`}
+                name='recommended_member.nickname'
+                rules={{ required: true }}
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    id='nickname'
+                    label={
+                      <span className={Form.text_label}>
+                        ここにニックネームを入力
+                      </span>
+                    }
+                    color='primary'
+                    focused
+                    {...field}
+                    sx={{ backgroundColor: '#fff', width: '100%' }}
+                  />
+                )}
               />
-            </p>
-
-            <input type='submit' />
-          </form>
-        </>
-      )}
+              <br />
+              <br />
+              <label htmlFor='group'>推しメンの所属グループ</label>
+              <Controller
+                defaultValue={`${recommendedMemberShow.data.attributes.group}`}
+                name='recommended_member.group'
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    id='group'
+                    label={
+                      <span className={Form.text_label}>
+                        ここに所属グループを入力
+                      </span>
+                    }
+                    color='primary'
+                    focused
+                    {...field}
+                    sx={{ backgroundColor: '#fff', width: '100%' }}
+                  />
+                )}
+              />
+              <br />
+              <br />
+              <label htmlFor='first_met_date'>初めて会った日</label>
+              <Controller
+                defaultValue=''
+                name='recommended_member.first_met_date'
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    id='first_met_date'
+                    type='date'
+                    label={
+                      <span className={Form.text_label}>
+                        推しメンと会った日
+                      </span>
+                    }
+                    color='primary'
+                    focused
+                    {...field}
+                    sx={{ backgroundColor: '#fff', width: '50%' }}
+                  />
+                )}
+              />
+              <br />
+              <br />
+              <div style={{ textAlign: 'center' }}>
+                <input
+                  type='submit'
+                  className={Form.submit_button}
+                  value='この内容で登録'
+                />
+              </div>
+            </form>
+          </>
+        )}
+      </ThemeProvider>
     </>
   );
 };
