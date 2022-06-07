@@ -79,7 +79,7 @@ const RecommenedMemberEditForm = ({
               <br />
               <label htmlFor='nickname'>推しメンのニックネーム</label>
               <Controller
-                defaultValue={`${recommendedMemberShow.data.attributes.nickname}`}
+                defaultValue={`${recommendedMemberNickname}`}
                 name='recommended_member.nickname'
                 rules={{ required: true }}
                 control={control}
@@ -102,7 +102,7 @@ const RecommenedMemberEditForm = ({
               <br />
               <label htmlFor='group'>推しメンの所属グループ</label>
               <Controller
-                defaultValue={`${recommendedMemberShow.data.attributes.group}`}
+                defaultValue={`${recommendedMemberGroup}`}
                 name='recommended_member.group'
                 control={control}
                 render={({ field }) => (

@@ -44,7 +44,9 @@ const RecommenedMemberEdit = () => {
               recommendedMemberUuid={recommended_member_uuid}
               recommendedMemberId={recommended_member_id}
               recommendedMemberNickname={query.get('nickname')}
-              recommendedMemberGroup={query.get('group')}
+              recommendedMemberGroup={
+                query.get('group') === 'null' ? '' : query.get('group')
+              }
             />
             <button onClick={deleteMember}>推しメンを削除</button>
           </>
@@ -56,7 +58,9 @@ const RecommenedMemberEdit = () => {
             recommendedMemberUuid={recommended_member_uuid}
             recommendedMemberId={recommended_member_id}
             recommendedMemberNickname={query.get('nickname')}
-            recommendedMemberGroup={query.get('group')}
+            recommendedMemberGroup={
+              query.get('group') === 'null' ? '' : query.get('group')
+            }
           />
           <button onClick={deleteMember}>推しメンを削除</button>
         </>

@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import { LoginUserDiaryCard } from './../organisms/Organisms';
+import list from './../../css/templates/list.module.css';
 
 const RecommendedMemberDiariesList = ({
   recommendedMemberId,
@@ -39,7 +40,7 @@ const RecommendedMemberDiariesList = ({
   });
 
   return (
-    <>
+    <div className={list.list}>
       <ReactQueryDevtools initialIsOpen={false} />
       <ThemeProvider theme={theme}>
         <h2>{recommendedMemberNickname}の日記一覧</h2>
@@ -83,7 +84,7 @@ const RecommendedMemberDiariesList = ({
           </Grid>
         )}
       </ThemeProvider>
-    </>
+    </div>
   );
 };
 
