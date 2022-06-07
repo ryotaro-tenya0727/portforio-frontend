@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
-
+import Card from '@mui/material/Card';
 import { Button } from './../atoms/atoms';
 import card from './../../css/organisms/card.module.css';
 
@@ -17,7 +17,7 @@ const RecommendedMemberCard = ({
 }) => {
   return (
     <Grid item xs={12} sm={6} md={4}>
-      <Paper className={card.card_whole}>
+      <Card className={card.card_whole} sx={{ bgcolor: '#FFFFFF' }}>
         <div>
           <p className={card.card_text}>
             <span className={card.card_text_property}>ニックネーム:</span>
@@ -70,7 +70,7 @@ const RecommendedMemberCard = ({
             </div>
           )}
         </div>
-      </Paper>
+      </Card>
     </Grid>
   );
 };

@@ -1,5 +1,4 @@
 .card_whole{
-  background-color:#ffffff;
   padding: 10px 10px 5px 10px;
 
 }
@@ -11,7 +10,7 @@
 
 .card_right_whole{
   margin: 0px 0px 0px 0px;
- margin: 0 0 0 auto;
+  margin: 0 0 0 auto;
 }
 
 .card_left_whole{
@@ -20,6 +19,7 @@
 .card_text{
 
   border-bottom: 2px dashed #ff7676;
+
   color: #000000;
   margin: 0px 0px 15px 0px;
   font-weight: bold;
