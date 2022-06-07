@@ -15,9 +15,9 @@ const RecommendedMemberCard = ({
   return (
     <Grid item xs={12} sm={6}>
       <Paper>
-        <p>{nickname}</p>
-        <p>{group}</p>
-        <p>{firstMetDate}</p>
+        <p>ニックネーム： {nickname ? nickname : '未入力'}</p>
+        <p>グループ: {group ? group : '未入力'}</p>
+        <p>初めて会った日: {firstMetDate ? firstMetDate : '未入力'}</p>
 
         {recommendedMemberId === undefined ? (
           <p>推しメン作成中</p>

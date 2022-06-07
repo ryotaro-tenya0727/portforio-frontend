@@ -14,10 +14,10 @@ const UserDiaryCard = ({
   return (
     <Grid item xs={12} sm={6}>
       <Paper>
-        <p>イベント名:{eventName}</p>
-        <p>日付:{eventDate}</p>
-        <p>会場:{eventVenue}</p>
-        <p>この日のチェキ数:{eventPolaroidCount}</p>
+        <p>ニックネーム： {eventName ? eventName : '未入力'}</p>
+        <p>日付: {eventDate ? eventDate : '未入力'}</p>
+        <p>会場: {eventVenue ? eventVenue : '未入力'}</p>
+        <p>この日のチェキ数: {eventPolaroidCount}</p>
 
         {diaryId === undefined ? (
           <p>日記作成中</p>

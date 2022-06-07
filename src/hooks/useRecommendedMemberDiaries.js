@@ -218,6 +218,7 @@ export const useRecommendedMemberDiariesApi = () => {
     );
   };
 
+  // 推しメンの日記削除
   const useDeleteRecommendedMemberDiary = (recommendedMemberId, diaryId) => {
     const queryClient = useQueryClient();
     const queryKey = [
@@ -229,6 +230,27 @@ export const useRecommendedMemberDiariesApi = () => {
       previousData.data = previousData.data.filter(
         (diary) => diary.id !== diaryId
       );
+      return previousData;
+    };
+
+    const recommendedMemberUpdater = (previousData) => {
+      previousData.data = previousData.data.map((recommendedMember) => {
+        // recommendedMemberIdはstringなので数値に変換
+        if (recommendedMember.attributes.id === Number(recommendedMemberId)) {
+          return {
+            attributes: {
+              ...recommendedMember.attributes,
+
+              ...{
+                diaries_count: recommendedMember.attributes.diaries_count - 1,
+              },
+            },
+          };
+        } else {
+          return recommendedMember;
+        }
+      });
+
       return previousData;
     };
 
@@ -248,6 +270,17 @@ export const useRecommendedMemberDiariesApi = () => {
               return updater(previousData);
             });
           }
+
+          const previousRecommendedMemberData = await queryClient.getQueryData(
+            'recommended_members'
+          );
+
+          if (previousRecommendedMemberData) {
+            queryClient.setQueryData('recommended_members', () => {
+              return recommendedMemberUpdater(previousRecommendedMemberData);
+            });
+          }
+
           return previousData;
         },
         onError: (err, _, context) => {
