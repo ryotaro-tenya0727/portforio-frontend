@@ -104,12 +104,12 @@ const RecommenedMembersNewForm = () => {
           />
           <br />
           <br />
-          <label htmlFor='group'>推しメンの所属グループ (8文字以内)</label>
+          <label htmlFor='group'>推しメンの所属グループ (15文字以内)</label>
 
           <Controller
             name='recommended_member.group'
             control={control}
-            rules={{ maxLength: 8 }}
+            rules={{ maxLength: 15 }}
             render={({ field }) => (
               <TextField
                 id='group'

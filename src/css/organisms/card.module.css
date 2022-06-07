@@ -1,6 +1,6 @@
 .card_whole{
   padding: 10px 10px 5px 10px;
-
+  border: dashed 2px  #ff8a8a;
 }
 .card_second_whole{
   display: flex;
@@ -14,11 +14,11 @@
 }
 
 .card_left_whole{
-  width: 35%;
+  width: 36.5%;
 }
 .card_text{
 
-  border-bottom: 2px dashed #ff7676;
+  border-bottom: 2px dashed #ff8a8a;
 
   color: #000000;
   margin: 0px 0px 15px 0px;
@@ -26,6 +26,6 @@
 }
 
 .card_text_property{
-  color: #ff7878;
+  color: #ff6969;
   font-weight: bold;
 }

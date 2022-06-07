@@ -113,11 +113,13 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <label htmlFor='event_polaroid_count'>この日のチェキ枚数</label>
+          <label htmlFor='event_polaroid_count'>
+            この日のチェキ枚数 (99枚以内)
+          </label>
           <Controller
             defaultValue=''
             name='diary.event_polaroid_count'
-            rules={{ max: 99 }}
+            rules={{ max: 99, min: 0 }}
             control={control}
             render={({ field }) => (
               <TextField
@@ -218,7 +220,7 @@ const DiaryNewForm = ({
                 <>
                   <br />
                   <span>
-                    ・チェキ枚数が多すぎです。レギュレーション違反です。
+                    ・チェキ枚数がおかしいです。レギュレーション違反です。
                   </span>
                 </>
               )}
