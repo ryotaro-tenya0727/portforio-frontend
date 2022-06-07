@@ -1,0 +1,39 @@
+.form{
+  width: 70%;
+  margin: 0 auto;
+}
+
+.form_title{
+  text-align: center;
+}
+
+.text_label{
+  color: #000;
+  font-weight: bold;
+  font-family: 'Kiwi Maru', serif;
+}
+
+.text_error{
+  color: rgb(255, 119, 119);
+  font-weight: bold;
+}
+
+.submit_button{
+  font-family: 'Kiwi Maru', serif;
+  background-color: #ff96df;
+  border-radius: 5px;
+  border: none;
+  padding: 20px 20px 20px 20px;
+  margin-left: 20px;
+  text-align: center;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.submit_button:hover {
+  opacity: 0.7
+}
+
+.form_label{
+  margin-bottom: 10px
+}
