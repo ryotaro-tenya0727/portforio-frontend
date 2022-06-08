@@ -112,9 +112,9 @@ function App() {
   //   const file = e.target.files[0];
   //   const {
   //     data: { presigned_url },
-  //   } = await axios
-  //     .post(
-  //       `${process.env.REACT_APP_REST_URL}/user/s3_presigned_url`,
+  // } = await axios
+  //   .post(
+  //     `${process.env.REACT_APP_REST_URL}/user/s3_presigned_url`,
   //       {
   //         presigned_url: {
   //           filename: file.name,
