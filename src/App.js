@@ -8,89 +8,6 @@ import { Routers } from './route/Routers';
 import { DefaultLayout } from './components/Layout';
 
 function App() {
-  // 追加
-  // const createUsers = useCallback((user_name, token, user_image) => {
-  //   axios.post(
-  //     `${process.env.REACT_APP_REST_URL}/users`,
-  //     {
-  //       user: {
-  // name: user_name,
-  // user_image: user_image,
-  //       },
-  //     },
-  //     {
-  //       headers: {
-  //         Authorization: token,
-  //         'Content-Type': 'application/json',
-  //       },
-  //     }
-  //   );
-  // }, []);
-
-  // const createRecommendedMembers = useCallback((token) => {
-  //   axios
-  //     .post(
-  //       `${process.env.REACT_APP_REST_URL}/user/recommended_members`,
-  //       {
-  //         recommended_member: {
-  //           nickname: 'aa',
-  //           group: 'Queens',
-  //           first_met_date: '2021-03-21',
-  //         },
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: token,
-  //           'Content-Type': 'application/json',
-  //         },
-  //       }
-  //     )
-  //     .catch((error) => {
-  //       console.error(error.response.data);
-  //     });
-  // }, []);
-
-  // const fetchRecommendedMembers = useCallback((token) => {
-  //   axios
-  //     .get(
-  //       `${process.env.REACT_APP_REST_URL}/user/recommended_members`,
-
-  //       {
-  //         headers: {
-  //           Authorization: token,
-  //           'Content-Type': 'application/json',
-  //         },
-  //       }
-  //     )
-  //     .then((res) => {
-  //       setMembers(res.data.data);
-  //       console.log(res.data.data);
-  //     });
-  // }, []);
-
-  // const updateRecommendedMembers = useCallback((token, uuid) => {
-  //   axios
-  //     .put(
-  //       `${process.env.REACT_APP_REST_URL}/user/recommended_members/${uuid}`,
-  //       {
-  //         recommended_member: {
-  //           nickname: 'aaaaa',
-  //           group: '編集Queens33',
-  //           first_met_date: '2021-03-21',
-  //         },
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: token,
-  //           'Content-Type': 'application/json',
-  //         },
-  //       }
-  //     )
-  // .catch((error) => {
-  //   console.error(error.response.data);
-  // });
-  // }, []);
-
   // useEffect(() => {
   //   const getToken = async () => {
   //     try {
@@ -115,11 +32,11 @@ function App() {
   // } = await axios
   //   .post(
   //     `${process.env.REACT_APP_REST_URL}/user/s3_presigned_url`,
-  //       {
-  //         presigned_url: {
-  //           filename: file.name,
-  //         },
-  //       },
+  // {
+  //   presigned_url: {
+  //     filename: file.name,
+  //   },
+  // },
   //       {
   //         headers: {
   //           Authorization: token,

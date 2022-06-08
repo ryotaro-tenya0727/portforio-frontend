@@ -1,10 +1,15 @@
+import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import { AuthGuardContext } from './../../providers/AuthGuard';
+import { useState, useContext, useCallback } from 'react';
 
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
+import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRepository';
+
 import Form from './../../css/templates/Form.module.css';
 
 const DiaryNewForm = ({
@@ -13,6 +18,9 @@ const DiaryNewForm = ({
   recommendedMemberNickname,
   recommendedMemberGroup,
 }) => {
+  const [s3ImageUrls, setImageUrls] = useState({});
+  const [value, setValue] = useState([]);
+  const { accessToken } = useContext(AuthGuardContext);
   const navigate = useNavigate();
   const { control, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
@@ -36,8 +44,31 @@ const DiaryNewForm = ({
   const createRecommendedMemberDiary =
     useCreateRecommendedMemberDiaries(recommendedMemberId);
 
-  const onSubmit = (data) => {
-    createRecommendedMemberDiary.mutate(data);
+  const upLoadImageToS3 = async (e) => {
+    // 署名URLを取得
+    const file = e.target.files[0];
+    const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
+      {
+        presigned_url: {
+          filename: file.name,
+        },
+      },
+      accessToken
+    );
+    setImageUrls(imageUrls);
+    setValue(file);
+    // console.log(imageUrls);
+  };
+
+  const onSubmit = async (data) => {
+    await axios.put(s3ImageUrls.presigned_url, value, {
+      headers: {
+        'Content-Type': 'image/*',
+      },
+    });
+    createRecommendedMemberDiary.mutate({
+      diary: { ...data.diary, diary_image_url: s3ImageUrls.diary_image_url },
+    });
     navigate(
       `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
     );
@@ -50,8 +81,15 @@ const DiaryNewForm = ({
           <h1
             className={Form.form_title}
           >{`${recommendedMemberNickname}との日記追加中`}</h1>
-
           <br />
+
+          <input
+            type='file'
+            accept='image/*'
+            multiple
+            onChange={(e) => upLoadImageToS3(e)}
+          />
+
           <label htmlFor='event_name'>イベント名</label>
           <Controller
             defaultValue=''
@@ -167,7 +205,6 @@ const DiaryNewForm = ({
           <label htmlFor='impressive_memory_detail'>
             印象に残った出来事の詳細 (140文字以内)
           </label>
-
           <Controller
             defaultValue=''
             name='diary.impressive_memory_detail'
@@ -193,7 +230,6 @@ const DiaryNewForm = ({
           <br />
           <br />
           <label htmlFor='status'>他のユーザーへの公開設定</label>
-
           <Controller
             name='diary.status'
             rules={{ required: true }}

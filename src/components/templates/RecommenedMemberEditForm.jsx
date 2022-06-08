@@ -45,8 +45,6 @@ const RecommenedMemberEditForm = ({
   return (
     <>
       <ThemeProvider theme={theme}>
-        <h2>編集フォーム</h2>
-
         <>
           <form onSubmit={handleSubmit(onSubmit)} className={Form.form}>
             <h2 className={Form.form_title}>

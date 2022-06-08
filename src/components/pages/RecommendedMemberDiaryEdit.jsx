@@ -37,9 +37,7 @@ const RecommendedMemberDiaryEdit = () => {
   return (
     <>
       <Link to='/mypage'>マイページへ</Link>
-      <h1>
-        {query.get('nickname')}: {query.get('group')}との日記編集
-      </h1>
+
       {userData === undefined ? (
         isIdle || isLoading ? (
           <p>load</p>

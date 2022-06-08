@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { AuthGuardContext } from './../providers/AuthGuard';
-import { useContext, useEffect, useCallback } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useContext, useCallback } from 'react';
 
 import { recommendedMemberRepository } from './../repositories/recommendedMemberRepository';
 
@@ -157,6 +156,7 @@ export const useRecommendedMembersApi = () => {
           recommendedMemberId,
           accessToken || ''
         ),
+      enabled: !!recommendedMemberId,
       staleTime: 30000000,
       cacheTime: 0,
     });

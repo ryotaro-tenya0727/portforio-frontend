@@ -36,7 +36,7 @@ const UserDiaryCard = ({
             <Link to={showUrl}>
               <Button>日記の詳細を見る</Button>
             </Link>
-            <Link to={showUrl}>
+            <Link to={editUrl}>
               <Button>日記を編集する</Button>
             </Link>
           </div>
