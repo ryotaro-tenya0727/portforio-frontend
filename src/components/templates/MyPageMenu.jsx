@@ -14,6 +14,7 @@ import MypageMenu from './../../css/templates/mypageMenu.module.css';
 import { RecommendedMembersList } from './Templates';
 
 const MyPageMenu = () => {
+  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -69,7 +70,7 @@ const MyPageMenu = () => {
               icon={
                 <>
                   <img
-                    src='https://d2dshvnpldvez1.cloudfront.net/admin/menu-image.png'
+                    src={`${imageDomain}/admin/menu-image.png`}
                     alt='picture'
                     width='41'
                     height='41'

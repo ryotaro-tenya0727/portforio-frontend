@@ -94,12 +94,11 @@ const RecommendedMemberCard = ({
                     追加する
                   </Button>
                 </Link>
-
                 <Link to={editUrl}>
                   <Button>
-                    {nickname}
+                    推しメンの
                     <br />
-                    の情報を編集
+                    情報を編集
                   </Button>
                 </Link>
               </div>

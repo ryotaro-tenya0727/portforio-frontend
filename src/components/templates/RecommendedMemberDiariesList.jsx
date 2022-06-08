@@ -31,9 +31,9 @@ const RecommendedMemberDiariesList = ({
     breakpoints: {
       values: {
         xs: 0,
-        sm: 730,
-        md: 900,
-        lg: 1100,
+        sm: 855,
+        md: 1290,
+        lg: 1400,
         xl: 1536,
       },
     },
@@ -57,6 +57,7 @@ const RecommendedMemberDiariesList = ({
                     eventName={diary.attributes.event_name}
                     eventDate={diary.attributes.event_date}
                     eventVenue={diary.attributes.event_venue}
+                    status={diary.attributes.status}
                     eventPolaroidCount={diary.attributes.event_polaroid_count}
                     showUrl={`/recommended-member/${recommendedMemberUuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                     editUrl={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/edit/${diary.attributes.id}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
@@ -75,6 +76,7 @@ const RecommendedMemberDiariesList = ({
                   eventName={diary.attributes.event_name}
                   eventDate={diary.attributes.event_date}
                   eventVenue={diary.attributes.event_venue}
+                  status={diary.attributes.status}
                   eventPolaroidCount={diary.attributes.event_polaroid_count}
                   showUrl={`/recommended-member/${recommendedMemberUuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                   editUrl={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/edit/${diary.attributes.id}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
