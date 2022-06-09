@@ -1,4 +1,4 @@
-import { useState, useContext, useCallback } from 'react';
+import { useState, useContext, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { AuthGuardContext } from './../../providers/AuthGuard';
 
+import { SampleImageButton } from './../atoms/atoms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRepository';
 import Form from './../../css/templates/Form.module.css';
@@ -17,6 +18,11 @@ const DiaryNewForm = ({
   recommendedMemberNickname,
   recommendedMemberGroup,
 }) => {
+  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
+  const firstInputRef = useRef(null);
+  const secondInputRef = useRef(null);
+  const [firstImage, setFirstImage] = useState(null);
+  const [secondImage, setSecondImage] = useState(null);
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
   const [s3ImageUrls, setImageUrls] = useState([]);
@@ -27,6 +33,12 @@ const DiaryNewForm = ({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
+
+  const { useCreateRecommendedMemberDiaries } =
+    useRecommendedMemberDiariesApi();
+
+  const createRecommendedMemberDiary =
+    useCreateRecommendedMemberDiaries(recommendedMemberId);
 
   const theme = createTheme({
     palette: {
@@ -39,18 +51,20 @@ const DiaryNewForm = ({
     },
   });
 
-  const { useCreateRecommendedMemberDiaries } =
-    useRecommendedMemberDiariesApi();
-
-  const createRecommendedMemberDiary =
-    useCreateRecommendedMemberDiaries(recommendedMemberId);
-
   const resetErrors = () => {
     setIsNumberError(false);
     setIsFileTypeError(false);
   };
 
-  const handleFile = async (event) => {
+  const firstFileUpload = () => {
+    firstInputRef.current.click();
+  };
+
+  const secondFileUpload = () => {
+    secondInputRef.current.click();
+  };
+
+  const firstHandleFile = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
     resetErrors();
@@ -72,6 +86,37 @@ const DiaryNewForm = ({
       setIsNumberError(true);
       return;
     }
+    setFirstImage(file);
+    // 一つ目なら先頭に入れる。
+    setImageUrls([imageUrls, ...s3ImageUrls]);
+    setImageFiles([file, ...imageFiles]);
+    event.target.value = '';
+  };
+
+  const secondHandleFile = async (event) => {
+    if (!event) return;
+    const file = event.target.files[0];
+    resetErrors();
+    if (
+      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
+    ) {
+      setIsFileTypeError(true);
+      return;
+    }
+    const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
+      {
+        presigned_url: {
+          filename: file.name,
+        },
+      },
+      accessToken
+    );
+    if (imageFiles.length >= 2) {
+      setIsNumberError(true);
+      return;
+    }
+    setSecondImage(file);
+    // 二つ目なら後ろに入れる。
     setImageUrls([...s3ImageUrls, imageUrls]);
     setImageFiles([...imageFiles, file]);
     event.target.value = '';
@@ -80,6 +125,11 @@ const DiaryNewForm = ({
   const handleCancel = (imageIndex) => {
     if (window.confirm('選択した画像を消してよろしいですか？')) {
       resetErrors();
+      if (imageIndex === 0) {
+        setFirstImage(null);
+      } else {
+        setSecondImage(null);
+      }
       const modifyPhotos = imageFiles.concat();
       modifyPhotos.splice(imageIndex, 1);
       setImageFiles(modifyPhotos);
@@ -127,33 +177,51 @@ const DiaryNewForm = ({
           {isFileTypeError && (
             <p>※jpeg, png, bmp, gif, svg以外のファイル形式は表示されません</p>
           )}
-          {[...Array(2)].map((_, index) =>
-            index < imageFiles.length ? (
-              <>
-                <button
-                  type='button'
-                  key={index}
-                  onClick={() => handleCancel(index)}
-                >
-                  画像削除
-                </button>
-                <img
-                  src={URL.createObjectURL(imageFiles[index])}
-                  alt={`あなたの写真 ${index + 1}`}
-                />
-              </>
-            ) : (
-              <label key={index}>
-                <span>サンプル</span>
-              </label>
-            )
+
+          {firstImage !== null ? (
+            <>
+              <button type='button' onClick={() => handleCancel(0)}>
+                画像削除
+              </button>
+              <img
+                src={URL.createObjectURL(firstImage)}
+                alt={`あなたの写真 `}
+                width='150'
+                height='150'
+              />
+            </>
+          ) : (
+            <SampleImageButton onClick={firstFileUpload} />
+          )}
+          {secondImage !== null ? (
+            <>
+              <button type='button' onClick={() => handleCancel(1)}>
+                画像削除
+              </button>
+              <img
+                src={URL.createObjectURL(secondImage)}
+                alt={`あなたの写真 `}
+                width='150'
+                height='150'
+              />
+            </>
+          ) : (
+            <SampleImageButton onClick={secondFileUpload} />
           )}
           <input
+            ref={firstInputRef}
             type='file'
             accept='image/*'
-            onChange={(event) => handleFile(event)}
+            onChange={(event) => firstHandleFile(event)}
+            hidden
           />
-
+          <input
+            ref={secondInputRef}
+            type='file'
+            accept='image/*'
+            onChange={(event) => secondHandleFile(event)}
+            hidden
+          />
           <label htmlFor='event_name'>イベント名</label>
           <Controller
             defaultValue=''
