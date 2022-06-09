@@ -294,6 +294,7 @@ export const useRecommendedMemberDiariesApi = () => {
     );
   };
 
+  // 推しメンの日記の詳細を取得
   const useShowRecommendedMemberDiary = (diaryId) => {
     return useQuery({
       queryKey: ['recommended_member_diary_show', { diaryId: diaryId }],

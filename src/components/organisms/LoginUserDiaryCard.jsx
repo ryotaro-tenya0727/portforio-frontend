@@ -1,13 +1,13 @@
+import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import { Link } from 'react-router-dom';
-import card from './../../css/organisms/card.module.css';
-import { Button } from './../atoms/atoms';
-
 import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
+
+import { Button } from './../atoms/atoms';
+import card from './../../css/organisms/card.module.css';
 
 const UserDiaryCard = ({
   diaryId,
@@ -91,20 +91,18 @@ const UserDiaryCard = ({
             <p>日記作成中</p>
           ) : (
             <>
-              <img
-                src={`${diaryImages[0]}`}
-                alt='picture'
-                width='150'
-                height='150'
-                className={card.card_photo}
-              />
-              <img
-                src={`${diaryImages[1]}`}
-                alt='picture'
-                width='150'
-                height='150'
-                className={card.card_photo}
-              />
+              {diaryImages.map((diaryImageUrl, index) => {
+                return (
+                  <img
+                    key={index}
+                    src={`${diaryImageUrl}`}
+                    alt='picture'
+                    width='150'
+                    height='150'
+                    className={card.card_photo}
+                  />
+                );
+              })}
             </>
           )}
         </div>

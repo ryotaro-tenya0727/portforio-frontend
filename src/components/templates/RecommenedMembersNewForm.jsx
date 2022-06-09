@@ -1,9 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
-import { useNavigate } from 'react-router-dom';
 
+import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import Form from './../../css/templates/Form.module.css';
 
 const RecommenedMembersNewForm = () => {
@@ -20,9 +20,6 @@ const RecommenedMembersNewForm = () => {
     palette: {
       primary: {
         main: '#ff96df',
-      },
-      secondary: {
-        main: '#000',
       },
     },
   });
@@ -80,9 +77,7 @@ const RecommenedMembersNewForm = () => {
             </>
           )}
           <br />
-
           <label htmlFor='nickname'>推しメンのニックネーム (8文字以内)</label>
-
           <Controller
             name='recommended_member.nickname'
             rules={{ required: true, maxLength: 8 }}

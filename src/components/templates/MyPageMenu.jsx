@@ -7,11 +7,9 @@ import TabContext from '@mui/lab/TabContext';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import MonochromePhotosIcon from '@mui/icons-material/MonochromePhotos';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-
-import MypageMenu from './../../css/templates/mypageMenu.module.css';
 
 import { RecommendedMembersList } from './Templates';
+import MypageMenu from './../../css/templates/mypageMenu.module.css';
 
 const MyPageMenu = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;

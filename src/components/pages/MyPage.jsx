@@ -1,8 +1,8 @@
-import { useUsersApi } from './../../hooks/useUsers';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { Link } from 'react-router-dom';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { useQueryClient } from 'react-query';
 
+import { useUsersApi } from './../../hooks/useUsers';
 import { MyPageMenu } from './../templates/Templates';
 
 const MyPage = () => {

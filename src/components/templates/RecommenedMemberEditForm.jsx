@@ -1,5 +1,5 @@
-import { useForm, Controller } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useForm, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -23,14 +23,10 @@ const RecommenedMemberEditForm = ({
       primary: {
         main: '#ff96df',
       },
-      secondary: {
-        main: '#000',
-      },
     },
   });
 
   const { usePutRecommendedMember } = useRecommendedMembersApi();
-
   const putRecommendedMember = usePutRecommendedMember(recommendedMemberId);
 
   const onSubmit = (data) => {

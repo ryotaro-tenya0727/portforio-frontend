@@ -1,6 +1,5 @@
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
-import { Link, useNavigate } from 'react-router-dom';
 
 import { useUsersApi } from './../../hooks/useUsers';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
