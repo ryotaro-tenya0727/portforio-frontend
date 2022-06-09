@@ -21,14 +21,17 @@ const RecommenedMemberEdit = () => {
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
 
   const deleteMember = () => {
-    alert(
-      `本当に${query.get('nickname')}を削除しますか?${query.get(
-        'nickname'
-      )}との日記も削除されます.
+    if (
+      window.confirm(
+        `本当に${query.get('nickname')}を削除しますか?${query.get(
+          'nickname'
+        )}との日記も削除されます.
       `
-    );
-    deleteRecommendedMember.mutate();
-    navigate('/mypage');
+      )
+    ) {
+      deleteRecommendedMember.mutate();
+      navigate('/mypage');
+    }
   };
 
   return (

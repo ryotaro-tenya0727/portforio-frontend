@@ -16,11 +16,11 @@ const UserDiaryCard = ({
   eventVenue,
   status,
   eventPolaroidCount,
+  diaryImages,
   showUrl,
   editUrl,
 }) => {
-  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
-
+  console.log(diaryImages);
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card
@@ -87,20 +87,26 @@ const UserDiaryCard = ({
           {status === 'published' ? '公開する' : '公開しない'}
         </p>
         <div className={card.card_photo_list}>
-          <img
-            src={`https://placehold.jp/170x170.png`}
-            alt='picture'
-            width='150'
-            height='150'
-            className={card.card_photo}
-          />
-          <img
-            src={`https://placehold.jp/170x170.png`}
-            alt='picture'
-            width='150'
-            height='150'
-            className={card.card_photo}
-          />
+          {diaryId === undefined ? (
+            <p>日記作成中</p>
+          ) : (
+            <>
+              <img
+                src={`${diaryImages[0]}`}
+                alt='picture'
+                width='150'
+                height='150'
+                className={card.card_photo}
+              />
+              <img
+                src={`${diaryImages[1]}`}
+                alt='picture'
+                width='150'
+                height='150'
+                className={card.card_photo}
+              />
+            </>
+          )}
         </div>
       </Card>
     </Grid>

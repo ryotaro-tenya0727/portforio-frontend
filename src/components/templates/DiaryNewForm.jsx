@@ -18,8 +18,10 @@ const DiaryNewForm = ({
   recommendedMemberNickname,
   recommendedMemberGroup,
 }) => {
-  const [s3ImageUrls, setImageUrls] = useState({});
-  const [value, setValue] = useState([]);
+  const [isNumberError, setIsNumberError] = useState(false);
+  const [isFileTypeError, setIsFileTypeError] = useState(false);
+  const [s3ImageUrls, setImageUrls] = useState([]);
+  const [imageFiles, setImageFiles] = useState([]);
   const { accessToken } = useContext(AuthGuardContext);
   const navigate = useNavigate();
   const { control, handleSubmit, formState } = useForm({
@@ -44,9 +46,21 @@ const DiaryNewForm = ({
   const createRecommendedMemberDiary =
     useCreateRecommendedMemberDiaries(recommendedMemberId);
 
-  const upLoadImageToS3 = async (e) => {
-    // 署名URLを取得
-    const file = e.target.files[0];
+  const resetErrors = () => {
+    setIsNumberError(false);
+    setIsFileTypeError(false);
+  };
+
+  const handleFile = async (event) => {
+    if (!event) return;
+    const file = event.target.files[0];
+    resetErrors();
+    if (
+      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
+    ) {
+      setIsFileTypeError(true);
+      return;
+    }
     const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
       {
         presigned_url: {
@@ -55,19 +69,47 @@ const DiaryNewForm = ({
       },
       accessToken
     );
-    setImageUrls(imageUrls);
-    setValue(file);
-    // console.log(imageUrls);
+    if (imageFiles.length >= 2) {
+      setIsNumberError(true);
+      return;
+    }
+    setImageUrls([...s3ImageUrls, imageUrls]);
+    setImageFiles([...imageFiles, file]);
+    event.target.value = '';
   };
 
+  const handleCancel = (imageIndex) => {
+    if (window.confirm('選択した画像を消してよろしいですか？')) {
+      resetErrors();
+      const modifyPhotos = imageFiles.concat();
+      modifyPhotos.splice(imageIndex, 1);
+      setImageFiles(modifyPhotos);
+      const modifyImageUrls = s3ImageUrls.concat();
+      modifyImageUrls.splice(imageIndex, 1);
+      setImageUrls(modifyImageUrls);
+    }
+  };
   const onSubmit = async (data) => {
-    await axios.put(s3ImageUrls.presigned_url, value, {
-      headers: {
-        'Content-Type': 'image/*',
-      },
+    const l = s3ImageUrls.length;
+    if (s3ImageUrls.length !== 0) {
+      [...Array(l)].map(async (_, index) => {
+        await axios.put(s3ImageUrls[index].presigned_url, imageFiles[index], {
+          headers: {
+            'Content-Type': 'image/*',
+          },
+        });
+      });
+    }
+
+    const paramsDiaryImageUrls = [];
+    [...Array(l)].map((_, index) => {
+      paramsDiaryImageUrls.push({
+        diary_image_url: s3ImageUrls[index].diary_image_url,
+      });
     });
+
     createRecommendedMemberDiary.mutate({
-      diary: { ...data.diary, diary_image_url: s3ImageUrls.diary_image_url },
+      diary: { ...data.diary, diary_images_attributes: paramsDiaryImageUrls },
     });
     navigate(
       `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
@@ -82,12 +124,35 @@ const DiaryNewForm = ({
             className={Form.form_title}
           >{`${recommendedMemberNickname}との日記追加中`}</h1>
           <br />
-
+          {isNumberError && <p>※2枚を超えて選択された画像は表示されません</p>}
+          {isFileTypeError && (
+            <p>※jpeg, png, bmp, gif, svg以外のファイル形式は表示されません</p>
+          )}
+          {[...Array(2)].map((_, index) =>
+            index < imageFiles.length ? (
+              <>
+                <button
+                  type='button'
+                  key={index}
+                  onClick={() => handleCancel(index)}
+                >
+                  画像削除
+                </button>
+                <img
+                  src={URL.createObjectURL(imageFiles[index])}
+                  alt={`あなたの写真 ${index + 1}`}
+                />
+              </>
+            ) : (
+              <label key={index}>
+                <span>サンプル</span>
+              </label>
+            )
+          )}
           <input
             type='file'
             accept='image/*'
-            multiple
-            onChange={(e) => upLoadImageToS3(e)}
+            onChange={(event) => handleFile(event)}
           />
 
           <label htmlFor='event_name'>イベント名</label>
@@ -231,6 +296,7 @@ const DiaryNewForm = ({
           <br />
           <label htmlFor='status'>他のユーザーへの公開設定</label>
           <Controller
+            defaultValue=''
             name='diary.status'
             rules={{ required: true }}
             control={control}

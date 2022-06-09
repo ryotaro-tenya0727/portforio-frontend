@@ -23,16 +23,16 @@ const RecommendedMemberDiaryEdit = () => {
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
 
   const deleteDiary = () => {
-    alert(
-      `本当に${query.get('nickname')}との日記を削除しますか?
-      `
-    );
-    deleteRecommendedMemberDiary.mutate();
-    navigate(
-      `/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}?nickname=${query.get(
-        'nickname'
-      )}&group=${query.get('group')}`
-    );
+    if (
+      window.confirm(`本当に${query.get('nickname')}との日記を削除しますか?`)
+    ) {
+      deleteRecommendedMemberDiary.mutate();
+      navigate(
+        `/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}?nickname=${query.get(
+          'nickname'
+        )}&group=${query.get('group')}`
+      );
+    }
   };
   return (
     <>

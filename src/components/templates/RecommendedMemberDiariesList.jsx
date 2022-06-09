@@ -58,6 +58,7 @@ const RecommendedMemberDiariesList = ({
                     eventDate={diary.attributes.event_date}
                     eventVenue={diary.attributes.event_venue}
                     status={diary.attributes.status}
+                    diaryImages={diary.attributes.diary_images}
                     eventPolaroidCount={diary.attributes.event_polaroid_count}
                     showUrl={`/recommended-member/${recommendedMemberUuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                     editUrl={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/edit/${diary.attributes.id}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
@@ -78,6 +79,7 @@ const RecommendedMemberDiariesList = ({
                   eventVenue={diary.attributes.event_venue}
                   status={diary.attributes.status}
                   eventPolaroidCount={diary.attributes.event_polaroid_count}
+                  diaryImages={diary.attributes.diary_images}
                   showUrl={`/recommended-member/${recommendedMemberUuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                   editUrl={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/edit/${diary.attributes.id}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                 />

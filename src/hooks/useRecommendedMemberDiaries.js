@@ -74,7 +74,7 @@ export const useRecommendedMemberDiariesApi = () => {
         );
       },
       //mutateAsyncを開始したタイミングで実行
-      // dataはmutatecに渡した引数
+      // paramsはmutateに渡した引数
       {
         onMutate: async (params) => {
           await queryClient.cancelQueries(queryKey);
