@@ -4,6 +4,14 @@
   margin: 0 auto;
 }
 
+@media (min-width: 0px) and (max-width: 700px) {
+.form{
+  width: 90%;
+
+  margin: 0 auto;
+}
+}
+
 .form_title{
   text-align: center;
 }
@@ -37,4 +45,30 @@
 
 .form_label{
   margin-bottom: 10px
+}
+
+.images{
+  cursor: pointer;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  position:relative;
+}
+
+@media (min-width: 0px) and (max-width: 750px) {
+  .images {
+    width: 100%;
+  }
+}
+
+@media (min-width: 750px) and (max-width: 900px) {
+  .images {
+    width: 90%;
+  }
+}
+
+
+.image{
+
 }

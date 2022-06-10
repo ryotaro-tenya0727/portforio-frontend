@@ -5,12 +5,14 @@ import { useForm, Controller } from 'react-hook-form';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { AuthGuardContext } from './../../providers/AuthGuard';
 
 import { SampleImageButton } from './../atoms/atoms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRepository';
-import Form from './../../css/templates/Form.module.css';
+import form from './../../css/templates/form.module.css';
+import button from './../../css/atoms/button.module.css';
 
 const DiaryNewForm = ({
   recommendedMemberId,
@@ -131,6 +133,11 @@ const DiaryNewForm = ({
         setSecondImage(null);
       }
       const modifyPhotos = imageFiles.concat();
+      if (modifyPhotos.length === 1) {
+        setImageFiles([]);
+        setImageUrls([]);
+        return;
+      }
       modifyPhotos.splice(imageIndex, 1);
       setImageFiles(modifyPhotos);
       const modifyImageUrls = s3ImageUrls.concat();
@@ -168,46 +175,56 @@ const DiaryNewForm = ({
   return (
     <>
       <ThemeProvider theme={theme}>
-        <form onSubmit={handleSubmit(onSubmit)} className={Form.form}>
+        <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
           <h1
-            className={Form.form_title}
+            className={form.form_title}
           >{`${recommendedMemberNickname}との日記追加中`}</h1>
           <br />
           {isNumberError && <p>※2枚を超えて選択された画像は表示されません</p>}
           {isFileTypeError && (
             <p>※jpeg, png, bmp, gif, svg以外のファイル形式は表示されません</p>
           )}
+          <div className={form.images}>
+            {firstImage !== null ? (
+              <div>
+                <button
+                  className={button.image_cancel_button}
+                  type='button'
+                  onClick={() => handleCancel(0)}
+                >
+                  <DeleteForeverIcon />
+                </button>
+                <img
+                  src={URL.createObjectURL(firstImage)}
+                  alt={`あなたの写真 `}
+                  width='200'
+                  height='200'
+                />
+              </div>
+            ) : (
+              <SampleImageButton onClick={firstFileUpload} />
+            )}
+            {secondImage !== null ? (
+              <div>
+                <button
+                  className={button.image_cancel_button}
+                  type='button'
+                  onClick={() => handleCancel(1)}
+                >
+                  <DeleteForeverIcon />
+                </button>
 
-          {firstImage !== null ? (
-            <>
-              <button type='button' onClick={() => handleCancel(0)}>
-                画像削除
-              </button>
-              <img
-                src={URL.createObjectURL(firstImage)}
-                alt={`あなたの写真 `}
-                width='150'
-                height='150'
-              />
-            </>
-          ) : (
-            <SampleImageButton onClick={firstFileUpload} />
-          )}
-          {secondImage !== null ? (
-            <>
-              <button type='button' onClick={() => handleCancel(1)}>
-                画像削除
-              </button>
-              <img
-                src={URL.createObjectURL(secondImage)}
-                alt={`あなたの写真 `}
-                width='150'
-                height='150'
-              />
-            </>
-          ) : (
-            <SampleImageButton onClick={secondFileUpload} />
-          )}
+                <img
+                  src={URL.createObjectURL(secondImage)}
+                  alt={`あなたの写真 `}
+                  width='200'
+                  height='200'
+                />
+              </div>
+            ) : (
+              <SampleImageButton onClick={secondFileUpload} />
+            )}
+          </div>
           <input
             ref={firstInputRef}
             type='file'
@@ -222,6 +239,7 @@ const DiaryNewForm = ({
             onChange={(event) => secondHandleFile(event)}
             hidden
           />
+          <br />
           <label htmlFor='event_name'>イベント名</label>
           <Controller
             defaultValue=''
@@ -231,7 +249,7 @@ const DiaryNewForm = ({
               <TextField
                 id='event_name'
                 label={
-                  <span className={Form.text_label}>イベント名を入力</span>
+                  <span className={form.text_label}>イベント名を入力</span>
                 }
                 color='primary'
                 focused
@@ -251,7 +269,7 @@ const DiaryNewForm = ({
               <TextField
                 id='event_date'
                 label={
-                  <span className={Form.text_label}>イベントの日付を入力</span>
+                  <span className={form.text_label}>イベントの日付を入力</span>
                 }
                 color='primary'
                 focused
@@ -272,7 +290,7 @@ const DiaryNewForm = ({
               <TextField
                 id='event_venue'
                 label={
-                  <span className={Form.text_label}>イベント会場を入力</span>
+                  <span className={form.text_label}>イベント会場を入力</span>
                 }
                 color='primary'
                 focused
@@ -295,7 +313,7 @@ const DiaryNewForm = ({
               <TextField
                 id='event_polaroid_count'
                 label={
-                  <span className={Form.text_label}>
+                  <span className={form.text_label}>
                     この日のチェキ数を入力
                   </span>
                 }
@@ -321,7 +339,7 @@ const DiaryNewForm = ({
               <TextField
                 id='impressive_memory'
                 label={
-                  <span className={Form.text_label}>
+                  <span className={form.text_label}>
                     印象に残った出来事を入力
                   </span>
                 }
@@ -346,7 +364,7 @@ const DiaryNewForm = ({
               <TextField
                 id='impressive_memory_detail'
                 label={
-                  <span className={Form.text_label}>
+                  <span className={form.text_label}>
                     印象に残った出来事を入力
                   </span>
                 }
@@ -384,7 +402,7 @@ const DiaryNewForm = ({
             )}
           />
           {formState.errors.diary && (
-            <div className={Form.text_error}>
+            <div className={form.text_error}>
               {formState.errors.diary.event_polaroid_count && (
                 <>
                   <br />
@@ -421,7 +439,7 @@ const DiaryNewForm = ({
           <div style={{ textAlign: 'center' }}>
             <input
               type='submit'
-              className={Form.submit_button}
+              className={form.submit_button}
               value='この内容で登録'
             />
           </div>

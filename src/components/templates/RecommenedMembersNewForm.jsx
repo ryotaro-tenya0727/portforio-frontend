@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
-import Form from './../../css/templates/Form.module.css';
+import form from './../../css/templates/form.module.css';
 
 const RecommenedMembersNewForm = () => {
   const navigate = useNavigate();
@@ -35,8 +35,8 @@ const RecommenedMembersNewForm = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <form onSubmit={handleSubmit(onSubmit)} className={Form.form}>
-          <h2 className={Form.form_title}>推しメン登録</h2>
+        <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
+          <h2 className={form.form_title}>推しメン登録</h2>
           {formState.errors.recommended_member && (
             <>
               {formState.errors.recommended_member && (
@@ -45,7 +45,7 @@ const RecommenedMembersNewForm = () => {
                     'required' && (
                     <>
                       <br />
-                      <span className={Form.text_error}>
+                      <span className={form.text_error}>
                         ・ニックネームが未入力です
                       </span>
                       <br />
@@ -55,7 +55,7 @@ const RecommenedMembersNewForm = () => {
                     'maxLength' && (
                     <>
                       <br />
-                      <span className={Form.text_error}>
+                      <span className={form.text_error}>
                         ・ニックネームが文字数を超過しています
                       </span>
                       <br />
@@ -66,7 +66,7 @@ const RecommenedMembersNewForm = () => {
                     <>
                       {console.log(formState.errors)}
                       <br />
-                      <span className={Form.text_error}>
+                      <span className={form.text_error}>
                         ・所属グループが文字数を超過しています
                       </span>
                       <br />
@@ -86,7 +86,7 @@ const RecommenedMembersNewForm = () => {
               <TextField
                 id='nickname'
                 label={
-                  <span className={Form.text_label}>
+                  <span className={form.text_label}>
                     ここにニックネームを入力
                   </span>
                 }
@@ -109,7 +109,7 @@ const RecommenedMembersNewForm = () => {
               <TextField
                 id='group'
                 label={
-                  <span className={Form.text_label}>
+                  <span className={form.text_label}>
                     ここに所属グループを入力
                   </span>
                 }
@@ -133,7 +133,7 @@ const RecommenedMembersNewForm = () => {
                 id='first_met_date'
                 type='date'
                 label={
-                  <span className={Form.text_label}>推しメンと会った日</span>
+                  <span className={form.text_label}>推しメンと会った日</span>
                 }
                 color='primary'
                 focused
@@ -147,7 +147,7 @@ const RecommenedMembersNewForm = () => {
           <div style={{ textAlign: 'center' }}>
             <input
               type='submit'
-              className={Form.submit_button}
+              className={form.submit_button}
               value='この内容で登録'
             />
           </div>

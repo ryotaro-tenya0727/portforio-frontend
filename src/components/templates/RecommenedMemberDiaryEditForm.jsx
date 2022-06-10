@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
-import Form from './../../css/templates/Form.module.css';
+import form from './../../css/templates/form.module.css';
 
 const RecommenedMemberDiaryEditForm = ({
   recommendedMemberId,
@@ -65,9 +65,9 @@ const RecommenedMemberDiaryEditForm = ({
       ) : (
         <>
           <ThemeProvider theme={theme}>
-            <form onSubmit={handleSubmit(onSubmit)} className={Form.form}>
+            <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
               <h1
-                className={Form.form_title}
+                className={form.form_title}
               >{`${recommendedMemberNickname}との日記編集中`}</h1>
               <label htmlFor='event_name'>イベント名</label>
               <Controller
@@ -78,7 +78,7 @@ const RecommenedMemberDiaryEditForm = ({
                   <TextField
                     id='event_name'
                     label={
-                      <span className={Form.text_label}>イベント名を入力</span>
+                      <span className={form.text_label}>イベント名を入力</span>
                     }
                     color='primary'
                     focused
@@ -98,7 +98,7 @@ const RecommenedMemberDiaryEditForm = ({
                   <TextField
                     id='event_date'
                     label={
-                      <span className={Form.text_label}>
+                      <span className={form.text_label}>
                         イベントの日付を入力
                       </span>
                     }
@@ -121,7 +121,7 @@ const RecommenedMemberDiaryEditForm = ({
                   <TextField
                     id='event_venue'
                     label={
-                      <span className={Form.text_label}>
+                      <span className={form.text_label}>
                         イベント会場を入力
                       </span>
                     }
@@ -144,7 +144,7 @@ const RecommenedMemberDiaryEditForm = ({
                   <TextField
                     id='event_polaroid_count'
                     label={
-                      <span className={Form.text_label}>
+                      <span className={form.text_label}>
                         この日のチェキ数を入力
                       </span>
                     }
@@ -170,7 +170,7 @@ const RecommenedMemberDiaryEditForm = ({
                   <TextField
                     id='impressive_memory'
                     label={
-                      <span className={Form.text_label}>
+                      <span className={form.text_label}>
                         印象に残った出来事を入力
                       </span>
                     }
@@ -196,7 +196,7 @@ const RecommenedMemberDiaryEditForm = ({
                   <TextField
                     id='impressive_memory_detail'
                     label={
-                      <span className={Form.text_label}>
+                      <span className={form.text_label}>
                         印象に残った出来事を入力
                       </span>
                     }
@@ -235,7 +235,7 @@ const RecommenedMemberDiaryEditForm = ({
                 )}
               />
               {formState.errors.diary && (
-                <div className={Form.text_error}>
+                <div className={form.text_error}>
                   {formState.errors.diary.event_polaroid_count && (
                     <>
                       <br />
@@ -274,7 +274,7 @@ const RecommenedMemberDiaryEditForm = ({
               <div style={{ textAlign: 'center' }}>
                 <input
                   type='submit'
-                  className={Form.submit_button}
+                  className={form.submit_button}
                   value='この内容で登録'
                 />
               </div>

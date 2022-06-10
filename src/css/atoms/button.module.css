@@ -16,6 +16,32 @@
 }
 
 .sample_image{
-  width: 150px;
-  height: 150px
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  background-color:#ffe8e8;
+  border: dashed 2px  #ff8a8a;
+}
+.sample_image:hover {
+  opacity: 0.7;
+  background-color:#ffdfdf;
+}
+
+.sample_image_text{
+  height: 30px;
+  border: dashed 2px #ff64db;
+  border-radius: 5px;
+  padding: 20px 00px 10px 0px;
+  background-color:#ffffff;
+  text-align: center;
+  font-size: 15px;
+}
+
+.image_cancel_button{
+  cursor: pointer;
+  background-color: #ff99c5;
+  border-radius: 5px;
+  border: none;
+  position: absolute;
+  top: -27px;
 }
