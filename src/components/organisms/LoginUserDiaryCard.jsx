@@ -20,7 +20,6 @@ const UserDiaryCard = ({
   showUrl,
   editUrl,
 }) => {
-  console.log(diaryImages);
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card

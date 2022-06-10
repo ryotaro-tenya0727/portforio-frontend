@@ -10,6 +10,7 @@ const MyPage = () => {
   const queryClient = useQueryClient();
   const user_data = queryClient.getQueryData('users');
   const { data, isLoading, isIdle } = useGetAccesstokenAndCreateUser();
+  console.log(user_data);
   return (
     <>
       <h1>Mypage</h1>
@@ -27,7 +28,7 @@ const MyPage = () => {
         )
       ) : (
         <>
-          <p key={user_data.id}>{user_data.name}さんログイン中</p>
+          <p>{user_data.name}さんログイン中</p>
           <MyPageMenu />
 
           <ReactQueryDevtools initialIsOpen={false} />

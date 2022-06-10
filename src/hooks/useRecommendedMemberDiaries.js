@@ -233,9 +233,10 @@ export const useRecommendedMemberDiariesApi = () => {
       return previousData;
     };
 
-    const recommendedMemberUpdater = (previousData) => {
+    const recommendedMemberUpdater = (previousData, previousDiaryCount) => {
       previousData.data = previousData.data.map((recommendedMember) => {
         // recommendedMemberIdはstringなので数値に変換
+
         if (recommendedMember.attributes.id === Number(recommendedMemberId)) {
           return {
             attributes: {
@@ -243,6 +244,9 @@ export const useRecommendedMemberDiariesApi = () => {
 
               ...{
                 diaries_count: recommendedMember.attributes.diaries_count - 1,
+                total_member_polaroid_count:
+                  recommendedMember.attributes.total_member_polaroid_count -
+                  previousDiaryCount,
               },
             },
           };
@@ -265,6 +269,13 @@ export const useRecommendedMemberDiariesApi = () => {
         onMutate: async () => {
           await queryClient.cancelQueries(queryKey);
           const previousData = await queryClient.getQueryData(queryKey);
+          let previousDiaryCount;
+          previousData.data.forEach((diary) => {
+            if (diary.attributes.id === Number(diaryId)) {
+              console.log('同じ');
+              previousDiaryCount = diary.attributes.event_polaroid_count;
+            }
+          });
           if (previousData) {
             queryClient.setQueryData(queryKey, () => {
               return updater(previousData);
@@ -277,7 +288,10 @@ export const useRecommendedMemberDiariesApi = () => {
 
           if (previousRecommendedMemberData) {
             queryClient.setQueryData('recommended_members', () => {
-              return recommendedMemberUpdater(previousRecommendedMemberData);
+              return recommendedMemberUpdater(
+                previousRecommendedMemberData,
+                previousDiaryCount
+              );
             });
           }
 
