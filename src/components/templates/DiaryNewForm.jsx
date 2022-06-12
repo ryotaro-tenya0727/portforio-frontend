@@ -20,7 +20,6 @@ const DiaryNewForm = ({
   recommendedMemberNickname,
   recommendedMemberGroup,
 }) => {
-  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const firstInputRef = useRef(null);
   const secondInputRef = useRef(null);
   const [firstImage, setFirstImage] = useState(null);
