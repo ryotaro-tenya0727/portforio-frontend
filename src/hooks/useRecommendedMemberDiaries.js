@@ -153,9 +153,6 @@ export const useRecommendedMemberDiariesApi = () => {
                   recommendedMember.attributes.total_member_polaroid_count -
                   previousPolaroidCount,
               },
-              ...{
-                diaries_count: recommendedMember.attributes.diaries_count + 1,
-              },
             },
           };
         } else {

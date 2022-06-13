@@ -20,7 +20,7 @@ const RecommenedMembersNew = () => {
           <>
             <ReactQueryDevtools initialIsOpen={false} />
             <Link to='/mypage'>マイページへ</Link>
-            <p>{data.name}さんログイン中</p>
+            <p>{data.data.attributes.name}さんログイン中</p>
 
             <RecommenedMembersNewForm />
           </>
@@ -29,7 +29,7 @@ const RecommenedMembersNew = () => {
         <>
           <ReactQueryDevtools initialIsOpen={false} />
           <Link to='/mypage'>マイページへ</Link>
-          <p>{user_data.name}さんログイン中</p>
+          <p>{user_data.data.attributes.name}さんログイン中</p>
 
           <RecommenedMembersNewForm />
         </>

@@ -41,7 +41,7 @@ const RecommenedMemberEdit = () => {
           <p>load</p>
         ) : (
           <>
-            <p>{data.name}さんログイン中</p>
+            <p>{data.data.attributes.name}さんログイン中</p>
             <RecommenedMemberEditForm
               recommendedMemberUuid={recommended_member_uuid}
               recommendedMemberId={recommended_member_id}
@@ -55,7 +55,7 @@ const RecommenedMemberEdit = () => {
         )
       ) : (
         <>
-          <p> {user_data.name}さんログイン中</p>
+          <p> {user_data.data.attributes.name}さんログイン中</p>
           <RecommenedMemberEditForm
             recommendedMemberUuid={recommended_member_uuid}
             recommendedMemberId={recommended_member_id}

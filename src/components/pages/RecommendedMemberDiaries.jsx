@@ -23,7 +23,7 @@ const RecommenedMembersDiaries = () => {
           <p>load</p>
         ) : (
           <>
-            <p>{data.name}さんログイン中</p>
+            <p>{data.data.attributes.name}さんログイン中</p>
             <Link to='/mypage'>マイページへ</Link>
             <br />
             <Link
@@ -44,7 +44,7 @@ const RecommenedMembersDiaries = () => {
         )
       ) : (
         <>
-          <p> {userData.name}さんログイン中</p>
+          <p> {userData.data.attributes.name}さんログイン中</p>
           <Link to='/mypage'>マイページへ</Link>
           <br />
           <Link

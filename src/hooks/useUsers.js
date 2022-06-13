@@ -23,6 +23,7 @@ export const useUsersApi = () => {
       },
       {
         onSuccess: (data) => {
+          console.log(data);
           queryClient.setQueryData('users', data);
         },
       }

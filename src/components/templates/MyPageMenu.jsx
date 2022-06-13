@@ -8,10 +8,10 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import MonochromePhotosIcon from '@mui/icons-material/MonochromePhotos';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
-import { RecommendedMembersList } from './Templates';
+import { RecommendedMembersList, LoginUserInformation } from './Templates';
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
 
-const MyPageMenu = () => {
+const MyPageMenu = ({ userData }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
   const handleChange = (event, newValue) => {
@@ -98,7 +98,7 @@ const MyPageMenu = () => {
             <RecommendedMembersList />
           </TabPanel>
           <TabPanel value={'3'} sx={{ padding: 0 }}>
-            プロフィール
+            <LoginUserInformation userData={userData} />
           </TabPanel>
         </TabContext>
       </ThemeProvider>

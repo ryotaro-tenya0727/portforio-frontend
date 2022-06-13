@@ -6,3 +6,4 @@ export { default as RecommenedMemberDiaryShowDetail } from './RecommenedMemberDi
 export { default as RecommenedMemberEditForm } from './RecommenedMemberEditForm';
 export { default as RecommenedMemberDiaryEditForm } from './RecommenedMemberDiaryEditForm';
 export { default as MyPageMenu } from './MyPageMenu';
+export { default as LoginUserInformation } from './LoginUserInformation';

@@ -8,28 +8,28 @@ import { MyPageMenu } from './../templates/Templates';
 const MyPage = () => {
   const { useGetAccesstokenAndCreateUser } = useUsersApi();
   const queryClient = useQueryClient();
-  const user_data = queryClient.getQueryData('users');
+  const userData = queryClient.getQueryData('users');
   const { data, isLoading, isIdle } = useGetAccesstokenAndCreateUser();
-  console.log(user_data);
+
   return (
     <>
       <h1>Mypage</h1>
       <Link to='/recommended-members/new'>推しメン登録ページへ</Link>
-      {user_data === undefined ? (
+      {userData === undefined ? (
         isIdle || isLoading ? (
           <p>load</p>
         ) : (
           <>
-            <p>{data.name}さんログイン中</p>
-            <MyPageMenu />
+            <p>{data.data.attributes.name}さんログイン中</p>
+            <MyPageMenu userData={data.data.attributes.name} />
 
             <ReactQueryDevtools initialIsOpen={false} />
           </>
         )
       ) : (
         <>
-          <p>{user_data.name}さんログイン中</p>
-          <MyPageMenu />
+          <p>{userData.data.attributes.name}さんログイン中</p>
+          <MyPageMenu userData={userData.data.attributes} />
 
           <ReactQueryDevtools initialIsOpen={false} />
         </>

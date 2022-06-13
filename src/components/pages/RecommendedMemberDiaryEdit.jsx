@@ -43,7 +43,7 @@ const RecommendedMemberDiaryEdit = () => {
           <p>load</p>
         ) : (
           <>
-            <p>{data.name}さんログイン中</p>
+            <p>{data.data.attributes.name}さんログイン中</p>
             <RecommenedMemberDiaryEditForm
               recommendedMemberId={recommended_member_id}
               recommendedMemberUuid={recommended_member_uuid}
@@ -57,7 +57,7 @@ const RecommendedMemberDiaryEdit = () => {
         )
       ) : (
         <>
-          <p> {userData.name}さんログイン中</p>
+          <p> {userData.data.attributes.name}さんログイン中</p>
           <RecommenedMemberDiaryEditForm
             recommendedMemberId={recommended_member_id}
             recommendedMemberUuid={recommended_member_uuid}

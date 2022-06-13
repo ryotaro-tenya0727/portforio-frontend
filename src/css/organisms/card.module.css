@@ -1,6 +1,6 @@
 .card_whole{
   padding: 10px 10px 5px 10px;
-  border: dashed 2px  #ff8a8a;
+
 }
 .card_second_whole{
   display: flex;
@@ -20,6 +20,7 @@
   border-bottom: 2px dashed #ff8a8a;
   color: #000000;
   margin: 0px 0px 15px 0px;
+  padding: 0px 0px 10px 0px;
   font-weight: bold;
 }
 
@@ -38,4 +39,48 @@
 
 .card_photo{
   margin: 0px 15px 0px 15px;
+}
+
+.login_user_card{
+  width: 65%;
+  text-align: center;
+  padding: 10px 10px 5px 10px;
+  margin:  0 auto;
+  margin-top: 20px;
+  background-position: top -10px left -85px;
+  background-size: 400px;
+  background-repeat: no-repeat
+}
+
+@media (max-width: 900px) {
+  .login_user_card{
+    background-image: none;
+  }
+}
+
+.login_card_text_property{
+  color: #ff6fc8;
+
+  /* font-size: 18px; */
+}
+
+.login_card_text{
+  border-bottom: 2px dashed #ff6fc8;
+  margin:  0 auto;
+  margin-bottom: 15px;
+  width: 90%;
+  padding: 0px 0px 15px 10px;
+  font-size: 16px;
+}
+
+@media (max-width: 900px) {
+  .login_card_text{
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 550px) {
+  .login_card_text{
+    font-size: 11px;
+  }
 }

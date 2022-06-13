@@ -24,13 +24,13 @@ const RecommenedMemberDiaryShow = () => {
           <p>load</p>
         ) : (
           <>
-            <p>{data.name}さんログイン中</p>
+            <p>{data.data.attributes.name}さんログイン中</p>
             <RecommenedMemberDiaryShowDetail diaryId={diary_id} />
           </>
         )
       ) : (
         <>
-          <p> {userData.name}さんログイン中</p>
+          <p> {userData.data.attributes.name}さんログイン中</p>
           <RecommenedMemberDiaryShowDetail diaryId={diary_id} />
         </>
       )}

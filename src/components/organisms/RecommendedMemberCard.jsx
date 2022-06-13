@@ -25,7 +25,8 @@ const RecommendedMemberCard = ({
       <Card
         className={card.card_whole}
         sx={{
-          boxShadow: '0 12px 10px -6px rgba(176, 170, 168, 0.7)',
+          boxShadow: '2px 18px 10px -3px rgba(176, 170, 168, 0.7)',
+          bgcolor: '#FFFFFF',
         }}
       >
         <div>

@@ -19,7 +19,7 @@ const RecommenedMemberDiariesNew = () => {
           <p>load</p>
         ) : (
           <>
-            <p>{data.name}さんログイン中</p>
+            <p>{data.data.attributes.name}さんログイン中</p>
 
             <DiaryNewForm
               recommendedMemberId={recommended_member_id}
@@ -31,7 +31,7 @@ const RecommenedMemberDiariesNew = () => {
         )
       ) : (
         <>
-          <p> {user_data.name}さんログイン中</p>
+          <p> {user_data.data.attributes.name}さんログイン中</p>
           <DiaryNewForm
             recommendedMemberId={recommended_member_id}
             recommendedMemberUuid={recommended_member_uuid}
