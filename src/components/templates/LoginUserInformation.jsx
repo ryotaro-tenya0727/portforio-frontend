@@ -4,11 +4,7 @@ import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
 
 const LoginUserInformation = ({ userData }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
-  const styles = {
-    loginUserCard: {
-      backgroundImage: `${imageDomain}/admin/login_profile_image.png`,
-    },
-  };
+
   return (
     <div>
       <Card

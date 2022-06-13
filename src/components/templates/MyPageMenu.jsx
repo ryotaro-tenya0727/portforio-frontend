@@ -32,6 +32,21 @@ const MyPageMenu = ({ userData }) => {
     <>
       <ThemeProvider theme={theme}>
         <TabContext value={value}>
+          <ul className={MypageMenu.sakura}>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
           <Tabs
             value={value}
             onChange={handleChange}

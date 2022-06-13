@@ -51,3 +51,7 @@ a{
 img{
 	vertical-align:top;
 }
+
+html{
+  overflow: hidden;
+}
