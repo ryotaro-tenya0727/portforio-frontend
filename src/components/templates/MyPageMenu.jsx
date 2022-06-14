@@ -11,7 +11,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { RecommendedMembersList, LoginUserInformation } from './Templates';
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
 
-const MyPageMenu = ({ userData }) => {
+const MyPageMenu = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
   const handleChange = (event, newValue) => {
@@ -117,7 +117,7 @@ const MyPageMenu = ({ userData }) => {
             <RecommendedMembersList />
           </TabPanel>
           <TabPanel value={'3'} sx={{ padding: 0 }}>
-            <LoginUserInformation userData={userData} />
+            <LoginUserInformation />
           </TabPanel>
         </TabContext>
       </ThemeProvider>

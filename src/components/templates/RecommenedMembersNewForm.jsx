@@ -79,6 +79,7 @@ const RecommenedMembersNewForm = () => {
           <br />
           <label htmlFor='nickname'>推しメンのニックネーム (8文字以内)</label>
           <Controller
+            defaultValue=''
             name='recommended_member.nickname'
             rules={{ required: true, maxLength: 8 }}
             control={control}
@@ -102,6 +103,7 @@ const RecommenedMembersNewForm = () => {
           <label htmlFor='group'>推しメンの所属グループ (15文字以内)</label>
 
           <Controller
+            defaultValue=''
             name='recommended_member.group'
             control={control}
             rules={{ maxLength: 15 }}

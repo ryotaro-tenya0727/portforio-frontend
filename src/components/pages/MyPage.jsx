@@ -12,7 +12,7 @@ const MyPage = () => {
   const { data, isLoading, isIdle } = useGetAccesstokenAndCreateUser();
 
   return (
-    <>
+    <div style={{ paddingBottom: '280px' }}>
       <h1>Mypage</h1>
       <Link to='/recommended-members/new'>推しメン登録ページへ</Link>
       {userData === undefined ? (
@@ -21,7 +21,7 @@ const MyPage = () => {
         ) : (
           <>
             <p>{data.data.attributes.name}さんログイン中</p>
-            <MyPageMenu userData={data.data.attributes.name} />
+            <MyPageMenu />
 
             <ReactQueryDevtools initialIsOpen={false} />
           </>
@@ -29,12 +29,12 @@ const MyPage = () => {
       ) : (
         <>
           <p>{userData.data.attributes.name}さんログイン中</p>
-          <MyPageMenu userData={userData.data.attributes} />
+          <MyPageMenu />
 
           <ReactQueryDevtools initialIsOpen={false} />
         </>
       )}
-    </>
+    </div>
   );
 };
 
