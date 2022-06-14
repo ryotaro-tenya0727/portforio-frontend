@@ -9,6 +9,8 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import GroupsIcon from '@mui/icons-material/Groups';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import BookIcon from '@mui/icons-material/Book';
+import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 
 const RecommendedMemberCard = ({
   nickname,
@@ -78,8 +80,8 @@ const RecommendedMemberCard = ({
                 </p>
                 <p className={card.card_text}>
                   <span className={card.card_text_property}>
-                    <BorderColorIcon
-                      sx={{ fontSize: '18px', mb: '-1px', color: '#00AA00' }}
+                    <CollectionsBookmarkIcon
+                      sx={{ fontSize: '19px', mb: '-2.8px', color: '#00AA00' }}
                     />
                     &nbsp;&nbsp;日記数:
                   </span>{' '}

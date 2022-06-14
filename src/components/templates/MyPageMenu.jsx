@@ -46,6 +46,10 @@ const MyPageMenu = ({ userData }) => {
             <li></li>
             <li></li>
             <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
           </ul>
           <Tabs
             value={value}

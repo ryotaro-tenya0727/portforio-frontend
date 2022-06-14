@@ -1,6 +1,9 @@
 import Card from '@mui/material/Card';
 import card from './../../css/organisms/card.module.css';
 import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 const LoginUserInformation = ({ userData }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
@@ -55,15 +58,36 @@ const LoginUserInformation = ({ userData }) => {
           }}
         >
           <p className={card.login_card_text}>
-            <p className={card.login_card_text_property}>推しメン登録数</p>
+            <p className={card.login_card_text_property}>
+              {' '}
+              <LoyaltyIcon
+                sx={{
+                  fontSize: '20px',
+                  mb: '-3.5px',
+                  color: '#ff6fc8',
+                }}
+              />
+              &nbsp;推しメン登録数
+            </p>
             {userData.recommended_members_count}
           </p>
           <p className={card.login_card_text}>
-            <p className={card.login_card_text_property}>登録日記数 </p>
+            <p className={card.login_card_text_property}>
+              {' '}
+              <CollectionsBookmarkIcon
+                sx={{ fontSize: '20px', mb: '-3.5px', color: '#ff6fc8' }}
+              />
+              &nbsp;登録日記数{' '}
+            </p>
             {userData.diaries_count}
           </p>
           <p className={card.login_card_text}>
-            <p className={card.login_card_text_property}>総チェキ数 </p>
+            <p className={card.login_card_text_property}>
+              <AddAPhotoIcon
+                sx={{ fontSize: '19px', mb: '-1.8px', color: '#ff6fc8' }}
+              />
+              &nbsp;総チェキ数
+            </p>
             {userData.total_polaroid_count}
           </p>
         </div>

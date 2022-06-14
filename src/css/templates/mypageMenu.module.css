@@ -65,7 +65,7 @@ pointer-events:none;
   left: 5%;
   width: 13px;
   height: 9px;
-  animation: fall 7s linear infinite,
+  animation: fall 5s linear infinite,
              sway1 2s ease-in-out infinite alternate;
   animation-delay: 4s;
 }
@@ -74,7 +74,7 @@ pointer-events:none;
   left: 15%;
   width: 16px;
   height: 10px;
-  animation: fall 9s linear infinite,
+  animation: fall 7s linear infinite,
              sway1 3.5s ease-in-out infinite alternate;
   animation-delay: 0s;
 }
@@ -99,9 +99,9 @@ pointer-events:none;
   left: 55%;
   width: 24px;
   height: 15px;
-  animation: fall 11s linear infinite,
+  animation: fall 7s linear infinite,
              sway2 3s ease-in-out infinite alternate;
-  animation-delay: 3s;
+  animation-delay: 0s;
 }
 .sakura li:nth-child(7){
   left: 65%;
@@ -109,7 +109,7 @@ pointer-events:none;
   height: 10px;
   animation: fall 7s linear infinite,
              sway2 3.5s ease-in-out infinite alternate;
-  animation-delay: 7s;
+  animation-delay: 2s;
 }
 .sakura li:nth-child(8){
   left: 50%;
@@ -117,7 +117,7 @@ pointer-events:none;
   height: 9px;
   animation: fall 7s linear infinite,
              sway1 3s ease-in-out infinite alternate;
-  animation-delay: 3s;
+  animation-delay: 0s;
 }
 .sakura li:nth-child(9){
   left: 80%;
@@ -125,7 +125,7 @@ pointer-events:none;
   height: 10px;
   animation: fall 10s linear infinite,
              sway2 4s ease-in-out infinite alternate;
-  animation-delay: 4s;
+  animation-delay: 1s;
 }
 
 .sakura li:nth-child(10){
@@ -160,4 +160,28 @@ pointer-events:none;
   animation: fall 9s linear infinite,
              sway1 3.5s ease-in-out infinite alternate;
   animation-delay: 0s;
+}
+.sakura li:nth-child(14){
+  left: 50%;
+  width: 13px;
+  height: 9px;
+  animation: fall 7s linear infinite,
+             sway1 3s ease-in-out infinite alternate;
+  animation-delay: 1s;
+}
+.sakura li:nth-child(15){
+  left: 50%;
+  width: 13px;
+  height: 9px;
+  animation: fall 7s linear infinite,
+             sway1 3s ease-in-out infinite alternate;
+  animation-delay: 3s;
+}
+.sakura li:nth-child(16){
+  left: 50%;
+  width: 13px;
+  height: 9px;
+  animation: fall 7s linear infinite,
+             sway1 3s ease-in-out infinite alternate;
+  animation-delay: 1s;
 }
