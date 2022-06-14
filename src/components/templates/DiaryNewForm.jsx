@@ -5,9 +5,14 @@ import { useForm, Controller } from 'react-hook-form';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import Cropper from 'react-cropper';
+
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { AuthGuardContext } from './../../providers/AuthGuard';
-
 import { SampleImageButton } from './../atoms/atoms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRepository';
@@ -20,6 +25,21 @@ const DiaryNewForm = ({
   recommendedMemberNickname,
   recommendedMemberGroup,
 }) => {
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const firstInputRef = useRef(null);
   const secondInputRef = useRef(null);
   const [firstImage, setFirstImage] = useState(null);
@@ -34,6 +54,12 @@ const DiaryNewForm = ({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
+  const cropperRef = useRef(null);
+  const onCrop = () => {
+    const imageElement = cropperRef?.current;
+    const cropper = imageElement?.cropper;
+    console.log(cropper.getCroppedCanvas().toDataURL());
+  };
 
   const { useCreateRecommendedMemberDiaries } =
     useRecommendedMemberDiariesApi();
@@ -179,10 +205,28 @@ const DiaryNewForm = ({
             className={form.form_title}
           >{`${recommendedMemberNickname}との日記追加中`}</h1>
           <br />
+
           {isNumberError && <p>※2枚を超えて選択された画像は表示されません</p>}
           {isFileTypeError && (
             <p>※jpeg, png, bmp, gif, svg以外のファイル形式は表示されません</p>
           )}
+          <Button onClick={handleOpen}>Open modal</Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby='modal-modal-title'
+            aria-describedby='modal-modal-description'
+          >
+            <Box sx={style}>
+              <Typography id='modal-modal-title' variant='h6' component='h2'>
+                Text in a modal
+              </Typography>
+              <Typography id='modal-modal-description' sx={{ mt: 2 }}>
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              </Typography>
+            </Box>
+          </Modal>
+
           <div className={form.images}>
             {firstImage !== null ? (
               <div>
