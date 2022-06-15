@@ -5,17 +5,15 @@ import { useForm, Controller } from 'react-hook-form';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import Box from '@mui/material/Box';
+
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import Cropper from 'react-cropper';
 
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { SampleImageButton } from './../atoms/atoms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRepository';
+import { TrimmingModal } from './../organisms/Organisms';
 import form from './../../css/templates/form.module.css';
 import button from './../../css/atoms/button.module.css';
 
@@ -25,24 +23,7 @@ const DiaryNewForm = ({
   recommendedMemberNickname,
   recommendedMemberGroup,
 }) => {
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
-
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const firstInputRef = useRef(null);
   const secondInputRef = useRef(null);
-  const [firstImage, setFirstImage] = useState(null);
   const [secondImage, setSecondImage] = useState(null);
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
@@ -54,12 +35,6 @@ const DiaryNewForm = ({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
-  const cropperRef = useRef(null);
-  const onCrop = () => {
-    const imageElement = cropperRef?.current;
-    const cropper = imageElement?.cropper;
-    console.log(cropper.getCroppedCanvas().toDataURL());
-  };
 
   const { useCreateRecommendedMemberDiaries } =
     useRecommendedMemberDiariesApi();
@@ -83,96 +58,100 @@ const DiaryNewForm = ({
     setIsFileTypeError(false);
   };
 
-  const firstFileUpload = () => {
-    firstInputRef.current.click();
-  };
+  // const firstFileUpload = () => {
+  //   // firstInputRef.current.click();
+  // };
 
   const secondFileUpload = () => {
     secondInputRef.current.click();
   };
 
-  const firstHandleFile = async (event) => {
-    if (!event) return;
-    const file = event.target.files[0];
-    resetErrors();
-    if (
-      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
-    ) {
-      setIsFileTypeError(true);
-      return;
-    }
-    const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
-      {
-        presigned_url: {
-          filename: file.name,
-        },
-      },
-      accessToken
-    );
-    if (imageFiles.length >= 2) {
-      setIsNumberError(true);
-      return;
-    }
-    setFirstImage(file);
-    // 一つ目なら先頭に入れる。
-    setImageUrls([imageUrls, ...s3ImageUrls]);
-    setImageFiles([file, ...imageFiles]);
-    event.target.value = '';
-  };
+  // const firstHandleFile = async (event) => {
+  //   if (!event) return;
+  //   const file = event.target.files[0];
+  //   resetErrors();
+  //   if (
+  //     !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
+  //   ) {
+  //     setIsFileTypeError(true);
+  //     return;
+  //   }
 
-  const secondHandleFile = async (event) => {
-    if (!event) return;
-    const file = event.target.files[0];
-    resetErrors();
-    if (
-      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
-    ) {
-      setIsFileTypeError(true);
-      return;
-    }
-    const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
-      {
-        presigned_url: {
-          filename: file.name,
-        },
-      },
-      accessToken
-    );
-    if (imageFiles.length >= 2) {
-      setIsNumberError(true);
-      return;
-    }
-    setSecondImage(file);
-    // 二つ目なら後ろに入れる。
-    setImageUrls([...s3ImageUrls, imageUrls]);
-    setImageFiles([...imageFiles, file]);
-    event.target.value = '';
-  };
+  //   if (imageFiles.length >= 2) {
+  //     setIsNumberError(true);
+  //     return;
+  //   }
 
-  const handleCancel = (imageIndex) => {
-    if (window.confirm('選択した画像を消してよろしいですか？')) {
-      resetErrors();
-      if (imageIndex === 0) {
-        setFirstImage(null);
-      } else {
-        setSecondImage(null);
-      }
-      const modifyPhotos = imageFiles.concat();
-      if (modifyPhotos.length === 1) {
-        setImageFiles([]);
-        setImageUrls([]);
-        return;
-      }
-      modifyPhotos.splice(imageIndex, 1);
-      setImageFiles(modifyPhotos);
-      const modifyImageUrls = s3ImageUrls.concat();
-      modifyImageUrls.splice(imageIndex, 1);
-      setImageUrls(modifyImageUrls);
-    }
-  };
+  //   const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
+  //     {
+  //       presigned_url: {
+  //         filename: file.name,
+  //       },
+  //     },
+  //     accessToken
+  //   );
+  //   // setFirstImage(file);
+  //   // setImageFiles(file, ...imageFiles);
+  //   // 一つ目なら先頭に入れる。
+  //   // setImageUrls([imageUrls, ...s3ImageUrls]);
+  //   event.target.value = '';
+  // };
+
+  // const secondHandleFile = async (event) => {
+  //   if (!event) return;
+  //   const file = event.target.files[0];
+  //   resetErrors();
+  //   if (
+  //     !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
+  //   ) {
+  //     setIsFileTypeError(true);
+  //     return;
+  //   }
+  //   const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
+  //     {
+  //       presigned_url: {
+  //         filename: file.name,
+  //       },
+  //     },
+  //     accessToken
+  //   );
+  //   if (imageFiles.length >= 2) {
+  //     setIsNumberError(true);
+  //     return;
+  //   }
+  //   setSecondImage(file);
+  //   // 二つ目なら後ろに入れる。
+  //   setImageUrls([...s3ImageUrls, imageUrls]);
+  //   setImageFiles([...imageFiles, file]);
+  //   event.target.value = '';
+  // };
+
+  // const handleCancel = (imageIndex) => {
+  //   if (window.confirm('選択した画像を消してよろしいですか？')) {
+  //     resetErrors();
+  //     if (imageIndex === 0) {
+  //       // setFirstImage(null);
+  //     } else {
+  //       setSecondImage(null);
+  //     }
+  //     const modifyPhotos = imageFiles.concat();
+  //     if (modifyPhotos.length === 1) {
+  //       setImageFiles([]);
+  //       setImageUrls([]);
+  //       return;
+  //     }
+  //     modifyPhotos.splice(imageIndex, 1);
+  //     setImageFiles(modifyPhotos);
+  //     const modifyImageUrls = s3ImageUrls.concat();
+  //     modifyImageUrls.splice(imageIndex, 1);
+  //     setImageUrls(modifyImageUrls);
+  //   }
+  // };
   const onSubmit = async (data) => {
     const l = s3ImageUrls.length;
-    if (s3ImageUrls.length !== 0) {
+    console.log(s3ImageUrls);
+    console.log(imageFiles);
+    if (l !== 0) {
       [...Array(l)].map(async (_, index) => {
         await axios.put(s3ImageUrls[index].presigned_url, imageFiles[index], {
           headers: {
@@ -180,17 +159,27 @@ const DiaryNewForm = ({
           },
         });
       });
+      const paramsDiaryImageUrls = [];
+      [...Array(l)].map((_, index) => {
+        paramsDiaryImageUrls.push({
+          diary_image_url: s3ImageUrls[index].diary_image_url,
+        });
+      });
+
+      createRecommendedMemberDiary.mutate({
+        diary: {
+          ...data.diary,
+          diary_images_attributes: paramsDiaryImageUrls,
+        },
+      });
+      navigate(
+        `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
+      );
+      return;
     }
 
-    const paramsDiaryImageUrls = [];
-    [...Array(l)].map((_, index) => {
-      paramsDiaryImageUrls.push({
-        diary_image_url: s3ImageUrls[index].diary_image_url,
-      });
-    });
-
     createRecommendedMemberDiary.mutate({
-      diary: { ...data.diary, diary_images_attributes: paramsDiaryImageUrls },
+      diary: { ...data.diary },
     });
     navigate(
       `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
@@ -205,48 +194,41 @@ const DiaryNewForm = ({
             className={form.form_title}
           >{`${recommendedMemberNickname}との日記追加中`}</h1>
           <br />
-
           {isNumberError && <p>※2枚を超えて選択された画像は表示されません</p>}
           {isFileTypeError && (
             <p>※jpeg, png, bmp, gif, svg以外のファイル形式は表示されません</p>
           )}
-          <Button onClick={handleOpen}>Open modal</Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby='modal-modal-title'
-            aria-describedby='modal-modal-description'
-          >
-            <Box sx={style}>
-              <Typography id='modal-modal-title' variant='h6' component='h2'>
-                Text in a modal
-              </Typography>
-              <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-              </Typography>
-            </Box>
-          </Modal>
+          {/* <button onClick={() => setOpen(true)}>オープン</button> */}
+          <TrimmingModal
+            imageFiles={imageFiles}
+            s3ImageUrls={s3ImageUrls}
+            // first
+            onSetFirstImageFiles={(image) => {
+              setImageFiles([image, ...imageFiles]);
+            }}
+            onSetFirstImageUrls={(imageUrls) =>
+              setImageUrls([imageUrls, ...s3ImageUrls])
+            }
+            //reset
+            onSetResetImageFiles={() => {
+              setImageFiles([]);
+              console.log('初期化');
+            }}
+            onSetResetImageUrls={() => {
+              setImageUrls([]);
+            }}
+            //modify
+            onSetModifyImageFiles={(files) => {
+              setImageFiles(files);
+            }}
+            onSetModifyImageUrls={(urls) => {
+              setImageUrls(urls);
+            }}
+            onSetIsFileTypeError={(result) => setIsFileTypeError(result)}
+            onSetIsNumberTypeError={(result) => setIsNumberError(result)}
+          />
 
-          <div className={form.images}>
-            {firstImage !== null ? (
-              <div>
-                <button
-                  className={button.image_cancel_button}
-                  type='button'
-                  onClick={() => handleCancel(0)}
-                >
-                  <DeleteForeverIcon />
-                </button>
-                <img
-                  src={URL.createObjectURL(firstImage)}
-                  alt={`あなたの写真 `}
-                  width='200'
-                  height='200'
-                />
-              </div>
-            ) : (
-              <SampleImageButton onClick={firstFileUpload} />
-            )}
+          {/* <div className={form.images}>
             {secondImage !== null ? (
               <div>
                 <button
@@ -267,21 +249,21 @@ const DiaryNewForm = ({
             ) : (
               <SampleImageButton onClick={secondFileUpload} />
             )}
-          </div>
-          <input
+          </div> */}
+          {/* <input
             ref={firstInputRef}
             type='file'
             accept='image/*'
             onChange={(event) => firstHandleFile(event)}
             hidden
-          />
-          <input
+          /> */}
+          {/* <input
             ref={secondInputRef}
             type='file'
             accept='image/*'
             onChange={(event) => secondHandleFile(event)}
             hidden
-          />
+          /> */}
           <br />
           <label htmlFor='event_name'>イベント名</label>
           <Controller

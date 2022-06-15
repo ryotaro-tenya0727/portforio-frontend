@@ -269,7 +269,6 @@ export const useRecommendedMemberDiariesApi = () => {
           let previousDiaryCount;
           previousData.data.forEach((diary) => {
             if (diary.attributes.id === Number(diaryId)) {
-              console.log('同じ');
               previousDiaryCount = diary.attributes.event_polaroid_count;
             }
           });
