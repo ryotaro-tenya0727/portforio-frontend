@@ -12,6 +12,7 @@ import { SampleImageButton } from './../atoms/atoms';
 import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRepository';
 import form from './../../css/templates/form.module.css';
 import button from './../../css/atoms/button.module.css';
+import card from './../../css/organisms/card.module.css';
 
 const TrimmingModal = ({
   onSetIsFileTypeError,
@@ -37,11 +38,11 @@ const TrimmingModal = ({
     // default crop config
     // トリミングする四角形のサイズ
     {
-      unit: '%', // Can be 'px' or '%'
-      x: 50,
-      y: 50,
-      width: 20,
-      height: 20,
+      unit: 'px', // Can be 'px' or '%'
+      x: 20,
+      y: 20,
+      width: 40,
+      height: 40,
       aspect: 1,
     }
   );
@@ -58,6 +59,7 @@ const TrimmingModal = ({
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    paddingBottom: '64px',
     textAlign: 'center',
   };
 
@@ -193,8 +195,6 @@ const TrimmingModal = ({
         }
 
         blob.name = fileName;
-        // console.log(fileName);
-        // creating a Object URL representing the Blob object given
 
         resolve(blob);
       }, 'image/png');
@@ -211,13 +211,6 @@ const TrimmingModal = ({
         hidden
       />
 
-      {/* <input
-            ref={firstInputRef}
-            type='file'
-            accept='image/*'
-            onChange={(event) => firstHandleFile(event)}
-            hidden
-          /> */}
       {firstImage !== null ? (
         <div>
           <button
@@ -244,40 +237,49 @@ const TrimmingModal = ({
         aria-describedby='modal-modal-description'
       >
         <Box sx={style}>
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            トリミング
-          </Typography>
-          <ReactCrop
-            style={{
-              maxWidth: '300px',
-              height: '450px',
-            }}
-            src={imageToCrop}
-            crop={cropConfig}
-            ruleOfThirds
-            // 画像選択時
-            onImageLoaded={(imageRef) => {
-              // console.log('画像選択');
-              // console.log(imageRef.naturalWidth);
-              // console.log(imageRef.width);
-              // <img ...>がimageRefに入る
-
-              setImageRef(imageRef);
-            }}
-            // リサイズ中(マウスを持っているとき)
-            onChange={(cropConfig) => {
-              // console.log('onChange');
-              setCropConfig(cropConfig);
-            }}
-            // リサイズ後（マウス離したとき）
-            onComplete={(cropConfig) => {
-              // console.log('リサイズ');
-              cropImage(cropConfig);
-            }}
-            crossorigin='anonymous' // to avoid CORS-related problems
-          />
-          <br />
-          <button onClick={registerImage}>確定</button>
+          <div className={card.trimming_card}>
+            <ReactCrop
+              style={
+                {
+                  // minHeight: '90%',
+                  // width: '90%',
+                  // height: '100%',
+                  // position: 'absolute',
+                  // top: '50%',
+                  // left: '50%',
+                  // transform: 'translate(-50%, -50%)',
+                  // height: '90%',
+                  // paddingTop: '6px',
+                }
+              }
+              src={imageToCrop}
+              crop={cropConfig}
+              ruleOfThirds
+              // 画像選択時
+              onImageLoaded={(imageRef) => {
+                // console.log('画像選択');
+                console.log(imageRef.class);
+                // console.log(imageRef.width);
+                // <img ...>がimageRefに入る
+                // imageRef.width = '300px';
+                setImageRef(imageRef);
+              }}
+              // リサイズ中(マウスを持っているとき)
+              onChange={(cropConfig) => {
+                // console.log('onChange');
+                setCropConfig(cropConfig);
+              }}
+              // リサイズ後（マウス離したとき）
+              onComplete={(cropConfig) => {
+                // console.log('リサイズ');
+                cropImage(cropConfig);
+              }}
+              crossorigin='anonymous' // to avoid CORS-related problems
+            />
+          </div>
+          <button onClick={registerImage} className={button.button_trimming}>
+            確定
+          </button>
         </Box>
       </Modal>
     </div>
