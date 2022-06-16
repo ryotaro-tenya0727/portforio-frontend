@@ -21,8 +21,8 @@ pointer-events:none;
 .sakura li{
   position: absolute;
   list-style: none;
-  top: -50px;
-  background: #ffb8dc;
+  top: 0px;
+  background: #ffc6e3;
   border-radius: 0% 70%;
   animation: fall 1s linear infinite, sway 2s ease-in-out infinite alternate;
 }
@@ -75,8 +75,8 @@ pointer-events:none;
   width: 16px;
   height: 10px;
   animation: fall 7s linear infinite,
-             sway1 3.5s ease-in-out infinite alternate;
-  animation-delay: 0s;
+             sway1 2.5s ease-in-out infinite alternate;
+  animation-delay: 3s;
 }
 
 .sakura li:nth-child(4){
@@ -108,11 +108,11 @@ pointer-events:none;
   width: 16px;
   height: 10px;
   animation: fall 7s linear infinite,
-             sway2 3.5s ease-in-out infinite alternate;
+             sway2 2.5s ease-in-out infinite alternate;
   animation-delay: 2s;
 }
 .sakura li:nth-child(8){
-  left: 50%;
+  left: 80%;
   width: 13px;
   height: 9px;
   animation: fall 7s linear infinite,
@@ -134,7 +134,7 @@ pointer-events:none;
   height: 10px;
   animation: fall 10s linear infinite,
              sway2 4s ease-in-out infinite alternate;
-  animation-delay: 0s;
+  animation-delay: 4s;
 }
 
 .sakura li:nth-child(11){
@@ -159,7 +159,7 @@ pointer-events:none;
   height: 10px;
   animation: fall 9s linear infinite,
              sway1 3.5s ease-in-out infinite alternate;
-  animation-delay: 0s;
+  animation-delay: 5s;
 }
 .sakura li:nth-child(14){
   left: 50%;

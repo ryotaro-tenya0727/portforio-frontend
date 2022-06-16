@@ -15,6 +15,23 @@
   opacity: 0.7
 }
 
+.button_trimming{
+  text-align: center;
+  cursor: pointer;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid;
+  padding: 15px 5px 15px 5px;
+  font-weight: bold;
+  font-family: 'Kiwi Maru', serif;
+  color: #ff66d1;
+  margin-top: 10px;
+}
+
+.button_trimming:hover {
+  opacity: 0.7
+}
+
 .sample_image{
   width: 200px;
   height: 200px;
@@ -43,5 +60,5 @@
   border-radius: 5px;
   border: none;
   position: absolute;
-  top: -27px;
+  top: 85px;
 }
