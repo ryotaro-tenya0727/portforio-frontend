@@ -1,6 +1,5 @@
 import { useState, useContext, useCallback, useRef } from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
@@ -25,15 +24,11 @@ const TrimmingModal = ({
   onSetResetImageUrls,
   onSetModifyImageFiles,
   onSetModifyImageUrls,
+  onSetSecondImageFiles,
+  onSetSecondImageUrls,
 }) => {
   const { accessToken } = useContext(AuthGuardContext);
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
-  const firstInputRef = useRef(null);
-  const secondInputRef = useRef(null);
-  const [firstImage, setFirstImage] = useState(null);
-  const [secondImage, setSecondImage] = useState(null);
-  const [imageToCrop, setImageToCrop] = useState(undefined);
+  const [imageRef, setImageRef] = useState();
   const [cropConfig, setCropConfig] = useState(
     // default crop config
     // トリミングする四角形のサイズ
@@ -46,8 +41,23 @@ const TrimmingModal = ({
       aspect: 1,
     }
   );
-  const [croppedImage, SetCroppedImage] = useState(null);
-  const [madeUrls, SetMadeUrls] = useState(null);
+
+  const [firstOpen, setFirstOpen] = useState(false);
+  const handleFirstClose = () => setFirstOpen(false);
+  const firstInputRef = useRef(null);
+  const [croppedFirstImage, SetCroppedFirstImage] = useState(null);
+  const [madeFirstUrls, SetMadeFirstUrls] = useState(null);
+  const [firstImage, setFirstImage] = useState(null);
+  const [imageToFirstCrop, setImageToFirstCrop] = useState(undefined);
+
+  const [secondOpen, setSecondOpen] = useState(false);
+  const handleSecondClose = () => setSecondOpen(false);
+  const secondInputRef = useRef(null);
+  const [croppedSecondImage, SetCroppedSecondImage] = useState(null);
+  const [madeSecondUrls, SetMadeSecondUrls] = useState(null);
+  const [secondImage, setSecondImage] = useState(null);
+  const [imageToSecondCrop, setImageToSecondCrop] = useState(undefined);
+
   const style = {
     position: 'absolute',
     top: '50%',
@@ -63,8 +73,6 @@ const TrimmingModal = ({
     textAlign: 'center',
   };
 
-  const [imageRef, setImageRef] = useState();
-
   const resetErrors = () => {
     onSetIsFileTypeError(false);
     onSetIsNumberTypeError(false);
@@ -74,6 +82,9 @@ const TrimmingModal = ({
     firstInputRef.current.click();
   };
 
+  const secondFileClick = () => {
+    secondInputRef.current.click();
+  };
   const firstFileUpload = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
@@ -98,30 +109,69 @@ const TrimmingModal = ({
       },
       accessToken
     );
-    SetMadeUrls(imageUrls);
+    SetMadeFirstUrls(imageUrls);
     const reader = new FileReader();
 
     // readAsDataURLでファイルを読み込むと発動
     reader.addEventListener('load', () => {
       const image = reader.result;
       // ここでリサイズする画像を格納
-      setImageToCrop(image);
+      setImageToFirstCrop(image);
     });
 
     reader.readAsDataURL(event.target.files[0]);
 
-    setOpen(true);
+    setFirstOpen(true);
 
     // console.log(imageUrls);
     event.target.value = '';
     // ここでリサイズする画像を格納
   };
 
-  // const secondFileClick = () => {
-  //   secondInputRef.current.click();
-  // };
+  const secondFileUpload = async (event) => {
+    if (!event) return;
+    const file = event.target.files[0];
+    resetErrors();
+    if (
+      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
+    ) {
+      onSetIsFileTypeError(true);
+      return;
+    }
 
-  const cropImage = async (crop) => {
+    if (imageFiles.length >= 2) {
+      onSetIsNumberTypeError(true);
+      return;
+    }
+
+    const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
+      {
+        presigned_url: {
+          filename: file.name,
+        },
+      },
+      accessToken
+    );
+    SetMadeSecondUrls(imageUrls);
+    const reader = new FileReader();
+
+    // readAsDataURLでファイルを読み込むと発動
+    reader.addEventListener('load', () => {
+      const image = reader.result;
+      // ここでリサイズする画像を格納
+      setImageToSecondCrop(image);
+    });
+
+    reader.readAsDataURL(event.target.files[0]);
+
+    setSecondOpen(true);
+
+    // console.log(imageUrls);
+    event.target.value = '';
+    // ここでリサイズする画像を格納
+  };
+
+  const cropFirstImage = async (crop) => {
     if (imageRef && crop.width && crop.height) {
       const croppedImage = await getCroppedImage(
         imageRef,
@@ -129,15 +179,34 @@ const TrimmingModal = ({
         `CropImage.png` // destination filename
       );
       // リサイズ後に表示する画像をstateに格納
-      SetCroppedImage(croppedImage);
+      SetCroppedFirstImage(croppedImage);
     }
   };
 
-  const registerImage = () => {
-    setFirstImage(croppedImage);
-    onSetFirstImageFiles(croppedImage);
-    onSetFirstImageUrls(madeUrls);
-    handleClose();
+  const cropSecondImage = async (crop) => {
+    if (imageRef && crop.width && crop.height) {
+      const croppedImage = await getCroppedImage(
+        imageRef,
+        crop,
+        `CropImage.png` // destination filename
+      );
+      // リサイズ後に表示する画像をstateに格納
+      SetCroppedSecondImage(croppedImage);
+    }
+  };
+
+  const registerFirstImage = () => {
+    setFirstImage(croppedFirstImage);
+    onSetFirstImageFiles(croppedFirstImage);
+    onSetFirstImageUrls(madeFirstUrls);
+    handleFirstClose();
+  };
+
+  const registerSecondImage = () => {
+    setSecondImage(croppedSecondImage);
+    onSetSecondImageFiles(croppedSecondImage);
+    onSetSecondImageUrls(madeSecondUrls);
+    handleSecondClose();
   };
 
   // このまま
@@ -211,49 +280,66 @@ const TrimmingModal = ({
         onChange={(event) => firstFileUpload(event)}
         hidden
       />
+      <input
+        ref={secondInputRef}
+        type='file'
+        accept='image/*'
+        onChange={(event) => secondFileUpload(event)}
+        hidden
+      />
+      <div className={form.images}>
+        {firstImage !== null ? (
+          <div>
+            <button
+              className={button.image_cancel_button}
+              type='button'
+              onClick={() => handleCancel(0)}
+            >
+              <DeleteForeverIcon />
+            </button>
+            <img
+              src={URL.createObjectURL(firstImage)}
+              alt={`あなたの写真 `}
+              width='200'
+              height='200'
+            />
+          </div>
+        ) : (
+          <SampleImageButton onClick={firstFileClick} />
+        )}
 
-      {firstImage !== null ? (
-        <div>
-          <button
-            className={button.image_cancel_button}
-            type='button'
-            onClick={() => handleCancel(0)}
-          >
-            <DeleteForeverIcon />
-          </button>
-          <img
-            src={URL.createObjectURL(firstImage)}
-            alt={`あなたの写真 `}
-            width='200'
-            height='200'
-          />
-        </div>
-      ) : (
-        <SampleImageButton onClick={firstFileClick} />
-      )}
+        {secondImage !== null ? (
+          <div>
+            <button
+              className={button.image_cancel_button}
+              type='button'
+              onClick={() => handleCancel(1)}
+            >
+              <DeleteForeverIcon />
+            </button>
+
+            <img
+              src={URL.createObjectURL(secondImage)}
+              alt={`あなたの写真 `}
+              width='200'
+              height='200'
+            />
+          </div>
+        ) : (
+          <SampleImageButton onClick={secondFileClick} />
+        )}
+      </div>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={firstOpen}
+        onClose={handleFirstClose}
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
         <Box sx={style}>
           <div className={card.trimming_card}>
             <ReactCrop
-              style={
-                {
-                  // minHeight: '90%',
-                  // width: '90%',
-                  // height: '100%',
-                  // position: 'absolute',
-                  // top: '50%',
-                  // left: '50%',
-                  // transform: 'translate(-50%, -50%)',
-                  // height: '90%',
-                  // paddingTop: '6px',
-                }
-              }
-              src={imageToCrop}
+              style={{}}
+              src={imageToFirstCrop}
               crop={cropConfig}
               ruleOfThirds
               // 画像選択時
@@ -273,12 +359,70 @@ const TrimmingModal = ({
               // リサイズ後（マウス離したとき）
               onComplete={(cropConfig) => {
                 // console.log('リサイズ');
-                cropImage(cropConfig);
+                cropFirstImage(cropConfig);
               }}
               crossorigin='anonymous' // to avoid CORS-related problems
             />
           </div>
-          <button onClick={registerImage} className={button.button_trimming}>
+          <button
+            onClick={registerFirstImage}
+            className={button.button_trimming}
+          >
+            確定
+          </button>
+        </Box>
+      </Modal>
+      <Modal
+        open={secondOpen}
+        onClose={handleSecondClose}
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
+      >
+        <Box sx={style}>
+          <div className={card.trimming_card}>
+            <ReactCrop
+              style={
+                {
+                  // minHeight: '90%',
+                  // width: '90%',
+                  // height: '100%',
+                  // position: 'absolute',
+                  // top: '50%',
+                  // left: '50%',
+                  // transform: 'translate(-50%, -50%)',
+                  // height: '90%',
+                  // paddingTop: '6px',
+                }
+              }
+              src={imageToSecondCrop}
+              crop={cropConfig}
+              ruleOfThirds
+              // 画像選択時
+              onImageLoaded={(imageRef) => {
+                // console.log('画像選択');
+                console.log(imageRef.class);
+                // console.log(imageRef.width);
+                // <img ...>がimageRefに入る
+                // imageRef.width = '300px';
+                setImageRef(imageRef);
+              }}
+              // リサイズ中(マウスを持っているとき)
+              onChange={(cropConfig) => {
+                // console.log('onChange');
+                setCropConfig(cropConfig);
+              }}
+              // リサイズ後（マウス離したとき）
+              onComplete={(cropConfig) => {
+                // console.log('リサイズ');
+                cropSecondImage(cropConfig);
+              }}
+              crossorigin='anonymous' // to avoid CORS-related problems
+            />
+          </div>
+          <button
+            onClick={registerSecondImage}
+            className={button.button_trimming}
+          >
             確定
           </button>
         </Box>

@@ -1,4 +1,4 @@
-import { useState, useContext, useCallback, useRef } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
@@ -6,16 +6,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 
-import Button from '@mui/material/Button';
-
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { AuthGuardContext } from './../../providers/AuthGuard';
-import { SampleImageButton } from './../atoms/atoms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
-import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRepository';
 import { TrimmingModal } from './../organisms/Organisms';
 import form from './../../css/templates/form.module.css';
-import button from './../../css/atoms/button.module.css';
 
 const DiaryNewForm = ({
   recommendedMemberId,
@@ -23,13 +16,10 @@ const DiaryNewForm = ({
   recommendedMemberNickname,
   recommendedMemberGroup,
 }) => {
-  const secondInputRef = useRef(null);
-  const [secondImage, setSecondImage] = useState(null);
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
   const [s3ImageUrls, setImageUrls] = useState([]);
   const [imageFiles, setImageFiles] = useState([]);
-  const { accessToken } = useContext(AuthGuardContext);
   const navigate = useNavigate();
   const { control, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
@@ -53,100 +43,6 @@ const DiaryNewForm = ({
     },
   });
 
-  const resetErrors = () => {
-    setIsNumberError(false);
-    setIsFileTypeError(false);
-  };
-
-  // const firstFileUpload = () => {
-  //   // firstInputRef.current.click();
-  // };
-
-  const secondFileUpload = () => {
-    secondInputRef.current.click();
-  };
-
-  // const firstHandleFile = async (event) => {
-  //   if (!event) return;
-  //   const file = event.target.files[0];
-  //   resetErrors();
-  //   if (
-  //     !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
-  //   ) {
-  //     setIsFileTypeError(true);
-  //     return;
-  //   }
-
-  //   if (imageFiles.length >= 2) {
-  //     setIsNumberError(true);
-  //     return;
-  //   }
-
-  //   const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
-  //     {
-  //       presigned_url: {
-  //         filename: file.name,
-  //       },
-  //     },
-  //     accessToken
-  //   );
-  //   // setFirstImage(file);
-  //   // setImageFiles(file, ...imageFiles);
-  //   // 一つ目なら先頭に入れる。
-  //   // setImageUrls([imageUrls, ...s3ImageUrls]);
-  //   event.target.value = '';
-  // };
-
-  // const secondHandleFile = async (event) => {
-  //   if (!event) return;
-  //   const file = event.target.files[0];
-  //   resetErrors();
-  //   if (
-  //     !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
-  //   ) {
-  //     setIsFileTypeError(true);
-  //     return;
-  //   }
-  //   const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
-  //     {
-  //       presigned_url: {
-  //         filename: file.name,
-  //       },
-  //     },
-  //     accessToken
-  //   );
-  //   if (imageFiles.length >= 2) {
-  //     setIsNumberError(true);
-  //     return;
-  //   }
-  //   setSecondImage(file);
-  //   // 二つ目なら後ろに入れる。
-  //   setImageUrls([...s3ImageUrls, imageUrls]);
-  //   setImageFiles([...imageFiles, file]);
-  //   event.target.value = '';
-  // };
-
-  // const handleCancel = (imageIndex) => {
-  //   if (window.confirm('選択した画像を消してよろしいですか？')) {
-  //     resetErrors();
-  //     if (imageIndex === 0) {
-  //       // setFirstImage(null);
-  //     } else {
-  //       setSecondImage(null);
-  //     }
-  //     const modifyPhotos = imageFiles.concat();
-  //     if (modifyPhotos.length === 1) {
-  //       setImageFiles([]);
-  //       setImageUrls([]);
-  //       return;
-  //     }
-  //     modifyPhotos.splice(imageIndex, 1);
-  //     setImageFiles(modifyPhotos);
-  //     const modifyImageUrls = s3ImageUrls.concat();
-  //     modifyImageUrls.splice(imageIndex, 1);
-  //     setImageUrls(modifyImageUrls);
-  //   }
-  // };
   const onSubmit = async (data) => {
     const l = s3ImageUrls.length;
     console.log(s3ImageUrls);
@@ -198,7 +94,6 @@ const DiaryNewForm = ({
           {isFileTypeError && (
             <p>※jpeg, png, bmp, gif, svg以外のファイル形式は表示されません</p>
           )}
-          {/* <button onClick={() => setOpen(true)}>オープン</button> */}
           <TrimmingModal
             imageFiles={imageFiles}
             s3ImageUrls={s3ImageUrls}
@@ -208,6 +103,13 @@ const DiaryNewForm = ({
             }}
             onSetFirstImageUrls={(imageUrls) =>
               setImageUrls([imageUrls, ...s3ImageUrls])
+            }
+            // second
+            onSetSecondImageFiles={(image) => {
+              setImageFiles([...imageFiles, image]);
+            }}
+            onSetSecondImageUrls={(imageUrls) =>
+              setImageUrls([...s3ImageUrls, imageUrls])
             }
             //reset
             onSetResetImageFiles={() => {
@@ -228,42 +130,6 @@ const DiaryNewForm = ({
             onSetIsNumberTypeError={(result) => setIsNumberError(result)}
           />
 
-          {/* <div className={form.images}>
-            {secondImage !== null ? (
-              <div>
-                <button
-                  className={button.image_cancel_button}
-                  type='button'
-                  onClick={() => handleCancel(1)}
-                >
-                  <DeleteForeverIcon />
-                </button>
-
-                <img
-                  src={URL.createObjectURL(secondImage)}
-                  alt={`あなたの写真 `}
-                  width='200'
-                  height='200'
-                />
-              </div>
-            ) : (
-              <SampleImageButton onClick={secondFileUpload} />
-            )}
-          </div> */}
-          {/* <input
-            ref={firstInputRef}
-            type='file'
-            accept='image/*'
-            onChange={(event) => firstHandleFile(event)}
-            hidden
-          /> */}
-          {/* <input
-            ref={secondInputRef}
-            type='file'
-            accept='image/*'
-            onChange={(event) => secondHandleFile(event)}
-            hidden
-          /> */}
           <br />
           <label htmlFor='event_name'>イベント名</label>
           <Controller
