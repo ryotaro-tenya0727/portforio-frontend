@@ -140,6 +140,7 @@ const TrimmingModal = ({
     handleClose();
   };
 
+  // このまま
   const handleCancel = (imageIndex) => {
     if (window.confirm('選択した画像を消してよろしいですか？')) {
       resetErrors();
