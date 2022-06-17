@@ -261,9 +261,7 @@ const TrimmingModal = ({
           reject(new Error('Canvas is empty'));
           return;
         }
-
         blob.name = fileName;
-
         resolve(blob);
       }, 'image/png');
     });

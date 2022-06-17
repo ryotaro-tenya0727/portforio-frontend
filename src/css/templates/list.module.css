@@ -1,4 +1,15 @@
 .list{
   width:98%;
   margin: 0 auto;
+
+}
+
+.pagination_wrap{
+text-align:center;
+margin: 0px 0px 25px 0px;
+}
+
+.pagination{
+  display:inline-block;
+
 }

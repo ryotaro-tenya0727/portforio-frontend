@@ -78,7 +78,7 @@ const UserDiaryCard = ({
             &nbsp;&nbsp;この日のチェキ数:
           </span>
           &nbsp;
-          {eventPolaroidCount}
+          {eventPolaroidCount ? eventPolaroidCount : '未入力'}
         </p>
         <p className={card.card_text}>
           <span className={card.card_text_property}>公開設定:</span>
