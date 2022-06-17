@@ -5,6 +5,7 @@ import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { usePagination } from './../../hooks/usePagination';
@@ -19,6 +20,35 @@ const RecommendedMembersList = () => {
     isLoading,
     isIdle,
   } = useGetRecommendedMembers();
+
+  // ページネーション
+  let [page, setPage] = useState(1);
+  const PER_PAGE = 4;
+  let data =
+    recommendedMembers === undefined ? { length: 0 } : recommendedMembers.data;
+
+  // 検索
+  const [searchText, setSearchText] = useState('');
+  if (searchText !== '') {
+    // 検索フィールドが空の場合、ここに入らない
+    const searchKeywords = searchText
+      .trim()
+      .toLowerCase()
+      .match(/[^\s]+/g);
+
+    data = recommendedMembers.data.filter((member) =>
+      searchKeywords.every(
+        (kw) => member.attributes.nickname.indexOf(kw) !== -1
+      )
+    );
+  }
+
+  const count = Math.ceil(data.length / PER_PAGE);
+  const _DATA = usePagination(data, PER_PAGE);
+  const handleChange = (_e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
 
   const theme = createTheme({
     breakpoints: {
@@ -35,21 +65,10 @@ const RecommendedMembersList = () => {
         main: '#ff96df',
       },
       secondary: {
-        main: '#000',
+        main: '#DC143C',
       },
     },
   });
-
-  let [page, setPage] = useState(1);
-  const PER_PAGE = 4;
-  const data =
-    recommendedMembers === undefined ? { length: 0 } : recommendedMembers.data;
-  const count = Math.ceil(data.length / PER_PAGE);
-  const _DATA = usePagination(data, PER_PAGE);
-  const handleChange = (e, p) => {
-    setPage(p);
-    _DATA.jump(p);
-  };
 
   return (
     <div className={list.list}>
@@ -59,7 +78,7 @@ const RecommendedMembersList = () => {
           <p>推しメンローディング中</p>
         ) : (
           <>
-            <div className={list.pagination_wrap}>
+            <div className={list.pagination_and_search_wrap}>
               <Pagination
                 color='primary'
                 size='large'
@@ -77,7 +96,25 @@ const RecommendedMembersList = () => {
                 )}
                 onChange={handleChange}
               />
+
+              <div>
+                <SavedSearchIcon
+                  sx={{
+                    fontSize: 40,
+                    mb: -1.7,
+                    mr: 1,
+                    color: 'secondary.main',
+                  }}
+                />
+                <input
+                  className={list.member_search_form}
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  placeHolder={'推しメンの名前で検索'}
+                />
+              </div>
             </div>
+
             <Grid container spacing={3}>
               {_DATA.currentData().map((recommendedMember, index) => {
                 return (

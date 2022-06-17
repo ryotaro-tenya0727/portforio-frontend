@@ -3,13 +3,52 @@
   margin: 0 auto;
 
 }
-
-.pagination_wrap{
-text-align:center;
-margin: 0px 0px 25px 0px;
-}
-
 .pagination{
   display:inline-block;
 
+}
+
+
+@media (min-width: 501px) {
+  .pagination_and_search_wrap{
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  }
+}
+
+
+
+.member_search_form{
+  /* margin:20px 0px -10px 0; */
+
+  width: 200px;
+  height: 35px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 3px;
+  border: 2px solid #3e3d3d;
+  box-sizing: border-box;
+  font-family: 'Kiwi Maru', serif;
+  background-color: #ffdff6;
+  outline: 0;
+}
+
+@media (max-width: 500px) {
+
+  .pagination_and_search_wrap{
+    text-align: center;
+  }
+  .pagination{
+    margin-bottom: 15px;
+    margin-left: 18px;
+  }
+  .member_search_form{
+  /* margin:20px 0px -10px 0; */
+  width: 70%;
+    margin-bottom: 15px;
+
+  }
 }
