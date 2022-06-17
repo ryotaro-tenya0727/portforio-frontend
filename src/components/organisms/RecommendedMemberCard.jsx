@@ -6,6 +6,7 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import GroupsIcon from '@mui/icons-material/Groups';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 import { Button } from './../atoms/atoms';
 import card from './../../css/organisms/card.module.css';

@@ -5,6 +5,7 @@ import card from './../../css/organisms/card.module.css';
 import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { getUserUrl } from './../../urls/index';
@@ -106,7 +107,7 @@ const LoginUserInformation = () => {
               <p className={card.login_card_text}>
                 <p className={card.login_card_text_property}>
                   {' '}
-                  <LoyaltyIcon
+                  <AddAPhotoIcon
                     sx={{
                       fontSize: '20px',
                       mb: '-3.5px',
