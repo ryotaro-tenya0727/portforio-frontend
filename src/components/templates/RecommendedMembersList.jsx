@@ -41,7 +41,7 @@ const RecommendedMembersList = () => {
   });
 
   let [page, setPage] = useState(1);
-  const PER_PAGE = 2;
+  const PER_PAGE = 4;
   const data =
     recommendedMembers === undefined ? { length: 0 } : recommendedMembers.data;
   const count = Math.ceil(data.length / PER_PAGE);
@@ -62,6 +62,7 @@ const RecommendedMembersList = () => {
             <div className={list.pagination_wrap}>
               <Pagination
                 color='primary'
+                size='large'
                 className={list.pagination}
                 count={count}
                 page={page}
