@@ -42,10 +42,10 @@ const RecommendedMembersList = () => {
 
   let [page, setPage] = useState(1);
   const PER_PAGE = 2;
-
-  const count = Math.ceil(recommendedMembers.data.length / PER_PAGE);
-  const _DATA = usePagination(recommendedMembers.data, PER_PAGE);
-
+  const data =
+    recommendedMembers === undefined ? { length: 0 } : recommendedMembers.data;
+  const count = Math.ceil(data.length / PER_PAGE);
+  const _DATA = usePagination(data, PER_PAGE);
   const handleChange = (e, p) => {
     setPage(p);
     _DATA.jump(p);
