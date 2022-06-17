@@ -2,7 +2,6 @@ import { useState, useContext, useCallback, useRef } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
@@ -120,7 +119,6 @@ const TrimmingModal = ({
     });
 
     reader.readAsDataURL(event.target.files[0]);
-
     setFirstOpen(true);
 
     // console.log(imageUrls);
@@ -381,29 +379,14 @@ const TrimmingModal = ({
         <Box sx={style}>
           <div className={card.trimming_card}>
             <ReactCrop
-              style={
-                {
-                  // minHeight: '90%',
-                  // width: '90%',
-                  // height: '100%',
-                  // position: 'absolute',
-                  // top: '50%',
-                  // left: '50%',
-                  // transform: 'translate(-50%, -50%)',
-                  // height: '90%',
-                  // paddingTop: '6px',
-                }
-              }
               src={imageToSecondCrop}
               crop={cropConfig}
               ruleOfThirds
               // 画像選択時
               onImageLoaded={(imageRef) => {
-                // console.log('画像選択');
                 console.log(imageRef.class);
                 // console.log(imageRef.width);
                 // <img ...>がimageRefに入る
-                // imageRef.width = '300px';
                 setImageRef(imageRef);
               }}
               // リサイズ中(マウスを持っているとき)

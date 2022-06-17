@@ -1,16 +1,14 @@
-import Grid from '@mui/material/Grid';
-
 import { Link } from 'react-router-dom';
+import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import { Button } from './../atoms/atoms';
-import card from './../../css/organisms/card.module.css';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import GroupsIcon from '@mui/icons-material/Groups';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import BookIcon from '@mui/icons-material/Book';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
+
+import { Button } from './../atoms/atoms';
+import card from './../../css/organisms/card.module.css';
 
 const RecommendedMemberCard = ({
   nickname,

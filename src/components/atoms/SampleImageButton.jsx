@@ -1,6 +1,6 @@
-import button from './../../css/atoms/button.module.css';
 import PhotoIcon from '@mui/icons-material/Photo';
 
+import button from './../../css/atoms/button.module.css';
 const SampleImageButton = ({ onClick }) => {
   return (
     <button className={button.sample_image} onClick={onClick}>

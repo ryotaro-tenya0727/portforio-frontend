@@ -45,8 +45,8 @@ const DiaryNewForm = ({
 
   const onSubmit = async (data) => {
     const l = s3ImageUrls.length;
-    console.log(s3ImageUrls);
-    console.log(imageFiles);
+    // console.log(s3ImageUrls);
+    // console.log(imageFiles);
     if (l !== 0) {
       [...Array(l)].map(async (_, index) => {
         await axios.put(s3ImageUrls[index].presigned_url, imageFiles[index], {
@@ -90,9 +90,15 @@ const DiaryNewForm = ({
             className={form.form_title}
           >{`${recommendedMemberNickname}との日記追加中`}</h1>
           <br />
-          {isNumberError && <p>※2枚を超えて選択された画像は表示されません</p>}
+          {isNumberError && (
+            <p className={form.text_error}>
+              ※2枚を超えて選択された画像は表示されません
+            </p>
+          )}
           {isFileTypeError && (
-            <p>※jpeg, png, bmp, gif, svg以外のファイル形式は表示されません</p>
+            <p className={form.text_error}>
+              ※jpeg, png, bmp, gif 以外のファイル形式はアップロードできません
+            </p>
           )}
           <TrimmingModal
             imageFiles={imageFiles}
