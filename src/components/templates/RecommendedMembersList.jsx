@@ -1,17 +1,18 @@
-import { useQueryClient } from 'react-query';
+import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
+import { usePagination } from './../../hooks/usePagination';
 import { RecommendedMemberCard } from './../organisms/Organisms';
 import list from './../../css/templates/list.module.css';
 
 const RecommendedMembersList = () => {
   const { useGetRecommendedMembers } = useRecommendedMembersApi();
-  const queryClient = useQueryClient();
-  const recommendedMembers_data = queryClient.getQueryData(
-    'recommended_members'
-  );
 
   const {
     data: recommendedMembers,
@@ -29,59 +30,75 @@ const RecommendedMembersList = () => {
         xl: 1536,
       },
     },
+    palette: {
+      primary: {
+        main: '#ff96df',
+      },
+      secondary: {
+        main: '#000',
+      },
+    },
   });
+
+  let [page, setPage] = useState(1);
+  const PER_PAGE = 2;
+
+  const count = Math.ceil(recommendedMembers.data.length / PER_PAGE);
+  const _DATA = usePagination(recommendedMembers.data, PER_PAGE);
+
+  const handleChange = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
 
   return (
     <div className={list.list}>
       <ThemeProvider theme={theme}>
         <br />
-        {recommendedMembers_data === undefined ? (
-          isIdle || isLoading ? (
-            <p>推しメンローディング中</p>
-          ) : (
+        {isIdle || isLoading ? (
+          <p>推しメンローディング中</p>
+        ) : (
+          <>
+            <div className={list.pagination_wrap}>
+              <Pagination
+                color='primary'
+                className={list.pagination}
+                count={count}
+                page={page}
+                renderItem={(item) => (
+                  <PaginationItem
+                    components={{
+                      previous: ArrowBackIcon,
+                      next: ArrowForwardIcon,
+                    }}
+                    {...item}
+                  />
+                )}
+                onChange={handleChange}
+              />
+            </div>
             <Grid container spacing={3}>
-              {recommendedMembers.data.map((recommendedMember, index) => {
+              {_DATA.currentData().map((recommendedMember, index) => {
                 return (
                   <>
-                    {(recommendedMember = recommendedMember.attributes)}
                     <RecommendedMemberCard
                       key={index}
-                      nickname={recommendedMember.nickname}
+                      nickname={recommendedMember.attributes.nickname}
                       group={recommendedMember.group}
-                      firstMetDate={recommendedMember.first_met_date}
-                      recommendedMemberId={recommendedMember.id}
+                      firstMetDate={recommendedMember.attributes.first_met_date}
+                      recommendedMemberId={recommendedMember.attributes.id}
                       totalMemberPolaroidCount={
-                        recommendedMember.total_member_polaroid_count
+                        recommendedMember.attributes.total_member_polaroid_count
                       }
-                      DiariesCount={recommendedMember.diaries_count}
-                      diaryUrl={`/recommended-member/${recommendedMember.uuid}/diaries/${recommendedMember.id}?nickname=${recommendedMember.nickname}&group=${recommendedMember.group}`}
-                      editUrl={`/recommended-member/${recommendedMember.uuid}/edit/${recommendedMember.id}?nickname=${recommendedMember.nickname}&group=${recommendedMember.group}`}
+                      DiariesCount={recommendedMember.attributes.diaries_count}
+                      diaryUrl={`/recommended-member/${recommendedMember.attributes.uuid}/diaries/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
+                      editUrl={`/recommended-member/${recommendedMember.attributes.uuid}/edit/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
                     />
                   </>
                 );
               })}
             </Grid>
-          )
-        ) : (
-          <Grid container spacing={3}>
-            {recommendedMembers_data.data.map((recommendedMember, index) => {
-              return (
-                <RecommendedMemberCard
-                  key={index}
-                  nickname={recommendedMember.attributes.nickname}
-                  group={recommendedMember.attributes.group}
-                  firstMetDate={recommendedMember.attributes.first_met_date}
-                  recommendedMemberId={recommendedMember.attributes.id}
-                  totalMemberPolaroidCount={
-                    recommendedMember.attributes.total_member_polaroid_count
-                  }
-                  DiariesCount={recommendedMember.attributes.diaries_count}
-                  diaryUrl={`/recommended-member/${recommendedMember.attributes.uuid}/diaries/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
-                  editUrl={`/recommended-member/${recommendedMember.attributes.uuid}/edit/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
-                />
-              );
-            })}
-          </Grid>
+          </>
         )}
       </ThemeProvider>
     </div>
