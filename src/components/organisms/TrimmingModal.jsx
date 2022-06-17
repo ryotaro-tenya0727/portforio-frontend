@@ -300,6 +300,7 @@ const TrimmingModal = ({
               alt={`あなたの写真 `}
               width='200'
               height='200'
+              style={{ border: '4px solid #ff99c5' }}
             />
           </div>
         ) : (
@@ -321,6 +322,7 @@ const TrimmingModal = ({
               alt={`あなたの写真 `}
               width='200'
               height='200'
+              style={{ border: '4px solid #ff99c5' }}
             />
           </div>
         ) : (

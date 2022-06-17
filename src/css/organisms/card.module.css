@@ -30,8 +30,9 @@
   font-weight: bold;
 }
 .card_photo_list{
-  text-align: center;
-  /* display : flex; */
+
+  display : flex;
+  justify-content: space-around;
 
 }
 .card_diary_button_list{
@@ -39,7 +40,7 @@
 }
 
 .card_photo{
-  margin: 0px 15px 0px 15px;
+
 }
 
 .login_user_card{

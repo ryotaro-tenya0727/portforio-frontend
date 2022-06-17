@@ -100,6 +100,18 @@ const DiaryNewForm = ({
               ※jpeg, png, bmp, gif 以外のファイル形式はアップロードできません
             </p>
           )}
+          <br />
+          <p
+            style={{
+              textAlign: 'center',
+              fontSize: '22px',
+              marginBottom: '50px',
+              fontWeight: 'bold',
+              color: '#ff66d1',
+            }}
+          >
+            日記に使う画像を選択
+          </p>
           <TrimmingModal
             imageFiles={imageFiles}
             s3ImageUrls={s3ImageUrls}
