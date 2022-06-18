@@ -1,17 +1,8 @@
-import { useQueryClient } from 'react-query';
-
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
+import diary from './../../css/templates/diary.module.css';
 
 const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
   const { useShowRecommendedMemberDiary } = useRecommendedMemberDiariesApi();
-  const queryClient = useQueryClient();
-  let recommended_member_diary_show_data = queryClient.getQueryData([
-    'recommended_member_diary_show',
-    { diaryId: diaryId },
-  ]);
-  recommended_member_diary_show_data =
-    recommended_member_diary_show_data &&
-    recommended_member_diary_show_data.data.attributes;
 
   let {
     data: recommended_member_diary_show,
@@ -23,30 +14,103 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
     <>
       <h1>日記詳細</h1>
 
-      {recommended_member_diary_show_data === undefined ? (
-        isIdle || isLoading ? (
-          <h2>日記ローディング中</h2>
-        ) : (
-          <>
-            {
-              (recommended_member_diary_show =
-                recommended_member_diary_show.data.attributes)
-            }
-            <p>{recommended_member_diary_show.impressive_memory}</p>
-            <p>{recommended_member_diary_show.impressive_memory_detail}</p>
-            <p>
-              チェキ数 :{recommended_member_diary_show.event_polaroid_count}
-            </p>
-          </>
-        )
+      {isIdle || isLoading ? (
+        <h2>日記ローディング中</h2>
       ) : (
-        <>
-          <p>{recommended_member_diary_show_data.impressive_memory}</p>
-          <p>{recommended_member_diary_show_data.impressive_memory_detail}</p>
-          <p>
-            チェキ数 :{recommended_member_diary_show_data.event_polaroid_count}
+        <div className={diary.diary_show_wrapper}>
+          <p className={diary.diary_show_text_wrapper}>
+            <span className={diary.diary_show_text}>
+              {recommended_member_diary_show.data.attributes.diary_user}さんと
+              {
+                recommended_member_diary_show.data.attributes
+                  .diary_member_nickname
+              }
+              （
+              {recommended_member_diary_show.data.attributes.diary_member_group}
+              ）の日記
+            </span>
           </p>
-        </>
+          <p className={diary.diary_show_text_wrapper}>
+            <span className={diary.diary_show_text}>
+              <span className={diary.diary_show_text_property}>
+                イベント名：
+              </span>
+              {recommended_member_diary_show.data.attributes.event_name}
+            </span>
+          </p>
+          <p className={diary.diary_show_text_wrapper}>
+            <span className={diary.diary_show_text}>
+              <span className={diary.diary_show_text_property}>日付：</span>
+              {recommended_member_diary_show.data.attributes.event_date}
+            </span>
+          </p>
+          <p className={diary.diary_show_text_wrapper}>
+            <span className={diary.diary_show_text}>
+              <span className={diary.diary_show_text_property}>
+                イベント会場：
+              </span>
+              {recommended_member_diary_show.data.attributes.event_venue}
+            </span>
+          </p>
+          <p className={diary.diary_show_text_wrapper}>
+            <span className={diary.diary_show_text}>
+              <span className={diary.diary_show_text_property}>
+                この日のチェキ数：
+              </span>
+              {
+                recommended_member_diary_show.data.attributes
+                  .event_polaroid_count
+              }
+            </span>
+          </p>
+
+          <p className={diary.diary_show_text_wrapper}>
+            <span className={diary.diary_show_text}>
+              <span className={diary.diary_show_text_property}>
+                印象に残った出来事：
+              </span>
+              {recommended_member_diary_show.data.attributes.impressive_memory}
+            </span>
+          </p>
+
+          <p className={diary.diary_show_text_wrapper}>
+            <span className={diary.diary_show_text}>
+              <span className={diary.diary_show_text_property}>
+                印象に残った出来事の詳細：
+              </span>
+
+              <p
+                style={{
+                  lineHeight: '38px',
+                  marginTop: '10px',
+                  borderBottom: '3px',
+                }}
+              >
+                {
+                  recommended_member_diary_show.data.attributes
+                    .impressive_memory_detail
+                }
+              </p>
+            </span>
+          </p>
+
+          <>
+            {recommended_member_diary_show.data.attributes.diary_images.map(
+              (diaryImageUrl, index) => {
+                return (
+                  <img
+                    key={index}
+                    src={`${diaryImageUrl}`}
+                    alt='picture'
+                    width='150'
+                    height='150'
+                    style={{ border: '4px solid #ff99c5' }}
+                  />
+                );
+              }
+            )}
+          </>
+        </div>
       )}
     </>
   );

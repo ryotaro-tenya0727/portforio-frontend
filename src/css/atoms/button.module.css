@@ -62,3 +62,7 @@
   position: absolute;
   top: -29px;
 }
+
+.diary_button{
+  display: flex;
+}

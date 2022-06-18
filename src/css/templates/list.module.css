@@ -2,6 +2,7 @@
   width:98%;
   margin: 0 auto;
 
+
 }
 .pagination{
   display:inline-block;
@@ -29,7 +30,7 @@
   font-size: 16px;
   font-weight: bold;
   border-radius: 3px;
-  border: 2px solid #3e3d3d;
+  border: 2px solid #ffbeea;
   box-sizing: border-box;
   font-family: 'M PLUS Rounded 1c', sans-serif;
   background-color: #ffdff6;

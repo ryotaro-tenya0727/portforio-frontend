@@ -1,0 +1,24 @@
+.diary_show_wrapper{
+  background-color: rgb(255, 233, 233);
+  margin: 0 auto;
+  width: 80%;
+  padding: 15px;
+
+
+}
+.diary_show_text_wrapper{
+  margin-bottom: 30px;
+
+}
+
+.diary_show_text{
+  border-bottom: 2px dashed rgb(255, 151, 151);
+  padding-bottom: 7px;
+  line-height: 40px;
+}
+
+.diary_show_text_property{
+  font-weight: bold;
+  color:#000000;
+
+}

@@ -1,6 +1,7 @@
 
 .card_whole{
   padding: 10px 10px 5px 10px;
+    position: relative;
 
 }
 .card_second_whole{
@@ -23,6 +24,7 @@
   margin: 0px 0px 15px 0px;
   padding: 0px 0px 10px 0px;
   font-weight: bold;
+
 }
 
 .card_text_property{
@@ -95,9 +97,31 @@
   align-items: center;
   justify-content: center;
   padding: 0px 5px 0px 5px
-  /* position: relative; */
+
   /* display: table; */
   /* padding-bottom: 0px;
         display: table-cell;
         vertical-align: middle; */
 }
+
+.recommended_member_card_image{
+  position:  absolute;
+  top: -5px;
+  right: 0px
+}
+
+/* @media (max-width: 850px) {
+.recommended_member_card_image{
+  position:  absolute;
+  top: -15px;
+  left: 380px
+}
+}
+
+@media (min-width: 1270px) {
+.recommended_member_card_image{
+  position:  absolute;
+  top: -15px;
+  left: 280px
+}
+} */

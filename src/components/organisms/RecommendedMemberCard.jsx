@@ -21,6 +21,7 @@ const RecommendedMemberCard = ({
   totalMemberPolaroidCount,
   DiariesCount,
 }) => {
+  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card
@@ -40,6 +41,13 @@ const RecommendedMemberCard = ({
             </span>
             &nbsp;
             {nickname ? nickname : '未入力'}
+            <img
+              src={`${imageDomain}/admin/member_pen.png`}
+              alt='picture'
+              width='135'
+              height='135'
+              className={card.recommended_member_card_image}
+            />
           </p>
           <p className={card.card_text}>
             <span className={card.card_text_property}>
@@ -91,9 +99,18 @@ const RecommendedMemberCard = ({
               <div className={card.card_right_whole}>
                 <Link to={diaryUrl}>
                   <Button>
-                    日記を見る
-                    <br />
-                    追加する
+                    <AppRegistrationIcon
+                      sx={{
+                        fontSize: '28px',
+                        mb: '-18.8px',
+                        mr: '3px',
+                      }}
+                    />
+                    <span>
+                      日記を見る
+                      <br />
+                      &emsp;&emsp;追加する
+                    </span>
                   </Button>
                 </Link>
                 <Link to={editUrl}>

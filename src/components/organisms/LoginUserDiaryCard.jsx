@@ -20,6 +20,7 @@ const UserDiaryCard = ({
   showUrl,
   editUrl,
 }) => {
+  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card
@@ -38,6 +39,13 @@ const UserDiaryCard = ({
             <Link to={editUrl}>
               <Button>日記を編集する</Button>
             </Link>
+            <img
+              src={`${imageDomain}/admin/diary_card_image.png`}
+              alt='picture'
+              width='135'
+              height='135'
+              className={card.recommended_member_card_image}
+            />
           </div>
         )}
         <p className={card.card_text}>
