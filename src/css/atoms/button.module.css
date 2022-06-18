@@ -7,12 +7,12 @@
   padding: 15px 5px 15px 5px;
   margin: 3px 0px 0px 10px;
   font-weight: bold;
-  font-family: 'Kiwi Maru', serif;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   color: #ff66d1;
 }
 
 .button_card:hover {
-  opacity: 0.7
+  background-color: rgba(255, 238, 162, 0.3)
 }
 
 .button_trimming{
@@ -23,7 +23,7 @@
   border: 2px solid;
   padding: 15px 5px 15px 5px;
   font-weight: bold;
-  font-family: 'Kiwi Maru', serif;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   color: #ff66d1;
   margin-top: 10px;
 }

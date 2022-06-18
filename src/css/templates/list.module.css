@@ -9,7 +9,7 @@
 }
 
 
-@media (min-width: 501px) {
+@media (min-width: 570px) {
   .pagination_and_search_wrap{
   width: 100%;
   margin: 0 auto;
@@ -24,19 +24,19 @@
 .member_search_form{
   /* margin:20px 0px -10px 0; */
 
-  width: 200px;
+  width: 270px;
   height: 35px;
   font-size: 16px;
   font-weight: bold;
   border-radius: 3px;
   border: 2px solid #3e3d3d;
   box-sizing: border-box;
-  font-family: 'Kiwi Maru', serif;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   background-color: #ffdff6;
   outline: 0;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 570px) {
 
   .pagination_and_search_wrap{
     text-align: center;
