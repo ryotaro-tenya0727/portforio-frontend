@@ -18,7 +18,7 @@ const RecommenedMemberDiaryShow = () => {
     <>
       <ReactQueryDevtools initialIsOpen={false} />
       <Link to='/mypage'>マイページへ</Link>
-      <h1>{`${query.get('recommended_member_nickname')}`}の日記詳細</h1>
+
       {userData === undefined ? (
         isIdle || isLoading ? (
           <p>load</p>

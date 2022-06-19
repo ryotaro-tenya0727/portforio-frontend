@@ -58,9 +58,25 @@
 
 @media (max-width: 900px) {
   .login_user_card{
-    background-image: none;
+  background-position: top -10px left -55px;
+  background-size: 300px;
   }
 }
+
+@media (max-width: 700px) {
+  .login_user_card{
+  background-position: top -5px left -55px;
+  background-size: 250px;
+  }
+}
+
+@media (max-width: 550px) {
+  .login_user_card{
+  background-position: top 10px left -40px;
+  background-size: 0px;
+  }
+}
+
 
 .login_card_text_property{
   color: #ff6fc8;

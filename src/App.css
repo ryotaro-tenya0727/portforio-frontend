@@ -74,7 +74,7 @@ max-height: 65vmin;
 @media(max-width: 800px) {
 .ReactCrop__image{
 
-min-height: 150px;
+min-height: 250px;
 max-height: 65vmin;
 
   }
@@ -83,7 +83,7 @@ max-height: 65vmin;
 @media(max-width: 530px) {
 .ReactCrop__image{
 
-min-height: 100px;
+min-height: 250px;
 max-height: 75vmin;
 
   }
@@ -92,7 +92,7 @@ max-height: 75vmin;
 @media(max-width: 450px) {
 .ReactCrop__image{
 
-min-height: 100px;
+min-height: 150px;
 max-height: 80vmin;
 
   }
