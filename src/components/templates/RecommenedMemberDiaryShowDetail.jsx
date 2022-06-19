@@ -1,6 +1,11 @@
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import diary from './../../css/templates/diary.module.css';
 
+import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
+
 const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const { useShowRecommendedMemberDiary } = useRecommendedMemberDiariesApi();
@@ -30,7 +35,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                 <img
                   src={`${imageDomain}/admin/diary_title-min.png`}
                   alt='picture'
-                  className={diary.diary_text_icon}
+                  className={diary.diary_member_title_icon}
                 />
                 {recommended_member_diary_show.data.attributes.diary_user}
                 さんと
@@ -46,31 +51,69 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                 ）の日記
               </p>
 
-              <p className={diary.diary_show_text_wrapper}>
-                <span className={diary.diary_show_text}>
-                  <span className={diary.diary_show_text_property}>
+              <p className={diary.diary_sub_text_wrapper}>
+                <span className={diary.diary_sub_text}>
+                  <span className={diary.diary_sub_text_property}>
+                    <LibraryMusicIcon
+                      sx={{
+                        color: 'red',
+                        '@media screen and (max-width:600px)': {
+                          fontSize: '21.5px',
+                        },
+                      }}
+                      className={diary.diary_sub_text_icon}
+                    />
                     イベント名：
                   </span>
                   {recommended_member_diary_show.data.attributes.event_name}
                 </span>
               </p>
-              <p className={diary.diary_show_text_wrapper}>
-                <span className={diary.diary_show_text}>
-                  <span className={diary.diary_show_text_property}>日付：</span>
+              <p className={diary.diary_sub_text_wrapper}>
+                <span className={diary.diary_sub_text}>
+                  <span className={diary.diary_sub_text_property}>
+                    <CalendarMonthIcon
+                      sx={{
+                        color: '#3300FF',
+                        '@media screen and (max-width:600px)': {
+                          fontSize: '21.5px',
+                        },
+                      }}
+                      className={diary.diary_sub_text_icon}
+                    />
+                    日付：
+                  </span>
                   {recommended_member_diary_show.data.attributes.event_date}
                 </span>
               </p>
-              <p className={diary.diary_show_text_wrapper}>
-                <span className={diary.diary_show_text}>
-                  <span className={diary.diary_show_text_property}>
+              <p className={diary.diary_sub_text_wrapper}>
+                <span className={diary.diary_sub_text}>
+                  <span className={diary.diary_sub_text_property}>
+                    <AccountBalanceIcon
+                      sx={{
+                        color: '#00AA00',
+                        '@media screen and (max-width:600px)': {
+                          fontSize: '21.5px',
+                        },
+                      }}
+                      className={diary.diary_sub_text_icon}
+                    />
                     イベント会場：
                   </span>
                   {recommended_member_diary_show.data.attributes.event_venue}
                 </span>
               </p>
-              <p className={diary.diary_show_text_wrapper}>
-                <span className={diary.diary_show_text}>
-                  <span className={diary.diary_show_text_property}>
+              <p className={diary.diary_sub_text_wrapper}>
+                <span className={diary.diary_sub_text}>
+                  <span className={diary.diary_sub_text_property}>
+                    <PhotoCameraBackIcon
+                      sx={{
+                        color: '#FF8C00',
+                        '@media screen and (max-width:600px)': {
+                          fontSize: '21.5px',
+                        },
+                      }}
+                      className={diary.diary_sub_text_icon}
+                    />
                     この日のチェキ数：
                   </span>
                   {
@@ -80,9 +123,15 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                 </span>
               </p>
 
-              <p className={diary.diary_show_text_wrapper}>
-                <span className={diary.diary_show_text}>
-                  <span className={diary.diary_show_text_property}>
+              <p className={diary.diary_sub_text_wrapper}>
+                <span className={diary.diary_sub_text}>
+                  <span className={diary.diary_sub_text_property}>
+                    <img
+                      src={`${imageDomain}/admin/diary_heart.png`}
+                      alt='picture'
+                      className={diary.diary_sub_text_icon}
+                      style={{ marginTop: '7px' }}
+                    />
                     印象に残った出来事：
                   </span>
                   {
@@ -92,9 +141,9 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                 </span>
               </p>
 
-              <p className={diary.diary_show_text_wrapper}>
-                <span className={diary.diary_show_text}>
-                  <span className={diary.diary_show_text_property}>
+              <p className={diary.diary_sub_text_wrapper}>
+                <span className={diary.diary_sub_text}>
+                  <span className={diary.diary_sub_text_property}>
                     印象に残った出来事の詳細：
                   </span>
 

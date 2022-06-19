@@ -15,9 +15,6 @@ const RecommenedMembersDiaries = () => {
 
   return (
     <>
-      <h1>{`${query.get('nickname')}との日記(グループ：　${
-        query.get('group') && ''
-      })`}</h1>
       {userData === undefined ? (
         isIdle || isLoading ? (
           <p>load</p>

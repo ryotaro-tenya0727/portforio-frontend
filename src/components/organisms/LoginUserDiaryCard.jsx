@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import AudiotrackIcon from '@mui/icons-material/Audiotrack';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+
+import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 
 import { Button } from './../atoms/atoms';
@@ -50,8 +51,8 @@ const UserDiaryCard = ({
         )}
         <p className={card.card_text}>
           <span className={card.card_text_property}>
-            <AudiotrackIcon
-              sx={{ fontSize: '18px', mb: '-3.3px', color: 'red' }}
+            <LibraryMusicIcon
+              sx={{ fontSize: '19px', mb: '-4px', color: 'red' }}
             />
             &nbsp;&nbsp;イベント名:
           </span>
@@ -61,7 +62,7 @@ const UserDiaryCard = ({
         <p className={card.card_text}>
           <span className={card.card_text_property}>
             <CalendarMonthIcon
-              sx={{ fontSize: '18px', mb: '-2.4px', color: '#3300FF' }}
+              sx={{ fontSize: '19px', mb: '-2.4px', color: '#3300FF' }}
             />
             &nbsp;&nbsp;日付:
           </span>
@@ -71,7 +72,7 @@ const UserDiaryCard = ({
         <p className={card.card_text}>
           <span className={card.card_text_property}>
             <AccountBalanceIcon
-              sx={{ fontSize: '18px', mb: '-2.35px', color: '#00AA00' }}
+              sx={{ fontSize: '19px', mb: '-2.35px', color: '#00AA00' }}
             />
             &nbsp;&nbsp;会場:
           </span>
@@ -81,7 +82,7 @@ const UserDiaryCard = ({
         <p className={card.card_text}>
           <span className={card.card_text_property}>
             <PhotoCameraBackIcon
-              sx={{ fontSize: '18px', mb: '-2.5px', color: '#FF8C00' }}
+              sx={{ fontSize: '19px', mb: '-2.5px', color: '#FF8C00' }}
             />
             &nbsp;&nbsp;この日のチェキ数:
           </span>
