@@ -75,11 +75,7 @@ const MyPageMenu = () => {
             <Tab
               icon={<MonochromePhotosIcon sx={{ fontSize: 39 }} />}
               iconPosition='bottom'
-              label={
-                <span className={MypageMenu.menu_text}>
-                  メンバー別チェキグラフ
-                </span>
-              }
+              label={<span className={MypageMenu.menu_text}>チェキグラフ</span>}
               sx={{ width: 1 / 4 }}
               value='1'
             />
@@ -96,9 +92,7 @@ const MyPageMenu = () => {
                 </>
               }
               iconPosition='bottom'
-              label={
-                <span className={MypageMenu.menu_text}>推しメンリスト</span>
-              }
+              label={<span className={MypageMenu.menu_text}>推しメン一覧</span>}
               sx={{ width: 1 / 4 }}
               value='2'
             />

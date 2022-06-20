@@ -1,0 +1,19 @@
+.active{
+  font-weight: bold;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  color: #ff7bd7;
+}
+
+.non_active{
+  color: #4b4649;
+  font-weight: bold;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.active:hover{
+
+}
+
+.non_active:hover{
+  opacity: 0.7;
+}

@@ -36,10 +36,10 @@ export const Routers = () => {
               <Route index element={<RecommendedMemberDiaryEdit />} />
             </Route>
           </Route>
-        </Route>
-        <Route path='show'>
-          <Route path=':diary_id'>
-            <Route index element={<RecommenedMemberDiaryShow />} />
+          <Route path='show'>
+            <Route path=':diary_id'>
+              <Route index element={<RecommenedMemberDiaryShow />} />
+            </Route>
           </Route>
         </Route>
       </Route>

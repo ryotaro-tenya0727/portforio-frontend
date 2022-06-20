@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { useQueryClient } from 'react-query';
 
+import { BreadCrumbs } from './../organisms/Organisms';
 import { RecommenedMembersNewForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
@@ -12,6 +13,11 @@ const RecommenedMembersNew = () => {
   const queryClient = useQueryClient();
   const user_data = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
+  const breadcrumbs = [
+    { title: 'ホーム', to: '/' },
+    { title: 'マイページ', to: '/mypage' },
+    { title: '推しメン登録', to: '/recommended-members/new' },
+  ];
 
   return (
     <>
@@ -21,6 +27,8 @@ const RecommenedMembersNew = () => {
           <p>load</p>
         ) : (
           <>
+            <BreadCrumbs breadcrumbs={breadcrumbs} />
+            <br />
             <ReactQueryDevtools initialIsOpen={false} />
             <Link to='/mypage'>マイページへ</Link>
             <p>{data.data.attributes.name}さんログイン中</p>
@@ -30,6 +38,8 @@ const RecommenedMembersNew = () => {
         )
       ) : (
         <>
+          <BreadCrumbs breadcrumbs={breadcrumbs} />
+          <br />
           <ReactQueryDevtools initialIsOpen={false} />
           <Link to='/mypage'>マイページへ</Link>
           <p>{user_data.data.attributes.name}さんログイン中</p>

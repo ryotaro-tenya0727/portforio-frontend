@@ -1,6 +1,7 @@
 import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
+import { BreadCrumbs } from './../organisms/Organisms';
 import { RecommenedMemberEditForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
@@ -35,6 +36,14 @@ const RecommenedMemberEdit = () => {
     }
   };
 
+  const breadcrumbs = [
+    { title: 'ホーム', to: '/' },
+    { title: 'マイページ', to: '/mypage' },
+    {
+      title: `${query.get('nickname')}の情報編集ページ`,
+    },
+  ];
+
   return (
     <>
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
@@ -45,6 +54,7 @@ const RecommenedMemberEdit = () => {
         ) : (
           <>
             <p>{data.data.attributes.name}さんログイン中</p>
+            <BreadCrumbs breadcrumbs={breadcrumbs} />
             <RecommenedMemberEditForm
               recommendedMemberUuid={recommended_member_uuid}
               recommendedMemberId={recommended_member_id}
@@ -59,6 +69,7 @@ const RecommenedMemberEdit = () => {
       ) : (
         <>
           <p> {user_data.data.attributes.name}さんログイン中</p>
+          <BreadCrumbs breadcrumbs={breadcrumbs} />
           <RecommenedMemberEditForm
             recommendedMemberUuid={recommended_member_uuid}
             recommendedMemberId={recommended_member_id}

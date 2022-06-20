@@ -95,6 +95,10 @@ const LoginUserInformation = () => {
                       fontSize: '20px',
                       mb: '-3.5px',
                       color: '#ff6fc8',
+                      '@media screen and (max-width:700px)': {
+                        fontSize: '15.5px',
+                        ml: -2,
+                      },
                     }}
                   />
                   &nbsp;推しメン登録数
@@ -109,6 +113,10 @@ const LoginUserInformation = () => {
                       fontSize: '20px',
                       mb: '-3.5px',
                       color: '#ff6fc8',
+                      '@media screen and (max-width:700px)': {
+                        fontSize: '15.5px',
+                        ml: -1,
+                      },
                     }}
                   />
                   &nbsp;総チェキ数
@@ -119,7 +127,15 @@ const LoginUserInformation = () => {
                 <p className={card.login_card_text_property}>
                   {' '}
                   <CollectionsBookmarkIcon
-                    sx={{ fontSize: '20px', mb: '-3.5px', color: '#ff6fc8' }}
+                    sx={{
+                      fontSize: '20px',
+                      mb: '-3.5px',
+                      color: '#ff6fc8',
+                      '@media screen and (max-width:700px)': {
+                        fontSize: '15.5px',
+                        ml: -1,
+                      },
+                    }}
                   />
                   &nbsp;登録日記数{' '}
                 </p>
