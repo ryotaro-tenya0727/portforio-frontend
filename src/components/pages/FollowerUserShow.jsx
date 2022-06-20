@@ -1,5 +1,4 @@
 const FollowerUserShow = () => {
-  // テスト
   return <div></div>;
 };
 
