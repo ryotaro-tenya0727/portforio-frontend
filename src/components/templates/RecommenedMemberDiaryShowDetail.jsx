@@ -162,7 +162,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                 </span>
               </p>
 
-              <>
+              <div className={diary.diary_images}>
                 {recommended_member_diary_show.data.attributes.diary_images.map(
                   (diaryImageUrl, index) => {
                     return (
@@ -170,14 +170,13 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                         key={index}
                         src={`${diaryImageUrl}`}
                         alt='picture'
-                        width='150'
-                        height='150'
                         style={{ border: '4px solid #ff99c5' }}
+                        className={diary.diary_image}
                       />
                     );
                   }
                 )}
-              </>
+              </div>
             </div>
           </div>
         </>

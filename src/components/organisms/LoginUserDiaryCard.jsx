@@ -108,7 +108,7 @@ const UserDiaryCard = ({
                     width='150'
                     height='150'
                     className={card.card_photo}
-                    style={{ border: '4px solid #ff99c5' }}
+                    style={{ border: '4px solid #ff99c5', borderRadius: '5px' }}
                   />
                 );
               })}
