@@ -2,9 +2,9 @@ import { useParams, Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
+import { RecommenedMemberDiaryShowDetail } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
-import { RecommenedMemberDiaryShowDetail } from './../templates/Templates';
 
 const RecommenedMemberDiaryShow = () => {
   const { diary_id } = useParams();

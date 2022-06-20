@@ -3,8 +3,8 @@ import { useForm, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import form from './../../css/templates/form.module.css';
+import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 
 const RecommenedMemberEditForm = ({
   recommendedMemberUuid,

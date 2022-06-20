@@ -1,12 +1,9 @@
 .list{
   width:98%;
   margin: 0 auto;
-
-
 }
 .pagination{
   display:inline-block;
-
 }
 
 
@@ -23,8 +20,6 @@
 
 
 .member_search_form{
-  /* margin:20px 0px -10px 0; */
-
   width: 270px;
   height: 35px;
   font-size: 16px;
@@ -47,9 +42,7 @@
     margin-left: 18px;
   }
   .member_search_form{
-  /* margin:20px 0px -10px 0; */
-  width: 70%;
+    width: 70%;
     margin-bottom: 15px;
-
   }
 }

@@ -2,10 +2,10 @@ import { useParams, useLocation } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
+import { RecommenedMemberDiaryEditForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
-import { RecommenedMemberDiaryEditForm } from './../templates/Templates';
 
 const RecommendedMemberDiaryEdit = () => {
   const navigate = useNavigate();

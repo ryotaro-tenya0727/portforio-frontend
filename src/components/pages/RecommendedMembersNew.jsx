@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { useQueryClient } from 'react-query';
 
+import { RecommenedMembersNewForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
-import { RecommenedMembersNewForm } from './../templates/Templates';
 
 const RecommenedMembersNew = () => {
   const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =

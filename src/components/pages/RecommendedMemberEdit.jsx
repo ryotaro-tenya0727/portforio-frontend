@@ -1,10 +1,10 @@
 import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
+import { RecommenedMemberEditForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
-import { RecommenedMemberEditForm } from './../templates/Templates';
 
 const RecommenedMemberEdit = () => {
   const navigate = useNavigate();

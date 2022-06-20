@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { useQueryClient } from 'react-query';
 
-import { useUsersApi } from './../../hooks/useUsers';
 import { MyPageMenu } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
+import { useUsersApi } from './../../hooks/useUsers';
 
 const MyPage = () => {
   const { useGetAccesstokenAndCreateUser, isAuthenticated, isAuthLoading } =

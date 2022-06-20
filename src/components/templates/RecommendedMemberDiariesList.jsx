@@ -8,10 +8,10 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 
-import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
-import { usePagination } from './../../hooks/usePagination';
 import { LoginUserDiaryCard } from './../organisms/Organisms';
 import list from './../../css/templates/list.module.css';
+import { usePagination } from './../../hooks/usePagination';
+import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
 const RecommendedMemberDiariesList = ({
   recommendedMemberId,

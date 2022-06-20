@@ -1,9 +1,10 @@
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
+import { DiaryNewForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
-import { DiaryNewForm } from './../templates/Templates';
+
 const RecommenedMemberDiariesNew = () => {
   let { recommended_member_uuid, recommended_member_id } = useParams();
   const { search } = useLocation();

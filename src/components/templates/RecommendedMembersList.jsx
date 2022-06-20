@@ -7,9 +7,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 
+import { RecommendedMemberCard } from './../organisms/Organisms';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { usePagination } from './../../hooks/usePagination';
-import { RecommendedMemberCard } from './../organisms/Organisms';
 import list from './../../css/templates/list.module.css';
 
 const RecommendedMembersList = () => {

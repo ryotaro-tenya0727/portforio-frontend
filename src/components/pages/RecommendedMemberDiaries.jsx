@@ -1,9 +1,9 @@
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
-import { useUsersApi } from './../../hooks/useUsers';
 import { RecommendedMemberDiariesList } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
+import { useUsersApi } from './../../hooks/useUsers';
 
 const RecommenedMembersDiaries = () => {
   const { recommended_member_uuid, recommended_member_id } = useParams();

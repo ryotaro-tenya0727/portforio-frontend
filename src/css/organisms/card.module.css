@@ -42,10 +42,6 @@
   margin: 0px 0px 10px -10px;
 }
 
-.card_photo{
-
-}
-
 .login_user_card{
   width: 65%;
   text-align: center;
@@ -81,8 +77,6 @@
 
 .login_card_text_property{
   color: #ff6fc8;
-
-  /* font-size: 18px; */
 }
 
 .login_card_text{
