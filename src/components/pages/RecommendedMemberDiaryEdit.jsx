@@ -2,6 +2,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
+import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import { RecommenedMemberDiaryEditForm } from './../templates/Templates';
@@ -17,7 +18,8 @@ const RecommendedMemberDiaryEdit = () => {
     recommended_member_id,
     diary_id
   );
-  const { useGetAccesstokenAndGetUser } = useUsersApi();
+  const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
+    useUsersApi();
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
@@ -36,6 +38,7 @@ const RecommendedMemberDiaryEdit = () => {
   };
   return (
     <>
+      {isAuthLoading || isAuthenticated || <RedirectToLogin />}
       <Link to='/mypage'>マイページへ</Link>
 
       {userData === undefined ? (

@@ -4,15 +4,19 @@ import { useQueryClient } from 'react-query';
 
 import { useUsersApi } from './../../hooks/useUsers';
 import { MyPageMenu } from './../templates/Templates';
+import { RedirectToLogin } from './Pages';
 
 const MyPage = () => {
-  const { useGetAccesstokenAndCreateUser } = useUsersApi();
+  const { useGetAccesstokenAndCreateUser, isAuthenticated, isAuthLoading } =
+    useUsersApi();
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData('users');
   const { data, isLoading, isIdle } = useGetAccesstokenAndCreateUser();
+  console.log('ユーザー');
 
   return (
     <div style={{ paddingBottom: '280px' }}>
+      {isAuthLoading || isAuthenticated || <RedirectToLogin />}
       <h1>Mypage</h1>
       <Link to='/recommended-members/new'>推しメン登録ページへ</Link>
       {userData === undefined ? (

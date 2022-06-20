@@ -1,21 +1,22 @@
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
+import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { RecommenedMemberDiaryShowDetail } from './../templates/Templates';
 
 const RecommenedMemberDiaryShow = () => {
   const { diary_id } = useParams();
-  const { search } = useLocation();
-  const query = new URLSearchParams(search);
-  const { useGetAccesstokenAndGetUser } = useUsersApi();
+  const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
+    useUsersApi();
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
 
   return (
     <>
+      {isAuthLoading || isAuthenticated || <RedirectToLogin />}
       <ReactQueryDevtools initialIsOpen={false} />
       <Link to='/mypage'>マイページへ</Link>
 

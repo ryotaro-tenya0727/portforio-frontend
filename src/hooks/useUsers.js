@@ -8,7 +8,12 @@ import { userRepository } from '../repositories/userRepository';
 
 export const useUsersApi = () => {
   const { setAccessToken } = useContext(AuthGuardContext);
-  const { isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+  const {
+    isAuthenticated,
+    getAccessTokenSilently,
+    user,
+    isLoading: isAuthLoading,
+  } = useAuth0();
 
   const useAddUser = () => {
     const queryClient = useQueryClient();
@@ -83,6 +88,8 @@ export const useUsersApi = () => {
   };
 
   return {
+    isAuthenticated,
+    isAuthLoading,
     useGetAccesstokenAndCreateUser,
     useGetAccesstokenAndGetUser,
   };
