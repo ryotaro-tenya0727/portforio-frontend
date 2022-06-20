@@ -11,3 +11,4 @@ export { default as RecommendedMemberDiaryEdit } from './RecommendedMemberDiaryE
 export { default as RecommenedMemberDiaryShow } from './RecommendedMemberDiaryShow';
 export { default as RecommenedMemberEdit } from './RecommendedMemberEdit';
 export { default as RecommenedMembersNew } from './RecommendedMembersNew';
+export { default as RedirectToLogin } from './RedirectToLogin';

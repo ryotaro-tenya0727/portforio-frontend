@@ -1,6 +1,7 @@
 import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
+import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { RecommenedMemberEditForm } from './../templates/Templates';
@@ -14,7 +15,8 @@ const RecommenedMemberEdit = () => {
   const deleteRecommendedMember = useDeleteRecommendedMember(
     recommended_member_id
   );
-  const { useGetAccesstokenAndGetUser } = useUsersApi();
+  const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
+    useUsersApi();
   const queryClient = useQueryClient();
   const user_data = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
@@ -35,6 +37,7 @@ const RecommenedMemberEdit = () => {
 
   return (
     <>
+      {isAuthLoading || isAuthenticated || <RedirectToLogin />}
       <Link to='/mypage'>マイページへ</Link>
       {user_data === undefined ? (
         isIdle || isLoading ? (

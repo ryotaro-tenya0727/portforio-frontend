@@ -1,18 +1,21 @@
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
+import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { DiaryNewForm } from './../templates/Templates';
 const RecommenedMemberDiariesNew = () => {
   let { recommended_member_uuid, recommended_member_id } = useParams();
   const { search } = useLocation();
   const query = new URLSearchParams(search);
-  const { useGetAccesstokenAndGetUser } = useUsersApi();
+  const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
+    useUsersApi();
   const queryClient = useQueryClient();
   const user_data = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
   return (
     <>
+      {isAuthLoading || isAuthenticated || <RedirectToLogin />}
       <Link to='/mypage'>マイページへ</Link>
       {user_data === undefined ? (
         isIdle || isLoading ? (

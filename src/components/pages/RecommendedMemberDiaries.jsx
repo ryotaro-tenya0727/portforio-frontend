@@ -3,18 +3,21 @@ import { useQueryClient } from 'react-query';
 
 import { useUsersApi } from './../../hooks/useUsers';
 import { RecommendedMemberDiariesList } from './../templates/Templates';
+import { RedirectToLogin } from './Pages';
 
 const RecommenedMembersDiaries = () => {
   const { recommended_member_uuid, recommended_member_id } = useParams();
   const { search } = useLocation();
   const query = new URLSearchParams(search);
-  const { useGetAccesstokenAndGetUser } = useUsersApi();
+  const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
+    useUsersApi();
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
 
   return (
     <>
+      {isAuthLoading || isAuthenticated || <RedirectToLogin />}
       {userData === undefined ? (
         isIdle || isLoading ? (
           <p>load</p>
