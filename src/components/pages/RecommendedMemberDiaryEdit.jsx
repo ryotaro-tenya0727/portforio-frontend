@@ -52,7 +52,6 @@ const RecommendedMemberDiaryEdit = () => {
   return (
     <>
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
-      <Link to='/mypage'>マイページへ</Link>
 
       {userData === undefined ? (
         isIdle || isLoading ? (

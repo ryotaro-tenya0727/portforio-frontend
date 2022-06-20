@@ -47,7 +47,6 @@ const RecommenedMemberEdit = () => {
   return (
     <>
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
-      <Link to='/mypage'>マイページへ</Link>
       {user_data === undefined ? (
         isIdle || isLoading ? (
           <p>load</p>

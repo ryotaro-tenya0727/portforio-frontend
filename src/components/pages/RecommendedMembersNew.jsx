@@ -27,22 +27,22 @@ const RecommenedMembersNew = () => {
           <p>load</p>
         ) : (
           <>
-            <BreadCrumbs breadcrumbs={breadcrumbs} />
             <br />
             <ReactQueryDevtools initialIsOpen={false} />
-            <Link to='/mypage'>マイページへ</Link>
+
             <p>{data.data.attributes.name}さんログイン中</p>
+            <BreadCrumbs breadcrumbs={breadcrumbs} />
 
             <RecommenedMembersNewForm />
           </>
         )
       ) : (
         <>
-          <BreadCrumbs breadcrumbs={breadcrumbs} />
           <br />
           <ReactQueryDevtools initialIsOpen={false} />
-          <Link to='/mypage'>マイページへ</Link>
+
           <p>{user_data.data.attributes.name}さんログイン中</p>
+          <BreadCrumbs breadcrumbs={breadcrumbs} />
 
           <RecommenedMembersNewForm />
         </>
