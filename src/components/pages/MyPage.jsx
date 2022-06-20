@@ -21,7 +21,6 @@ const MyPage = () => {
   return (
     <div style={{ paddingBottom: '280px' }}>
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
-      <h1>Mypage</h1>
 
       {userData === undefined ? (
         isIdle || isLoading ? (

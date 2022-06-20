@@ -41,7 +41,6 @@ const RecommenedMembersDiaries = () => {
             >
               日記を追加する
             </Link>
-
             <RecommendedMemberDiariesList
               recommendedMemberId={recommended_member_id}
               recommendedMemberUuid={recommended_member_uuid}

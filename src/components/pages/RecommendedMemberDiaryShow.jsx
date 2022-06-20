@@ -35,7 +35,6 @@ const RecommenedMemberDiaryShow = () => {
     <>
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
       <ReactQueryDevtools initialIsOpen={false} />
-      <Link to='/mypage'>マイページへ</Link>
 
       {userData === undefined ? (
         isIdle || isLoading ? (

@@ -27,7 +27,6 @@ const RecommenedMembersNew = () => {
           <p>load</p>
         ) : (
           <>
-            <br />
             <ReactQueryDevtools initialIsOpen={false} />
 
             <p>{data.data.attributes.name}さんログイン中</p>
@@ -38,7 +37,6 @@ const RecommenedMembersNew = () => {
         )
       ) : (
         <>
-          <br />
           <ReactQueryDevtools initialIsOpen={false} />
 
           <p>{user_data.data.attributes.name}さんログイン中</p>
