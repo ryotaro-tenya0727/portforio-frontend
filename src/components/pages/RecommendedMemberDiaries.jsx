@@ -4,6 +4,7 @@ import { useQueryClient } from 'react-query';
 import { RecommendedMemberDiariesList } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
+import { BreadCrumbs } from './../organisms/Organisms';
 
 const RecommenedMembersDiaries = () => {
   const { recommended_member_uuid, recommended_member_id } = useParams();
@@ -14,6 +15,13 @@ const RecommenedMembersDiaries = () => {
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
+  const breadcrumbs = [
+    { title: 'ホーム', to: '/' },
+    { title: 'マイページ', to: '/mypage' },
+    {
+      title: `${query.get('nickname')}の日記一覧`,
+    },
+  ];
 
   return (
     <>
@@ -24,7 +32,7 @@ const RecommenedMembersDiaries = () => {
         ) : (
           <>
             <p>{data.data.attributes.name}さんログイン中</p>
-            <Link to='/mypage'>マイページへ</Link>
+            <BreadCrumbs breadcrumbs={breadcrumbs} />
             <br />
             <Link
               to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new?nickname=${query.get(
@@ -45,7 +53,7 @@ const RecommenedMembersDiaries = () => {
       ) : (
         <>
           <p> {userData.data.attributes.name}さんログイン中</p>
-          <Link to='/mypage'>マイページへ</Link>
+          <BreadCrumbs breadcrumbs={breadcrumbs} />
           <br />
           <Link
             to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new?nickname=${query.get(
@@ -54,7 +62,6 @@ const RecommenedMembersDiaries = () => {
           >
             日記を追加する
           </Link>
-
           <RecommendedMemberDiariesList
             recommendedMemberId={recommended_member_id}
             recommendedMemberUuid={recommended_member_uuid}

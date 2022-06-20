@@ -2,6 +2,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
+import { BreadCrumbs } from './../organisms/Organisms';
 import { RecommenedMemberDiaryEditForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
@@ -36,6 +37,18 @@ const RecommendedMemberDiaryEdit = () => {
       );
     }
   };
+
+  const breadcrumbs = [
+    { title: 'ホーム', to: '/' },
+    { title: 'マイページ', to: '/mypage' },
+    {
+      title: `${query.get('nickname')}の日記一覧`,
+      to: `/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}?nickname=${query.get(
+        'nickname'
+      )}&group=${query.get('group')}`,
+    },
+    { title: `${query.get('nickname')}の日記編集ページ` },
+  ];
   return (
     <>
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
@@ -47,6 +60,7 @@ const RecommendedMemberDiaryEdit = () => {
         ) : (
           <>
             <p>{data.data.attributes.name}さんログイン中</p>
+            <BreadCrumbs breadcrumbs={breadcrumbs} />
             <RecommenedMemberDiaryEditForm
               recommendedMemberId={recommended_member_id}
               recommendedMemberUuid={recommended_member_uuid}
@@ -61,6 +75,7 @@ const RecommendedMemberDiaryEdit = () => {
       ) : (
         <>
           <p> {userData.data.attributes.name}さんログイン中</p>
+          <BreadCrumbs breadcrumbs={breadcrumbs} />
           <RecommenedMemberDiaryEditForm
             recommendedMemberId={recommended_member_id}
             recommendedMemberUuid={recommended_member_uuid}

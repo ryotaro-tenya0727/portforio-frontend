@@ -214,7 +214,7 @@ const DiaryNewForm = ({
             この日のチェキ枚数 (99枚以内)
           </label>
           <Controller
-            defaultValue=''
+            defaultValue='0'
             name='diary.event_polaroid_count'
             rules={{ max: 99, min: 0 }}
             control={control}

@@ -109,6 +109,13 @@
   margin: 0px 10px -5px 0px;
 }
 }
+
+@media (min-width: 1000px) {
+.diary_member_title_icon{
+  height: 30px;
+  margin: 0px 10px -5px 0px;
+}
+}
 .diary_sub_text_wrapper{
   margin-bottom: 20px;
 
@@ -132,14 +139,21 @@
 @media (min-width: 500px) {
 .diary_sub_text{
   border-bottom: 1.5px dashed rgb(255, 151, 151);
-  font-size: 14px;
+  font-size: 15px;
 }
 }
 
 @media (min-width: 700px) {
 .diary_sub_text{
   border-bottom: 2px dashed rgb(255, 151, 151);
-font-size: 15px;
+font-size: 16px;
+}
+}
+
+@media (min-width: 1000px) {
+.diary_sub_text{
+  border-bottom: 2px dashed rgb(255, 151, 151);
+font-size: 17px;
 }
 }
 
@@ -200,14 +214,14 @@ font-size: 15px;
 
 @media (min-width: 900px)  {
   .diary_image{
-    width: 210px;
+    width: 240px;
 
   }
 }
 
 @media (min-width: 1200px)  {
   .diary_image{
-    width: 240px;
+    width: 270px;
 
   }
 }

@@ -132,7 +132,7 @@ const RecommendedMemberDiariesList = ({
                     status={diary.attributes.status}
                     diaryImages={diary.attributes.diary_images}
                     eventPolaroidCount={diary.attributes.event_polaroid_count}
-                    showUrl={`/recommended-member/${recommendedMemberUuid}/diaries/show/${diary.attributes.id}?recommended_member_nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
+                    showUrl={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/show/${diary.attributes.id}?recommended_member_nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                     editUrl={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/edit/${diary.attributes.id}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                   />
                 );

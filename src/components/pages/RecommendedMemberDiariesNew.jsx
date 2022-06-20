@@ -1,6 +1,7 @@
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
+import { BreadCrumbs } from './../organisms/Organisms';
 import { DiaryNewForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
@@ -14,6 +15,18 @@ const RecommenedMemberDiariesNew = () => {
   const queryClient = useQueryClient();
   const user_data = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
+  const breadcrumbs = [
+    { title: 'ホーム', to: '/' },
+    { title: 'マイページ', to: '/mypage' },
+    {
+      title: `${query.get('nickname')}の日記一覧`,
+      to: `/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}?nickname=${query.get(
+        'nickname'
+      )}&group=${query.get('group')}`,
+    },
+    { title: `${query.get('nickname')}の日記作成ページ` },
+  ];
+
   return (
     <>
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
@@ -24,7 +37,7 @@ const RecommenedMemberDiariesNew = () => {
         ) : (
           <>
             <p>{data.data.attributes.name}さんログイン中</p>
-
+            <BreadCrumbs breadcrumbs={breadcrumbs} />
             <DiaryNewForm
               recommendedMemberId={recommended_member_id}
               recommendedMemberUuid={recommended_member_uuid}
@@ -36,6 +49,7 @@ const RecommenedMemberDiariesNew = () => {
       ) : (
         <>
           <p> {user_data.data.attributes.name}さんログイン中</p>
+          <BreadCrumbs breadcrumbs={breadcrumbs} />
           <DiaryNewForm
             recommendedMemberId={recommended_member_id}
             recommendedMemberUuid={recommended_member_uuid}
