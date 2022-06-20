@@ -29,13 +29,13 @@ const RecommendedMembersList = () => {
 
   // 検索
   const [searchText, setSearchText] = useState('');
-  if (searchText !== '') {
-    // 検索フィールドが空の場合、ここに入らない
-    const searchKeywords = searchText
-      .trim()
-      .toLowerCase()
-      .match(/[^\s]+/g);
+  // 検索フィールドが空の場合、ここに入らない
+  const searchKeywords = searchText
+    .trim()
+    .toLowerCase()
+    .match(/[^\s]+/g);
 
+  if (searchKeywords !== null) {
     data = recommendedMembers.data.filter((member) =>
       searchKeywords.every(
         (kw) => member.attributes.nickname.indexOf(kw) !== -1

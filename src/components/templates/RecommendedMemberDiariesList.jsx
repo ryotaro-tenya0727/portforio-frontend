@@ -34,6 +34,20 @@ const RecommendedMemberDiariesList = ({
     recommendedMemberDiaries === undefined
       ? { length: 0 }
       : recommendedMemberDiaries.data;
+
+  // 検索
+  const [searchText, setSearchText] = useState('');
+  const searchKeywords = searchText.trim().match(/[^\s]+/g);
+  console.log(searchKeywords);
+  if (searchKeywords !== null) {
+    // 検索フィールドが空の場合、ここに入らない
+    data = recommendedMemberDiaries.data.filter((diary) =>
+      searchKeywords.every(
+        (kw) => diary.attributes.event_name.indexOf(kw) !== -1
+      )
+    );
+  }
+
   const count = Math.ceil(data.length / PER_PAGE);
   const _DATA = usePagination(data, PER_PAGE);
   const handleChange = (_e, p) => {
@@ -72,7 +86,7 @@ const RecommendedMemberDiariesList = ({
           <>
             <div className={list.pagination_and_search_wrap}>
               <Pagination
-                sx={{ margin: '0 auto' }}
+                sx={{ mt: '15px' }}
                 color='primary'
                 size='large'
                 className={list.pagination}
@@ -89,6 +103,22 @@ const RecommendedMemberDiariesList = ({
                 )}
                 onChange={handleChange}
               />
+              <div style={{ marginTop: '15px' }}>
+                <SavedSearchIcon
+                  sx={{
+                    fontSize: 40,
+                    mb: -1.7,
+                    mr: 1,
+                    color: 'secondary.main',
+                  }}
+                />
+                <input
+                  className={list.member_search_form}
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  placeHolder={'イベント名で検索'}
+                />
+              </div>
             </div>
             <Grid container spacing={3}>
               {_DATA.currentData().map((diary, index) => {
