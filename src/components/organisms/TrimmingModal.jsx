@@ -301,7 +301,7 @@ const TrimmingModal = ({
         ) : (
           <SampleImageButton onClick={firstFileClick} />
         )}
-
+        <br />
         {secondImage !== null ? (
           <div>
             <button

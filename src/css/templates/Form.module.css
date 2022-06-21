@@ -99,7 +99,19 @@
   position:relative;
 }
 
-@media (min-width: 0px) and (max-width: 750px) {
+@media (max-width: 500px) {
+  .images {
+
+    display: flex;
+    flex-direction:column;
+    /*コレ*/align-items: center;
+
+
+
+  }
+}
+
+@media (min-width: 500px) and (max-width: 750px) {
   .images {
     width: 100%;
   }
