@@ -23,6 +23,12 @@ const RecommendedMemberCard = ({
   DiariesCount,
 }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card
@@ -99,7 +105,7 @@ const RecommendedMemberCard = ({
                 </p>
               </div>
               <div className={card.card_right_whole}>
-                <Link to={diaryUrl}>
+                <Link to={diaryUrl} onClick={returnTop}>
                   <Button className={button.button_card}>
                     <AppRegistrationIcon
                       sx={{
@@ -115,7 +121,7 @@ const RecommendedMemberCard = ({
                     </span>
                   </Button>
                 </Link>
-                <Link to={editUrl}>
+                <Link to={editUrl} onClick={returnTop}>
                   <Button className={button.button_card}>
                     推しメンの
                     <br />
