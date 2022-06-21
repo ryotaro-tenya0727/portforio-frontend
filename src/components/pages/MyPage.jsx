@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { useQueryClient } from 'react-query';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 import { MyPageMenu } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { BreadCrumbs } from './../organisms/Organisms';
+import { Button, HomeBreadText } from './../atoms/atoms';
+
+import button from './../../css/atoms/button.module.css';
 
 const MyPage = () => {
   const { useGetAccesstokenAndCreateUser, isAuthenticated, isAuthLoading } =
@@ -14,7 +18,14 @@ const MyPage = () => {
   const userData = queryClient.getQueryData('users');
   const { data, isLoading, isIdle } = useGetAccesstokenAndCreateUser();
   const breadcrumbs = [
-    { title: 'ホーム', to: '/' },
+    {
+      title: (
+        <>
+          <HomeBreadText />
+        </>
+      ),
+      to: '/',
+    },
     { title: 'マイページ', to: '/mypage' },
   ];
 
@@ -29,8 +40,23 @@ const MyPage = () => {
           <>
             <p>{data.data.attributes.name}さんログイン中</p>
             <BreadCrumbs breadcrumbs={breadcrumbs} />
-            <br />
-            <Link to='/recommended-members/new'>推しメン登録ページへ</Link>
+
+            <Link to='/recommended-members/new'>
+              <Button className={button.recommended_and_diary_button}>
+                <LoyaltyIcon
+                  sx={{
+                    fontSize: '20px',
+                    mb: '-3.5px',
+                    color: '#ff6fc8',
+                    '@media screen and (max-width:700px)': {
+                      fontSize: '15.5px',
+                      ml: -2,
+                    },
+                  }}
+                />
+                推しメン登録ページへ
+              </Button>
+            </Link>
             <MyPageMenu />
 
             <ReactQueryDevtools initialIsOpen={false} />
@@ -40,8 +66,20 @@ const MyPage = () => {
         <>
           <p>{userData.data.attributes.name}さんログイン中</p>
           <BreadCrumbs breadcrumbs={breadcrumbs} />
-          <br />
-          <Link to='/recommended-members/new'>推しメン登録ページへ</Link>
+
+          <Link to='/recommended-members/new'>
+            <Button className={button.recommended_and_diary_button}>
+              <LoyaltyIcon
+                sx={{
+                  fontSize: '20px',
+                  mb: '-4px',
+                  mr: '3px',
+                  color: '#ff6fc8',
+                }}
+              />
+              推しメン登録ページへ
+            </Button>
+          </Link>
           <MyPageMenu />
 
           <ReactQueryDevtools initialIsOpen={false} />

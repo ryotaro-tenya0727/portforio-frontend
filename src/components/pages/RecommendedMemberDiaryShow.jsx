@@ -6,6 +6,7 @@ import { BreadCrumbs } from './../organisms/Organisms';
 import { RecommenedMemberDiaryShowDetail } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
+import { HomeBreadText } from './../atoms/atoms';
 
 const RecommenedMemberDiaryShow = () => {
   const { recommended_member_uuid, recommended_member_id, diary_id } =
@@ -20,7 +21,14 @@ const RecommenedMemberDiaryShow = () => {
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
 
   const breadcrumbs = [
-    { title: 'ホーム', to: '/' },
+    {
+      title: (
+        <>
+          <HomeBreadText />
+        </>
+      ),
+      to: '/',
+    },
     { title: 'マイページ', to: '/mypage' },
     {
       title: `${query.get('recommended_member_nickname')}の日記一覧`,

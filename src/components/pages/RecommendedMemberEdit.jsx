@@ -6,6 +6,7 @@ import { RecommenedMemberEditForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
+import { HomeBreadText } from './../atoms/atoms';
 
 const RecommenedMemberEdit = () => {
   const navigate = useNavigate();
@@ -37,7 +38,14 @@ const RecommenedMemberEdit = () => {
   };
 
   const breadcrumbs = [
-    { title: 'ホーム', to: '/' },
+    {
+      title: (
+        <>
+          <HomeBreadText />
+        </>
+      ),
+      to: '/',
+    },
     { title: 'マイページ', to: '/mypage' },
     {
       title: `${query.get('nickname')}の情報編集ページ`,

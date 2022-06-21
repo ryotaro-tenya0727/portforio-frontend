@@ -7,6 +7,7 @@ import { RecommenedMemberDiaryEditForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
+import { HomeBreadText } from './../atoms/atoms';
 
 const RecommendedMemberDiaryEdit = () => {
   const navigate = useNavigate();
@@ -39,7 +40,14 @@ const RecommendedMemberDiaryEdit = () => {
   };
 
   const breadcrumbs = [
-    { title: 'ホーム', to: '/' },
+    {
+      title: (
+        <>
+          <HomeBreadText />
+        </>
+      ),
+      to: '/',
+    },
     { title: 'マイページ', to: '/mypage' },
     {
       title: `${query.get('nickname')}の日記一覧`,

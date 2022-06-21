@@ -7,6 +7,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 
 import { Button } from './../atoms/atoms';
+import button from './../../css/atoms/button.module.css';
 import card from './../../css/organisms/card.module.css';
 
 const UserDiaryCard = ({
@@ -34,10 +35,10 @@ const UserDiaryCard = ({
         ) : (
           <div className={card.card_diary_button_list}>
             <Link to={showUrl}>
-              <Button>日記の詳細を見る</Button>
+              <Button className={button.button_card}>日記の詳細を見る</Button>
             </Link>
             <Link to={editUrl}>
-              <Button>日記を編集する</Button>
+              <Button className={button.button_card}>日記を編集する</Button>
             </Link>
             <img
               src={`${imageDomain}/admin/diary_card_image.png`}

@@ -5,6 +5,7 @@ import { BreadCrumbs } from './../organisms/Organisms';
 import { RecommenedMembersNewForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
+import { HomeBreadText } from './../atoms/atoms';
 
 const RecommenedMembersNew = () => {
   const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
@@ -13,7 +14,14 @@ const RecommenedMembersNew = () => {
   const user_data = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
   const breadcrumbs = [
-    { title: 'ホーム', to: '/' },
+    {
+      title: (
+        <>
+          <HomeBreadText />
+        </>
+      ),
+      to: '/',
+    },
     { title: 'マイページ', to: '/mypage' },
     { title: '推しメン登録', to: '/recommended-members/new' },
   ];

@@ -1,10 +1,14 @@
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 import { RecommendedMemberDiariesList } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { BreadCrumbs } from './../organisms/Organisms';
+import { Button, HomeBreadText } from './../atoms/atoms';
+
+import button from './../../css/atoms/button.module.css';
 
 const RecommenedMembersDiaries = () => {
   const { recommended_member_uuid, recommended_member_id } = useParams();
@@ -16,7 +20,14 @@ const RecommenedMembersDiaries = () => {
   const userData = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
   const breadcrumbs = [
-    { title: 'ホーム', to: '/' },
+    {
+      title: (
+        <>
+          <HomeBreadText />
+        </>
+      ),
+      to: '/',
+    },
     { title: 'マイページ', to: '/mypage' },
     {
       title: `${query.get('nickname')}の日記一覧`,
@@ -33,13 +44,23 @@ const RecommenedMembersDiaries = () => {
           <>
             <p>{data.data.attributes.name}さんログイン中</p>
             <BreadCrumbs breadcrumbs={breadcrumbs} />
-            <br />
+
             <Link
               to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new?nickname=${query.get(
                 'nickname'
               )}&group=${query.get('group')}`}
             >
-              日記を追加する
+              <Button className={button.recommended_and_diary_button}>
+                <BorderColorIcon
+                  sx={{
+                    fontSize: '20px',
+                    mb: '-3.5px',
+                    mr: '1px',
+                    color: '#ff6fc8',
+                  }}
+                />
+                日記を追加する
+              </Button>
             </Link>
             <RecommendedMemberDiariesList
               recommendedMemberId={recommended_member_id}
@@ -53,13 +74,23 @@ const RecommenedMembersDiaries = () => {
         <>
           <p> {userData.data.attributes.name}さんログイン中</p>
           <BreadCrumbs breadcrumbs={breadcrumbs} />
-          <br />
+
           <Link
             to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new?nickname=${query.get(
               'nickname'
             )}&group=${query.get('group')}`}
           >
-            日記を追加する
+            <Button className={button.recommended_and_diary_button}>
+              <BorderColorIcon
+                sx={{
+                  fontSize: '20px',
+                  mb: '-3.5px',
+                  mr: '4px',
+                  color: '#ff6fc8',
+                }}
+              />
+              日記を追加する
+            </Button>
           </Link>
           <RecommendedMemberDiariesList
             recommendedMemberId={recommended_member_id}

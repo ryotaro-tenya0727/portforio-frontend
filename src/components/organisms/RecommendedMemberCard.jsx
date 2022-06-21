@@ -9,6 +9,7 @@ import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 import { Button } from './../atoms/atoms';
+import button from './../../css/atoms/button.module.css';
 import card from './../../css/organisms/card.module.css';
 
 const RecommendedMemberCard = ({
@@ -98,7 +99,7 @@ const RecommendedMemberCard = ({
               </div>
               <div className={card.card_right_whole}>
                 <Link to={diaryUrl}>
-                  <Button>
+                  <Button className={button.button_card}>
                     <AppRegistrationIcon
                       sx={{
                         fontSize: '28px',
@@ -114,7 +115,7 @@ const RecommendedMemberCard = ({
                   </Button>
                 </Link>
                 <Link to={editUrl}>
-                  <Button>
+                  <Button className={button.button_card}>
                     推しメンの
                     <br />
                     情報を編集
