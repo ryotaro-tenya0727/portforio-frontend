@@ -29,6 +29,13 @@ const MyPage = () => {
     { title: 'マイページ', to: '/mypage' },
   ];
 
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <div style={{ paddingBottom: '280px' }}>
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
@@ -42,7 +49,10 @@ const MyPage = () => {
             <BreadCrumbs breadcrumbs={breadcrumbs} />
 
             <Link to='/recommended-members/new'>
-              <Button className={button.recommended_and_diary_button}>
+              <Button
+                className={button.recommended_and_diary_button}
+                onClick={returnTop}
+              >
                 <LoyaltyIcon
                   sx={{
                     fontSize: '20px',
@@ -68,7 +78,10 @@ const MyPage = () => {
           <BreadCrumbs breadcrumbs={breadcrumbs} />
 
           <Link to='/recommended-members/new'>
-            <Button className={button.recommended_and_diary_button}>
+            <Button
+              className={button.recommended_and_diary_button}
+              onClick={returnTop}
+            >
               <LoyaltyIcon
                 sx={{
                   fontSize: '20px',

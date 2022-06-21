@@ -44,13 +44,14 @@ const UserDiaryCard = ({
             <img
               src={`${imageDomain}/admin/diary_card_image.png`}
               alt='picture'
-              width='135'
-              height='135'
+              width='130'
+              height='130'
               className={card.recommended_member_card_image}
             />
           </div>
         )}
-        <p className={card.card_text}>
+        <br />
+        <p className={card.card_text} style={{ marginTop: '10px' }}>
           <span className={card.card_text_property}>
             <LibraryMusicIcon
               sx={{ fontSize: '19px', mb: '-4px', color: 'red' }}

@@ -105,8 +105,8 @@ const RecommendedMemberCard = ({
                 </p>
               </div>
               <div className={card.card_right_whole}>
-                <Link to={diaryUrl} onClick={returnTop}>
-                  <Button className={button.button_card}>
+                <Link to={diaryUrl}>
+                  <Button className={button.button_card} onClick={returnTop}>
                     <AppRegistrationIcon
                       sx={{
                         fontSize: '28px',
@@ -121,8 +121,8 @@ const RecommendedMemberCard = ({
                     </span>
                   </Button>
                 </Link>
-                <Link to={editUrl} onClick={returnTop}>
-                  <Button className={button.button_card}>
+                <Link to={editUrl}>
+                  <Button className={button.button_card} onClick={returnTop}>
                     推しメンの
                     <br />
                     情報を編集

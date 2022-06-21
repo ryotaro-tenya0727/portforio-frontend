@@ -5,6 +5,11 @@ import { useForm, Controller } from 'react-hook-form';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 import { TrimmingModal } from './../organisms/Organisms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
@@ -16,6 +21,7 @@ const DiaryNewForm = ({
   recommendedMemberNickname,
   recommendedMemberGroup,
 }) => {
+  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
   const [s3ImageUrls, setImageUrls] = useState([]);
@@ -86,9 +92,15 @@ const DiaryNewForm = ({
     <>
       <ThemeProvider theme={theme}>
         <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
-          <p
-            className={form.form_title}
-          >{`${recommendedMemberNickname}との日記追加中`}</p>
+          <p className={form.form_title} style={{ marginTop: '20px' }}>
+            <img
+              src={`${imageDomain}/admin/diary_title-min.png`}
+              alt='picture'
+              width={30}
+              style={{ margin: '5px 10px 2px 0px' }}
+            />
+            {`${recommendedMemberNickname}との日記追加中`}
+          </p>
           {isNumberError && (
             <p className={form.text_error}>
               ※2枚を超えて選択された画像は表示されません
@@ -104,11 +116,19 @@ const DiaryNewForm = ({
             style={{
               textAlign: 'center',
               fontSize: '22px',
-              marginBottom: '50px',
+              marginBottom: '35px',
+              marginTop: '30px',
               fontWeight: 'bold',
-              color: '#ff66d1',
             }}
           >
+            <InsertPhotoIcon
+              sx={{
+                fontSize: '26px',
+                mb: '-5px',
+                mr: '10px',
+                color: '#ff66d1',
+              }}
+            />
             日記に使う画像を選択
           </p>
           <TrimmingModal
@@ -147,7 +167,13 @@ const DiaryNewForm = ({
           />
 
           <br />
-          <label htmlFor='event_name'>イベント名</label>
+          <label htmlFor='event_name'>
+            {' '}
+            <LibraryMusicIcon
+              sx={{ fontSize: '24px', mb: '-7px', mr: '10px', color: 'red' }}
+            />
+            イベント名
+          </label>
           <Controller
             defaultValue=''
             name='diary.event_name'
@@ -167,7 +193,18 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <label htmlFor='event_date'>イベントの日付</label>
+          <label htmlFor='event_date'>
+            {' '}
+            <CalendarMonthIcon
+              sx={{
+                fontSize: '24px',
+                mb: '-5px',
+                mr: '10px',
+                color: '#3300FF',
+              }}
+            />
+            イベントの日付
+          </label>
           <Controller
             defaultValue=''
             name='diary.event_date'
@@ -188,7 +225,18 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <label htmlFor='event_venue'>イベント会場</label>
+          <label htmlFor='event_venue'>
+            {' '}
+            <AccountBalanceIcon
+              sx={{
+                fontSize: '23px',
+                mb: '-5px',
+                mr: '10px',
+                color: '#00AA00',
+              }}
+            />
+            イベント会場
+          </label>
           <Controller
             defaultValue=''
             name='diary.event_venue'
@@ -209,6 +257,14 @@ const DiaryNewForm = ({
           <br />
           <br />
           <label htmlFor='event_polaroid_count'>
+            <PhotoCameraBackIcon
+              sx={{
+                fontSize: '23px',
+                mb: '-5px',
+                mr: '10px',
+                color: '#FF8C00',
+              }}
+            />
             この日のチェキ枚数 (99枚以内)
           </label>
           <Controller
