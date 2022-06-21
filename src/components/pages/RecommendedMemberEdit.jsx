@@ -6,7 +6,10 @@ import { RecommenedMemberEditForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
-import { HomeBreadText } from './../atoms/atoms';
+import { HomeBreadText, Button } from './../atoms/atoms';
+import BrokenImageIcon from '@mui/icons-material/BrokenImage';
+
+import button from './../../css/atoms/button.module.css';
 
 const RecommenedMemberEdit = () => {
   const navigate = useNavigate();
@@ -85,7 +88,18 @@ const RecommenedMemberEdit = () => {
               query.get('group') === 'null' ? '' : query.get('group')
             }
           />
-          <button onClick={deleteMember}>推しメンを削除</button>
+          <div style={{ textAlign: 'center', marginTop: '50px' }}>
+            <Button className={button.delete} onClick={deleteMember}>
+              <BrokenImageIcon
+                sx={{
+                  fontSize: '20px',
+                  mb: '-4.5px',
+                  mr: '3px',
+                }}
+              />
+              推しメンを削除
+            </Button>
+          </div>
         </>
       )}
       <br />

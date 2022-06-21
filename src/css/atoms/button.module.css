@@ -87,6 +87,20 @@
 
 }
 
+.delete{
+  font-size: 15px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  cursor: pointer;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid;
+  padding: 18px 8px 18px 8px;
+  font-weight: bold;
+}
+.delete:hover {
+  opacity: 0.7;
+}
+
 .diary_button{
   display: flex;
 }
