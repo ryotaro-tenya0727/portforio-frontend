@@ -1,4 +1,4 @@
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 

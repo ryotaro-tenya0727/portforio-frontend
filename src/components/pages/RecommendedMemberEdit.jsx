@@ -1,4 +1,4 @@
-import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
 import { BreadCrumbs } from './../organisms/Organisms';

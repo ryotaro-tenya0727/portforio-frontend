@@ -1,5 +1,5 @@
 import { useParams, useLocation } from 'react-router-dom';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
 import { BreadCrumbs } from './../organisms/Organisms';
