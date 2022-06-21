@@ -5,10 +5,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import GroupsIcon from '@mui/icons-material/Groups';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
-import LoyaltyIcon from '@mui/icons-material/Loyalty';
+import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 
+import { Button } from './../atoms/atoms';
 import form from './../../css/templates/form.module.css';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
+
+import button from './../../css/atoms/button.module.css';
 
 const RecommenedMemberEditForm = ({
   recommendedMemberUuid,
@@ -16,13 +19,6 @@ const RecommenedMemberEditForm = ({
   recommendedMemberNickname,
   recommendedMemberGroup,
 }) => {
-  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
-  const navigate = useNavigate();
-  const { control, handleSubmit, formState } = useForm({
-    mode: 'onSubmit',
-    reValidateMode: 'onChange',
-  });
-
   const theme = createTheme({
     palette: {
       primary: {
@@ -30,9 +26,31 @@ const RecommenedMemberEditForm = ({
       },
     },
   });
+  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
+  const navigate = useNavigate();
+  const { control, handleSubmit, formState } = useForm({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+  });
 
   const { usePutRecommendedMember } = useRecommendedMembersApi();
   const putRecommendedMember = usePutRecommendedMember(recommendedMemberId);
+
+  const { useDeleteRecommendedMember } = useRecommendedMembersApi();
+  const deleteRecommendedMember =
+    useDeleteRecommendedMember(recommendedMemberId);
+
+  const deleteMember = () => {
+    if (
+      window.confirm(
+        `本当に${recommendedMemberNickname}を削除しますか?${recommendedMemberGroup}との日記も削除されます.
+      `
+      )
+    ) {
+      deleteRecommendedMember.mutate();
+      navigate('/mypage');
+    }
+  };
 
   const onSubmit = (data) => {
     try {
@@ -200,6 +218,18 @@ const RecommenedMemberEditForm = ({
               />
             </div>
           </form>
+          <div style={{ textAlign: 'center', marginTop: '50px' }}>
+            <Button className={button.delete} onClick={deleteMember}>
+              <BrokenImageIcon
+                sx={{
+                  fontSize: '20px',
+                  mb: '-4.5px',
+                  mr: '3px',
+                }}
+              />
+              推しメンを削除
+            </Button>
+          </div>
         </>
       </ThemeProvider>
     </>
