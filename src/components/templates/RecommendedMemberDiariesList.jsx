@@ -38,7 +38,6 @@ const RecommendedMemberDiariesList = ({
   // 検索
   const [searchText, setSearchText] = useState('');
   const searchKeywords = searchText.trim().match(/[^\s]+/g);
-  console.log(searchKeywords);
   if (searchKeywords !== null) {
     // 検索フィールドが空の場合、ここに入らない
     data = recommendedMemberDiaries.data.filter((diary) =>

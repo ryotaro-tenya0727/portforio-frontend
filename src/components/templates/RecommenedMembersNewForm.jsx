@@ -83,7 +83,6 @@ const RecommenedMembersNewForm = () => {
 
                   {formState.errors.recommended_member.group && (
                     <>
-                      {console.log(formState.errors)}
                       <br />
                       <span className={form.text_error}>
                         ・所属グループが文字数を超過しています

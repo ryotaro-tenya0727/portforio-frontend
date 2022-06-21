@@ -218,10 +218,8 @@ const TrimmingModal = ({
       }
       const modifyFiles = imageFiles.concat();
       if (modifyFiles.length === 1) {
-        console.log('reset');
         onSetResetImageFiles();
         onSetResetImageUrls();
-        console.log(imageFiles);
         return;
       }
       modifyFiles.splice(imageIndex, 1);
@@ -231,8 +229,7 @@ const TrimmingModal = ({
       onSetModifyImageUrls(modifyImageUrls);
     }
   };
-  console.log(imageFiles);
-  console.log(s3ImageUrls);
+
   const getCroppedImage = (sourceImage, cropConfig, fileName) => {
     // creating the cropped image from the source image
     const canvas = document.createElement('canvas');

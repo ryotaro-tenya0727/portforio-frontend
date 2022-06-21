@@ -131,7 +131,6 @@ const DiaryNewForm = ({
             //reset
             onSetResetImageFiles={() => {
               setImageFiles([]);
-              console.log('初期化');
             }}
             onSetResetImageUrls={() => {
               setImageUrls([]);
