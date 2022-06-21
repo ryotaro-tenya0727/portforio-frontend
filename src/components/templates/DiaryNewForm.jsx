@@ -86,10 +86,9 @@ const DiaryNewForm = ({
     <>
       <ThemeProvider theme={theme}>
         <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
-          <h1
+          <p
             className={form.form_title}
-          >{`${recommendedMemberNickname}との日記追加中`}</h1>
-          <br />
+          >{`${recommendedMemberNickname}との日記追加中`}</p>
           {isNumberError && (
             <p className={form.text_error}>
               ※2枚を超えて選択された画像は表示されません
@@ -100,7 +99,7 @@ const DiaryNewForm = ({
               ※jpeg, png, bmp, gif 以外のファイル形式はアップロードできません
             </p>
           )}
-          <br />
+
           <p
             style={{
               textAlign: 'center',
