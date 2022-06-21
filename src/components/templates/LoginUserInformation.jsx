@@ -46,7 +46,8 @@ const LoginUserInformation = () => {
           <Card
             className={card.login_user_card}
             sx={{
-              boxShadow: '0 12px 10px -6px rgba(176, 170, 168, 0.7)',
+              boxShadow:
+                'rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1.15px;',
               backgroundImage: `url(${imageDomain}/admin/login_profile_image-min.png)`,
             }}
           >

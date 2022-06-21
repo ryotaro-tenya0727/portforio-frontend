@@ -27,7 +27,8 @@ const UserDiaryCard = ({
       <Card
         className={card.card_whole}
         sx={{
-          boxShadow: '0 12px 10px -6px rgba(176, 170, 168, 0.7)',
+          boxShadow:
+            'rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;',
         }}
       >
         {diaryId === undefined ? (

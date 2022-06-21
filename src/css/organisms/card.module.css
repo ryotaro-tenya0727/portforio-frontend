@@ -3,6 +3,7 @@
   padding: 10px 10px 5px 10px;
     position: relative;
 
+
 }
 .card_second_whole{
   display: flex;
@@ -50,7 +51,8 @@
   margin-top: 20px;
   background-position: top -10px left -85px;
   background-size: 400px;
-  background-repeat: no-repeat
+  background-repeat: no-repeat;
+
 }
 
 @media (max-width: 900px) {
