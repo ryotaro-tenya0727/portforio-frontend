@@ -3,9 +3,12 @@ import { useForm, Controller } from 'react-hook-form';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 
+import { Button } from './../atoms/atoms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import form from './../../css/templates/form.module.css';
+import button from './../../css/atoms/button.module.css';
 
 const RecommenedMemberDiaryEditForm = ({
   recommendedMemberId,
@@ -14,20 +17,6 @@ const RecommenedMemberDiaryEditForm = ({
   recommendedMemberGroup,
   diaryId,
 }) => {
-  const navigate = useNavigate();
-  const { control, handleSubmit, formState } = useForm({
-    mode: 'onSubmit',
-    reValidateMode: 'onChange',
-  });
-
-  const { useShowRecommendedMemberDiary, usePutRecommendedMemberDiary } =
-    useRecommendedMemberDiariesApi();
-
-  const putRecommendedMemberDiary = usePutRecommendedMemberDiary(
-    recommendedMemberId,
-    diaryId
-  );
-
   const theme = createTheme({
     palette: {
       primary: {
@@ -38,14 +27,47 @@ const RecommenedMemberDiaryEditForm = ({
       },
     },
   });
+  const navigate = useNavigate();
+  const { control, handleSubmit, formState } = useForm({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+  });
+
+  const {
+    useShowRecommendedMemberDiary,
+    usePutRecommendedMemberDiary,
+    useDeleteRecommendedMemberDiary,
+  } = useRecommendedMemberDiariesApi();
 
   let {
     data: diaryShow,
     isIdle,
     isLoading,
   } = useShowRecommendedMemberDiary(diaryId);
-
   diaryShow = diaryShow && diaryShow.data.attributes;
+
+  const putRecommendedMemberDiary = usePutRecommendedMemberDiary(
+    recommendedMemberId,
+    diaryId
+  );
+
+  const deleteRecommendedMemberDiary = useDeleteRecommendedMemberDiary(
+    recommendedMemberId,
+    diaryId
+  );
+
+  const deleteDiary = () => {
+    if (
+      window.confirm(
+        `本当に${recommendedMemberNickname}との日記を削除しますか?`
+      )
+    ) {
+      deleteRecommendedMemberDiary.mutate();
+      navigate(
+        `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
+      );
+    }
+  };
 
   const onSubmit = (data) => {
     try {
@@ -279,6 +301,18 @@ const RecommenedMemberDiaryEditForm = ({
                 />
               </div>
             </form>
+            <div style={{ textAlign: 'center', marginTop: '50px' }}>
+              <Button className={button.delete} onClick={deleteDiary}>
+                <BrokenImageIcon
+                  sx={{
+                    fontSize: '20px',
+                    mb: '-4.5px',
+                    mr: '3px',
+                  }}
+                />
+                この日記を削除
+              </Button>
+            </div>
           </ThemeProvider>
         </>
       )}
