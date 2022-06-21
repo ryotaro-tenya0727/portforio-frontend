@@ -35,8 +35,8 @@ const TrimmingModal = ({
       unit: 'px', // Can be 'px' or '%'
       x: 20,
       y: 20,
-      width: 40,
-      height: 40,
+      width: 10,
+      height: 10,
       aspect: 1,
     }
   );

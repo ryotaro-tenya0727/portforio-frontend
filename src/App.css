@@ -65,7 +65,7 @@ img{
 
 .ReactCrop__image{
 
-min-height: 350px;
+min-height: 40vmin;
 max-height: 60vmin;
 max-width: 100%;
 
@@ -74,7 +74,7 @@ max-width: 100%;
 @media(max-width: 1000px) {
 .ReactCrop__image{
 
-min-height: 250px;
+/* min-height: 250px; */
 max-height: 65vmin;
 
   }
@@ -83,7 +83,7 @@ max-height: 65vmin;
 @media(max-width: 800px) {
 .ReactCrop__image{
 
-min-height: 250px;
+/* min-height: 250px; */
 max-height: 65vmin;
 
   }
@@ -92,8 +92,8 @@ max-height: 65vmin;
 @media(max-width: 530px) {
 .ReactCrop__image{
 
-min-height: 250px;
-max-height: 75vmin;
+/* min-height: 250px; */
+max-height: 70vmin;
 
   }
 }
@@ -101,8 +101,8 @@ max-height: 75vmin;
 @media(max-width: 450px) {
 .ReactCrop__image{
 
-min-height: 150px;
-max-height: 80vmin;
+/* min-height: 150px; */
+max-height: 70vmin;
 
   }
 }
