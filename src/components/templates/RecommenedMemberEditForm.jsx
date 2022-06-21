@@ -88,7 +88,7 @@ const RecommenedMemberEditForm = ({
             )}
             <br />
             <label htmlFor='nickname'>
-              推しメンのニックネーム 推しメンのニックネーム (8文字以内 )
+              推しメンのニックネーム (8文字以内 )
             </label>
             <Controller
               defaultValue={`${recommendedMemberNickname}`}

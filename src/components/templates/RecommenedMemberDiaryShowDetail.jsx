@@ -120,6 +120,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                     recommended_member_diary_show.data.attributes
                       .event_polaroid_count
                   }
+                  枚のチェキを撮影
                 </span>
               </p>
 

@@ -230,6 +230,7 @@ const DiaryNewForm = ({
                 focused
                 {...field}
                 sx={{ backgroundColor: '#fff', width: '50%' }}
+                InputProps={{ inputProps: { min: 0 } }}
                 type='number'
               />
             )}

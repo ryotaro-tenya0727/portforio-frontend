@@ -2,6 +2,7 @@
   background-color: rgb(255, 255, 255);
   margin: 0 auto;
   width: 95%;
+  max-width: 1000px;
   border-radius: 15px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   /* padding: 0px 15px 15px 15px; */
@@ -43,8 +44,6 @@
 
 @media (min-width: 700px){
 .diary_header_image{
-
-
   height: 200px;
   object-position: 50% 40%;
 }
@@ -54,7 +53,7 @@
 .diary_header_image{
 
   height: 240px;
-  object-position: 50% 20%;
+  object-position: 50% 25%;
 }
 }
 

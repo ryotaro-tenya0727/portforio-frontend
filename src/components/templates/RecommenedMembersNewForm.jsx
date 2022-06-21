@@ -2,11 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import GroupsIcon from '@mui/icons-material/Groups';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import form from './../../css/templates/form.module.css';
 
 const RecommenedMembersNewForm = () => {
+  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const navigate = useNavigate();
   const { useCreateRecommendedMembers } = useRecommendedMembersApi();
   const createRecommendedMember = useCreateRecommendedMembers();
@@ -36,7 +41,21 @@ const RecommenedMembersNewForm = () => {
     <>
       <ThemeProvider theme={theme}>
         <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
-          <h2 className={form.form_title}>推しメン登録</h2>
+          <img
+            src={`${imageDomain}/admin/diary_header-min.png`}
+            alt='picture'
+            className={form.form_header_image}
+          />
+          <p className={form.form_title}>
+            <LoyaltyIcon
+              sx={{
+                mb: '-4px',
+                mr: '7px',
+                color: '#ff6fc8',
+              }}
+            />
+            推しメン登録
+          </p>
           {formState.errors.recommended_member && (
             <>
               {formState.errors.recommended_member && (
@@ -77,7 +96,18 @@ const RecommenedMembersNewForm = () => {
             </>
           )}
           <br />
-          <label htmlFor='nickname'>推しメンのニックネーム (8文字以内)</label>
+          <label htmlFor='nickname'>
+            {' '}
+            <AutoAwesomeIcon
+              sx={{
+                fontSize: '20px',
+                mb: '-3px',
+                mr: '10px',
+                color: '#FF8C00',
+              }}
+            />
+            推しメンのニックネーム (8文字以内)
+          </label>
           <Controller
             defaultValue=''
             name='recommended_member.nickname'
@@ -100,7 +130,13 @@ const RecommenedMembersNewForm = () => {
           />
           <br />
           <br />
-          <label htmlFor='group'>推しメンの所属グループ (15文字以内)</label>
+          <label htmlFor='group'>
+            {' '}
+            <GroupsIcon
+              sx={{ fontSize: '22px', mb: '-5px', mr: '10px', color: 'red' }}
+            />
+            推しメンの所属グループ (15文字以内)
+          </label>
 
           <Controller
             defaultValue=''
@@ -124,7 +160,18 @@ const RecommenedMembersNewForm = () => {
           />
           <br />
           <br />
-          <label htmlFor='first_met_date'>初めて会った日</label>
+          <label htmlFor='first_met_date'>
+            {' '}
+            <VolunteerActivismIcon
+              sx={{
+                fontSize: '21px',
+                mb: '-3px',
+                mr: '7px',
+                color: '#FF1493',
+              }}
+            />
+            初めて会った日
+          </label>
 
           <Controller
             defaultValue=''

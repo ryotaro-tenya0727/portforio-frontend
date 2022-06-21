@@ -1,20 +1,54 @@
 .form{
   width: 70%;
-
+  max-width: 800px;
   margin: 0 auto;
 }
 
 @media (min-width: 0px) and (max-width: 700px) {
 .form{
   width: 90%;
-
   margin: 0 auto;
 }
 }
 
+
+
+.form_header_image{
+  margin: 20px 0px 20px 0px;
+  width: 100%;
+  object-fit: cover;
+  height: 150px;
+  object-position: 50% 0%;
+  border-radius: 5px;
+  border: 2px solid #ff96df;
+
+}
+
+@media (min-width: 500px) {
+.form_header_image{
+  height: 180px;
+  object-position: 50% 20%;
+  }
+}
+
+
+
+@media (min-width: 700px){
+.form_header_image{
+  height: 200px;
+  object-position: 50% 25%;
+}
+}
+
+
+
 .form_title{
   text-align: center;
+  font-weight: bold;
+  font-size: 25px;
 }
+
+
 
 .text_label{
   color: #000;
@@ -27,20 +61,29 @@
   font-weight: bold;
 }
 
+
+
 .submit_button{
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  background-color: #ff96df;
-  border-radius: 5px;
-  border: none;
-  padding: 20px 20px 20px 20px;
-  margin-left: 20px;
-  text-align: center;
   cursor: pointer;
-  color: #ffffff;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid;
+  padding: 18px 8px 18px 8px;
+  margin: 0px 0px 20px 0px;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  color: #ff66d1;
+  box-shadow: 2.7px 3.2px 2px 0.3px #938d90;
+  margin-top: 15px;
 }
 
 .submit_button:hover {
-  opacity: 0.7
+  background-color: rgba(255, 199, 227, 0.3)
+}
+
+.submit_button:active {
+  box-shadow: none;
 }
 
 .form_label{

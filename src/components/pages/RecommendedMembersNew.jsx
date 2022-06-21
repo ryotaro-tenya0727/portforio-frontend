@@ -6,6 +6,7 @@ import { RecommenedMembersNewForm } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { HomeBreadText } from './../atoms/atoms';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 const RecommenedMembersNew = () => {
   const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
@@ -23,7 +24,23 @@ const RecommenedMembersNew = () => {
       to: '/',
     },
     { title: 'マイページ', to: '/mypage' },
-    { title: '推しメン登録', to: '/recommended-members/new' },
+    {
+      title: (
+        <>
+          {' '}
+          <LoyaltyIcon
+            sx={{
+              fontSize: '19px',
+              mb: '-4px',
+              mr: '4px',
+              color: '#ff6fc8',
+            }}
+          />
+          推しメン登録ページ
+        </>
+      ),
+      to: '/recommended-members/new',
+    },
   ];
 
   return (
@@ -35,20 +52,16 @@ const RecommenedMembersNew = () => {
         ) : (
           <>
             <ReactQueryDevtools initialIsOpen={false} />
-
             <p>{data.data.attributes.name}さんログイン中</p>
             <BreadCrumbs breadcrumbs={breadcrumbs} />
-
             <RecommenedMembersNewForm />
           </>
         )
       ) : (
         <>
           <ReactQueryDevtools initialIsOpen={false} />
-
           <p>{user_data.data.attributes.name}さんログイン中</p>
           <BreadCrumbs breadcrumbs={breadcrumbs} />
-
           <RecommenedMembersNewForm />
         </>
       )}
