@@ -80,20 +80,11 @@ const RecommendedMembersList = () => {
               textAlign: 'center',
             }}
           >
-            <p
-              style={{
-                margin: '0 auto',
-                marginTop: '55px',
-                marginBottom: '30px',
-                width: '200px',
-                fontWeight: 'bold',
-                fontSize: '18px',
-              }}
-            >
-              推しメン情報ロード中
-            </p>
             <br />
-            <CircularProgress size={120} />
+            <CircularProgress
+              size={130}
+              sx={{ mt: '100px', color: '#ff7bd7' }}
+            />
           </div>
         ) : (
           <>

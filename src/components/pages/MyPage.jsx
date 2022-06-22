@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { useQueryClient } from 'react-query';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
-import { MyPageMenu } from './../templates/Templates';
+import { MyPageMenu, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { BreadCrumbs } from './../organisms/Organisms';
@@ -42,7 +42,7 @@ const MyPage = () => {
 
       {userData === undefined ? (
         isIdle || isLoading ? (
-          <p>load</p>
+          <Loading />
         ) : (
           <>
             <p>{data.data.attributes.name}さんログイン中</p>
