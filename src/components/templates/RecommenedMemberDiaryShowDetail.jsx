@@ -2,6 +2,7 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import diary from './../../css/templates/diary.module.css';
@@ -15,11 +16,22 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
     isIdle,
     isLoading,
   } = useShowRecommendedMemberDiary(diaryId);
-
+  // isIdle || isLoading
   return (
     <>
       {isIdle || isLoading ? (
-        <h2>日記ローディング中</h2>
+        <div
+          style={{
+            textAlign: 'center',
+          }}
+        >
+          <CircularProgress
+            size={130}
+            sx={{ mt: '150px', color: '#ff7bd7', mb: '20px' }}
+          />
+          <br />
+          <p style={{ fontSize: '22px' }}>ロード中</p>
+        </div>
       ) : (
         <>
           <div className={diary.diary_show_wrapper}>

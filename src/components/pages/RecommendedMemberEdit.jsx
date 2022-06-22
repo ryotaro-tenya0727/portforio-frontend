@@ -2,7 +2,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
 import { BreadCrumbs } from './../organisms/Organisms';
-import { RecommenedMemberEditForm } from './../templates/Templates';
+import { RecommenedMemberEditForm, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 
@@ -39,7 +39,7 @@ const RecommenedMemberEdit = () => {
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
       {user_data === undefined ? (
         isIdle || isLoading ? (
-          <p>load</p>
+          <Loading />
         ) : (
           <>
             <p>{data.data.attributes.name}さんログイン中</p>

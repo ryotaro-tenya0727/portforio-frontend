@@ -7,6 +7,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { LoginUserDiaryCard } from './../organisms/Organisms';
 import list from './../../css/templates/list.module.css';
@@ -73,14 +74,24 @@ const RecommendedMemberDiariesList = ({
       },
     },
   });
-
+  // isIdle || isLoading
   return (
     <div className={list.list}>
       <ReactQueryDevtools initialIsOpen={false} />
       <ThemeProvider theme={theme}>
         <h2>{recommendedMemberNickname}の日記一覧</h2>
         {isIdle || isLoading ? (
-          <h2>日記ローディング中</h2>
+          <div
+            style={{
+              textAlign: 'center',
+            }}
+          >
+            <br />
+            <CircularProgress
+              size={130}
+              sx={{ mt: '100px', color: '#ff7bd7' }}
+            />
+          </div>
         ) : (
           <>
             <div className={list.pagination_and_search_wrap}>

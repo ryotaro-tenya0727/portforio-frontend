@@ -3,7 +3,10 @@ import { useQueryClient } from 'react-query';
 
 import { HomeBreadText } from './../atoms/atoms';
 import { BreadCrumbs } from './../organisms/Organisms';
-import { RecommenedMemberDiaryEditForm } from './../templates/Templates';
+import {
+  RecommenedMemberDiaryEditForm,
+  Loading,
+} from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 
@@ -42,7 +45,7 @@ const RecommendedMemberDiaryEdit = () => {
 
       {userData === undefined ? (
         isIdle || isLoading ? (
-          <p>load</p>
+          <Loading />
         ) : (
           <>
             <p>{data.data.attributes.name}さんログイン中</p>

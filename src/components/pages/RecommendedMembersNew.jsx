@@ -2,7 +2,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { useQueryClient } from 'react-query';
 
 import { BreadCrumbs } from './../organisms/Organisms';
-import { RecommenedMembersNewForm } from './../templates/Templates';
+import { RecommenedMembersNewForm, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { HomeBreadText } from './../atoms/atoms';
@@ -48,7 +48,7 @@ const RecommenedMembersNew = () => {
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
       {user_data === undefined ? (
         isIdle || isLoading ? (
-          <p>load</p>
+          <Loading />
         ) : (
           <>
             <ReactQueryDevtools initialIsOpen={false} />

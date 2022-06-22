@@ -3,7 +3,10 @@ import { useQueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { BreadCrumbs } from './../organisms/Organisms';
-import { RecommenedMemberDiaryShowDetail } from './../templates/Templates';
+import {
+  RecommenedMemberDiaryShowDetail,
+  Loading,
+} from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { HomeBreadText } from './../atoms/atoms';
@@ -46,7 +49,7 @@ const RecommenedMemberDiaryShow = () => {
 
       {userData === undefined ? (
         isIdle || isLoading ? (
-          <p>load</p>
+          <Loading />
         ) : (
           <>
             <p>{data.data.attributes.name}さんログイン中</p>

@@ -2,7 +2,10 @@ import { useParams, useLocation, Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 
-import { RecommendedMemberDiariesList } from './../templates/Templates';
+import {
+  RecommendedMemberDiariesList,
+  Loading,
+} from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { BreadCrumbs } from './../organisms/Organisms';
@@ -39,7 +42,7 @@ const RecommenedMembersDiaries = () => {
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
       {userData === undefined ? (
         isIdle || isLoading ? (
-          <p>load</p>
+          <Loading />
         ) : (
           <>
             <p>{data.data.attributes.name}さんログイン中</p>

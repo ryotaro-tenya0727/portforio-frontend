@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { Button } from './../atoms/atoms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
@@ -79,11 +80,22 @@ const RecommenedMemberDiaryEditForm = ({
       `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
     );
   };
-
+  // isIdle || isLoading
   return (
     <>
       {isIdle || isLoading ? (
-        <h2>編集フォームローディング</h2>
+        <div
+          style={{
+            textAlign: 'center',
+          }}
+        >
+          <CircularProgress
+            size={130}
+            sx={{ mt: '150px', color: '#ff7bd7', mb: '20px' }}
+          />
+          <br />
+          <p style={{ fontSize: '22px' }}>ロード中</p>
+        </div>
       ) : (
         <>
           <ThemeProvider theme={theme}>

@@ -2,7 +2,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
 import { BreadCrumbs } from './../organisms/Organisms';
-import { DiaryNewForm } from './../templates/Templates';
+import { DiaryNewForm, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { HomeBreadText } from './../atoms/atoms';
@@ -40,7 +40,7 @@ const RecommenedMemberDiariesNew = () => {
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
       {user_data === undefined ? (
         isIdle || isLoading ? (
-          <p>load</p>
+          <Loading />
         ) : (
           <>
             <p>{data.data.attributes.name}さんログイン中</p>
