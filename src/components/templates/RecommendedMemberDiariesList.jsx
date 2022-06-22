@@ -60,7 +60,7 @@ const RecommendedMemberDiariesList = ({
     breakpoints: {
       values: {
         xs: 0,
-        sm: 855,
+        sm: 955,
         md: 1290,
         lg: 1400,
         xl: 1536,
