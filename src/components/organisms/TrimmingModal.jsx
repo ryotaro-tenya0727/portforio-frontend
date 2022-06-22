@@ -35,8 +35,8 @@ const TrimmingModal = ({
       unit: 'px', // Can be 'px' or '%'
       x: 20,
       y: 20,
-      width: 10,
-      height: 10,
+      width: 20,
+      height: 20,
       aspect: 1,
     }
   );
@@ -68,7 +68,7 @@ const TrimmingModal = ({
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-    paddingBottom: '64px',
+    paddingBottom: '69px',
     textAlign: 'center',
   };
 
@@ -282,7 +282,7 @@ const TrimmingModal = ({
       />
       <div className={form.images}>
         {firstImage !== null ? (
-          <div>
+          <div style={{ position: 'relative' }}>
             <button
               className={button.image_cancel_button}
               type='button'
@@ -302,8 +302,9 @@ const TrimmingModal = ({
           <SampleImageButton onClick={firstFileClick} />
         )}
         <br />
+        <br />
         {secondImage !== null ? (
-          <div>
+          <div style={{ position: 'relative' }}>
             <button
               className={button.image_cancel_button}
               type='button'

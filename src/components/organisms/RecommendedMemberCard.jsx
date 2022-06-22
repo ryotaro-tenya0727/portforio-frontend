@@ -7,6 +7,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { Button } from './../atoms/atoms';
 import button from './../../css/atoms/button.module.css';
@@ -80,7 +81,12 @@ const RecommendedMemberCard = ({
         </div>
         <div>
           {recommendedMemberId === undefined ? (
-            <p>推しメン作成中</p>
+            <div style={{ textAlign: 'center', padding: '0px 0px 2px 0px' }}>
+              <p style={{ marginBottom: '10px', fontWeight: 'bold' }}>
+                推しメン作成中
+              </p>
+              <CircularProgress size={60} />
+            </div>
           ) : (
             <div className={card.card_second_whole}>
               <div className={card.card_left_whole}>

@@ -6,6 +6,7 @@ import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { getUserUrl } from './../../urls/index';
@@ -40,7 +41,28 @@ const LoginUserInformation = () => {
   return (
     <>
       {loading ? (
-        <>ユーザー更新中</>
+        <div
+          style={{
+            textAlign: 'center',
+            verticalAlign: 'middle',
+          }}
+        >
+          <br />
+          <p
+            style={{
+              margin: '0 auto',
+              marginTop: '7%',
+              width: '200px',
+              fontWeight: 'bold',
+              fontSize: '18px',
+            }}
+          >
+            ユーザー情報ロード中
+          </p>
+          <br />
+          <br />
+          <CircularProgress size={90} />
+        </div>
       ) : (
         <div>
           <Card

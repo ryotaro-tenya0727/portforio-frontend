@@ -107,7 +107,7 @@ export const useRecommendedMemberDiariesApi = () => {
         // すべての処理が終了した際にキャッシュを更新する
         // APIから取得成功した場合は仮のデータから取得したデータに更新
         // 失敗した場合は旧データに更新
-        onSettled: () => {
+        onSettled: async () => {
           queryClient.invalidateQueries(queryKey);
         },
       }

@@ -5,6 +5,7 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { Button } from './../atoms/atoms';
 import button from './../../css/atoms/button.module.css';
@@ -98,7 +99,12 @@ const UserDiaryCard = ({
         </p>
         <div className={card.card_photo_list}>
           {diaryId === undefined ? (
-            <p>日記作成中</p>
+            <div style={{ textAlign: 'center', padding: '0px 0px 2px 0px' }}>
+              <p style={{ marginBottom: '10px', fontWeight: 'bold' }}>
+                日記作成中
+              </p>
+              <CircularProgress size={60} />
+            </div>
           ) : (
             <>
               {diaryImages.map((diaryImageUrl, index) => {
