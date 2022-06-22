@@ -35,8 +35,8 @@ const TrimmingModal = ({
       unit: 'px', // Can be 'px' or '%'
       x: 20,
       y: 20,
-      width: 20,
-      height: 20,
+      width: 40,
+      height: 40,
       aspect: 1,
     }
   );
@@ -364,7 +364,7 @@ const TrimmingModal = ({
             onClick={registerFirstImage}
             className={button.button_trimming}
           >
-            確定
+            トリミング
           </button>
         </Box>
       </Modal>

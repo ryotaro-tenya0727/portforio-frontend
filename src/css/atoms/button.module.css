@@ -57,10 +57,10 @@
 .image_cancel_button{
   cursor: pointer;
   background-color: #ff99c5;
-
   border: none;
+  border-radius: 5px;
   position: absolute;
-  top: -29px;
+  top: -25px;
 }
 
 
