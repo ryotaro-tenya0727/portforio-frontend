@@ -172,17 +172,29 @@ const DiaryNewForm = ({
             <LibraryMusicIcon
               sx={{ fontSize: '24px', mb: '-7px', mr: '10px', color: 'red' }}
             />
-            イベント名
+            イベント名 (25文字以内)
           </label>
           <Controller
             defaultValue=''
+            rules={{ maxLength: 25 }}
             name='diary.event_name'
             control={control}
             render={({ field }) => (
               <TextField
                 id='event_name'
                 label={
-                  <span className={form.text_label}>イベント名を入力</span>
+                  <span className={form.text_label}>
+                    {' '}
+                    <LibraryMusicIcon
+                      sx={{
+                        fontSize: '24px',
+                        mb: '-7px',
+                        mr: '10px',
+                        color: '#ff64db',
+                      }}
+                    />
+                    イベント名を入力
+                  </span>
                 }
                 color='primary'
                 focused
@@ -213,7 +225,18 @@ const DiaryNewForm = ({
               <TextField
                 id='event_date'
                 label={
-                  <span className={form.text_label}>イベントの日付を入力</span>
+                  <span className={form.text_label}>
+                    {' '}
+                    <CalendarMonthIcon
+                      sx={{
+                        fontSize: '24px',
+                        mb: '-5px',
+                        mr: '10px',
+                        color: '#ff64db',
+                      }}
+                    />
+                    イベントの日付を入力
+                  </span>
                 }
                 color='primary'
                 focused
@@ -235,17 +258,29 @@ const DiaryNewForm = ({
                 color: '#00AA00',
               }}
             />
-            イベント会場
+            イベント会場 (25文字以内)
           </label>
           <Controller
             defaultValue=''
+            rules={{ maxLength: 25 }}
             name='diary.event_venue'
             control={control}
             render={({ field }) => (
               <TextField
                 id='event_venue'
                 label={
-                  <span className={form.text_label}>イベント会場を入力</span>
+                  <span className={form.text_label}>
+                    {' '}
+                    <AccountBalanceIcon
+                      sx={{
+                        fontSize: '23px',
+                        mb: '-5px',
+                        mr: '10px',
+                        color: '#ff64db',
+                      }}
+                    />
+                    イベント会場を入力
+                  </span>
                 }
                 color='primary'
                 focused
@@ -277,6 +312,14 @@ const DiaryNewForm = ({
                 id='event_polaroid_count'
                 label={
                   <span className={form.text_label}>
+                    <PhotoCameraBackIcon
+                      sx={{
+                        fontSize: '23px',
+                        mb: '-5px',
+                        mr: '10px',
+                        color: '#ff64db',
+                      }}
+                    />
                     この日のチェキ数を入力
                   </span>
                 }
@@ -367,6 +410,18 @@ const DiaryNewForm = ({
           />
           {formState.errors.diary && (
             <div className={form.text_error}>
+              {formState.errors.diary.event_name && (
+                <>
+                  <br />
+                  <span>・「イベント名」の文字数を超過しています</span>
+                </>
+              )}
+              {formState.errors.diary.event_venue && (
+                <>
+                  <br />
+                  <span>・「イベント会場」の文字数を超過しています</span>
+                </>
+              )}
               {formState.errors.diary.event_polaroid_count && (
                 <>
                   <br />
@@ -395,7 +450,6 @@ const DiaryNewForm = ({
                   <span>・公開設定が未設定です。</span>
                 </>
               )}
-              <br />
             </div>
           )}
           <br />

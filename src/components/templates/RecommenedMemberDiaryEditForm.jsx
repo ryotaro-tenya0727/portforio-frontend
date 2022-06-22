@@ -5,6 +5,11 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import CircularProgress from '@mui/material/CircularProgress';
+import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 import { Button } from './../atoms/atoms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
@@ -18,6 +23,7 @@ const RecommenedMemberDiaryEditForm = ({
   recommendedMemberGroup,
   diaryId,
 }) => {
+  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const theme = createTheme({
     palette: {
       primary: {
@@ -100,19 +106,50 @@ const RecommenedMemberDiaryEditForm = ({
         <>
           <ThemeProvider theme={theme}>
             <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
-              <h1
-                className={form.form_title}
-              >{`${recommendedMemberNickname}との日記編集中`}</h1>
-              <label htmlFor='event_name'>イベント名</label>
+              <p className={form.form_title} style={{ marginTop: '20px' }}>
+                {' '}
+                <img
+                  src={`${imageDomain}/admin/diary_title-min.png`}
+                  alt='picture'
+                  width={30}
+                  style={{ margin: '5px 10px 2px 0px' }}
+                />
+                {`${recommendedMemberNickname}との日記編集中`}
+              </p>
+              <br />
+              <label htmlFor='event_name'>
+                {' '}
+                <LibraryMusicIcon
+                  sx={{
+                    fontSize: '24px',
+                    mb: '-7px',
+                    mr: '10px',
+                    color: 'red',
+                  }}
+                />
+                イベント名 (25文字以内)
+              </label>
               <Controller
                 defaultValue={`${diaryShow.event_name}`}
+                rules={{ maxLength: 25 }}
                 name='diary.event_name'
                 control={control}
                 render={({ field }) => (
                   <TextField
                     id='event_name'
                     label={
-                      <span className={form.text_label}>イベント名を入力</span>
+                      <span className={form.text_label}>
+                        {' '}
+                        <LibraryMusicIcon
+                          sx={{
+                            fontSize: '24px',
+                            mb: '-7px',
+                            mr: '10px',
+                            color: '#ff64db',
+                          }}
+                        />
+                        イベント名を入力
+                      </span>
                     }
                     color='primary'
                     focused
@@ -123,7 +160,18 @@ const RecommenedMemberDiaryEditForm = ({
               />
               <br />
               <br />
-              <label htmlFor='event_date'>イベントの日付</label>
+              <label htmlFor='event_date'>
+                {' '}
+                <CalendarMonthIcon
+                  sx={{
+                    fontSize: '24px',
+                    mb: '-5px',
+                    mr: '10px',
+                    color: '#3300FF',
+                  }}
+                />
+                イベントの日付
+              </label>
               <Controller
                 defaultValue=''
                 name='diary.event_date'
@@ -133,6 +181,14 @@ const RecommenedMemberDiaryEditForm = ({
                     id='event_date'
                     label={
                       <span className={form.text_label}>
+                        <CalendarMonthIcon
+                          sx={{
+                            fontSize: '24px',
+                            mb: '-5px',
+                            mr: '10px',
+                            color: '#ff64db',
+                          }}
+                        />{' '}
                         イベントの日付を入力
                       </span>
                     }
@@ -146,16 +202,36 @@ const RecommenedMemberDiaryEditForm = ({
               />
               <br />
               <br />
-              <label htmlFor='event_venue'>イベント会場</label>
+              <label htmlFor='event_venue'>
+                {' '}
+                <AccountBalanceIcon
+                  sx={{
+                    fontSize: '23px',
+                    mb: '-5px',
+                    mr: '10px',
+                    color: '#00AA00',
+                  }}
+                />
+                イベント会場 (25文字以内)
+              </label>
               <Controller
                 defaultValue={`${diaryShow.event_venue}`}
                 name='diary.event_venue'
+                rules={{ maxLength: 25 }}
                 control={control}
                 render={({ field }) => (
                   <TextField
                     id='event_venue'
                     label={
                       <span className={form.text_label}>
+                        <AccountBalanceIcon
+                          sx={{
+                            fontSize: '23px',
+                            mb: '-5px',
+                            mr: '10px',
+                            color: '#ff64db',
+                          }}
+                        />
                         イベント会場を入力
                       </span>
                     }
@@ -168,7 +244,18 @@ const RecommenedMemberDiaryEditForm = ({
               />
               <br />
               <br />
-              <label htmlFor='event_polaroid_count'>この日のチェキ枚数</label>
+              <label htmlFor='event_polaroid_count'>
+                {' '}
+                <PhotoCameraBackIcon
+                  sx={{
+                    fontSize: '23px',
+                    mb: '-5px',
+                    mr: '10px',
+                    color: '#FF8C00',
+                  }}
+                />
+                この日のチェキ枚数
+              </label>
               <Controller
                 defaultValue={`${diaryShow.event_polaroid_count}`}
                 name='diary.event_polaroid_count'
@@ -179,6 +266,14 @@ const RecommenedMemberDiaryEditForm = ({
                     id='event_polaroid_count'
                     label={
                       <span className={form.text_label}>
+                        <PhotoCameraBackIcon
+                          sx={{
+                            fontSize: '23px',
+                            mb: '-5px',
+                            mr: '10px',
+                            color: '#ff64db',
+                          }}
+                        />
                         この日のチェキ数を入力
                       </span>
                     }
@@ -271,6 +366,18 @@ const RecommenedMemberDiaryEditForm = ({
               />
               {formState.errors.diary && (
                 <div className={form.text_error}>
+                  {formState.errors.diary.event_name && (
+                    <>
+                      <br />
+                      <span>・「イベント名」の文字数を超過しています</span>
+                    </>
+                  )}
+                  {formState.errors.diary.event_venue && (
+                    <>
+                      <br />
+                      <span>・「イベント会場」の文字数を超過しています</span>
+                    </>
+                  )}
                   {formState.errors.diary.event_polaroid_count && (
                     <>
                       <br />

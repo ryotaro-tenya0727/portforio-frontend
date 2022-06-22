@@ -117,6 +117,14 @@ const RecommenedMembersNewForm = () => {
                 id='nickname'
                 label={
                   <span className={form.text_label}>
+                    <AutoAwesomeIcon
+                      sx={{
+                        fontSize: '20px',
+                        mb: '-3px',
+                        mr: '10px',
+                        color: '#ff64db',
+                      }}
+                    />
                     ここにニックネームを入力
                   </span>
                 }
@@ -147,6 +155,14 @@ const RecommenedMembersNewForm = () => {
                 id='group'
                 label={
                   <span className={form.text_label}>
+                    <GroupsIcon
+                      sx={{
+                        fontSize: '22px',
+                        mb: '-5px',
+                        mr: '10px',
+                        color: '#ff64db',
+                      }}
+                    />
                     ここに所属グループを入力
                   </span>
                 }
@@ -181,7 +197,18 @@ const RecommenedMembersNewForm = () => {
                 id='first_met_date'
                 type='date'
                 label={
-                  <span className={form.text_label}>推しメンと会った日</span>
+                  <span className={form.text_label}>
+                    {' '}
+                    <VolunteerActivismIcon
+                      sx={{
+                        fontSize: '21px',
+                        mb: '-3px',
+                        mr: '7px',
+                        color: '#ff64db',
+                      }}
+                    />
+                    推しメンと会った日
+                  </span>
                 }
                 color='primary'
                 focused
