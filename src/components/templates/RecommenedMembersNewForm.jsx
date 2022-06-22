@@ -37,6 +37,13 @@ const RecommenedMembersNewForm = () => {
     }
     navigate('/mypage');
   };
+
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -224,6 +231,7 @@ const RecommenedMembersNewForm = () => {
               type='submit'
               className={form.submit_button}
               value='この内容で登録'
+              onClick={returnTop}
             />
           </div>
         </form>

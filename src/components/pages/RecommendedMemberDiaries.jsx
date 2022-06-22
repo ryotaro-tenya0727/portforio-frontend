@@ -1,6 +1,7 @@
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 import {
   RecommendedMemberDiariesList,
@@ -33,7 +34,18 @@ const RecommenedMembersDiaries = () => {
     },
     { title: 'マイページ', to: '/mypage' },
     {
-      title: `${query.get('nickname')}の日記一覧`,
+      title: (
+        <>
+          <MenuBookIcon
+            sx={{
+              fontSize: '24px',
+              mb: '-6px',
+              mr: '7px',
+            }}
+          />
+          {`${query.get('nickname')}`}の日記一覧
+        </>
+      ),
     },
   ];
 

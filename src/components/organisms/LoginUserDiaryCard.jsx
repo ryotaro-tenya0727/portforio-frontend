@@ -6,6 +6,7 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import CircularProgress from '@mui/material/CircularProgress';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 import { Button } from './../atoms/atoms';
 import button from './../../css/atoms/button.module.css';
@@ -37,7 +38,16 @@ const UserDiaryCard = ({
         ) : (
           <div className={card.card_diary_button_list}>
             <Link to={showUrl}>
-              <Button className={button.button_card}>日記の詳細を見る</Button>
+              <Button className={button.button_card}>
+                <AppRegistrationIcon
+                  sx={{
+                    fontSize: '25px',
+                    mb: '-9.5px',
+                    mr: '3px',
+                  }}
+                />
+                日記の詳細を見る
+              </Button>
             </Link>
             <Link to={editUrl}>
               <Button className={button.button_card}>日記を編集する</Button>

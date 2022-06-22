@@ -1,5 +1,6 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 import { HomeBreadText } from './../atoms/atoms';
 import { BreadCrumbs } from './../organisms/Organisms';
@@ -32,7 +33,18 @@ const RecommendedMemberDiaryEdit = () => {
     },
     { title: 'マイページ', to: '/mypage' },
     {
-      title: `${query.get('nickname')}の日記一覧`,
+      title: (
+        <>
+          <MenuBookIcon
+            sx={{
+              fontSize: '24px',
+              mb: '-6px',
+              mr: '7px',
+            }}
+          />
+          {`${query.get('nickname')}`}の日記一覧
+        </>
+      ),
       to: `/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}?nickname=${query.get(
         'nickname'
       )}&group=${query.get('group')}`,

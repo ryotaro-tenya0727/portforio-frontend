@@ -8,6 +8,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import CircularProgress from '@mui/material/CircularProgress';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 import { LoginUserDiaryCard } from './../organisms/Organisms';
 import list from './../../css/templates/list.module.css';
@@ -79,7 +80,17 @@ const RecommendedMemberDiariesList = ({
     <div className={list.list}>
       <ReactQueryDevtools initialIsOpen={false} />
       <ThemeProvider theme={theme}>
-        <h2>{recommendedMemberNickname}の日記一覧</h2>
+        <h2>
+          <MenuBookIcon
+            sx={{
+              fontSize: '28px',
+              mb: '-4.5px',
+              mr: '10px',
+              color: '#ff6fc8',
+            }}
+          />
+          {recommendedMemberNickname}の日記一覧
+        </h2>
         {isIdle || isLoading ? (
           <div
             style={{
