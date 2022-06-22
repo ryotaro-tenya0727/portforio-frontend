@@ -341,8 +341,6 @@ const TrimmingModal = ({
               // 画像選択時
               onImageLoaded={(imageRef) => {
                 // console.log('画像選択');
-                console.log(imageRef.class);
-                // console.log(imageRef.width);
                 // <img ...>がimageRefに入る
                 // imageRef.width = '300px';
                 setImageRef(imageRef);
@@ -354,7 +352,6 @@ const TrimmingModal = ({
               }}
               // リサイズ後（マウス離したとき）
               onComplete={(cropConfig) => {
-                // console.log('リサイズ');
                 cropFirstImage(cropConfig);
               }}
               crossorigin='anonymous' // to avoid CORS-related problems

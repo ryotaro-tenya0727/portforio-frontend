@@ -44,14 +44,13 @@ const LoginUserInformation = () => {
         <div
           style={{
             textAlign: 'center',
-            verticalAlign: 'middle',
           }}
         >
-          <br />
           <p
             style={{
               margin: '0 auto',
-              marginTop: '7%',
+              marginTop: '55px',
+              marginBottom: '30px',
               width: '200px',
               fontWeight: 'bold',
               fontSize: '18px',
@@ -60,11 +59,11 @@ const LoginUserInformation = () => {
             ユーザー情報ロード中
           </p>
           <br />
-          <br />
-          <CircularProgress size={90} />
+          <CircularProgress size={120} />
         </div>
       ) : (
         <div>
+          <br />
           <Card
             className={card.login_user_card}
             sx={{
@@ -84,7 +83,7 @@ const LoginUserInformation = () => {
               />
               あなたのプロフィール
             </p>
-            <br />
+
             <img
               src={userData.user_image}
               alt='picture'

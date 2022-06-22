@@ -6,6 +6,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { RecommendedMemberCard } from './../organisms/Organisms';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
@@ -69,15 +70,34 @@ const RecommendedMembersList = () => {
       },
     },
   });
-
+  // isIdle || isLoading
   return (
     <div className={list.list}>
       <ThemeProvider theme={theme}>
-        <br />
         {isIdle || isLoading ? (
-          <p>推しメンローディング中</p>
+          <div
+            style={{
+              textAlign: 'center',
+            }}
+          >
+            <p
+              style={{
+                margin: '0 auto',
+                marginTop: '55px',
+                marginBottom: '30px',
+                width: '200px',
+                fontWeight: 'bold',
+                fontSize: '18px',
+              }}
+            >
+              推しメン情報ロード中
+            </p>
+            <br />
+            <CircularProgress size={120} />
+          </div>
         ) : (
           <>
+            <br />
             <div className={list.pagination_and_search_wrap}>
               <Pagination
                 color='primary'
