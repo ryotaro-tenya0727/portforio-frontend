@@ -1,11 +1,6 @@
 import React from 'react';
 import HomeIcon from '@mui/icons-material/Home';
-import AttachEmailIcon from '@mui/icons-material/AttachEmail';
-import AssessmentIcon from '@mui/icons-material/Assessment';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import AddCardIcon from '@mui/icons-material/AddCard';
-import BackupIcon from '@mui/icons-material/Backup';
-import SettingsIcon from '@mui/icons-material/Settings';
+
 import PersonIcon from '@mui/icons-material/Person';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -21,12 +16,12 @@ function Sidebar() {
   const SidebarData = [
     {
       title: 'ホーム',
-      icon: <HomeIcon />,
+      icon: <HomeIcon sx={{ color: '#ff94df' }} />,
       link: '/',
     },
     {
       title: 'マイページ',
-      icon: <PersonIcon />,
+      icon: <PersonIcon sx={{ color: '#ff94df' }} />,
       link: '/mypage',
     },
     {
@@ -55,7 +50,15 @@ function Sidebar() {
           )}
         </>
       ),
-      icon: <>{isAuthenticated ? <LogoutIcon /> : <LoginIcon />}</>,
+      icon: (
+        <>
+          {isAuthenticated ? (
+            <LogoutIcon sx={{ color: '#ff94df' }} />
+          ) : (
+            <LoginIcon sx={{ color: '#ff94df' }} />
+          )}
+        </>
+      ),
     },
     {
       title: '利用規約',
@@ -73,7 +76,13 @@ function Sidebar() {
     },
     {
       title: '公式アカウント',
-      icon: <TwitterIcon />,
+      icon: (
+        <TwitterIcon
+          sx={{
+            color: '#2C7CFF',
+          }}
+        />
+      ),
       link: 'https://twitter.com/idol_otaku_web',
     },
   ];
