@@ -10,13 +10,13 @@ import { DefaultLayout } from './components/Layout';
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <DefaultLayout>
-        <AuthGuardProvider>
+      <AuthGuardProvider>
+        <DefaultLayout>
           <BrowserRouter>
             <Routers />
           </BrowserRouter>
-        </AuthGuardProvider>
-      </DefaultLayout>
+        </DefaultLayout>
+      </AuthGuardProvider>
     </QueryClientProvider>
   );
 }
