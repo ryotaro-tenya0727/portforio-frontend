@@ -28,8 +28,7 @@ const Home = () => {
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <br />
       <button onClick={() => loginWithRedirect()}>ログイン</button>
-      <h1>Home</h1>
-      <h2>ログアウトボタン</h2>
+
       <button onClick={() => logout()}>ログアウト</button>
     </div>
   );

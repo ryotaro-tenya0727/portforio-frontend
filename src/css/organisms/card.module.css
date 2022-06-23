@@ -6,20 +6,43 @@
 
 
 }
+
+@media (min-width: 500px) {
 .card_second_whole{
   display: flex;
   margin: 0px 0px 0px 0px;
 
 }
 
+}
+
+
 .card_right_whole{
-  margin: 0px 0px 0px 0px;
+display: flex;
+justify-content: space-around
+}
+
+@media (min-width: 500px) {
+.card_right_whole{
+
   margin: 0 0 0 auto;
 }
 
-.card_left_whole{
-  width: 36.5%;
 }
+
+
+.card_left_whole{
+  width: 55%;
+}
+
+
+@media (min-width: 500px) {
+.card_left_whole{
+  width: 44.5%;
+}
+
+}
+
 .card_text{
   border-bottom: 2px dashed #ff8a8a;
   color: #000000;
