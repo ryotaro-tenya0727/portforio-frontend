@@ -9,7 +9,6 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
-import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 import { Button } from './../atoms/atoms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';

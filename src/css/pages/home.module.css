@@ -1,3 +1,10 @@
+.home{
+  /* width: 80%; */
+  margin: 0 auto;
+  max-width: 1000px;
+  position: relative
+}
+
 .menu_box{
     width: 100%;
     height: 100%;
@@ -6,11 +13,10 @@
 }
 
 
-
 .main_image{
   width: 100%;
   object-fit: cover;
-    height:250px;
+  height:350px;
   object-position: 50% 0%;
   max-width: 1000px;
    /* height:400px; */
@@ -22,7 +28,7 @@
 @media (min-width: 500px) {
 .main_image{
 
-  height:300px;
+  height:400px;
   object-position: 50% 0%;
   }
 }
@@ -31,7 +37,7 @@
 
 @media (min-width: 700px){
 .main_image{
-  height:500px;
+  height:470px;
   object-position: 50% 0%;
 }
 }
@@ -50,4 +56,166 @@
   height:580px;
   object-position: 50% 0%;
 }
+}
+
+.buttons{
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+
+.login_button{
+  position: relative;
+  background:#ffffff;
+  cursor: pointer;
+  width: 70px;
+  height:70px;
+  color:  #ff7bd7;
+  border: 2px solid #ff7bd7;
+  border-radius: 50%;
+  font-weight: bold;
+
+}
+
+.login_button:hover{
+  opacity: 0.7
+}
+
+@media (max-width: 700px) {
+.login_button{
+  width: 60px;
+  height:60px;
+
+}
+}
+
+
+.menu_button{
+  position: relative;
+  background:#ff7bd7;
+  cursor: pointer;
+  width: 70px;
+  height:70px;
+  border: none;
+  border-radius: 50%;
+}
+
+.menu_button:hover{
+  opacity: 0.7
+}
+
+@media (max-width: 700px) {
+.menu_button{
+  width: 60px;
+  height:60px;
+}
+
+}
+
+
+
+.menu_button .openbtn-area{
+  transition: all .4s;
+}
+
+.menu_button span{
+  display: inline-block;
+  transition: all .4s;
+  position: absolute;
+  left: 14px;
+  height: 3px;
+  border-radius: 2px;
+  background: #fff;
+  width: 45%;
+}
+
+
+.menu_button span:nth-of-type(1) {
+  left: 19px;
+  top:20px;
+
+}
+
+.menu_button span:nth-of-type(2) {
+  left: 19px;
+  top:28px;
+}
+
+.menu_button span:nth-of-type(3) {
+  left: 19px;
+  top:36px;
+}
+
+@media (max-width: 700px) {
+
+.menu_button span:nth-of-type(1) {
+  left: 17px;
+  top:16px;
+
+}
+
+.menu_button span:nth-of-type(2) {
+  left: 17px;
+  top:24px;
+}
+
+.menu_button span:nth-of-type(3) {
+  left: 17px;
+  top:32px;
+}
+
+}
+
+
+
+
+.active .openbtn-area{
+  transform: rotateY(-360deg);
+}
+
+.active span:nth-of-type(1) {
+    top: 20.5px;
+    left: 19px;
+    transform: translateY(6px) rotate(-135deg);
+    width: 45%;
+}
+
+.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.active span:nth-of-type(3){
+    top: 32px;
+    left: 18.5px;
+    transform: translateY(-6px) rotate(135deg);
+    width: 45%;
+}
+
+@media (max-width: 700px) {
+
+.active span:nth-of-type(1) {
+    top: 18.5px;
+    left: 17px;
+    transform: translateY(6px) rotate(-135deg);
+    width: 45%;
+}
+
+.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.active span:nth-of-type(3){
+    top: 30px;
+    left: 16.5px;
+    transform: translateY(-6px) rotate(135deg);
+    width: 45%;
+}
+
+}
+
+.about:hover{
+  opacity: 0.7
 }

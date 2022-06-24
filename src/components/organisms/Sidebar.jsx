@@ -5,6 +5,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 
 import Modal from '@mui/material/Modal';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -74,6 +75,7 @@ function Sidebar() {
 
       link: '/upload',
     },
+
     {
       title: '公式アカウント',
       icon: (
@@ -84,6 +86,16 @@ function Sidebar() {
         />
       ),
       link: 'https://twitter.com/idol_otaku_web',
+    },
+    {
+      title: '退会する',
+      icon: (
+        <>
+          <BrokenImageIcon />
+        </>
+      ),
+
+      link: '/upload',
     },
   ];
 
