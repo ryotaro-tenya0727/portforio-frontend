@@ -43,15 +43,7 @@ function Sidebar() {
                     size={30}
                   />
                 ) : (
-                  <p
-                    style={{ cursor: 'pointer' }}
-                    onClick={async () => {
-                      handleClick();
-                      loginWithRedirect();
-                    }}
-                  >
-                    ログイン
-                  </p>
+                  <p style={{ cursor: 'pointer' }}>ログイン</p>
                 ))}
               {isAuthenticated &&
                 (loading ? (
@@ -60,15 +52,7 @@ function Sidebar() {
                     size={30}
                   />
                 ) : (
-                  <p
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => {
-                      handleClick();
-                      logout();
-                    }}
-                  >
-                    ログアウト
-                  </p>
+                  <p style={{ cursor: 'pointer' }}>ログアウト</p>
                 ))}
             </>
           )}
@@ -83,6 +67,15 @@ function Sidebar() {
           )}
         </>
       ),
+      function: isAuthenticated
+        ? () => {
+            handleClick();
+            logout();
+          }
+        : () => {
+            handleClick();
+            loginWithRedirect();
+          },
     },
     {
       title: '利用規約',
@@ -127,7 +120,7 @@ function Sidebar() {
       <ul className='SidebarList'>
         {SidebarData.map((value, key) => {
           return (
-            <li
+            <div
               key={key}
               id={window.location.pathname === value.link ? 'active' : ''}
               className='row'
@@ -137,11 +130,12 @@ function Sidebar() {
                 } else if (value.link !== undefined) {
                   window.location.pathname = value.link;
                 }
+                value.function();
               }}
             >
               <div id='icon'>{value.icon}</div>
               <div id='title'>{value.title}</div>
-            </li>
+            </div>
           );
         })}
       </ul>
