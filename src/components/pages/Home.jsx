@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -5,8 +6,8 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CircularProgress from '@mui/material/CircularProgress';
 import HelpIcon from '@mui/icons-material/Help';
+import LoadingButton from '@mui/lab/LoadingButton';
 
-import { BreadCrumbs, Sidebar } from './../organisms/Organisms';
 import home from './../../css/pages/home.module.css';
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { useContext } from 'react';
@@ -15,6 +16,7 @@ const Home = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const { loginWithRedirect, logout, isAuthenticated, isLoading } = useAuth0();
   const { isOpenMenu, setOpenMenu } = useContext(AuthGuardContext);
+  const [loading, setLoading] = useState(true);
 
   return (
     <div className={home.home}>
