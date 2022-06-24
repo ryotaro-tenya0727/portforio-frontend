@@ -1,16 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CircularProgress from '@mui/material/CircularProgress';
 import HelpIcon from '@mui/icons-material/Help';
-import LoadingButton from '@mui/lab/LoadingButton';
 
 import home from './../../css/pages/home.module.css';
 import { AuthGuardContext } from './../../providers/AuthGuard';
-import { useContext } from 'react';
+import { GeneralDiaryList } from './../templates/Templates';
 
 const Home = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
@@ -29,7 +27,7 @@ const Home = () => {
           onClick={() => setOpenMenu(true)}
           className={`${home.menu_button} ${isOpenMenu ? home.active : ''}`}
         >
-          <div class='openbtn-area'>
+          <div className='openbtn-area'>
             <span></span>
             <span></span>
             <span></span>
@@ -106,6 +104,7 @@ const Home = () => {
           className={home.main_image}
         />
       </div>
+      <GeneralDiaryList />
     </div>
   );
 };

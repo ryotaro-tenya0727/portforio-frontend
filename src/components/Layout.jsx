@@ -6,7 +6,7 @@ import Modal from '@mui/material/Modal';
 
 export const DefaultLayout = ({ children }) => {
   const { isOpenMenu, setOpenMenu } = useContext(AuthGuardContext);
-  console.log(isOpenMenu);
+
   const handleClose = () => setOpenMenu(false);
   return (
     <>
