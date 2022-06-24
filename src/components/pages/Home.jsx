@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -5,8 +6,8 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CircularProgress from '@mui/material/CircularProgress';
 import HelpIcon from '@mui/icons-material/Help';
+import LoadingButton from '@mui/lab/LoadingButton';
 
-import { BreadCrumbs, Sidebar } from './../organisms/Organisms';
 import home from './../../css/pages/home.module.css';
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { useContext } from 'react';
@@ -15,6 +16,10 @@ const Home = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const { loginWithRedirect, logout, isAuthenticated, isLoading } = useAuth0();
   const { isOpenMenu, setOpenMenu } = useContext(AuthGuardContext);
+  const [loading, setLoading] = useState(false);
+  const handleClick = () => {
+    setLoading(true);
+  };
 
   return (
     <div className={home.home}>
@@ -39,26 +44,42 @@ const Home = () => {
         ) : (
           <>
             {' '}
-            {isAuthenticated || (
-              <button
-                style={{ cursor: 'pointer' }}
-                onClick={() => loginWithRedirect()}
-                className={home.login_button}
-              >
-                <LoginIcon sx={{ color: '#ff94df' }} />
-                <p style={{ fontSize: '10px' }}>ログイン</p>
-              </button>
-            )}
-            {isAuthenticated && (
-              <button
-                className={home.login_button}
-                style={{ cursor: 'pointer' }}
-                onClick={() => logout()}
-              >
-                <LogoutIcon sx={{ color: '#ff94df' }} />
-                <p style={{ fontSize: '10px' }}>ログアウト</p>
-              </button>
-            )}
+            {isAuthenticated ||
+              (loading ? (
+                <button className={home.login_button}>
+                  <CircularProgress sx={{ color: '#ff94df' }} />
+                </button>
+              ) : (
+                <button
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    handleClick();
+                    loginWithRedirect();
+                  }}
+                  className={home.login_button}
+                >
+                  <LoginIcon sx={{ color: '#ff94df' }} />
+                  <p style={{ fontSize: '10px' }}>ログイン</p>
+                </button>
+              ))}
+            {isAuthenticated &&
+              (loading ? (
+                <button className={home.login_button}>
+                  <CircularProgress sx={{ color: '#ff94df' }} />
+                </button>
+              ) : (
+                <button
+                  className={home.login_button}
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    handleClick();
+                    logout();
+                  }}
+                >
+                  <LogoutIcon sx={{ color: '#ff94df' }} />
+                  <p style={{ fontSize: '10px' }}>ログアウト</p>
+                </button>
+              ))}
             <br />
           </>
         )}

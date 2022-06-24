@@ -133,7 +133,7 @@ const RecommendedMembersList = () => {
                     <RecommendedMemberCard
                       key={index}
                       nickname={recommendedMember.attributes.nickname}
-                      group={recommendedMember.group}
+                      group={recommendedMember.attributes.group}
                       firstMetDate={recommendedMember.attributes.first_met_date}
                       recommendedMemberId={recommendedMember.attributes.id}
                       totalMemberPolaroidCount={

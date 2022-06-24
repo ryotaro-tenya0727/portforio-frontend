@@ -1,19 +1,21 @@
-import React from 'react';
+import { useState } from 'react';
 import HomeIcon from '@mui/icons-material/Home';
-
 import PersonIcon from '@mui/icons-material/Person';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
-
-import Modal from '@mui/material/Modal';
+import CircularProgress from '@mui/material/CircularProgress';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import './../../css/organisms/sidebar.css';
 
 function Sidebar() {
   const { loginWithRedirect, logout, isAuthenticated, isLoading } = useAuth0();
+  const [loading, setLoading] = useState(false);
+  const handleClick = () => {
+    setLoading(true);
+  };
   const SidebarData = [
     {
       title: 'ホーム',
@@ -34,19 +36,40 @@ function Sidebar() {
           ) : (
             <>
               {' '}
-              {isAuthenticated || (
-                <p
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => loginWithRedirect()}
-                >
-                  ログイン
-                </p>
-              )}
-              {isAuthenticated && (
-                <p style={{ cursor: 'pointer' }} onClick={() => logout()}>
-                  ログアウト
-                </p>
-              )}
+              {isAuthenticated ||
+                (loading ? (
+                  <CircularProgress
+                    sx={{ color: '#ff94df', ml: '5px', mt: '7px' }}
+                    size={30}
+                  />
+                ) : (
+                  <p
+                    style={{ cursor: 'pointer' }}
+                    onClick={async () => {
+                      handleClick();
+                      loginWithRedirect();
+                    }}
+                  >
+                    ログイン
+                  </p>
+                ))}
+              {isAuthenticated &&
+                (loading ? (
+                  <CircularProgress
+                    sx={{ color: '#ff94df', ml: '5px', mt: '5px' }}
+                    size={30}
+                  />
+                ) : (
+                  <p
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => {
+                      handleClick();
+                      logout();
+                    }}
+                  >
+                    ログアウト
+                  </p>
+                ))}
             </>
           )}
         </>

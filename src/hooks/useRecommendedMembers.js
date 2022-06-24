@@ -74,6 +74,7 @@ export const useRecommendedMembersApi = () => {
           return member;
         }
       });
+      console.log(previousData);
       return previousData;
     };
 
