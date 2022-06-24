@@ -3,8 +3,8 @@ import { useGeneralDiariesApi } from '../../hooks/useGeneralDiary';
 const GeneralDiaryList = () => {
   const { useGetGeneralDiaries } = useGeneralDiariesApi();
   const { data: generalDiaries, isLoading, isIdle } = useGetGeneralDiaries();
-  console.log(generalDiaries);
-  return <>一般日記</>;
+
+  return isIdle || isLoading ? <>ローディング</> : <>日記取得完了</>;
 };
 
 export default GeneralDiaryList;
