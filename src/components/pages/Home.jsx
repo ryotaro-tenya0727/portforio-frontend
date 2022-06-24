@@ -16,7 +16,10 @@ const Home = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const { loginWithRedirect, logout, isAuthenticated, isLoading } = useAuth0();
   const { isOpenMenu, setOpenMenu } = useContext(AuthGuardContext);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const handleClick = () => {
+    setLoading(true);
+  };
 
   return (
     <div className={home.home}>
@@ -41,26 +44,42 @@ const Home = () => {
         ) : (
           <>
             {' '}
-            {isAuthenticated || (
-              <button
-                style={{ cursor: 'pointer' }}
-                onClick={() => loginWithRedirect()}
-                className={home.login_button}
-              >
-                <LoginIcon sx={{ color: '#ff94df' }} />
-                <p style={{ fontSize: '10px' }}>ログイン</p>
-              </button>
-            )}
-            {isAuthenticated && (
-              <button
-                className={home.login_button}
-                style={{ cursor: 'pointer' }}
-                onClick={() => logout()}
-              >
-                <LogoutIcon sx={{ color: '#ff94df' }} />
-                <p style={{ fontSize: '10px' }}>ログアウト</p>
-              </button>
-            )}
+            {isAuthenticated ||
+              (loading ? (
+                <button className={home.login_button}>
+                  <CircularProgress sx={{ color: '#ff94df' }} />
+                </button>
+              ) : (
+                <button
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    handleClick();
+                    loginWithRedirect();
+                  }}
+                  className={home.login_button}
+                >
+                  <LoginIcon sx={{ color: '#ff94df' }} />
+                  <p style={{ fontSize: '10px' }}>ログイン</p>
+                </button>
+              ))}
+            {isAuthenticated &&
+              (loading ? (
+                <button className={home.login_button}>
+                  <CircularProgress sx={{ color: '#ff94df' }} />
+                </button>
+              ) : (
+                <button
+                  className={home.login_button}
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    handleClick();
+                    logout();
+                  }}
+                >
+                  <LogoutIcon sx={{ color: '#ff94df' }} />
+                  <p style={{ fontSize: '10px' }}>ログアウト</p>
+                </button>
+              ))}
             <br />
           </>
         )}
