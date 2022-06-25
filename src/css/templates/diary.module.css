@@ -1,6 +1,7 @@
 .diary_show_wrapper{
   background-color: rgb(255, 255, 255);
   margin: 0 auto;
+  margin-top: 30px;
   width: 95%;
   max-width: 800px;
   border-radius: 15px;

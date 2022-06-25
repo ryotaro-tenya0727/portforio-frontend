@@ -6,7 +6,7 @@ import { RecommenedMemberEditForm, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 
-import { HomeBreadText } from './../atoms/atoms';
+import { HomeBreadText, MenuButton } from './../atoms/atoms';
 
 const RecommenedMemberEdit = () => {
   const { recommended_member_uuid, recommended_member_id } = useParams();
@@ -42,7 +42,8 @@ const RecommenedMemberEdit = () => {
           <Loading />
         ) : (
           <>
-            <p>{data.data.attributes.name}さんログイン中</p>
+            <p>{data.name}さんログイン中</p>
+            <MenuButton />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
             <RecommenedMemberEditForm
               recommendedMemberUuid={recommended_member_uuid}
@@ -56,7 +57,8 @@ const RecommenedMemberEdit = () => {
         )
       ) : (
         <>
-          <p> {user_data.data.attributes.name}さんログイン中</p>
+          <p> {user_data.name}さんログイン中</p>
+          <MenuButton />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <RecommenedMemberEditForm
             recommendedMemberUuid={recommended_member_uuid}

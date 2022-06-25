@@ -104,9 +104,7 @@ const MyPageMenu = () => {
               value='3'
             />
           </Tabs>
-          <TabPanel value={'0'} sx={{ padding: 0 }}>
-            通知
-          </TabPanel>
+          <TabPanel value={'0'} sx={{ padding: 0 }}></TabPanel>
           <TabPanel value={'2'} sx={{ padding: 0 }}>
             <RecommendedMembersList />
           </TabPanel>

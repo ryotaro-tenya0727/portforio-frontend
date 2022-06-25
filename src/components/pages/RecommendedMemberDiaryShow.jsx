@@ -2,6 +2,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
+import { MenuButton } from './../atoms/atoms';
 import { BreadCrumbs } from './../organisms/Organisms';
 import {
   RecommenedMemberDiaryShowDetail,
@@ -10,7 +11,6 @@ import {
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { HomeBreadText } from './../atoms/atoms';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 const RecommenedMemberDiaryShow = () => {
   const { recommended_member_uuid, recommended_member_id, diary_id } =
@@ -35,18 +35,7 @@ const RecommenedMemberDiaryShow = () => {
     },
     { title: 'マイページ', to: '/mypage' },
     {
-      title: (
-        <>
-          <MenuBookIcon
-            sx={{
-              fontSize: '24px',
-              mb: '-6px',
-              mr: '7px',
-            }}
-          />
-          {`${query.get('recommended_member_nickname')}`}の日記一覧
-        </>
-      ),
+      title: <>{`${query.get('recommended_member_nickname')}`}の日記一覧</>,
       to: `/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}?nickname=${query.get(
         'recommended_member_nickname'
       )}&group=${query.get('group')}`,
@@ -64,14 +53,16 @@ const RecommenedMemberDiaryShow = () => {
           <Loading />
         ) : (
           <>
-            <p>{data.data.attributes.name}さんログイン中</p>
+            <p>{data.name}さんログイン中</p>
+            <MenuButton />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
             <RecommenedMemberDiaryShowDetail diaryId={diary_id} />
           </>
         )
       ) : (
         <>
-          <p> {userData.data.attributes.name}さんログイン中</p>
+          <p> {userData.name}さんログイン中</p>
+          <MenuButton />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <RecommenedMemberDiaryShowDetail diaryId={diary_id} />
         </>
