@@ -34,7 +34,7 @@ const RecommendedMemberDiariesList = ({
   const PER_PAGE = 2;
   let data =
     recommendedMemberDiaries === undefined
-      ? { length: 0 }
+      ? [{ length: 0 }]
       : recommendedMemberDiaries.data;
 
   // 検索
