@@ -173,7 +173,7 @@ const RecommenedMemberDiaryEditForm = ({
                 イベントの日付
               </label>
               <Controller
-                defaultValue=''
+                defaultValue={`${diaryShow.event_date}`}
                 name='diary.event_date'
                 control={control}
                 render={({ field }) => (

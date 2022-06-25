@@ -75,7 +75,7 @@ const UserDiaryCard = ({
         <p className={card.card_text}>
           <span className={card.card_text_property}>
             <CalendarMonthIcon
-              sx={{ fontSize: '19px', mb: '-2.4px', color: '#3300FF' }}
+              sx={{ fontSize: '20px', mb: '-3.3px', color: '#3300FF' }}
             />
             &nbsp;&nbsp;日付:
           </span>
@@ -85,7 +85,7 @@ const UserDiaryCard = ({
         <p className={card.card_text}>
           <span className={card.card_text_property}>
             <AccountBalanceIcon
-              sx={{ fontSize: '19px', mb: '-2.35px', color: '#00AA00' }}
+              sx={{ fontSize: '19px', mb: '-2.9px', color: '#00AA00' }}
             />
             &nbsp;&nbsp;会場:
           </span>
@@ -95,7 +95,7 @@ const UserDiaryCard = ({
         <p className={card.card_text}>
           <span className={card.card_text_property}>
             <PhotoCameraBackIcon
-              sx={{ fontSize: '19px', mb: '-2.5px', color: '#FF8C00' }}
+              sx={{ fontSize: '19px', mb: '-3.5px', color: '#FF8C00' }}
             />
             &nbsp;&nbsp;この日のチェキ数:
           </span>
@@ -126,7 +126,7 @@ const UserDiaryCard = ({
                     width='150'
                     height='150'
                     className={card.card_photo}
-                    style={{ border: '4px solid #ff99c5', borderRadius: '5px' }}
+                    style={{ border: '2px solid #ff99c5', borderRadius: '5px' }}
                   />
                 );
               })}

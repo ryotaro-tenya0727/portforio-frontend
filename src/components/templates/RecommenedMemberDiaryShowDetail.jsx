@@ -34,7 +34,12 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
         </div>
       ) : (
         <>
-          <div className={diary.diary_show_wrapper}>
+          <div
+            className={diary.diary_show_wrapper}
+            style={{
+              backgroundImage: `url(${imageDomain}/admin/diary-melody-min.png)`,
+            }}
+          >
             <div style={{ textAlign: 'center' }}>
               <img
                 src={`${imageDomain}/admin/diary_header-min.png`}
@@ -63,7 +68,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                 ）の日記
               </p>
 
-              <p className={diary.diary_sub_text_wrapper}>
+              <div className={diary.diary_sub_text_wrapper}>
                 <span className={diary.diary_sub_text}>
                   <span className={diary.diary_sub_text_property}>
                     <LibraryMusicIcon
@@ -79,7 +84,12 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                   </span>
                   {recommended_member_diary_show.data.attributes.event_name}
                 </span>
-              </p>
+                <img
+                  src={`${imageDomain}/admin/polaroid-camera-min.png`}
+                  alt='picture'
+                  className={diary.diary_polaroid_image}
+                />
+              </div>
               <p className={diary.diary_sub_text_wrapper}>
                 <span className={diary.diary_sub_text}>
                   <span className={diary.diary_sub_text_property}>
@@ -156,22 +166,20 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
 
               <p className={diary.diary_sub_text_wrapper}>
                 <span className={diary.diary_sub_text}>
-                  <span className={diary.diary_sub_text_property}>
+                  <p className={diary.diary_sub_text_property}>
                     印象に残った出来事の詳細：
-                  </span>
+                  </p>
 
-                  <p
+                  <span
                     style={{
                       lineHeight: '38px',
-                      marginTop: '10px',
-                      borderBottom: '3px',
                     }}
                   >
                     {
                       recommended_member_diary_show.data.attributes
                         .impressive_memory_detail
                     }
-                  </p>
+                  </span>
                 </span>
               </p>
 
@@ -183,7 +191,6 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                         key={index}
                         src={`${diaryImageUrl}`}
                         alt='picture'
-                        style={{ border: '4px solid #ff99c5' }}
                         className={diary.diary_image}
                       />
                     );

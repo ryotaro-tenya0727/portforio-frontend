@@ -10,6 +10,7 @@ export const usePagination = (data, itemsPerPage) => {
     // 終点
     const end = begin + itemsPerPage;
     // 切り取り
+
     return data.slice(begin, end);
   }
 

@@ -26,7 +26,9 @@ const RecommendedMembersList = () => {
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
   let data =
-    recommendedMembers === undefined ? { length: 0 } : recommendedMembers.data;
+    recommendedMembers === undefined
+      ? [{ length: 0 }]
+      : recommendedMembers.data;
 
   // 検索
   const [searchText, setSearchText] = useState('');
