@@ -8,7 +8,7 @@ import HelpIcon from '@mui/icons-material/Help';
 
 import { MenuButton } from './../atoms/atoms';
 import home from './../../css/pages/home.module.css';
-import { GeneralDiaryList } from './../templates/Templates';
+// import { GeneralDiaryList } from './../templates/Templates';
 
 const Home = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
