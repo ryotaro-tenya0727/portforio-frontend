@@ -8,10 +8,19 @@ import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useAuth0 } from '@auth0/auth0-react';
 
+import { userRepository } from './../../repositories/userRepository';
+
 import './../../css/organisms/sidebar.css';
 
 function Sidebar() {
-  const { loginWithRedirect, logout, isAuthenticated, isLoading } = useAuth0();
+  const {
+    loginWithRedirect,
+    logout,
+    isAuthenticated,
+    isLoading,
+    getAccessTokenSilently,
+  } = useAuth0();
+
   const [loading, setLoading] = useState(false);
   const handleClick = () => {
     setLoading(true);
@@ -32,7 +41,10 @@ function Sidebar() {
         <>
           {' '}
           {isLoading ? (
-            '認証確認中'
+            <CircularProgress
+              sx={{ color: '#ff94df', ml: '5px', mt: '5px' }}
+              size={30}
+            />
           ) : (
             <>
               {' '}
@@ -104,14 +116,41 @@ function Sidebar() {
       link: 'https://twitter.com/idol_otaku_web',
     },
     {
-      title: '退会する',
-      icon: (
+      title: (
         <>
-          <BrokenImageIcon />
+          {' '}
+          {isLoading ? (
+            <CircularProgress
+              sx={{ color: '#ff94df', ml: '5px', mt: '5px' }}
+              size={30}
+            />
+          ) : (
+            <>
+              {' '}
+              {isAuthenticated &&
+                (loading ? (
+                  <CircularProgress
+                    sx={{ color: '#ff94df', ml: '5px', mt: '5px' }}
+                    size={30}
+                  />
+                ) : (
+                  <p style={{ cursor: 'pointer' }}>退会する</p>
+                ))}
+            </>
+          )}
         </>
       ),
-
-      link: '/upload',
+      icon: <>{isAuthenticated && <BrokenImageIcon />}</>,
+      function:
+        isAuthenticated &&
+        (async () => {
+          if (window.confirm('退会してあなたのアカウントを削除しますか？')) {
+            handleClick();
+            const token = await getAccessTokenSilently();
+            await userRepository.deleteUser(token);
+            logout();
+          }
+        }),
     },
   ];
 
