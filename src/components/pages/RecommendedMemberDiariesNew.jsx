@@ -5,7 +5,7 @@ import { BreadCrumbs } from './../organisms/Organisms';
 import { DiaryNewForm, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
-import { HomeBreadText } from './../atoms/atoms';
+import { HomeBreadText, MenuButton } from './../atoms/atoms';
 
 const RecommenedMemberDiariesNew = () => {
   let { recommended_member_uuid, recommended_member_id } = useParams();
@@ -43,7 +43,8 @@ const RecommenedMemberDiariesNew = () => {
           <Loading />
         ) : (
           <>
-            <p>{data.data.attributes.name}さんログイン中</p>
+            <p>{data.name}さんログイン中</p>
+            <MenuButton />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
             <DiaryNewForm
               recommendedMemberId={recommended_member_id}
@@ -55,7 +56,8 @@ const RecommenedMemberDiariesNew = () => {
         )
       ) : (
         <>
-          <p> {user_data.data.attributes.name}さんログイン中</p>
+          <p> {user_data.name}さんログイン中</p>
+          <MenuButton />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <DiaryNewForm
             recommendedMemberId={recommended_member_id}

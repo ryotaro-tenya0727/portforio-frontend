@@ -5,7 +5,7 @@ import { BreadCrumbs } from './../organisms/Organisms';
 import { RecommenedMembersNewForm, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
-import { HomeBreadText } from './../atoms/atoms';
+import { HomeBreadText, MenuButton } from './../atoms/atoms';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 const RecommenedMembersNew = () => {
@@ -14,6 +14,7 @@ const RecommenedMembersNew = () => {
   const queryClient = useQueryClient();
   const user_data = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
+  console.log(data);
   const breadcrumbs = [
     {
       title: (
@@ -52,7 +53,8 @@ const RecommenedMembersNew = () => {
         ) : (
           <>
             <ReactQueryDevtools initialIsOpen={false} />
-            <p>{data.data.attributes.name}さんログイン中</p>
+            <p>{data.name}さんログイン中</p>
+            <MenuButton />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
             <RecommenedMembersNewForm />
           </>
@@ -60,7 +62,8 @@ const RecommenedMembersNew = () => {
       ) : (
         <>
           <ReactQueryDevtools initialIsOpen={false} />
-          <p>{user_data.data.attributes.name}さんログイン中</p>
+          <p>{user_data.name}さんログイン中</p>
+          <MenuButton />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <RecommenedMembersNewForm />
         </>

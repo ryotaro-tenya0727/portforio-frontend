@@ -10,7 +10,7 @@ import {
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 import { BreadCrumbs } from './../organisms/Organisms';
-import { Button, HomeBreadText } from './../atoms/atoms';
+import { Button, HomeBreadText, MenuButton } from './../atoms/atoms';
 
 import button from './../../css/atoms/button.module.css';
 
@@ -34,18 +34,7 @@ const RecommenedMembersDiaries = () => {
     },
     { title: 'マイページ', to: '/mypage' },
     {
-      title: (
-        <>
-          <MenuBookIcon
-            sx={{
-              fontSize: '24px',
-              mb: '-6px',
-              mr: '7px',
-            }}
-          />
-          {`${query.get('nickname')}`}の日記一覧
-        </>
-      ),
+      title: <>{`${query.get('nickname')}`}の日記一覧</>,
     },
   ];
 
@@ -57,7 +46,8 @@ const RecommenedMembersDiaries = () => {
           <Loading />
         ) : (
           <>
-            <p>{data.data.attributes.name}さんログイン中</p>
+            <p>{data.name}さんログイン中</p>
+            <MenuButton />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
 
             <Link
@@ -87,7 +77,8 @@ const RecommenedMembersDiaries = () => {
         )
       ) : (
         <>
-          <p> {userData.data.attributes.name}さんログイン中</p>
+          <p> {userData.name}さんログイン中</p>
+          <MenuButton />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
 
           <Link

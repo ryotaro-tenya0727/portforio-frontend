@@ -62,7 +62,7 @@
   display: flex;
   flex-flow: column;
   position: absolute;
-  top: 10px;
+  top: 30px;
   right: 10px;
 }
 
@@ -94,6 +94,7 @@
 
 
 .menu_button{
+  cursor: pointer;
   position: relative;
   background:#ff7bd7;
   cursor: pointer;
@@ -218,4 +219,23 @@
 
 .about:hover{
   opacity: 0.7
+}
+
+.about_text{
+  margin: 0px 0px 0px 7px;
+  font-size: 10px;
+}
+
+@media (min-width: 700px) {
+.about_text{
+  margin: 0px 0px 0px 6px;
+  font-size: 13px;
+}
+}
+
+@media (min-width: 900px) {
+.about_text{
+  margin: 0px 0px 0px 3px;
+  font-size: 17px;
+}
 }

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginIcon from '@mui/icons-material/Login';
@@ -6,14 +6,13 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import CircularProgress from '@mui/material/CircularProgress';
 import HelpIcon from '@mui/icons-material/Help';
 
+import { MenuButton } from './../atoms/atoms';
 import home from './../../css/pages/home.module.css';
-import { AuthGuardContext } from './../../providers/AuthGuard';
 import { GeneralDiaryList } from './../templates/Templates';
 
 const Home = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const { loginWithRedirect, logout, isAuthenticated, isLoading } = useAuth0();
-  const { isOpenMenu, setOpenMenu } = useContext(AuthGuardContext);
   const [loading, setLoading] = useState(false);
   const handleClick = () => {
     setLoading(true);
@@ -22,18 +21,7 @@ const Home = () => {
   return (
     <div className={home.home}>
       <div className={home.buttons}>
-        <button
-          style={{ cursor: 'pointer', float: 'right' }}
-          onClick={() => setOpenMenu(true)}
-          className={`${home.menu_button} ${isOpenMenu ? home.active : ''}`}
-        >
-          <div className='openbtn-area'>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <p style={{ marginTop: '34px', color: 'white' }}>Menu</p>
-        </button>
+        <MenuButton />
         <br />
         {isLoading ? (
           <button className={home.login_button}>
@@ -86,11 +74,11 @@ const Home = () => {
           <br />
           <span
             style={{
-              margin: '10px 0px 0px 3px',
               color: '#fff',
               fontWeight: 'bold',
               writingMode: 'vertical-rl',
             }}
+            className={home.about_text}
           >
             ABOUT&emsp;推し♡だいありー
           </span>
@@ -104,7 +92,7 @@ const Home = () => {
           className={home.main_image}
         />
       </div>
-      <GeneralDiaryList />
+      {/* <GeneralDiaryList /> */}
     </div>
   );
 };

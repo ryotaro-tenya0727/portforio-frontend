@@ -8,7 +8,16 @@ const BreadCrumbs = ({ breadcrumbs }) => {
 
   return (
     <>
-      <Breadcrumbs aria-label='breadcrumb' sx={{ pt: 1, fontWeight: 'bold' }}>
+      <Breadcrumbs
+        aria-label='breadcrumb'
+        sx={{
+          pt: 1,
+          fontWeight: 'bold',
+          '@media screen and (max-width:800px)': {
+            fontSize: '12px',
+          },
+        }}
+      >
         {breadcrumbs.map((item, i) => (
           <li key={i}>
             {i !== length - 1 ? (
@@ -24,8 +33,5 @@ const BreadCrumbs = ({ breadcrumbs }) => {
     </>
   );
 };
-// {
-//   index > 0 && <> / </>;
-// }
 
 export default BreadCrumbs;
