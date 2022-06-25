@@ -401,7 +401,7 @@ const TrimmingModal = ({
             onClick={registerSecondImage}
             className={button.button_trimming}
           >
-            確定
+            トリミングする
           </button>
         </Box>
       </Modal>

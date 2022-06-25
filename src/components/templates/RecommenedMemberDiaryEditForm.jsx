@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -288,7 +289,7 @@ const RecommenedMemberDiaryEditForm = ({
               <br />
               <br />
               <label htmlFor='impressive_memory'>
-                印象に残った出来事 (30文字以内)
+                印象に残った出来事 (30文字以内。)
               </label>
               <Controller
                 defaultValue={`${diaryShow.impressive_memory}`}
