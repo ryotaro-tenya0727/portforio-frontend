@@ -121,7 +121,7 @@ const RecommendedMembersList = () => {
                   className={list.member_search_form}
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
-                  placeHolder={'推しメンの名前で検索'}
+                  placeholder={'推しメンの名前で検索'}
                 />
               </div>
             </div>
