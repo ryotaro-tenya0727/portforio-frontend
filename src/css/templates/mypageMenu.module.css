@@ -6,17 +6,14 @@
 }
 
 .menu_text{
-
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-size: 10px;
-
 }
 
 @media (min-width: 500px) {
 .menu_text{
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-size: 12px;
-
 }
 }
 
@@ -24,7 +21,6 @@
 .menu_text{
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-size: 13px;
-
 }
 }
 
@@ -32,13 +28,8 @@
 .menu_text{
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-size: 14px;
-
 }
 }
-
-
-
-
 
 .sakura {
   position: absolute;

@@ -11,6 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { RecommendedMemberCard } from './../organisms/Organisms';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { usePagination } from './../../hooks/usePagination';
+
 import list from './../../css/templates/list.module.css';
 
 const RecommendedMembersList = () => {

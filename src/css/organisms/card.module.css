@@ -11,11 +11,8 @@
 .card_second_whole{
   display: flex;
   margin: 0px 0px 0px 0px;
-
 }
-
 }
-
 
 .card_right_whole{
 display: flex;
@@ -24,23 +21,18 @@ justify-content: space-around
 
 @media (min-width: 500px) {
 .card_right_whole{
-
   margin: 0 0 0 auto;
 }
-
 }
-
 
 .card_left_whole{
   width: 55%;
 }
 
-
 @media (min-width: 500px) {
 .card_left_whole{
   width: 44.5%;
 }
-
 }
 
 .card_text{
@@ -49,19 +41,16 @@ justify-content: space-around
   margin: 0px 0px 15px 0px;
   padding: 0px 0px 10px 0px;
   font-weight: bold;
-
 }
 
 .card_text_property{
   color: #ff6fc8;
   font-weight: bold;
 }
-.card_photo_list{
 
+.card_photo_list{
   display : flex;
   justify-content: space-around;
-
-
 }
 .card_diary_button_list{
   margin: 0px 0px 10px -10px;
@@ -76,7 +65,6 @@ justify-content: space-around
   background-position: top -10px left -85px;
   background-size: 400px;
   background-repeat: no-repeat;
-
 }
 
 @media (max-width: 900px) {

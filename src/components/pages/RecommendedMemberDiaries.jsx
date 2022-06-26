@@ -1,7 +1,6 @@
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 import {
   RecommendedMemberDiariesList,

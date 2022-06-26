@@ -9,6 +9,7 @@ import MonochromePhotosIcon from '@mui/icons-material/MonochromePhotos';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
 import { RecommendedMembersList, LoginUserInformation } from './Templates';
+
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
 
 const MyPageMenu = () => {

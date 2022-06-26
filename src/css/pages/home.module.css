@@ -12,17 +12,12 @@
   color: #fff;
 }
 
-
 .main_image{
   width: 100%;
   object-fit: cover;
   height:350px;
   object-position: 50% 0%;
   max-width: 1000px;
-   /* height:400px; */
-  /* height: 150px; */
-  /* object-position: 50% 0%; */
-
 }
 
 @media (min-width: 500px) {
@@ -32,8 +27,6 @@
   object-position: 50% 0%;
   }
 }
-
-
 
 @media (min-width: 700px){
 .main_image{
@@ -66,7 +59,6 @@
   right: 10px;
 }
 
-
 .login_button{
   position: relative;
   background:#ffffff;
@@ -78,7 +70,6 @@
   border-radius: 50%;
   font-weight: bold;
   margin-bottom: 15px;
-
 }
 
 .login_button:hover{
@@ -92,7 +83,6 @@
 
 }
 }
-
 
 .menu_button{
   cursor: pointer;
@@ -114,10 +104,7 @@
   width: 60px;
   height:60px;
 }
-
 }
-
-
 
 .menu_button .openbtn-area{
   transition: all .4s;
@@ -133,7 +120,6 @@
   background: #fff;
   width: 45%;
 }
-
 
 .menu_button span:nth-of-type(1) {
   left: 19px;
@@ -156,7 +142,6 @@
 .menu_button span:nth-of-type(1) {
   left: 17px;
   top:16px;
-
 }
 
 .menu_button span:nth-of-type(2) {
@@ -168,11 +153,7 @@
   left: 17px;
   top:32px;
 }
-
 }
-
-
-
 
 .active .openbtn-area{
   transform: rotateY(-360deg);
@@ -215,7 +196,6 @@
     transform: translateY(-6px) rotate(135deg);
     width: 45%;
 }
-
 }
 
 .about:hover{

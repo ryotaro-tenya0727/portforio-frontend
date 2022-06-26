@@ -1,12 +1,11 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
+import { HomeBreadText, MenuButton } from './../atoms/atoms';
 import { BreadCrumbs } from './../organisms/Organisms';
 import { RecommenedMemberEditForm, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
-
-import { HomeBreadText, MenuButton } from './../atoms/atoms';
 
 const RecommenedMemberEdit = () => {
   const { recommended_member_uuid, recommended_member_id } = useParams();

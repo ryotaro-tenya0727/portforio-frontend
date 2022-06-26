@@ -67,8 +67,6 @@
   }
 }
 
-
-
 @media (min-width: 700px){
 .diary_header_image{
   height: 200px;
@@ -239,7 +237,6 @@ font-size: 17px;
 }
 }
 
-
 .diary_sub_text_property{
   font-weight: bold;
   color:#000000;
@@ -256,17 +253,13 @@ font-size: 17px;
   width: 130px;
   border-radius: 5px;
   border: 2px solid #ff99c5;
-
 }
 
 @media (min-width: 500px) {
   .diary_image{
   width: 150px;
-
   }
 }
-
-
 
 @media (min-width: 700px){
   .diary_image{

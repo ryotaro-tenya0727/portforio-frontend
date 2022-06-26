@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from '@mui/material/Card';
-import card from './../../css/organisms/card.module.css';
 import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
@@ -10,6 +9,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { getUserUrl } from './../../urls/index';
+
+import card from './../../css/organisms/card.module.css';
 
 const LoginUserInformation = () => {
   const { accessToken } = useContext(AuthGuardContext);

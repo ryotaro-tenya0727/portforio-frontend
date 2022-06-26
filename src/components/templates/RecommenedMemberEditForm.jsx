@@ -8,10 +8,10 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 
 import { Button } from './../atoms/atoms';
-import form from './../../css/templates/form.module.css';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 
 import button from './../../css/atoms/button.module.css';
+import form from './../../css/templates/form.module.css';
 
 const RecommenedMemberEditForm = ({
   recommendedMemberUuid,

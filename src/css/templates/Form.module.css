@@ -11,8 +11,6 @@
 }
 }
 
-
-
 .form_header_image{
   margin: 20px 0px 20px 0px;
   width: 100%;
@@ -31,8 +29,6 @@
   }
 }
 
-
-
 @media (min-width: 700px){
 .form_header_image{
   height: 200px;
@@ -40,15 +36,11 @@
 }
 }
 
-
-
 .form_title{
   text-align: center;
   font-weight: bold;
   font-size: 25px;
 }
-
-
 
 .text_label{
   color: #000;
@@ -60,8 +52,6 @@
   color: rgb(255, 119, 119);
   font-weight: bold;
 }
-
-
 
 .submit_button{
   cursor: pointer;
@@ -101,13 +91,9 @@
 
 @media (max-width: 500px) {
   .images {
-
     display: flex;
     flex-direction:column;
     /*コレ*/align-items: center;
-
-
-
   }
 }
 
