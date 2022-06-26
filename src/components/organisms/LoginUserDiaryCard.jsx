@@ -8,6 +8,7 @@ import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import CircularProgress from '@mui/material/CircularProgress';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 import { Button } from './../atoms/atoms';
 import button from './../../css/atoms/button.module.css';
@@ -121,7 +122,7 @@ const UserDiaryCard = ({
             <>
               {diaryImages.map((diaryImageUrl, index) => {
                 return (
-                  <Zoom>
+                  <Zoom zoomMargin={40}>
                     <img
                       key={index}
                       src={`${diaryImageUrl}`}

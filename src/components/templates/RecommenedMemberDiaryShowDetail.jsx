@@ -3,6 +3,8 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import CircularProgress from '@mui/material/CircularProgress';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import diary from './../../css/templates/diary.module.css';
@@ -16,6 +18,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
     isIdle,
     isLoading,
   } = useShowRecommendedMemberDiary(diaryId);
+  console.log(recommended_member_diary_show);
   // isIdle || isLoading
   return (
     <>
@@ -187,12 +190,14 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                 {recommended_member_diary_show.data.attributes.diary_images.map(
                   (diaryImageUrl, index) => {
                     return (
-                      <img
-                        key={index}
-                        src={`${diaryImageUrl}`}
-                        alt='picture'
-                        className={diary.diary_image}
-                      />
+                      <Zoom zoomMargin={40}>
+                        <img
+                          key={index}
+                          src={`${diaryImageUrl}`}
+                          alt='picture'
+                          className={diary.diary_image}
+                        />
+                      </Zoom>
                     );
                   }
                 )}
