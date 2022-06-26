@@ -17,6 +17,7 @@
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.31.3",
     "react-image-crop": "8.6.12",
+    "react-medium-image-zoom": "^4.4.3",
     "react-query": "^3.39.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",

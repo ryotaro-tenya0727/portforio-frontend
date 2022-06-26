@@ -7,6 +7,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import CircularProgress from '@mui/material/CircularProgress';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import Zoom from 'react-medium-image-zoom';
 
 import { Button } from './../atoms/atoms';
 import button from './../../css/atoms/button.module.css';
@@ -120,15 +121,20 @@ const UserDiaryCard = ({
             <>
               {diaryImages.map((diaryImageUrl, index) => {
                 return (
-                  <img
-                    key={index}
-                    src={`${diaryImageUrl}`}
-                    alt='picture'
-                    width='150'
-                    height='150'
-                    className={card.card_photo}
-                    style={{ border: '2px solid #ff99c5', borderRadius: '5px' }}
-                  />
+                  <Zoom>
+                    <img
+                      key={index}
+                      src={`${diaryImageUrl}`}
+                      alt='picture'
+                      width='150'
+                      height='150'
+                      className={card.card_photo}
+                      style={{
+                        border: '2px solid #ff99c5',
+                        borderRadius: '5px',
+                      }}
+                    />
+                  </Zoom>
                 );
               })}
             </>
