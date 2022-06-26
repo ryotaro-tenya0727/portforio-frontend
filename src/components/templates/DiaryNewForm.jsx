@@ -33,6 +33,13 @@ const DiaryNewForm = ({
     reValidateMode: 'onChange',
   });
 
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   const { useCreateRecommendedMemberDiaries } =
     useRecommendedMemberDiariesApi();
 
@@ -78,6 +85,7 @@ const DiaryNewForm = ({
       navigate(
         `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
       );
+      returnTop();
       return;
     }
 
@@ -87,6 +95,7 @@ const DiaryNewForm = ({
     navigate(
       `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
     );
+    returnTop();
   };
 
   return (

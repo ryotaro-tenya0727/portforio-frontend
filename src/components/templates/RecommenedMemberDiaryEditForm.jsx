@@ -94,6 +94,7 @@ const RecommenedMemberDiaryEditForm = ({
     navigate(
       `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
     );
+    returnTop();
   };
   // isIdle || isLoading
   return (
