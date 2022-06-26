@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
@@ -6,12 +7,15 @@ import PaginationItem from '@mui/material/PaginationItem';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import CircularProgress from '@mui/material/CircularProgress';
 
+import { Button } from './../atoms/atoms';
 import { RecommendedMemberCard } from './../organisms/Organisms';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { usePagination } from './../../hooks/usePagination';
 
+import button from './../../css/atoms/button.module.css';
 import list from './../../css/templates/list.module.css';
 
 const RecommendedMembersList = () => {
@@ -23,6 +27,12 @@ const RecommendedMembersList = () => {
     isIdle,
   } = useGetRecommendedMembers();
 
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   // ページネーション
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
@@ -53,7 +63,7 @@ const RecommendedMembersList = () => {
     setPage(p);
     _DATA.jump(p);
   };
-
+  console.log(_DATA.currentData().length);
   const theme = createTheme({
     breakpoints: {
       values: {
@@ -128,7 +138,35 @@ const RecommendedMembersList = () => {
                 />
               </div>
             </div>
-
+            {_DATA.currentData().length === 0 && (
+              <>
+                <div style={{ textAlign: 'center', marginTop: '40px' }}>
+                  現在推しメンが登録されていません。
+                  <p>
+                    {' '}
+                    <Link to='/recommended-members/new'>
+                      <Button
+                        className={button.recommended_and_diary_button}
+                        onClick={returnTop}
+                      >
+                        <LoyaltyIcon
+                          sx={{
+                            fontSize: '20px',
+                            mb: '-3.5px',
+                            color: '#ff6fc8',
+                            '@media screen and (max-width:700px)': {
+                              fontSize: '15.5px',
+                              ml: -2,
+                            },
+                          }}
+                        />
+                        推しメン登録ページへ
+                      </Button>
+                    </Link>
+                  </p>
+                </div>
+              </>
+            )}
             <Grid container spacing={3}>
               {_DATA.currentData().map((recommendedMember, index) => {
                 return (

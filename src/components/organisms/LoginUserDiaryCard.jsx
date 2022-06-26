@@ -26,6 +26,12 @@ const LoginUserDiaryCard = ({
   editUrl,
 }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card
@@ -40,7 +46,7 @@ const LoginUserDiaryCard = ({
         ) : (
           <div className={card.card_diary_button_list}>
             <Link to={showUrl}>
-              <Button className={button.button_card}>
+              <Button className={button.button_card} onClick={returnTop}>
                 <AppRegistrationIcon
                   sx={{
                     fontSize: '25px',
@@ -52,7 +58,9 @@ const LoginUserDiaryCard = ({
               </Button>
             </Link>
             <Link to={editUrl}>
-              <Button className={button.button_card}>日記を編集する</Button>
+              <Button className={button.button_card} onClick={returnTop}>
+                日記を編集する
+              </Button>
             </Link>
             <img
               src={`${imageDomain}/admin/diary_card_image.png`}

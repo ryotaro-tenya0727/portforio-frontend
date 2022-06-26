@@ -16,7 +16,7 @@ const MyPage = () => {
     useUsersApi();
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData('users');
-  const { data, isLoading, isIdle } = useGetAccesstokenAndCreateUser();
+  const { data } = useGetAccesstokenAndCreateUser();
   const breadcrumbs = [
     {
       title: (

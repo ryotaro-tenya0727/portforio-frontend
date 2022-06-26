@@ -14,7 +14,6 @@ const RecommenedMembersNew = () => {
   const queryClient = useQueryClient();
   const user_data = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
-  console.log(data);
   const breadcrumbs = [
     {
       title: (

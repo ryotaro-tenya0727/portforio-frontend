@@ -10,6 +10,7 @@ const Footer = () => {
   };
   return (
     <>
+      <br />
       <div className={footer.wrapper}>
         <div className={footer.links}>
           <Link

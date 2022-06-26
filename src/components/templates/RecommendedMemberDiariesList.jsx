@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -9,11 +10,15 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import CircularProgress from '@mui/material/CircularProgress';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
+import { Button } from './../atoms/atoms';
 import { LoginUserDiaryCard } from './../organisms/Organisms';
 import list from './../../css/templates/list.module.css';
 import { usePagination } from './../../hooks/usePagination';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
+
+import button from './../../css/atoms/button.module.css';
 
 const RecommendedMemberDiariesList = ({
   recommendedMemberId,
@@ -28,6 +33,13 @@ const RecommendedMemberDiariesList = ({
     isIdle,
     isLoading,
   } = useGetRecommendedMemberDiaries(recommendedMemberId);
+
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   // ページネーション
   let [page, setPage] = useState(1);
@@ -141,6 +153,37 @@ const RecommendedMemberDiariesList = ({
                 />
               </div>
             </div>
+            {_DATA.currentData().length === 0 && (
+              <>
+                <div style={{ textAlign: 'center', marginTop: '40px' }}>
+                  現在{recommendedMemberNickname}との日記が登録されていません。
+                  <p>
+                    {' '}
+                    <Link
+                      to={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/new?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
+                    >
+                      <Button
+                        className={button.recommended_and_diary_button}
+                        onClick={returnTop}
+                      >
+                        <LoyaltyIcon
+                          sx={{
+                            fontSize: '20px',
+                            mb: '-3.5px',
+                            color: '#ff6fc8',
+                            '@media screen and (max-width:700px)': {
+                              fontSize: '15.5px',
+                              ml: -2,
+                            },
+                          }}
+                        />
+                        日記を追加する
+                      </Button>
+                    </Link>
+                  </p>
+                </div>
+              </>
+            )}
             <Grid container spacing={3}>
               {_DATA.currentData().map((diary, index) => {
                 return (

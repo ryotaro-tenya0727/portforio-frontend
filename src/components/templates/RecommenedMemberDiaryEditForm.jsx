@@ -41,6 +41,12 @@ const RecommenedMemberDiaryEditForm = ({
     reValidateMode: 'onChange',
   });
 
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   const {
     useShowRecommendedMemberDiary,
     usePutRecommendedMemberDiary,
@@ -71,9 +77,11 @@ const RecommenedMemberDiaryEditForm = ({
       )
     ) {
       deleteRecommendedMemberDiary.mutate();
+
       navigate(
         `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
       );
+      returnTop();
     }
   };
 
