@@ -29,7 +29,6 @@ const Home = () => {
           </button>
         ) : (
           <>
-            {' '}
             {isAuthenticated ||
               (loading ? (
                 <button className={home.login_button}>
@@ -50,9 +49,11 @@ const Home = () => {
               ))}
             {isAuthenticated &&
               (loading ? (
-                <button className={home.login_button}>
-                  <CircularProgress sx={{ color: '#ff94df' }} />
-                </button>
+                <>
+                  <button className={home.login_button}>
+                    <CircularProgress sx={{ color: '#ff94df' }} />
+                  </button>
+                </>
               ) : (
                 <button
                   className={home.login_button}
@@ -66,7 +67,6 @@ const Home = () => {
                   <p style={{ fontSize: '10px' }}>ログアウト</p>
                 </button>
               ))}
-            <br />
           </>
         )}
         <Link to='#' style={{ margin: '0 auto' }} className={home.about}>

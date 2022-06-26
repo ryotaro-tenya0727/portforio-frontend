@@ -9,6 +9,7 @@ import {
   RecommenedMemberDiaryShow,
   RecommendedMemberDiaryEdit,
   RecommenedMemberEdit,
+  PrivacyPolicy,
 } from '../components/pages/Pages';
 
 export const Routers = () => {
@@ -16,6 +17,8 @@ export const Routers = () => {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/mypage' element={<MyPage />} />
+      <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+
       <Route
         path='/recommended-members/new'
         element={<RecommenedMembersNew />}

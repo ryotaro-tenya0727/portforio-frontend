@@ -23,6 +23,7 @@ const UserDiaryCard = ({
   showUrl,
   editUrl,
 }) => {
+  console.log(diaryImages);
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   return (
     <Grid item xs={12} sm={6} md={4}>

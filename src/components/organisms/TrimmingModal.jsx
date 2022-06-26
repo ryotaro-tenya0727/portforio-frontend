@@ -27,35 +27,35 @@ const TrimmingModal = ({
   onSetSecondImageUrls,
 }) => {
   const { accessToken } = useContext(AuthGuardContext);
+  // 画像アップロード時にセット
   const [imageRef, setImageRef] = useState();
-  const [cropConfig, setCropConfig] = useState(
-    // default crop config
-    // トリミングする四角形のサイズ
-    {
-      unit: 'px', // Can be 'px' or '%'
-      x: 20,
-      y: 20,
-      width: 40,
-      height: 40,
-      aspect: 1,
-    }
-  );
+  // リサイズ中に変化するリサイズ後のサイズ
+  const [cropConfig, setCropConfig] = useState({
+    unit: 'px', // Can be 'px' or '%'
+    x: 20,
+    y: 20,
+    width: 40,
+    height: 40,
+    aspect: 1,
+  });
+
+  const [loading, setLoading] = useState(false);
 
   const [firstOpen, setFirstOpen] = useState(false);
   const handleFirstClose = () => setFirstOpen(false);
   const firstInputRef = useRef(null);
-  const [croppedFirstImage, SetCroppedFirstImage] = useState(null);
   const [madeFirstUrls, SetMadeFirstUrls] = useState(null);
-  const [firstImage, setFirstImage] = useState(null);
   const [imageToFirstCrop, setImageToFirstCrop] = useState(undefined);
+  const [croppedFirstImage, SetCroppedFirstImage] = useState(null);
+  const [firstImage, setFirstImage] = useState(null);
 
   const [secondOpen, setSecondOpen] = useState(false);
   const handleSecondClose = () => setSecondOpen(false);
   const secondInputRef = useRef(null);
-  const [croppedSecondImage, SetCroppedSecondImage] = useState(null);
   const [madeSecondUrls, SetMadeSecondUrls] = useState(null);
-  const [secondImage, setSecondImage] = useState(null);
   const [imageToSecondCrop, setImageToSecondCrop] = useState(undefined);
+  const [croppedSecondImage, SetCroppedSecondImage] = useState(null);
+  const [secondImage, setSecondImage] = useState(null);
 
   const style = {
     position: 'absolute',
@@ -99,7 +99,7 @@ const TrimmingModal = ({
       onSetIsNumberTypeError(true);
       return;
     }
-
+    setLoading(true);
     const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
       {
         presigned_url: {
@@ -108,13 +108,15 @@ const TrimmingModal = ({
       },
       accessToken
     );
+    setLoading(false);
+    // s3の署名URLを作成
     SetMadeFirstUrls(imageUrls);
     const reader = new FileReader();
 
     // readAsDataURLでファイルを読み込むと発動
     reader.addEventListener('load', () => {
       const image = reader.result;
-      // ここでリサイズする画像を格納
+      // ここでリサイズするための画像を格納
       setImageToFirstCrop(image);
     });
 
@@ -141,7 +143,7 @@ const TrimmingModal = ({
       onSetIsNumberTypeError(true);
       return;
     }
-
+    setLoading(true);
     const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
       {
         presigned_url: {
@@ -150,6 +152,7 @@ const TrimmingModal = ({
       },
       accessToken
     );
+    setLoading(false);
     SetMadeSecondUrls(imageUrls);
     const reader = new FileReader();
 
@@ -283,13 +286,15 @@ const TrimmingModal = ({
       <div className={form.images}>
         {firstImage !== null ? (
           <div style={{ position: 'relative' }}>
-            <button
-              className={button.image_cancel_button}
-              type='button'
-              onClick={() => handleCancel(0)}
-            >
-              <DeleteForeverIcon />
-            </button>
+            {loading || (
+              <button
+                className={button.image_cancel_button}
+                type='button'
+                onClick={() => handleCancel(0)}
+              >
+                <DeleteForeverIcon />
+              </button>
+            )}
             <img
               src={URL.createObjectURL(firstImage)}
               alt={`あなたの写真 `}
@@ -305,13 +310,15 @@ const TrimmingModal = ({
         <br />
         {secondImage !== null ? (
           <div style={{ position: 'relative' }}>
-            <button
-              className={button.image_cancel_button}
-              type='button'
-              onClick={() => handleCancel(1)}
-            >
-              <DeleteForeverIcon />
-            </button>
+            {loading || (
+              <button
+                className={button.image_cancel_button}
+                type='button'
+                onClick={() => handleCancel(1)}
+              >
+                {loading || <DeleteForeverIcon />}
+              </button>
+            )}
 
             <img
               src={URL.createObjectURL(secondImage)}

@@ -96,7 +96,7 @@ function Sidebar() {
     {
       title: 'プライバシーポリシー',
 
-      link: '/#',
+      link: '/privacy-policy',
     },
     {
       title: 'お問い合わせ',
