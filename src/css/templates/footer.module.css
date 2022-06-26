@@ -2,7 +2,8 @@
 padding: 5px;
 margin-top: auto;
 text-align: center;
-background-color: #ffc9ef
+background-color: #ffc9ef;
+
 }
 
 .links{
@@ -11,4 +12,12 @@ justify-content: space-between;
 width: 250px;
 margin: 0 auto;
 
+}
+
+.link{
+color: #000;
+}
+
+.link:hover{
+  opacity: 0.5
 }

@@ -12,10 +12,18 @@ const Footer = () => {
     <>
       <div className={footer.wrapper}>
         <div className={footer.links}>
-          <Link to='/term-of-service' onClick={returnTop}>
+          <Link
+            to='/term-of-service'
+            onClick={returnTop}
+            className={footer.link}
+          >
             利用規約
           </Link>
-          <Link to='/privacy-policy' onClick={returnTop}>
+          <Link
+            to='/privacy-policy'
+            onClick={returnTop}
+            className={footer.link}
+          >
             プライバシーポリシー
           </Link>
         </div>
