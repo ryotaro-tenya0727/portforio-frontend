@@ -315,7 +315,7 @@ export const useRecommendedMemberDiariesApi = () => {
         ),
       enabled: !!diaryId,
       staleTime: 30000000,
-      cacheTime: 3000000,
+      cacheTime: 0,
     });
   };
 
