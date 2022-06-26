@@ -8,7 +8,7 @@ const PrivacyPolicy = () => {
         <MenuButton />
         <p className={privacypolicy.title}>プライバシーポリシー</p>
         <h3>お客様から取得する情報</h3>
-        <p style={{ width: '95%', margin: '0 auto' }}>
+        <p className={privacypolicy.text}>
           当サービスは、お客様から以下の情報を取得します。
           <ul>
             <li> 氏名(ニックネームやペンネームも含む)</li>
@@ -20,7 +20,7 @@ const PrivacyPolicy = () => {
           </ul>
         </p>
         <h3>お客様の情報を利用する目的</h3>
-        <p style={{ width: '95%', margin: '0 auto' }}>
+        <p className={privacypolicy.text}>
           当サービスは、お客様から取得した情報を、以下の目的のために利用します。
           <ul>
             <li>当サービスに関する登録の受付、お客様の本人確認、認証のため</li>
@@ -37,11 +37,11 @@ const PrivacyPolicy = () => {
           </ul>
         </p>
         <h3>安全管理のために講じた措置</h3>
-        <p style={{ width: '95%', margin: '0 auto' }}>
+        <p className={privacypolicy.text}>
           当サービスが、お客様から取得した情報に関して安全管理のために講じた措置につきましては、末尾記載のお問い合わせ先にご連絡をいただきましたら、法令の定めに従い個別にご回答させていただきます。
         </p>
         <h3>第三者提供</h3>
-        <p style={{ width: '95%', margin: '0 auto' }}>
+        <p className={privacypolicy.text}>
           当サービスは、お客様から取得する情報のうち、個人データ（個人情報保護法第２条第６項）に該当するものついては、あらかじめお客様の同意を得ずに、第三者（日本国外にある者を含みます。）に提供しません。
           但し、次の場合は除きます。
         </p>
@@ -54,12 +54,12 @@ const PrivacyPolicy = () => {
           <li>その他、法律によって合法的に第三者提供が許されている場合</li>
         </ul>
         <h3>アクセス解析ツール</h3>
-        <p style={{ width: '95%', margin: '0 auto' }}>
+        <p className={privacypolicy.text}>
           当サービスは、お客様のアクセス解析のために、「Googleアナリティクス」を利用しています。Googleアナリティクスは、トラフィックデータの収集のためにCookieを使用しています。トラフィックデータは匿名で収集されており、個人を特定するものではありません。Cookieを無効にすれば、これらの情報の収集を拒否することができます。詳しくはお使いのブラウザの設定をご確認ください。Googleアナリティクスについて、詳しくは以下からご確認ください。
           https://marketingplatform.google.com/about/analytics/terms/jp/
         </p>
         <h3>お問い合わせ</h3>
-        <p style={{ width: '95%', margin: '0 auto' }}>
+        <p className={privacypolicy.text}>
           お客様の情報の開示、情報の訂正、利用停止、削除をご希望の場合は、以下のメールアドレス,SNSにご連絡ください。
           <p>
             <strong>e-mail: </strong>

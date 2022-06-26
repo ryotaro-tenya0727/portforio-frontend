@@ -10,6 +10,7 @@ import {
   RecommendedMemberDiaryEdit,
   RecommenedMemberEdit,
   PrivacyPolicy,
+  TermsOfService,
 } from '../components/pages/Pages';
 
 export const Routers = () => {
@@ -18,6 +19,7 @@ export const Routers = () => {
       <Route path='/' element={<Home />} />
       <Route path='/mypage' element={<MyPage />} />
       <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+      <Route path='/term-of-service' element={<TermsOfService />} />
 
       <Route
         path='/recommended-members/new'

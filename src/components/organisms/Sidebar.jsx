@@ -91,7 +91,7 @@ function Sidebar() {
     },
     {
       title: '利用規約',
-      link: '/#',
+      link: '/term-of-service',
     },
     {
       title: 'プライバシーポリシー',
