@@ -132,21 +132,19 @@ const RecommendedMembersList = () => {
             <Grid container spacing={3}>
               {_DATA.currentData().map((recommendedMember, index) => {
                 return (
-                  <>
-                    <RecommendedMemberCard
-                      key={index}
-                      nickname={recommendedMember.attributes.nickname}
-                      group={recommendedMember.attributes.group}
-                      firstMetDate={recommendedMember.attributes.first_met_date}
-                      recommendedMemberId={recommendedMember.attributes.id}
-                      totalMemberPolaroidCount={
-                        recommendedMember.attributes.total_member_polaroid_count
-                      }
-                      DiariesCount={recommendedMember.attributes.diaries_count}
-                      diaryUrl={`/recommended-member/${recommendedMember.attributes.uuid}/diaries/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
-                      editUrl={`/recommended-member/${recommendedMember.attributes.uuid}/edit/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
-                    />
-                  </>
+                  <RecommendedMemberCard
+                    key={index}
+                    nickname={recommendedMember.attributes.nickname}
+                    group={recommendedMember.attributes.group}
+                    firstMetDate={recommendedMember.attributes.first_met_date}
+                    recommendedMemberId={recommendedMember.attributes.id}
+                    totalMemberPolaroidCount={
+                      recommendedMember.attributes.total_member_polaroid_count
+                    }
+                    DiariesCount={recommendedMember.attributes.diaries_count}
+                    diaryUrl={`/recommended-member/${recommendedMember.attributes.uuid}/diaries/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
+                    editUrl={`/recommended-member/${recommendedMember.attributes.uuid}/edit/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
+                  />
                 );
               })}
             </Grid>

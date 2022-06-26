@@ -29,11 +29,9 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
           }}
         >
           <CircularProgress
-            size={130}
-            sx={{ mt: '150px', color: '#ff7bd7', mb: '20px' }}
+            size={150}
+            sx={{ mt: '150px', color: '#ff7bd7', ml: '70px' }}
           />
-          <br />
-          <p style={{ fontSize: '22px' }}>ロード中</p>
         </div>
       ) : (
         <>

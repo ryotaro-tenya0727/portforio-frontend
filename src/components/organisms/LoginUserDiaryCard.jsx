@@ -14,7 +14,7 @@ import { Button } from './../atoms/atoms';
 import button from './../../css/atoms/button.module.css';
 import card from './../../css/organisms/card.module.css';
 
-const UserDiaryCard = ({
+const LoginUserDiaryCard = ({
   diaryId,
   eventName,
   eventDate,
@@ -25,7 +25,6 @@ const UserDiaryCard = ({
   showUrl,
   editUrl,
 }) => {
-  console.log(diaryImages);
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   return (
     <Grid item xs={12} sm={6} md={4}>
@@ -146,4 +145,4 @@ const UserDiaryCard = ({
   );
 };
 
-export default UserDiaryCard;
+export default LoginUserDiaryCard;
