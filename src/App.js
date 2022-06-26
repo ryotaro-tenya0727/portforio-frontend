@@ -11,11 +11,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthGuardProvider>
-        <DefaultLayout>
-          <BrowserRouter>
+        <BrowserRouter>
+          <DefaultLayout>
             <Routers />
-          </BrowserRouter>
-        </DefaultLayout>
+          </DefaultLayout>
+        </BrowserRouter>
       </AuthGuardProvider>
     </QueryClientProvider>
   );

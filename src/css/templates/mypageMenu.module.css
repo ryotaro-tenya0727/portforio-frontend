@@ -31,12 +31,13 @@
 }
 }
 
+
 .sakura {
   position: absolute;
   padding: 0;
   margin: 0;
   width: 90%;
-  height: 65%;
+  height: 70%;
 pointer-events:none;
 }
 

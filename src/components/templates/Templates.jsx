@@ -9,3 +9,4 @@ export { default as MyPageMenu } from './MyPageMenu';
 export { default as LoginUserInformation } from './LoginUserInformation';
 export { default as Loading } from './Loading';
 export { default as GeneralDiaryList } from './GeneralDiaryList';
+export { default as Footer } from './Footer';

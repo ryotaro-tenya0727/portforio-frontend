@@ -40,7 +40,7 @@ const MyPage = () => {
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
 
       {userData === undefined ? (
-        isIdle || isLoading ? (
+        true ? (
           <Loading />
         ) : (
           <>

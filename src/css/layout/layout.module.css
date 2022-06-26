@@ -2,8 +2,11 @@
 
 .layout{
   background-color: #fffeff;
-  min-height: 100vh;
+
   font-family: 'M PLUS Rounded 1c', sans-serif;
+  display: flex;
+  flex-flow: column;
+  min-height: 1000px;
 }
 
 .layout_page{
