@@ -14,3 +14,4 @@ export { default as RecommenedMembersNew } from './RecommendedMembersNew';
 export { default as RedirectToLogin } from './RedirectToLogin';
 export { default as PrivacyPolicy } from './PrivacyPolicy';
 export { default as TermsOfService } from './TermsOfService';
+export { default as GeneralDiaryShow } from './GeneralDiaryShow';

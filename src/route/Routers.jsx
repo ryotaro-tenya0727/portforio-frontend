@@ -11,6 +11,7 @@ import {
   RecommenedMemberEdit,
   PrivacyPolicy,
   TermsOfService,
+  GeneralDiaryShow,
 } from '../components/pages/Pages';
 
 export const Routers = () => {
@@ -20,6 +21,7 @@ export const Routers = () => {
       <Route path='/mypage' element={<MyPage />} />
       <Route path='/privacy-policy' element={<PrivacyPolicy />} />
       <Route path='/term-of-service' element={<TermsOfService />} />
+      <Route path='/diaries/show/:diary_id' element={<GeneralDiaryShow />} />
 
       <Route
         path='/recommended-members/new'
