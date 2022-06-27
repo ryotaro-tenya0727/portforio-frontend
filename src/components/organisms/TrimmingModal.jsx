@@ -201,6 +201,14 @@ const TrimmingModal = ({
     onSetFirstImageFiles(croppedFirstImage);
     onSetFirstImageUrls(madeFirstUrls);
     handleFirstClose();
+    setCropConfig({
+      unit: 'px', // Can be 'px' or '%'
+      x: 20,
+      y: 20,
+      width: 40,
+      height: 40,
+      aspect: 1,
+    });
   };
 
   const registerSecondImage = () => {
@@ -208,6 +216,14 @@ const TrimmingModal = ({
     onSetSecondImageFiles(croppedSecondImage);
     onSetSecondImageUrls(madeSecondUrls);
     handleSecondClose();
+    setCropConfig({
+      unit: 'px', // Can be 'px' or '%'
+      x: 20,
+      y: 20,
+      width: 40,
+      height: 40,
+      aspect: 1,
+    });
   };
 
   // このまま
