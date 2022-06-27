@@ -67,6 +67,7 @@ const RecommenedMemberEditForm = ({
       console.error(error.response.data);
     }
     navigate('/mypage');
+    returnTop();
   };
 
   return (

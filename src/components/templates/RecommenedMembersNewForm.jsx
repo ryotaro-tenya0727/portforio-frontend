@@ -29,6 +29,13 @@ const RecommenedMembersNewForm = () => {
     },
   });
 
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   const onSubmit = (data) => {
     try {
       createRecommendedMember.mutate(data);
@@ -36,14 +43,9 @@ const RecommenedMembersNewForm = () => {
       console.error(error.response.data);
     }
     navigate('/mypage');
+    returnTop();
   };
 
-  const returnTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
   return (
     <>
       <ThemeProvider theme={theme}>

@@ -2,6 +2,7 @@
   background-color: rgb(255, 255, 255);
   margin: 0 auto;
   margin-top: 30px;
+  margin-bottom: 20px;
   width: 95%;
   max-width: 800px;
   border-radius: 15px;
@@ -17,7 +18,7 @@
 .diary_show_wrapper{
   width: 95%;
   background-size: 180px;
-  background-position: top 200px right 20px;
+  background-position: top 210px right 20px;
 }
 }
 
@@ -25,7 +26,7 @@
 .diary_show_wrapper{
   width: 95%;
   background-size: 230px;
-  background-position: top 215px right 20px;
+  background-position: top 210px right 20px;
 }
 }
 
@@ -33,7 +34,7 @@
 .diary_show_wrapper{
   width: 95%;
   background-size: 300px;
-  background-position: top 180px right 20px;
+  background-position: top 200px right 20px;
 }
 }
 
@@ -41,7 +42,7 @@
 .diary_show_wrapper{
   width: 90%;
   background-size: 400px;
-  background-position: top 150px right 20px;
+  background-position: top 170px right 20px;
 }
 }
 
@@ -49,7 +50,7 @@
 .diary_show_wrapper{
   width: 90%;
   background-size: 470px;
-  background-position: top 130px right 20px;
+  background-position: top 140px right 20px;
 }
 }
 

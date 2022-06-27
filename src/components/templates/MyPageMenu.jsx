@@ -68,7 +68,7 @@ const MyPageMenu = () => {
             <Tab
               icon={<NotificationsIcon sx={{ fontSize: 39 }} />}
               iconPosition='bottom'
-              label={<span className={MypageMenu.menu_text}>通知</span>}
+              label={<span className={MypageMenu.menu_text}>お知らせ</span>}
               sx={{ width: 1 / 4 }}
               value='0'
             />
@@ -105,7 +105,29 @@ const MyPageMenu = () => {
               value='3'
             />
           </Tabs>
-          <TabPanel value={'0'} sx={{ padding: 0 }}></TabPanel>
+          <TabPanel value={'0'} sx={{ padding: 0 }}>
+            <p
+              style={{
+                textAlign: 'center',
+                marginTop: '50px',
+                fontSize: '20px',
+              }}
+            >
+              Comming soon...
+            </p>
+          </TabPanel>
+          <TabPanel value={'1'} sx={{ padding: 0 }}>
+            {' '}
+            <p
+              style={{
+                textAlign: 'center',
+                marginTop: '50px',
+                fontSize: '20px',
+              }}
+            >
+              Comming soon...
+            </p>
+          </TabPanel>
           <TabPanel value={'2'} sx={{ padding: 0 }}>
             <RecommendedMembersList />
           </TabPanel>

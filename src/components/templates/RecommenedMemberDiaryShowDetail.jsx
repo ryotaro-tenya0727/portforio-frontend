@@ -1,3 +1,6 @@
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import Button from '@mui/material/Button';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -5,6 +8,7 @@ import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import CircularProgress from '@mui/material/CircularProgress';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import diary from './../../css/templates/diary.module.css';
@@ -18,6 +22,15 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
     isIdle,
     isLoading,
   } = useShowRecommendedMemberDiary(diaryId);
+
+  const theme2 = createTheme({
+    palette: {
+      secondary: {
+        main: '#1D9BF0',
+      },
+    },
+  });
+
   // isIdle || isLoading
   return (
     <>
@@ -48,6 +61,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                 className={diary.diary_header_image}
               />
             </div>
+
             <div style={{ padding: '0px 15px 15px 15px' }}>
               <p className={diary.diary_member_title}>
                 <img
@@ -61,12 +75,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                   recommended_member_diary_show.data.attributes
                     .diary_member_nickname
                 }
-                （
-                {
-                  recommended_member_diary_show.data.attributes
-                    .diary_member_group
-                }
-                ）の日記
+                の日記
               </p>
 
               <div className={diary.diary_sub_text_wrapper}>
@@ -188,9 +197,8 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                 {recommended_member_diary_show.data.attributes.diary_images.map(
                   (diaryImageUrl, index) => {
                     return (
-                      <Zoom zoomMargin={40}>
+                      <Zoom zoomMargin={40} key={index}>
                         <img
-                          key={index}
                           src={`${diaryImageUrl}`}
                           alt='picture'
                           className={diary.diary_image}
@@ -202,6 +210,32 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
               </div>
             </div>
           </div>
+          <p style={{ textAlign: 'center' }}>
+            <ThemeProvider theme={theme2}>
+              <Button
+                variant='contained'
+                color='secondary'
+                sx={{ width: '160px', mt: 1, mb: 2 }}
+                href={`https://twitter.com/intent/tweet?text=%0a${
+                  recommended_member_diary_show.data.attributes
+                    .diary_member_nickname
+                }との思い出%0ahttps://www.oshi-diary.com/diaries/show/${
+                  recommended_member_diary_show.data.attributes.id
+                }?name=${encodeURI(
+                  encodeURI(
+                    recommended_member_diary_show.data.attributes
+                      .diary_member_nickname
+                  )
+                )}`}
+                target='_blank'
+                // className={diary.diary_tweet_button}
+              >
+                <TwitterIcon sx={{ mr: 1.5, mb: 0.1 }} />
+                ツイートする
+              </Button>
+              <p> (画像つきの日記がツイートできます)</p>
+            </ThemeProvider>
+          </p>
         </>
       )}
     </>
