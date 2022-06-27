@@ -18,80 +18,90 @@ const Home = () => {
   };
 
   return (
-    <div className={home.home}>
-      <div className={home.buttons}>
-        <MenuButton />
-        <br />
-        {isLoading ? (
-          <button className={home.login_button}>
-            <CircularProgress sx={{ color: '#ff94df' }} />
-          </button>
-        ) : (
-          <>
-            {isAuthenticated ||
-              (loading ? (
-                <button className={home.login_button}>
-                  <CircularProgress sx={{ color: '#ff94df' }} />
-                </button>
-              ) : (
-                <button
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => {
-                    handleClick();
-                    loginWithRedirect();
-                  }}
-                  className={home.login_button}
-                >
-                  <LoginIcon sx={{ color: '#ff94df' }} />
-                  <p style={{ fontSize: '10px' }}>ログイン</p>
-                </button>
-              ))}
-            {isAuthenticated &&
-              (loading ? (
-                <>
+    <div
+      style={{
+        backgroundColor: '#FFE8EC',
+        maxWidth: '1200px',
+        margin: '0 auto',
+      }}
+    >
+      <div className={home.home}>
+        <div className={home.buttons}>
+          <MenuButton />
+          <br />
+          {isLoading ? (
+            <button className={home.login_button}>
+              <CircularProgress sx={{ color: '#ff94df' }} />
+            </button>
+          ) : (
+            <>
+              {isAuthenticated ||
+                (loading ? (
                   <button className={home.login_button}>
                     <CircularProgress sx={{ color: '#ff94df' }} />
                   </button>
-                </>
-              ) : (
-                <button
-                  className={home.login_button}
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => {
-                    handleClick();
-                    logout();
-                  }}
-                >
-                  <LogoutIcon sx={{ color: '#ff94df' }} />
-                  <p style={{ fontSize: '10px' }}>ログアウト</p>
-                </button>
-              ))}
-          </>
-        )}
-        <Link to='#' style={{ margin: '0 auto' }} className={home.about}>
-          <HelpIcon sx={{ color: '#ff94df', fontSize: '30px' }} />
-          <br />
-          <span
-            style={{
-              color: '#fff',
-              fontWeight: 'bold',
-              writingMode: 'vertical-rl',
-            }}
-            className={home.about_text}
-          >
-            ABOUT&emsp;推し♡だいありー
-          </span>
-        </Link>
+                ) : (
+                  <button
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => {
+                      handleClick();
+                      loginWithRedirect();
+                    }}
+                    className={home.login_button}
+                  >
+                    <LoginIcon sx={{ color: '#ff94df' }} />
+                    <p style={{ fontSize: '10px' }}>ログイン</p>
+                  </button>
+                ))}
+              {isAuthenticated &&
+                (loading ? (
+                  <>
+                    <button className={home.login_button}>
+                      <CircularProgress sx={{ color: '#ff94df' }} />
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    className={home.login_button}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => {
+                      handleClick();
+                      logout();
+                    }}
+                  >
+                    <LogoutIcon sx={{ color: '#ff94df' }} />
+                    <p style={{ fontSize: '10px' }}>ログアウト</p>
+                  </button>
+                ))}
+            </>
+          )}
+          <Link to='#' style={{ margin: '0 auto' }} className={home.about}>
+            <HelpIcon sx={{ color: '#ff94df', fontSize: '30px' }} />
+            <br />
+            <span
+              style={{
+                color: '#fff',
+                fontWeight: 'bold',
+                writingMode: 'vertical-rl',
+              }}
+              className={home.about_text}
+            >
+              ABOUT&emsp;推し♡だいありー
+            </span>
+          </Link>
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <img
+            src={`${imageDomain}/admin/main-image.png`}
+            alt='picture'
+            width='800'
+            className={home.main_image}
+          />
+        </div>
+
+        {/* <GeneralDiaryList /> */}
       </div>
-      <div style={{ textAlign: 'center' }}>
-        <img
-          src={`${imageDomain}/admin/main-image.png`}
-          alt='picture'
-          width='800'
-          className={home.main_image}
-        />
-      </div>
-      {/* <GeneralDiaryList /> */}
     </div>
   );
 };
