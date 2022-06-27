@@ -130,7 +130,7 @@
 
 @media (min-width: 500px)  {
 .register_button {
-  width: 200px;
+  width: 170px;
   right: 32%;
 }
 }
@@ -139,7 +139,7 @@
 
 @media (min-width: 700px)  {
 .register_button {
-  width: 200px;
+  width: 180px;
   right: 38%;
 }
 }
