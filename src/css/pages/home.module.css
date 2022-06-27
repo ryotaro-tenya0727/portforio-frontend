@@ -3,7 +3,7 @@
   margin: 0 auto;
   max-width: 1000px;
   position: relative;
-
+  /* text-align: center; */
 }
 
 .menu_box{
@@ -60,31 +60,6 @@
   right: 10px;
 }
 
-.login_button{
-  position: relative;
-  background:#ffffff;
-  cursor: pointer;
-  width: 70px;
-  height:70px;
-  color:  #ff7bd7;
-  border: 2px solid #ff7bd7;
-  border-radius: 50%;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.login_button:hover{
-  opacity: 0.7
-}
-
-@media (max-width: 700px) {
-.login_button{
-  width: 60px;
-  height:60px;
-
-}
-}
-
 .menu_button{
   cursor: pointer;
   position: relative;
@@ -97,13 +72,85 @@
 }
 
 .menu_button:hover{
-  opacity: 0.7
+  opacity: 0.9
 }
 
 @media (max-width: 700px) {
 .menu_button{
-  width: 60px;
-  height:60px;
+  width: 65px;
+  height:65px;
+}
+}
+
+.login_button{
+  position: relative;
+  background:#ffffff;
+  cursor: pointer;
+  width: 70px;
+  height:70px;
+  color:  #ff7bd7;
+  border: 2px solid #ff7bd7;
+  border-radius: 50%;
+  font-weight: bold;
+  margin-bottom: 15px;
+
+}
+
+.login_button:hover{
+  opacity: 0.9
+}
+
+@media (max-width: 700px) {
+.login_button{
+  width: 65px;
+  height:65px;
+
+}
+}
+
+.register_button{
+  width: 170px;
+  height: 60px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid;
+  padding: 18px 8px 18px 8px;
+  font-weight: bold;
+  color:  #ff7bd7;
+  position: absolute;
+  bottom: 20px;
+  right: 29%;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.register_button:hover {
+  background-color: rgb(255, 250, 237)
+}
+
+@media (min-width: 500px)  {
+.register_button {
+  width: 200px;
+  right: 32%;
+}
+}
+
+
+
+@media (min-width: 700px)  {
+.register_button {
+  width: 200px;
+  right: 38%;
+}
+}
+
+.register_text{
+font-size: 12px;
+}
+
+@media (min-width: 700px)  {
+.register_text{
+font-size: 14px;
 }
 }
 
@@ -200,7 +247,7 @@
 }
 
 .about:hover{
-  opacity: 0.7
+  opacity: 0.8
 }
 
 .about_text{
@@ -217,7 +264,7 @@
 
 @media (min-width: 900px) {
 .about_text{
-  margin: 0px 0px 0px 3px;
+  margin: 0px 0px 0px 2px;
   font-size: 17px;
 }
 }

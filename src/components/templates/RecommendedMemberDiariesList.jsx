@@ -10,7 +10,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import CircularProgress from '@mui/material/CircularProgress';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-import LoyaltyIcon from '@mui/icons-material/Loyalty';
+
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 import { Button } from './../atoms/atoms';
 import { LoginUserDiaryCard } from './../organisms/Organisms';
@@ -166,15 +167,12 @@ const RecommendedMemberDiariesList = ({
                         className={button.recommended_and_diary_button}
                         onClick={returnTop}
                       >
-                        <LoyaltyIcon
+                        <BorderColorIcon
                           sx={{
                             fontSize: '20px',
                             mb: '-3.5px',
+                            mr: '3px',
                             color: '#ff6fc8',
-                            '@media screen and (max-width:700px)': {
-                              fontSize: '15.5px',
-                              ml: -2,
-                            },
                           }}
                         />
                         日記を追加する
