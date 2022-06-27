@@ -18,7 +18,6 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
     isIdle,
     isLoading,
   } = useShowRecommendedMemberDiary(diaryId);
-  console.log(recommended_member_diary_show);
   // isIdle || isLoading
   return (
     <>

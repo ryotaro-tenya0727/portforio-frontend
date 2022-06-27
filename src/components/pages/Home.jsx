@@ -22,10 +22,10 @@ const Home = () => {
     <div
       style={{
         backgroundColor: '#FFF4F6',
-
-        margin: '0 auto',
         marginTop: '-2.5px',
         borderRadius: '5px',
+        margin: '0 calc(50% - 50vw)',
+        width: '100vw',
       }}
     >
       <div className={home.home}>
