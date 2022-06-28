@@ -48,6 +48,35 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
         </div>
       ) : (
         <>
+          <p style={{ textAlign: 'center', marginLeft: '50px' }}>
+            <ThemeProvider theme={theme2}>
+              <Button
+                variant='contained'
+                color='secondary'
+                sx={{ width: '160px', mt: 1, mb: 2 }}
+                href={`https://twitter.com/intent/tweet?text=%0a${
+                  recommended_member_diary_show.data.attributes
+                    .diary_member_nickname
+                }との思い出%0ahttps://www.oshi-diary.com/diaries/show/${
+                  recommended_member_diary_show.data.attributes.id
+                }?name=${encodeURI(
+                  encodeURI(
+                    recommended_member_diary_show.data.attributes
+                      .diary_member_nickname
+                  )
+                )}`}
+                target='_blank'
+                // className={diary.diary_tweet_button}
+              >
+                <TwitterIcon sx={{ mr: 1.5, mb: 0.1 }} />
+                ツイートする
+              </Button>
+              <p style={{ textAlign: 'center', marginRight: '50px' }}>
+                {' '}
+                (推しの名前が入った画像がツイートできます)
+              </p>
+            </ThemeProvider>
+          </p>
           <div
             className={diary.diary_show_wrapper}
             style={{
@@ -210,32 +239,6 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
               </div>
             </div>
           </div>
-          <p style={{ textAlign: 'center' }}>
-            <ThemeProvider theme={theme2}>
-              <Button
-                variant='contained'
-                color='secondary'
-                sx={{ width: '160px', mt: 1, mb: 2 }}
-                href={`https://twitter.com/intent/tweet?text=%0a${
-                  recommended_member_diary_show.data.attributes
-                    .diary_member_nickname
-                }との思い出%0ahttps://www.oshi-diary.com/diaries/show/${
-                  recommended_member_diary_show.data.attributes.id
-                }?name=${encodeURI(
-                  encodeURI(
-                    recommended_member_diary_show.data.attributes
-                      .diary_member_nickname
-                  )
-                )}`}
-                target='_blank'
-                // className={diary.diary_tweet_button}
-              >
-                <TwitterIcon sx={{ mr: 1.5, mb: 0.1 }} />
-                ツイートする
-              </Button>
-              <p> (画像つきの日記がツイートできます)</p>
-            </ThemeProvider>
-          </p>
         </>
       )}
     </>
