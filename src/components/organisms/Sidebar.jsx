@@ -98,11 +98,11 @@ function Sidebar() {
 
       link: '/privacy-policy',
     },
-    {
-      title: 'お問い合わせ',
+    // {
+    //   title: 'お問い合わせ',
 
-      link: '/upload',
-    },
+    //   link: '/upload',
+    // },
 
     {
       title: '公式アカウント',
