@@ -66,7 +66,6 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                   )
                 )}`}
                 target='_blank'
-                // className={diary.diary_tweet_button}
               >
                 <TwitterIcon sx={{ mr: 1.5, mb: 0.1 }} />
                 ツイートする
