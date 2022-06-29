@@ -63,7 +63,7 @@ const RecommendedMembersList = () => {
     setPage(p);
     _DATA.jump(p);
   };
-  console.log(_DATA.currentData().length);
+
   const theme = createTheme({
     breakpoints: {
       values: {
