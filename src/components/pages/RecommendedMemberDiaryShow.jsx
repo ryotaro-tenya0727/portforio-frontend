@@ -2,7 +2,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-import { MenuButton } from './../atoms/atoms';
+import { MenuButton, HomeBreadText } from './../atoms/atoms';
 import { BreadCrumbs } from './../organisms/Organisms';
 import {
   RecommenedMemberDiaryShowDetail,
@@ -10,7 +10,6 @@ import {
 } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
-import { HomeBreadText } from './../atoms/atoms';
 
 const RecommenedMemberDiaryShow = () => {
   const { recommended_member_uuid, recommended_member_id, diary_id } =
@@ -46,8 +45,6 @@ const RecommenedMemberDiaryShow = () => {
   return (
     <>
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
-      <ReactQueryDevtools initialIsOpen={false} />
-
       {userData === undefined ? (
         isIdle || isLoading ? (
           <Loading />

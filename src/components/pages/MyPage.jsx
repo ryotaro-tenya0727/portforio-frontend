@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { useQueryClient } from 'react-query';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
@@ -68,8 +67,6 @@ const MyPage = () => {
               </Button>
             </Link>
             <MyPageMenu />
-
-            <ReactQueryDevtools initialIsOpen={false} />
           </>
         )
       ) : (
@@ -95,8 +92,6 @@ const MyPage = () => {
             </Button>
           </Link>
           <MyPageMenu />
-
-          <ReactQueryDevtools initialIsOpen={false} />
         </>
       )}
     </div>

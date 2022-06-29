@@ -51,7 +51,6 @@ const RecommenedMembersNew = () => {
           <Loading />
         ) : (
           <>
-            <ReactQueryDevtools initialIsOpen={false} />
             <p>{data.name}さんログイン中</p>
             <MenuButton />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
@@ -60,7 +59,6 @@ const RecommenedMembersNew = () => {
         )
       ) : (
         <>
-          <ReactQueryDevtools initialIsOpen={false} />
           <p>{user_data.name}さんログイン中</p>
           <MenuButton />
           <BreadCrumbs breadcrumbs={breadcrumbs} />

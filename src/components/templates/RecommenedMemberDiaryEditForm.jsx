@@ -1,5 +1,5 @@
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { useNavigate } from 'react-router-dom';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { useForm, Controller } from 'react-hook-form';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -444,7 +444,6 @@ const RecommenedMemberDiaryEditForm = ({
               </Button>
             </div>
           </ThemeProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
         </>
       )}
     </>

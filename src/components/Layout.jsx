@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import Modal from '@mui/material/Modal';
 
 import { Sidebar } from './organisms/Organisms';
-import { AuthGuardContext } from './../providers/AuthGuard';
 import { Footer } from './templates/Templates';
+import { AuthGuardContext } from './../providers/AuthGuard';
 
 import layout from './../css/layout/layout.module.css';
 export const DefaultLayout = ({ children }) => {

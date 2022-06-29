@@ -2,7 +2,6 @@
   border-radius: 10%;
   margin: 6px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
-
 }
 
 .menu_text{
@@ -11,26 +10,25 @@
 }
 
 @media (min-width: 500px) {
-.menu_text{
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-size: 12px;
-}
+  .menu_text{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 700px) {
-.menu_text{
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-size: 13px;
-}
+  .menu_text{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 13px;
+  }
 }
 
 @media (min-width: 900px) {
-.menu_text{
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-size: 14px;
+  .menu_text{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 14px;
+  }
 }
-}
-
 
 .sakura {
   position: absolute;
@@ -38,7 +36,7 @@
   margin: 0;
   width: 90%;
   height: 70%;
-pointer-events:none;
+  pointer-events:none;
 }
 
 .sakura li{
@@ -49,7 +47,6 @@ pointer-events:none;
   border-radius: 0% 70%;
   animation: fall 1s linear infinite, sway 2s ease-in-out infinite alternate;
 }
-
 
 @keyframes fall {
   to {

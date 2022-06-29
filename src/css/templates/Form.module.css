@@ -5,10 +5,10 @@
 }
 
 @media (min-width: 0px) and (max-width: 700px) {
-.form{
-  width: 90%;
-  margin: 0 auto;
-}
+  .form{
+    width: 90%;
+    margin: 0 auto;
+  }
 }
 
 .form_header_image{
@@ -19,7 +19,6 @@
   object-position: 50% 0%;
   border-radius: 5px;
   border: 2px solid #ff96df;
-
 }
 
 @media (min-width: 500px) {
@@ -30,10 +29,10 @@
 }
 
 @media (min-width: 700px){
-.form_header_image{
-  height: 200px;
-  object-position: 50% 25%;
-}
+  .form_header_image{
+    height: 200px;
+    object-position: 50% 25%;
+  }
 }
 
 .form_title{

@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
@@ -10,7 +10,6 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import CircularProgress from '@mui/material/CircularProgress';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 import { Button } from './../atoms/atoms';
@@ -91,7 +90,6 @@ const RecommendedMemberDiariesList = ({
   // isIdle || isLoading
   return (
     <div className={list.list}>
-      <ReactQueryDevtools initialIsOpen={false} />
       <ThemeProvider theme={theme}>
         <h2>
           <MenuBookIcon

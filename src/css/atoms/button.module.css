@@ -63,8 +63,6 @@
   top: -25px;
 }
 
-
-
 .recommended_and_diary_button{
   cursor: pointer;
   background-color: #ffffff;
@@ -81,7 +79,7 @@
 }
 
 .recommended_and_diary_button:hover {
- background-color: rgba(255, 238, 162, 0.3)
+  background-color: rgba(255, 238, 162, 0.3)
 }
 
 .recommended_and_diary_button:active {

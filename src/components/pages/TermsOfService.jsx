@@ -1,5 +1,6 @@
-import termsofservice from './../../css/pages/termsofservice.module.css';
 import { MenuButton } from './../atoms/atoms';
+
+import termsofservice from './../../css/pages/termsofservice.module.css';
 
 const TermsOfService = () => {
   return (

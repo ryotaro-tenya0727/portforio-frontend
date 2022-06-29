@@ -1,7 +1,7 @@
+import { useContext } from 'react';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
-import { AuthGuardContext } from './../providers/AuthGuard';
-import { useContext, useCallback } from 'react';
 
+import { AuthGuardContext } from './../providers/AuthGuard';
 import { recommendedMemberRepository } from './../repositories/recommendedMemberRepository';
 
 export const useRecommendedMembersApi = () => {

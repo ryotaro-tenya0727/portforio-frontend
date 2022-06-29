@@ -1,7 +1,6 @@
 .home{
   margin: 0 auto;
   max-width: 1000px;
-
   position: relative;
 }
 
@@ -21,32 +20,31 @@
 }
 
 @media (min-width: 500px) {
-.main_image{
+  .main_image{
   height:400px;
   object-position: 50% 0%;
   }
 }
 
 @media (min-width: 700px){
-.main_image{
-  height:470px;
-  object-position: 50% 0%;
-}
+  .main_image{
+    height:470px;
+    object-position: 50% 0%;
+  }
 }
 
 @media (min-width: 900px)  {
-.main_image{
-  height:580px;
-  object-position: 50% 0%;
-}
+  .main_image{
+    height:580px;
+    object-position: 50% 0%;
+  }
 }
 
 @media (min-width: 1200px)  {
-.main_image{
-
-  height:580px;
-  object-position: 50% 0%;
-}
+  .main_image{
+    height:580px;
+    object-position: 50% 0%;
+  }
 }
 
 .buttons{
@@ -73,10 +71,10 @@
 }
 
 @media (max-width: 700px) {
-.menu_button{
-  width: 65px;
-  height:65px;
-}
+  .menu_button{
+    width: 65px;
+    height:65px;
+  }
 }
 
 .login_button{
@@ -90,7 +88,6 @@
   border-radius: 50%;
   font-weight: bold;
   margin-bottom: 15px;
-
 }
 
 .login_button:hover{
@@ -98,11 +95,10 @@
 }
 
 @media (max-width: 700px) {
-.login_button{
-  width: 65px;
-  height:65px;
-
-}
+  .login_button{
+    width: 65px;
+    height:65px;
+  }
 }
 
 .register_button{
@@ -126,10 +122,10 @@
 }
 
 @media (min-width: 500px)  {
-.register_button {
-  width: 170px;
-  right: 32%;
-}
+  .register_button {
+    width: 170px;
+    right: 32%;
+  }
 }
 
 @media (min-width: 700px)  {
@@ -140,12 +136,12 @@
 }
 
 .register_text{
-font-size: 12px;
+  font-size: 12px;
 }
 
 @media (min-width: 700px)  {
   .register_text{
-  font-size: 14px;
+    font-size: 14px;
   }
 }
 
@@ -203,10 +199,10 @@ font-size: 12px;
 }
 
 .active span:nth-of-type(1) {
-    top: 20.5px;
-    left: 19px;
-    transform: translateY(6px) rotate(-135deg);
-    width: 45%;
+  top: 20.5px;
+  left: 19px;
+  transform: translateY(6px) rotate(-135deg);
+  width: 45%;
 }
 
 .active span:nth-of-type(2) {
@@ -214,19 +210,19 @@ font-size: 12px;
 }
 
 .active span:nth-of-type(3){
-    top: 32px;
-    left: 18.5px;
-    transform: translateY(-6px) rotate(135deg);
-    width: 45%;
+  top: 32px;
+  left: 18.5px;
+  transform: translateY(-6px) rotate(135deg);
+  width: 45%;
 }
 
 @media (max-width: 700px) {
 
 .active span:nth-of-type(1) {
-    top: 18.5px;
-    left: 17px;
-    transform: translateY(6px) rotate(-135deg);
-    width: 45%;
+  top: 18.5px;
+  left: 17px;
+  transform: translateY(6px) rotate(-135deg);
+  width: 45%;
 }
 
 .active span:nth-of-type(2) {
@@ -234,10 +230,10 @@ font-size: 12px;
 }
 
 .active span:nth-of-type(3){
-    top: 30px;
-    left: 16.5px;
-    transform: translateY(-6px) rotate(135deg);
-    width: 45%;
+  top: 30px;
+  left: 16.5px;
+  transform: translateY(-6px) rotate(135deg);
+  width: 45%;
 }
 }
 
@@ -251,26 +247,23 @@ font-size: 12px;
 }
 
 @media (min-width: 700px) {
-.about_text{
-  margin: 0px 0px 0px 6px;
-  font-size: 13px;
-}
+  .about_text{
+    margin: 0px 0px 0px 6px;
+    font-size: 13px;
+  }
 }
 
 @media (min-width: 900px) {
-.about_text{
-  margin: 0px 0px 0px 2px;
-  font-size: 17px;
-}
+  .about_text{
+    margin: 0px 0px 0px 2px;
+    font-size: 17px;
+  }
 }
 
 .about_wrapper{
   margin: 0 auto;
-
   max-width: 1000px;
 }
-
-
 
 .about_title{
   margin-top: 20px;
@@ -280,9 +273,9 @@ font-size: 12px;
 }
 
 @media (min-width: 470px) {
-.about_title{
-  font-size: 25px;
-}
+  .about_title{
+    font-size: 25px;
+  }
 }
 
 .about_description{
@@ -296,7 +289,7 @@ font-size: 12px;
 }
 
 @media (min-width: 470px) {
-.about_diary_image{
-  width: 450px;
-}
+  .about_diary_image{
+    width: 450px;
+  }
 }

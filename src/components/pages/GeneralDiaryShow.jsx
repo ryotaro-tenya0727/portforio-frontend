@@ -6,7 +6,6 @@ import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import CircularProgress from '@mui/material/CircularProgress';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
-import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { useGeneralDiariesApi } from './../../hooks/useGeneralDiary';
 import diary from './../../css/templates/diary.module.css';
