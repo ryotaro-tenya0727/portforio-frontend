@@ -72,7 +72,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
               </Button>
               <p style={{ textAlign: 'center', marginRight: '50px' }}>
                 {' '}
-                (推しの名前が入った画像がツイートできます)
+                (推しの名前が入った画像をツイートできます)
               </p>
             </ThemeProvider>
           </p>

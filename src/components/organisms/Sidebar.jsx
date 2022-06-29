@@ -116,6 +116,17 @@ function Sidebar() {
       link: 'https://twitter.com/idol_otaku_web',
     },
     {
+      title: '開発者アカウント',
+      icon: (
+        <TwitterIcon
+          sx={{
+            color: '#2C7CFF',
+          }}
+        />
+      ),
+      link: 'https://twitter.com/naka_ryo_z',
+    },
+    {
       title: (
         <>
           {' '}
@@ -165,6 +176,8 @@ function Sidebar() {
               className='row'
               onClick={() => {
                 if (value.link === 'https://twitter.com/idol_otaku_web') {
+                  window.open(value.link, '_blank');
+                } else if (value.link === 'https://twitter.com/naka_ryo_z') {
                   window.open(value.link, '_blank');
                 } else if (value.link !== undefined) {
                   window.location.pathname = value.link;

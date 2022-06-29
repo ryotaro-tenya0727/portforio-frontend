@@ -263,3 +263,35 @@ font-size: 12px;
   font-size: 17px;
 }
 }
+
+.about_wrapper{
+  margin: 0 auto;
+
+  max-width: 1000px;
+}
+
+.about_title{
+  margin-top: 20px;
+  font-size: 25px;
+  border-bottom: dashed 2px #ff7bd7;
+  display: inline-block;
+}
+
+.about_description{
+  margin-top: 20px;
+}
+
+.about_diary_image{
+
+  width: 380px;
+
+}
+
+@media (min-width: 470px) {
+.about_diary_image{
+
+
+  width: 450px;
+
+}
+}
