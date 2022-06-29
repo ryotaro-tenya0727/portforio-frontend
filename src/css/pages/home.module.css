@@ -270,11 +270,19 @@ font-size: 12px;
   max-width: 1000px;
 }
 
+
+
 .about_title{
   margin-top: 20px;
-  font-size: 25px;
+  font-size: 21px;
   border-bottom: dashed 2px #ff7bd7;
   display: inline-block;
+}
+
+@media (min-width: 470px) {
+.about_title{
+  font-size: 25px;
+}
 }
 
 .about_description{
@@ -283,15 +291,12 @@ font-size: 12px;
 
 .about_diary_image{
 
-  width: 380px;
+  width: 360px;
 
 }
 
 @media (min-width: 470px) {
 .about_diary_image{
-
-
   width: 450px;
-
 }
 }

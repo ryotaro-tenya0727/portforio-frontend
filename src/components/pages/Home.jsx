@@ -18,6 +18,13 @@ const Home = () => {
     setLoading(true);
   };
 
+  const returnAbout = () => {
+    window.scrollTo({
+      top: 600,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <>
       <div
@@ -89,6 +96,7 @@ const Home = () => {
                   writingMode: 'vertical-rl',
                 }}
                 className={home.about_text}
+                onClick={returnAbout}
               >
                 ABOUT&emsp;推し♡だいありー
               </span>
