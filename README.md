@@ -22,7 +22,8 @@
 
 ## インフラ構成図
 
-![infra-figure drawio](https://user-images.githubusercontent.com/71915489/176632057-d82aa61d-4641-4d9b-8fcb-dffb90a5a581.png)
+
+![infra-figure drawio (3)](https://user-images.githubusercontent.com/71915489/176634488-7c616d1c-0d90-4be3-be98-4cc2a036d291.png)
 
 ## ER図
 
