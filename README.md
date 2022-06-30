@@ -3,7 +3,7 @@
 
 こちらは「推し♡だいありー」のフロントエンドのリポジトリになります。
 
-バックエンドのリポジトリは[こちら](https://github.com/ryotaro-tenya0727/portforio-frontend)
+バックエンドのリポジトリは[こちら](https://github.com/ryotaro-tenya0727/portfolio-backend)
 
 # 推し♡だいありー
 
