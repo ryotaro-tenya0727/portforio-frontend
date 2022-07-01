@@ -87,7 +87,10 @@ const Home = () => {
               </>
             )}
             <Link to='#' style={{ margin: '0 auto' }} className={home.about}>
-              <HelpIcon sx={{ color: '#ff94df', fontSize: '30px' }} />
+              <HelpIcon
+                sx={{ color: '#ff94df', fontSize: '30px' }}
+                onClick={returnAbout}
+              />
               <br />
               <span
                 style={{
