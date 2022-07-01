@@ -43,7 +43,6 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
             size={150}
             sx={{ mt: '150px', color: '#ff7bd7', ml: '70px' }}
           />
-          <p style={{ fontSize: '22px' }}>ロード中</p>
         </div>
       ) : (
         <>
