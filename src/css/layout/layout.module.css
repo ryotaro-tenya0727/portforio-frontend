@@ -6,6 +6,8 @@
   display: flex;
   flex-flow: column;
   min-height: 1100px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .layout_page{

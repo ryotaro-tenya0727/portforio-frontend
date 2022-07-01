@@ -57,10 +57,14 @@ const RecommenedMembersDiaries = () => {
               <Button className={button.recommended_and_diary_button}>
                 <BorderColorIcon
                   sx={{
-                    fontSize: '20px',
+                    fontSize: '18.5px',
+                    mr: 0.5,
                     mb: '-3.5px',
-                    mr: '1px',
                     color: '#ff6fc8',
+                    '@media screen and (max-width:600px)': {
+                      fontSize: '14.5px',
+                      mr: 0.5,
+                    },
                   }}
                 />
                 日記を追加する
@@ -88,10 +92,14 @@ const RecommenedMembersDiaries = () => {
             <Button className={button.recommended_and_diary_button}>
               <BorderColorIcon
                 sx={{
-                  fontSize: '20px',
+                  fontSize: '18.5px',
+                  mr: 0.5,
                   mb: '-3.5px',
-                  mr: '4px',
                   color: '#ff6fc8',
+                  '@media screen and (max-width:600px)': {
+                    fontSize: '14.5px',
+                    mr: 0.5,
+                  },
                 }}
               />
               日記を追加する

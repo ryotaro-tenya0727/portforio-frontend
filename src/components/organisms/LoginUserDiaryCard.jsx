@@ -34,7 +34,7 @@ const LoginUserDiaryCard = ({
     });
   };
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={6}>
       <Card
         className={card.card_whole}
         sx={{
@@ -53,6 +53,10 @@ const LoginUserDiaryCard = ({
                     fontSize: '25px',
                     mb: '-9.5px',
                     mr: '3px',
+                    '@media screen and (max-width:600px)': {
+                      fontSize: '20.5px',
+                      mb: '-7.5px',
+                    },
                   }}
                 />
                 日記の詳細を見る
@@ -68,6 +72,7 @@ const LoginUserDiaryCard = ({
               alt='picture'
               width='130'
               height='130'
+              style={{ margin: '-5px 10px 0px 0px' }}
               className={card.recommended_member_card_image}
             />
           </div>

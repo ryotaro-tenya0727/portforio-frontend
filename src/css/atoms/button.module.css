@@ -11,6 +11,13 @@
   color: #ff66d1;
 }
 
+@media (max-width: 550px) {
+  .button_card{
+    padding: 10px 6px 10px 6px;
+    font-size: 11px;
+  }
+}
+
 .button_card:hover {
   background-color: rgba(255, 238, 162, 0.3)
 }
@@ -68,7 +75,7 @@
   background-color: #ffffff;
   border-radius: 5px;
   border: 2px solid;
-  padding: 18px 8px 18px 8px;
+  padding: 16px 6px 16px 6px;
   margin: 0px 0px 20px 0px;
   font-weight: bold;
   font-size: 15px;
@@ -76,6 +83,13 @@
   color: #ff66d1;
   box-shadow: 2.7px 3.2px 2px 0.3px #938d90;
   margin-top: 15px;
+}
+
+@media (max-width: 550px) {
+  .recommended_and_diary_button{
+    padding: 10px 6px 10px 6px;
+    font-size: 11px;
+  }
 }
 
 .recommended_and_diary_button:hover {
