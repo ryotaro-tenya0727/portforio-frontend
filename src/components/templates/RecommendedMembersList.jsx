@@ -27,6 +27,8 @@ const RecommendedMembersList = () => {
     isIdle,
   } = useGetRecommendedMembers();
 
+  console.log(recommendedMembers);
+
   const returnTop = () => {
     window.scrollTo({
       top: 0,
@@ -181,6 +183,7 @@ const RecommendedMembersList = () => {
                       recommendedMember.attributes.total_member_polaroid_count
                     }
                     DiariesCount={recommendedMember.attributes.diaries_count}
+                    NumberOfDays={recommendedMember.attributes.number_of_days}
                     diaryUrl={`/recommended-member/${recommendedMember.attributes.uuid}/diaries/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
                     editUrl={`/recommended-member/${recommendedMember.attributes.uuid}/edit/${recommendedMember.attributes.id}?nickname=${recommendedMember.attributes.nickname}&group=${recommendedMember.attributes.group}`}
                   />

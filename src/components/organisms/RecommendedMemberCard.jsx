@@ -8,6 +8,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import CircularProgress from '@mui/material/CircularProgress';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
 import { Button } from './../atoms/atoms';
 
@@ -23,6 +24,7 @@ const RecommendedMemberCard = ({
   recommendedMemberId,
   totalMemberPolaroidCount,
   DiariesCount,
+  NumberOfDays,
 }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const returnTop = () => {
@@ -78,6 +80,16 @@ const RecommendedMemberCard = ({
             </span>
             &nbsp;&nbsp;
             {firstMetDate ? firstMetDate : '未入力'}
+          </p>
+          <p className={card.card_text}>
+            <span className={card.card_text_property}>
+              <CalendarTodayIcon
+                sx={{ fontSize: '18px', mb: '-2.5px', color: '#FF1493' }}
+              />
+              &nbsp;&nbsp;{nickname}と会ってから:
+            </span>
+            &nbsp;&nbsp;
+            <span>{NumberOfDays}日経過</span>
           </p>
         </div>
         <div>
