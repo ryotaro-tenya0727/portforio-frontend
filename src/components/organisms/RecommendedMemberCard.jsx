@@ -81,16 +81,6 @@ const RecommendedMemberCard = ({
             &nbsp;&nbsp;
             {firstMetDate ? firstMetDate : '未入力'}
           </p>
-          <p className={card.card_text}>
-            <span className={card.card_text_property}>
-              <CalendarTodayIcon
-                sx={{ fontSize: '18px', mb: '-2.5px', color: '#FF1493' }}
-              />
-              &nbsp;&nbsp;{nickname}と会ってから:
-            </span>
-            &nbsp;&nbsp;
-            <span>{NumberOfDays}日経過</span>
-          </p>
         </div>
         <div>
           {recommendedMemberId === undefined ? (
@@ -101,54 +91,70 @@ const RecommendedMemberCard = ({
               <CircularProgress size={60} />
             </div>
           ) : (
-            <div className={card.card_second_whole}>
-              <div className={card.card_left_whole}>
-                <p className={card.card_text}>
-                  <span className={card.card_text_property}>
-                    <AddAPhotoIcon
-                      sx={{ fontSize: '18px', mb: '-1.8px', color: 'blue' }}
-                    />
-                    &nbsp;&nbsp;総チェキ数:
-                  </span>
-                  &nbsp;{totalMemberPolaroidCount}
-                </p>
-                <p className={card.card_text}>
-                  <span className={card.card_text_property}>
-                    <CollectionsBookmarkIcon
-                      sx={{ fontSize: '19px', mb: '-2.8px', color: '#00AA00' }}
-                    />
-                    &nbsp;&nbsp;日記数:
-                  </span>{' '}
-                  &nbsp;
-                  {DiariesCount}
-                </p>
-              </div>
-              <div className={card.card_right_whole}>
-                <Link to={diaryUrl}>
-                  <Button className={button.button_card} onClick={returnTop}>
-                    <AppRegistrationIcon
-                      sx={{
-                        fontSize: '28px',
-                        mb: '-18.8px',
-                        mr: '3px',
-                      }}
-                    />
-                    <span>
-                      日記を見る
-                      <br />
-                      &emsp;&emsp;追加する
+            <>
+              <p className={card.card_text}>
+                <span className={card.card_text_property}>
+                  <CalendarTodayIcon
+                    sx={{ fontSize: '18px', mb: '-2.5px', color: '#FF1493' }}
+                  />
+                  &nbsp;&nbsp;{nickname}と会ってから:
+                </span>
+                &nbsp;&nbsp;
+                <span>{NumberOfDays}日経過</span>
+              </p>
+              <div className={card.card_second_whole}>
+                <div className={card.card_left_whole}>
+                  <p className={card.card_text}>
+                    <span className={card.card_text_property}>
+                      <AddAPhotoIcon
+                        sx={{ fontSize: '18px', mb: '-1.8px', color: 'blue' }}
+                      />
+                      &nbsp;&nbsp;総チェキ数:
                     </span>
-                  </Button>
-                </Link>
-                <Link to={editUrl}>
-                  <Button className={button.button_card} onClick={returnTop}>
-                    推しメンの
-                    <br />
-                    情報を編集
-                  </Button>
-                </Link>
+                    &nbsp;{totalMemberPolaroidCount}
+                  </p>
+                  <p className={card.card_text}>
+                    <span className={card.card_text_property}>
+                      <CollectionsBookmarkIcon
+                        sx={{
+                          fontSize: '19px',
+                          mb: '-2.8px',
+                          color: '#00AA00',
+                        }}
+                      />
+                      &nbsp;&nbsp;日記数:
+                    </span>{' '}
+                    &nbsp;
+                    {DiariesCount}
+                  </p>
+                </div>
+                <div className={card.card_right_whole}>
+                  <Link to={diaryUrl}>
+                    <Button className={button.button_card} onClick={returnTop}>
+                      <AppRegistrationIcon
+                        sx={{
+                          fontSize: '28px',
+                          mb: '-18.8px',
+                          mr: '3px',
+                        }}
+                      />
+                      <span>
+                        日記を見る
+                        <br />
+                        &emsp;&emsp;追加する
+                      </span>
+                    </Button>
+                  </Link>
+                  <Link to={editUrl}>
+                    <Button className={button.button_card} onClick={returnTop}>
+                      推しメンの
+                      <br />
+                      情報を編集
+                    </Button>
+                  </Link>
+                </div>
               </div>
-            </div>
+            </>
           )}
         </div>
       </Card>

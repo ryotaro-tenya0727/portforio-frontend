@@ -27,8 +27,6 @@ const RecommendedMembersList = () => {
     isIdle,
   } = useGetRecommendedMembers();
 
-  console.log(recommendedMembers);
-
   const returnTop = () => {
     window.scrollTo({
       top: 0,
