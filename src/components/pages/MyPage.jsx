@@ -15,7 +15,7 @@ const MyPage = () => {
     useUsersApi();
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData('users');
-  const { data } = useGetAccesstokenAndCreateUser();
+  const { data, isIdle, isLoading } = useGetAccesstokenAndCreateUser();
   const breadcrumbs = [
     {
       title: (
@@ -39,7 +39,7 @@ const MyPage = () => {
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
 
       {userData === undefined ? (
-        true ? (
+        isIdle || isLoading ? (
           <Loading />
         ) : (
           <>
