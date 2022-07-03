@@ -6,7 +6,6 @@ import home from './../../css/pages/home.module.css';
 
 const MenuButton = () => {
   const { isOpenMenu, setOpenMenu } = useContext(AuthGuardContext);
-
   return (
     <>
       <button

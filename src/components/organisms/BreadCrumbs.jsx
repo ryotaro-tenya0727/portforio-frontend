@@ -5,7 +5,6 @@ import bread from './../../css/organisms/bread.module.css';
 
 const BreadCrumbs = ({ breadcrumbs }) => {
   const length = breadcrumbs.length;
-
   return (
     <>
       <Breadcrumbs

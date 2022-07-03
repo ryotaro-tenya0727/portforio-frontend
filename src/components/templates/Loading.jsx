@@ -1,6 +1,8 @@
+import { memo } from 'react';
+
 import loading from './../../css/templates/loading.module.css';
 
-const Loading = () => {
+const Loading = memo(() => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   return (
     <div
@@ -15,6 +17,6 @@ const Loading = () => {
       />
     </div>
   );
-};
+});
 
 export default Loading;

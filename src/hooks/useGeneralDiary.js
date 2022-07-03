@@ -1,5 +1,4 @@
 import { useQuery } from 'react-query';
-
 import { generalDiaryRepository } from './../repositories/generalDiaryRepository';
 
 export const useGeneralDiariesApi = () => {
