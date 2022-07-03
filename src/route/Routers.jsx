@@ -12,6 +12,7 @@ import {
   PrivacyPolicy,
   TermsOfService,
   GeneralDiaryShow,
+  Page404,
 } from '../components/pages/Pages';
 
 export const Routers = () => {
@@ -22,7 +23,7 @@ export const Routers = () => {
       <Route path='/privacy-policy' element={<PrivacyPolicy />} />
       <Route path='/term-of-service' element={<TermsOfService />} />
       <Route path='/diaries/show/:diary_id' element={<GeneralDiaryShow />} />
-
+      <Route path='*' element={<Page404 />} />
       <Route
         path='/recommended-members/new'
         element={<RecommenedMembersNew />}
