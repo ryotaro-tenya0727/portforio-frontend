@@ -324,13 +324,13 @@ const RecommenedMemberDiaryEditForm = ({
               <br />
               <br />
               <label htmlFor='impressive_memory_detail'>
-                印象に残った出来事の詳細 (140文字以内)
+                印象に残った出来事の詳細
               </label>
 
               <Controller
                 defaultValue={`${diaryShow.impressive_memory_detail}`}
                 name='diary.impressive_memory_detail'
-                rules={{ maxLength: 140 }}
+                rules={{ maxLength: 60000 }}
                 control={control}
                 render={({ field }) => (
                   <TextField
@@ -401,14 +401,6 @@ const RecommenedMemberDiaryEditForm = ({
                       <br />
                       <span>
                         ・「印象に残った出来事」の文字数を超過しています
-                      </span>
-                    </>
-                  )}
-                  {formState.errors.diary.impressive_memory_detail && (
-                    <>
-                      <br />
-                      <span>
-                        ・「印象に残った出来事の詳細」の文字数を超過しています
                       </span>
                     </>
                   )}
