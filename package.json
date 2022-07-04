@@ -21,6 +21,7 @@
     "react-query": "^3.39.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
+    "react-scroll": "^1.8.7",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

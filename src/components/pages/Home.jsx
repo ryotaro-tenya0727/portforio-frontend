@@ -6,6 +6,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import CircularProgress from '@mui/material/CircularProgress';
 import HelpIcon from '@mui/icons-material/Help';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import { Link as Scroll } from 'react-scroll';
 
 import { Button, MenuButton } from './../atoms/atoms';
 import home from './../../css/pages/home.module.css';
@@ -18,12 +19,12 @@ const Home = () => {
     setLoading(true);
   };
 
-  const returnAbout = () => {
-    window.scrollTo({
-      top: 600,
-      behavior: 'smooth',
-    });
-  };
+  // const returnAbout = () => {
+  //   window.scrollTo({
+  //     top: 600,
+  //     behavior: 'smooth',
+  //   });
+  // };
 
   return (
     <>
@@ -86,23 +87,22 @@ const Home = () => {
                   ))}
               </>
             )}
+
             <Link to='#' style={{ margin: '0 auto' }} className={home.about}>
-              <HelpIcon
-                sx={{ color: '#ff94df', fontSize: '30px' }}
-                onClick={returnAbout}
-              />
-              <br />
-              <span
-                style={{
-                  color: '#fff',
-                  fontWeight: 'bold',
-                  writingMode: 'vertical-rl',
-                }}
-                className={home.about_text}
-                onClick={returnAbout}
-              >
-                ABOUT&emsp;推し♡だいありー
-              </span>
+              <Scroll to='about' smooth={true}>
+                <HelpIcon sx={{ color: '#ff94df', fontSize: '30px' }} />
+                <br />
+                <span
+                  style={{
+                    color: '#fff',
+                    fontWeight: 'bold',
+                    writingMode: 'vertical-rl',
+                  }}
+                  className={home.about_text}
+                >
+                  ABOUT&emsp;推し♡だいありー
+                </span>
+              </Scroll>
             </Link>
           </div>
           {loading ? (
@@ -138,7 +138,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className={home.about_wrapper}>
+
+      <div className={home.about_wrapper} id='about'>
         <p className={home.about_title}>推し♡だいありーとは？</p>
         <p className={home.about_description}>
           推しメンとの思い出を日記のように保存できるサービスです。
