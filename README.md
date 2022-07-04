@@ -5,6 +5,8 @@
 
 バックエンドのリポジトリは[こちら](https://github.com/ryotaro-tenya0727/portfolio-backend)
 
+サービスへのリンク: [推し♡だいありー](https://www.oshi-diary.com/)
+
 # 推し♡だいありー
 
 ## サービス概要
