@@ -7,24 +7,19 @@ import CircularProgress from '@mui/material/CircularProgress';
 import HelpIcon from '@mui/icons-material/Help';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { Link as Scroll } from 'react-scroll';
+import usePageTracking from './../../hooks/useTracking';
 
 import { Button, MenuButton } from './../atoms/atoms';
 import home from './../../css/pages/home.module.css';
 
 const Home = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
+  usePageTracking();
   const { loginWithRedirect, logout, isAuthenticated, isLoading } = useAuth0();
   const [loading, setLoading] = useState(false);
   const handleClick = () => {
     setLoading(true);
   };
-
-  // const returnAbout = () => {
-  //   window.scrollTo({
-  //     top: 600,
-  //     behavior: 'smooth',
-  //   });
-  // };
 
   return (
     <>
