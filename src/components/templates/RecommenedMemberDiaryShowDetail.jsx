@@ -55,7 +55,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                 href={`https://twitter.com/intent/tweet?text=%0a${
                   recommended_member_diary_show.data.attributes
                     .diary_member_nickname
-                }との思い出%0ahttps://www.oshi-diary.com/diaries/show/${
+                }との思い出%0a%23推しだいありー%0ahttps://www.oshi-diary.com/diaries/show/${
                   recommended_member_diary_show.data.attributes.id
                 }?name=${encodeURI(
                   encodeURI(
