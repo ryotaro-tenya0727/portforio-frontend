@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 
 const usePageTracking = () => {
-  const GaId = process.env.REACT_APP_IMAGE_DOMAIN;
+  const GaId = process.env.REACT_APP_GA_ID;
   const location = useLocation();
 
   useEffect(() => {
