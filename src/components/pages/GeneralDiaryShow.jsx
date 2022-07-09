@@ -1,14 +1,19 @@
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import CircularProgress from '@mui/material/CircularProgress';
+import HomeIcon from '@mui/icons-material/Home';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 
+import { Button } from './../atoms/atoms';
+
 import { useGeneralDiariesApi } from './../../hooks/useGeneralDiary';
 import diary from './../../css/templates/diary.module.css';
+import button from './../../css/atoms/button.module.css';
 
 const GeneralDiaryShow = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
@@ -37,6 +42,19 @@ const GeneralDiaryShow = () => {
         </div>
       ) : (
         <>
+          <Link to='/'>
+            <Button className={button.recommended_and_diary_button}>
+              <HomeIcon
+                sx={{
+                  fontSize: '20px',
+                  mb: '-4.5px',
+                  mr: '5px',
+                  color: '#ff64db',
+                }}
+              />
+              トップページへ
+            </Button>
+          </Link>
           <div
             className={diary.diary_show_wrapper}
             style={{
