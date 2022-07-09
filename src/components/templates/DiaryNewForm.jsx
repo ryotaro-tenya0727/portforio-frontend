@@ -396,7 +396,7 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <label htmlFor='status'>他のユーザーへの公開設定</label>
+          <label htmlFor='status'>トップページでの公開を許可する？</label>
           <Controller
             defaultValue=''
             name='diary.status'
@@ -412,8 +412,8 @@ const DiaryNewForm = ({
                   sx={{ backgroundColor: '#fff', width: '50%' }}
                   label={'公開設定'}
                 >
-                  <MenuItem value={'published'}>公開する</MenuItem>
-                  <MenuItem value={'non_published'}>公開しない</MenuItem>
+                  <MenuItem value={'published'}>する</MenuItem>
+                  <MenuItem value={'non_published'}>しない</MenuItem>
                 </TextField>
               </>
             )}

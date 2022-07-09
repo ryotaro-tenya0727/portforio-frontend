@@ -119,9 +119,9 @@ const LoginUserDiaryCard = ({
           {eventPolaroidCount ? eventPolaroidCount : '未入力'}
         </p>
         <p className={card.card_text}>
-          <span className={card.card_text_property}>公開設定:</span>
+          <span className={card.card_text_property}>トップページでの公開:</span>
           &nbsp;
-          {status === 'published' ? '公開する' : '公開しない'}
+          {status === 'published' ? 'する' : 'しない'}
         </p>
         <div className={card.card_photo_list}>
           {diaryId === undefined ? (
