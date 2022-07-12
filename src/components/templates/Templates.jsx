@@ -10,3 +10,4 @@ export { default as RecommenedMemberDiaryEditForm } from './RecommenedMemberDiar
 export { default as RecommenedMemberDiaryShowDetail } from './RecommenedMemberDiaryShowDetail';
 export { default as RecommenedMemberEditForm } from './RecommenedMemberEditForm';
 export { default as RecommenedMembersNewForm } from './RecommenedMembersNewForm';
+export { default as AdminUserList } from './AdminUserList';

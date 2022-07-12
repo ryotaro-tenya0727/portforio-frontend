@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import {
+  AdminUsers,
   Home,
   MyPage,
   RecommenedMembersNew,
@@ -19,6 +20,7 @@ export const Routers = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
+      <Route path='/admin' element={<AdminUsers />} />
       <Route path='/mypage' element={<MyPage />} />
       <Route path='/privacy-policy' element={<PrivacyPolicy />} />
       <Route path='/term-of-service' element={<TermsOfService />} />
