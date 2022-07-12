@@ -8,7 +8,6 @@ const AdminUsers = () => {
   const queryClient = useQueryClient();
   const user_data = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
-  console.log(data);
 
   return (
     <>

@@ -16,4 +16,18 @@ export const adminUserRepository = {
       });
     return response.data;
   },
+
+  deleteAdminUser: async (token, userId) => {
+    await axios
+      .delete(`${API_URL}/admin/users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+      });
+    return;
+  },
 };
