@@ -60,8 +60,8 @@
   position: relative;
   background:#ff7bd7;
   cursor: pointer;
-  width: 70px;
-  height:70px;
+  width: 60px;
+  height:60px;
   border: none;
   border-radius: 50%;
 }
@@ -70,10 +70,19 @@
   opacity: 0.9
 }
 
-@media (max-width: 700px) {
+@media (min-width: 600px) {
   .menu_button{
     width: 65px;
     height:65px;
+  }
+}
+
+
+
+@media (min-width: 700px) {
+  .menu_button{
+  width: 70px;
+  height:70px;
   }
 }
 

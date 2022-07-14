@@ -128,6 +128,9 @@ const RecommendedMembersList = () => {
                     mb: -1.7,
                     mr: 1,
                     color: 'secondary.main',
+                    '@media screen and (max-width:500px)': {
+                      fontSize: 35,
+                    },
                   }}
                 />
                 <input

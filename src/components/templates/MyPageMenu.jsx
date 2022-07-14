@@ -33,25 +33,6 @@ const MyPageMenu = () => {
     <>
       <ThemeProvider theme={theme}>
         <TabContext value={value}>
-          <ul className={MypageMenu.sakura}>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -59,14 +40,31 @@ const MyPageMenu = () => {
             textColor={'primary'}
             indicatorColor={'primary'}
             sx={{
-              width: 1,
+              // width: 1,
               bgcolor: '#fff',
               borderRadius: '8px',
               border: 'solid 2px #EEEEEE',
+              '@media screen and (max-width:500px)': {
+                height: '70px',
+              },
+              '@media screen and (max-width:400px)': {
+                height: '70px',
+                margin: 'calc(50% - 50vw)',
+                width: '99.2vw',
+              },
             }}
           >
             <Tab
-              icon={<NotificationsIcon sx={{ fontSize: 39 }} />}
+              icon={
+                <NotificationsIcon
+                  sx={{
+                    fontSize: 39,
+                    '@media screen and (max-width:500px)': {
+                      fontSize: 30,
+                    },
+                  }}
+                />
+              }
               iconPosition='bottom'
               label={<span className={MypageMenu.menu_text}>お知らせ</span>}
               sx={{ width: 1 / 4 }}
@@ -74,7 +72,16 @@ const MyPageMenu = () => {
             />
 
             <Tab
-              icon={<MonochromePhotosIcon sx={{ fontSize: 39 }} />}
+              icon={
+                <MonochromePhotosIcon
+                  sx={{
+                    fontSize: 39,
+                    '@media screen and (max-width:500px)': {
+                      fontSize: 30,
+                    },
+                  }}
+                />
+              }
               iconPosition='bottom'
               label={<span className={MypageMenu.menu_text}>チェキグラフ</span>}
               sx={{ width: 1 / 4 }}
@@ -86,8 +93,6 @@ const MyPageMenu = () => {
                   <img
                     src={`${imageDomain}/admin/menu-image.png`}
                     alt='picture'
-                    width='41'
-                    height='41'
                     className={MypageMenu.menu_recommended_member_icon}
                   />
                 </>
@@ -98,7 +103,16 @@ const MyPageMenu = () => {
               value='2'
             />
             <Tab
-              icon={<AccountBoxIcon sx={{ fontSize: 40 }} />}
+              icon={
+                <AccountBoxIcon
+                  sx={{
+                    fontSize: 39,
+                    '@media screen and (max-width:500px)': {
+                      fontSize: 30,
+                    },
+                  }}
+                />
+              }
               iconPosition='bottom'
               label={<span className={MypageMenu.menu_text}>プロフィール</span>}
               sx={{ width: 1 / 4 }}
