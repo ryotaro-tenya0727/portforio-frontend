@@ -76,7 +76,14 @@ const Home = () => {
                         logout();
                       }}
                     >
-                      <LogoutIcon sx={{ color: '#ff94df' }} />
+                      <LogoutIcon
+                        sx={{
+                          color: '#ff94df',
+                          '@media screen and (max-width:700px)': {
+                            fontSize: '18px',
+                          },
+                        }}
+                      />
                       <p style={{ fontSize: '10px' }}>ログアウト</p>
                     </button>
                   ))}

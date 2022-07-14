@@ -105,19 +105,19 @@
 
 @media (max-width: 700px) {
   .login_button{
-    width: 65px;
-    height:65px;
+    width: 60px;
+    height:60px;
   }
 }
 
 .register_button{
   width: 165px;
-  height: 60px;
+  height: 50px;
   cursor: pointer;
   background-color: #ffffff;
   border-radius: 5px;
   border: 2px solid;
-  padding: 18px 8px 18px 8px;
+  padding: 12px 8px 30px 8px;
   font-weight: bold;
   color:  #ff7bd7;
   position: absolute;
@@ -141,6 +141,8 @@
   .register_button {
     width: 180px;
     right: 38.5%;
+      height: 60px;
+        padding: 18px 8px 30px 8px;
   }
 }
 
@@ -271,34 +273,62 @@
 
 .about_wrapper{
   margin: 0 auto;
+  width: 80%;
+}
+@media (min-width: 470px) {
+.about_wrapper{
+  margin: 0 auto;
   max-width: 1000px;
 }
+}
+
+
+
 
 .about_title{
   margin-top: 20px;
-  font-size: 21px;
+  font-size: 17px;
   border-bottom: dashed 2px #ff7bd7;
   display: inline-block;
 }
 
-@media (min-width: 470px) {
+@media (min-width: 600px) {
   .about_title{
     font-size: 25px;
   }
 }
 
 .about_description{
-  margin-top: 20px;
+  margin-top: 15px;
+  font-size: 14px;
 }
+
+@media (min-width: 600px) {
+.about_description{
+  margin-top: 20px;
+  font-size: 17px;
+}
+}
+
+
 
 .about_diary_image{
-
-  width: 360px;
+  margin: 0 auto;
+  width: 270px;
 
 }
 
-@media (min-width: 470px) {
+@media (min-width: 450px) {
+.about_diary_image{
+  margin: 0 auto;
+  width: 300px;
+
+}
+}
+
+
+@media (min-width: 600px) {
   .about_diary_image{
-    width: 450px;
+    width: 400px;
   }
 }
