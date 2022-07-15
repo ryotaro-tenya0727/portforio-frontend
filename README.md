@@ -5,7 +5,7 @@
 
 こちらは「推し♡だいありー」のバックエンドのリポジトリになります。
 
-フロントエンドのリポジトリは[こちら](https://github.com/ryotaro-tenya0727/portforio-frontend)
+バックエンドのリポジトリは[こちら](https://github.com/ryotaro-tenya0727/portforio-frontend)
 
 サービスへのリンク: [推し♡だいありー](https://www.oshi-diary.com/)
 
