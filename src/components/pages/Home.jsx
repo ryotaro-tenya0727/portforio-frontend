@@ -10,6 +10,7 @@ import { Link as Scroll } from 'react-scroll';
 import usePageTracking from './../../hooks/useTracking';
 
 import { Button, MenuButton } from './../atoms/atoms';
+import { GeneralDiaryList } from './../templates/Templates';
 import home from './../../css/pages/home.module.css';
 
 const Home = () => {
@@ -149,13 +150,14 @@ const Home = () => {
         <p className={home.about_description}>
           推しメンひとり一人とその日の出来事を詳細に記録することができます。
         </p>
-        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <GeneralDiaryList />
+        {/* <div style={{ textAlign: 'center', marginTop: '20px' }}>
           <img
             src={`${imageDomain}/admin/home-diary-min-min.png`}
             alt='picture'
             className={home.about_diary_image}
           />
-        </div>
+        </div> */}
         <p className={home.about_title}>ツイート機能</p>
         <p className={home.about_description}>
           作成した日記を推しメンの名前を入れてツイートすることもできます。

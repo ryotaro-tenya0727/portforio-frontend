@@ -273,17 +273,19 @@
 
 .about_wrapper{
   margin: 0 auto;
-  width: 80%;
+}
+
+@media (max-width: 1000px) {
+.about_wrapper{
+  width: 93%;
+}
+
 }
 @media (min-width: 470px) {
 .about_wrapper{
-  margin: 0 auto;
   max-width: 1000px;
 }
 }
-
-
-
 
 .about_title{
   margin-top: 20px;
