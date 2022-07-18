@@ -1,10 +1,74 @@
+import CircularProgress from '@mui/material/CircularProgress';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Autoplay, Pagination, Navigation } from 'swiper';
+
+import { GeneralUserDiaryCard } from './../organisms/Organisms';
 import { useGeneralDiariesApi } from '../../hooks/useGeneralDiary';
+import generalDiaryList from './../../css/templates/generalDiaryList.module.css';
+
+import 'swiper/css';
 
 const GeneralDiaryList = () => {
   const { useGetGeneralDiaries } = useGeneralDiariesApi();
   const { data: generalDiaries, isLoading, isIdle } = useGetGeneralDiaries();
+  console.log(generalDiaries);
 
-  return isIdle || isLoading ? <>ローディング</> : <>日記取得完了</>;
+  return isIdle || isLoading ? (
+    <div className={generalDiaryList.loading}>
+      <CircularProgress size={130} sx={{ mt: '50px', color: '#ff7bd7' }} />
+    </div>
+  ) : (
+    <div className={generalDiaryList.wrapper}>
+      <Swiper
+        effect={'coverflow'}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 40,
+          modifier: 3,
+          slideShadows: false,
+        }}
+        spaceBetween={20}
+        loop={true}
+        speed={2000}
+        initialSlide={3}
+        slidesPerView={1}
+        autoplay={{
+          delay: 1000,
+        }}
+        breakpoints={{
+          780: {
+            slidesPerView: 2,
+          },
+        }}
+        preventInteractionOnTransition={true}
+        modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log('slide change')}
+      >
+        {generalDiaries.data.map((diary, index) => {
+          return (
+            <SwiperSlide>
+              <GeneralUserDiaryCard
+                key={index}
+                diaryId={diary.attributes.id}
+                diaryUserName={diary.attributes.diary_user_name}
+                diaryUserImage={diary.attributes.diary_user_image}
+                eventName={diary.attributes.event_name}
+                eventDate={diary.attributes.event_date}
+                eventVenue={diary.attributes.event_venue}
+                diaryImages={diary.attributes.diary_images}
+                eventPolaroidCount={diary.attributes.event_polaroid_count}
+                ImpressiveMemory={diary.attributes.impressive_memory}
+                showUrl={`/diaries/show/${diary.attributes.id}}`}
+                // editUrl={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/edit/${diary.attributes.id}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
+              />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </div>
+  );
 };
 
 export default GeneralDiaryList;

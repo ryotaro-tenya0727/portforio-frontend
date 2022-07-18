@@ -11,10 +11,6 @@
   }
 }
 
-.card_right_whole{
-
-}
-
 @media (min-width: 500px) {
   .card_right_whole{
     margin: 0 0 0 auto;
@@ -126,4 +122,12 @@
   position:  absolute;
   top: -10px;
   right: -30px
+}
+
+/* geenralDiaryCard */
+.user_info{
+    margin-top: 20px;
+  display: flex;
+  align-items: center;
+
 }

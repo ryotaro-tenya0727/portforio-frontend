@@ -4,3 +4,4 @@ export { default as RecommendedMemberCard } from './RecommendedMemberCard';
 export { default as Sidebar } from './Sidebar';
 export { default as TrimmingModal } from './TrimmingModal';
 export { default as AdminUserCard } from './AdminUserCard';
+export { default as GeneralUserDiaryCard } from './GeneralUserDiaryCard';
