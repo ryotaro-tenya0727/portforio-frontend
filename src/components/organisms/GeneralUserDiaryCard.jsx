@@ -13,6 +13,7 @@ import { Button } from './../atoms/atoms';
 
 import button from './../../css/atoms/button.module.css';
 import card from './../../css/organisms/card.module.css';
+import diary from './../../css/templates/diary.module.css';
 
 const GeneralUserDiaryCard = ({
   diaryUserName,
