@@ -43,8 +43,6 @@ const GeneralDiaryList = () => {
         }}
         preventInteractionOnTransition={true}
         modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
       >
         {generalDiaries.data.map((diary, index) => {
           return (

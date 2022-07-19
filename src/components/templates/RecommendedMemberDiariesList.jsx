@@ -155,7 +155,8 @@ const RecommendedMemberDiariesList = ({
             {_DATA.currentData().length === 0 && (
               <>
                 <div style={{ textAlign: 'center', marginTop: '40px' }}>
-                  現在{recommendedMemberNickname}との日記が登録されていません。
+                  現在、{recommendedMemberNickname}
+                  との日記が登録されていません。
                   <p>
                     {' '}
                     <Link
