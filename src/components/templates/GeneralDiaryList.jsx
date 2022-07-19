@@ -55,6 +55,7 @@ const GeneralDiaryList = () => {
                 eventName={diary.attributes.event_name}
                 eventDate={diary.attributes.event_date}
                 eventVenue={diary.attributes.event_venue}
+                DiaryMemberNickname={diary.attributes.diary_member_nickname}
                 diaryImages={diary.attributes.diary_images}
                 eventPolaroidCount={diary.attributes.event_polaroid_count}
                 ImpressiveMemory={diary.attributes.impressive_memory}

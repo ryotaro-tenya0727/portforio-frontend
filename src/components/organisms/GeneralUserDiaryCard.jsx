@@ -18,6 +18,7 @@ import diary from './../../css/templates/diary.module.css';
 const GeneralUserDiaryCard = ({
   diaryUserName,
   diaryUserImage,
+  DiaryMemberNickname,
   eventName,
   eventDate,
   eventVenue,
@@ -43,6 +44,15 @@ const GeneralUserDiaryCard = ({
       }}
     >
       <div className={card.card_diary_button_list}>
+        <p
+          style={{
+            margin: '0px 0px 7px 10px',
+            fontSize: '17px',
+          }}
+          className={card.card_text_property}
+        >
+          {DiaryMemberNickname}との思い出
+        </p>
         <Link to={showUrl}>
           <Button className={button.button_card} onClick={returnTop}>
             <AppRegistrationIcon
@@ -59,6 +69,7 @@ const GeneralUserDiaryCard = ({
             日記の詳細を見る
           </Button>
         </Link>
+
         <img
           src={`${imageDomain}/admin/diary_card_image.png`}
           alt='picture'
