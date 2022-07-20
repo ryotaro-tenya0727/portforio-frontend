@@ -116,9 +116,8 @@ const TrimmingModal = ({
 
     // readAsDataURLでファイルを読み込むと発動
     reader.addEventListener('load', () => {
-      const image = reader.result;
       // ここでリサイズするための画像を格納
-      setImageToFirstCrop(image);
+      setImageToFirstCrop(reader.result);
     });
 
     reader.readAsDataURL(event.target.files[0]);
@@ -159,16 +158,12 @@ const TrimmingModal = ({
 
     // readAsDataURLでファイルを読み込むと発動
     reader.addEventListener('load', () => {
-      const image = reader.result;
       // ここでリサイズする画像を格納
-      setImageToSecondCrop(image);
+      setImageToSecondCrop(reader.result);
     });
 
     reader.readAsDataURL(event.target.files[0]);
-
     setSecondOpen(true);
-
-    // console.log(imageUrls);
     event.target.value = '';
     // ここでリサイズする画像を格納
   };
@@ -272,15 +267,19 @@ const TrimmingModal = ({
     );
 
     return new Promise((resolve, reject) => {
-      canvas.toBlob((blob) => {
-        // returning an error
-        if (!blob) {
-          reject(new Error('Canvas is empty'));
-          return;
-        }
-        blob.name = fileName;
-        resolve(blob);
-      }, 'image/png');
+      canvas.toBlob(
+        (blob) => {
+          // returning an error
+          if (!blob) {
+            reject(new Error('Canvas is empty'));
+            return;
+          }
+          blob.name = fileName;
+          resolve(blob);
+        },
+        'image/jpeg',
+        1
+      );
     });
   };
 
@@ -313,7 +312,7 @@ const TrimmingModal = ({
               </button>
             )}
             <img
-              src={URL.createObjectURL(firstImage)}
+              src={window.URL.createObjectURL(firstImage)}
               alt={`あなたの写真 `}
               width='200'
               height='200'
@@ -338,7 +337,7 @@ const TrimmingModal = ({
             )}
 
             <img
-              src={URL.createObjectURL(secondImage)}
+              src={window.URL.createObjectURL(secondImage)}
               alt={`あなたの写真 `}
               width='200'
               height='200'
