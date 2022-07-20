@@ -11,7 +11,6 @@ import 'swiper/css';
 const GeneralDiaryList = () => {
   const { useGetGeneralDiaries } = useGeneralDiariesApi();
   const { data: generalDiaries, isLoading, isIdle } = useGetGeneralDiaries();
-  console.log(generalDiaries);
 
   return isIdle || isLoading ? (
     <div className={generalDiaryList.loading}>
