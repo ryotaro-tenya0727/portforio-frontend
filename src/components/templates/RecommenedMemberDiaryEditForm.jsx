@@ -352,12 +352,11 @@ const RecommenedMemberDiaryEditForm = ({
               <br />
               <br />
               <label htmlFor='status'>他のユーザーへの公開設定</label>
-
               <Controller
+                defaultValue=''
                 name='diary.status'
                 rules={{ required: true }}
                 control={control}
-                defaultValue={'published'}
                 render={({ field }) => (
                   <>
                     <TextField
@@ -368,8 +367,8 @@ const RecommenedMemberDiaryEditForm = ({
                       sx={{ backgroundColor: '#fff', width: '50%' }}
                       label={'公開設定'}
                     >
-                      <MenuItem value={'published'}>公開する</MenuItem>
-                      <MenuItem value={'non_published'}>公開しない</MenuItem>
+                      <MenuItem value={'published'}>する</MenuItem>
+                      <MenuItem value={'non_published'}>しない</MenuItem>
                     </TextField>
                   </>
                 )}
