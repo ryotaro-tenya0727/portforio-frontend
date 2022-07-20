@@ -192,7 +192,7 @@ const TrimmingModal = ({
     }
   };
 
-  const registerFirstImage = () => {
+  const registerFirstImage = async () => {
     setFirstImage(croppedFirstImage);
     onSetFirstImageFiles(croppedFirstImage);
     onSetFirstImageUrls(madeFirstUrls);
@@ -248,11 +248,15 @@ const TrimmingModal = ({
   const getCroppedImage = (sourceImage, cropConfig, fileName) => {
     // creating the cropped image from the source image
     const canvas = document.createElement('canvas');
+    const pixelRatio = window.devicePixelRatio;
     const scaleX = sourceImage.naturalWidth / sourceImage.width;
     const scaleY = sourceImage.naturalHeight / sourceImage.height;
-    canvas.width = cropConfig.width;
-    canvas.height = cropConfig.height;
     const ctx = canvas.getContext('2d');
+    canvas.width = cropConfig.width * pixelRatio * scaleX;
+    canvas.height = cropConfig.height * pixelRatio * scaleY;
+
+    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    ctx.imageSmoothingQuality = 'high';
 
     ctx.drawImage(
       sourceImage,
@@ -262,8 +266,8 @@ const TrimmingModal = ({
       cropConfig.height * scaleY,
       0,
       0,
-      cropConfig.width,
-      cropConfig.height
+      cropConfig.width * scaleX,
+      cropConfig.height * scaleY
     );
 
     return new Promise((resolve, reject) => {
@@ -363,10 +367,12 @@ const TrimmingModal = ({
               ruleOfThirds
               // 画像選択時
               onImageLoaded={(imageRef) => {
-                // console.log('画像選択');
+                // console.log('onImageLoaded');
                 // <img ...>がimageRefに入る
                 // imageRef.width = '300px';
                 setImageRef(imageRef);
+                // setCropConfig(cropConfig);
+                // cropFirstImage(cropConfig);
               }}
               // リサイズ中(マウスを持っているとき)
               onChange={(cropConfig) => {
@@ -374,8 +380,11 @@ const TrimmingModal = ({
                 setCropConfig(cropConfig);
               }}
               // リサイズ後（マウス離したとき）
-              onComplete={(cropConfig) => {
+              onComplete={async (cropConfig) => {
+                // console.log('onComplete');
+                // console.log(cropConfig);
                 cropFirstImage(cropConfig);
+                // console.log(croppedFirstImage);
               }}
               crossorigin='anonymous' // to avoid CORS-related problems
             />
@@ -402,7 +411,7 @@ const TrimmingModal = ({
               ruleOfThirds
               // 画像選択時
               onImageLoaded={(imageRef) => {
-                console.log(imageRef.class);
+                // console.log(imageRef.class);
                 // console.log(imageRef.width);
                 // <img ...>がimageRefに入る
                 setImageRef(imageRef);

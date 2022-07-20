@@ -124,7 +124,7 @@ const LoginUserDiaryCard = ({
           {status === 'published' ? 'する' : 'しない'}
         </p>
         <div className={card.card_photo_list}>
-          {diaryId === undefined ? (
+          {diaryImages === undefined ? (
             <div style={{ textAlign: 'center', padding: '0px 0px 2px 0px' }}>
               <p style={{ marginBottom: '10px', fontWeight: 'bold' }}>
                 日記作成中
