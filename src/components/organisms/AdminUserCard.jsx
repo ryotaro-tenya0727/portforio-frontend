@@ -50,7 +50,7 @@ const AdminUserCard = ({ id, name, sub, total_polaroid_count }) => {
           このユーザーを削除
         </Button>
         &ensp;&ensp;
-        <Link to={`/admin/${id}/diaries`} onClick={returnTop}>
+        <Link to={`/admin/${id}/diaries?name=${name}`} onClick={returnTop}>
           <Button className={button.button_card}>
             <AppRegistrationIcon
               sx={{

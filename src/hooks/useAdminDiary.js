@@ -8,7 +8,7 @@ export const useAdminDiariesApi = () => {
 
   const useGetAdminDiaries = (userId) => {
     return useQuery({
-      queryKey: 'admin_diaries',
+      queryKey: ['admin_diaries', { userId: userId }],
       queryFn: () => adminDiaryRepository.getAdminDiary(accessToken, userId),
       staleTime: 30000000,
       cacheTime: 30000000,
