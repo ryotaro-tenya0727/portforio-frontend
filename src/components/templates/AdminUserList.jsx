@@ -30,6 +30,7 @@ const AdminUserList = ({ role }) => {
                 name={user.attributes.name}
                 sub={user.attributes.sub}
                 total_polaroid_count={user.attributes.total_polaroid_count}
+                diariesCount={user.attributes.diaries_count}
               />
             );
           })}

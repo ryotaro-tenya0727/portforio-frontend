@@ -15,9 +15,9 @@ export const useAdminDiariesApi = () => {
     });
   };
 
-  const useDeleteAdminDiary = (diaryId) => {
+  const useDeleteAdminDiary = (diaryId, userId) => {
     const queryClient = useQueryClient();
-    const queryKey = 'admin_diaries';
+    const queryKey = ['admin_diaries', { userId: userId }];
 
     const updater = (previousData) => {
       previousData.data = previousData.data.filter(
@@ -50,7 +50,7 @@ export const useAdminDiariesApi = () => {
         },
         onSettled: () => {
           queryClient.invalidateQueries(queryKey);
-          alert(`${diaryId}のユーザーを削除しました`);
+          alert(`${diaryId}の日記をを削除しました`);
         },
       }
     );

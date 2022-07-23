@@ -1,16 +1,18 @@
 import Grid from '@mui/material/Grid';
-
-import { Button } from './../atoms/atoms';
+import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import Card from '@mui/material/Card';
-import { useAdminDiariesApi } from './../../hooks/useAdminDiary';
+
 import Zoom from 'react-medium-image-zoom';
+import { Button } from './../atoms/atoms';
+import { useAdminDiariesApi } from './../../hooks/useAdminDiary';
 
 import button from './../../css/atoms/button.module.css';
 import card from './../../css/organisms/card.module.css';
 import 'react-medium-image-zoom/dist/styles.css';
 
 const AdminUserDiaryCard = ({
-  id,
+  diaryId,
+  userId,
   diaryImages,
   diaryMemberGroup,
   diaryMemberNickname,
@@ -22,7 +24,12 @@ const AdminUserDiaryCard = ({
   status,
 }) => {
   const { useDeleteAdminDiary } = useAdminDiariesApi();
-  const deleteAdminUserDiary = useDeleteAdminDiary(id);
+  const deleteAdminUserDiary = useDeleteAdminDiary(diaryId, userId);
+  const deleteAdminUser = () => {
+    if (window.confirm('選択した日記を消してよろしいですか？')) {
+      deleteAdminUserDiary.mutate();
+    }
+  };
   return (
     <Grid item xs={12} sm={6}>
       <Card
@@ -76,6 +83,10 @@ const AdminUserDiaryCard = ({
           </span>
           &emsp;{impressiveMemoryDetail ? impressiveMemoryDetail : '未入力'}
         </p>
+        <p className={card.card_text}>
+          <span className={card.card_text_property}>&nbsp;&nbsp;公開設定:</span>
+          &emsp;{status === 'published' ? 'する' : 'しない'}
+        </p>
         <div className={card.card_photo_list}>
           {diaryImages.map((diaryImageUrl, index) => {
             return (
@@ -95,6 +106,24 @@ const AdminUserDiaryCard = ({
             );
           })}
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <Button
+          className={button.button_card}
+          onClick={() => deleteAdminUser()}
+        >
+          <BrokenImageIcon
+            sx={{
+              fontSize: '23px',
+              mb: '-6px',
+              mr: '5px',
+              color: '#000',
+            }}
+          />
+          この日記をを削除
+        </Button>
       </Card>
     </Grid>
   );

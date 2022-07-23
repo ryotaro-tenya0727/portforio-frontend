@@ -87,7 +87,6 @@ const RecommendedMembersList = () => {
   // isIdle || isLoading
   return (
     <div className={list.list}>
-      <ReactQueryDevtools />
       <ThemeProvider theme={theme}>
         {isIdle || isLoading ? (
           <div

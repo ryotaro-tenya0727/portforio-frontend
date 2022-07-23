@@ -11,7 +11,7 @@ export const useAdminUsersApi = () => {
       queryKey: 'admin_users',
       queryFn: () => adminUserRepository.getAdminUser(accessToken),
       staleTime: 30000000,
-      cacheTime: 30000000,
+      cacheTime: 0,
     });
   };
 

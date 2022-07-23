@@ -7,8 +7,15 @@ import button from './../../css/atoms/button.module.css';
 import card from './../../css/organisms/card.module.css';
 
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 
-const AdminUserCard = ({ id, name, sub, total_polaroid_count }) => {
+const AdminUserCard = ({
+  id,
+  name,
+  sub,
+  total_polaroid_count,
+  diariesCount,
+}) => {
   const { useDeleteAdminUser } = useAdminUsersApi();
   const deleteAdminUser = useDeleteAdminUser(id);
 
@@ -33,7 +40,7 @@ const AdminUserCard = ({ id, name, sub, total_polaroid_count }) => {
         bgcolor: '#FFFFFF',
         mt: 2,
         mb: 2,
-        height: '70px',
+        height: '130px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -44,28 +51,41 @@ const AdminUserCard = ({ id, name, sub, total_polaroid_count }) => {
         <strong>名前</strong>:&ensp;[{name}]&ensp;
         <strong>sub</strong>:&ensp;[{sub}]&ensp;
         <strong>総チェキ数</strong>:&ensp;[
-        {total_polaroid_count}
+        {total_polaroid_count}]&ensp;
+        <strong>日記数</strong>:&ensp;[
+        {diariesCount}
         ]&ensp;
-        <Button className={button.button_card} onClick={() => deleteUser()}>
-          このユーザーを削除
-        </Button>
-        &ensp;&ensp;
-        <Link to={`/admin/${id}/diaries?name=${name}`} onClick={returnTop}>
-          <Button className={button.button_card}>
-            <AppRegistrationIcon
+        <br />
+        <br />
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Link to={`/admin/${id}/diaries?name=${name}`} onClick={returnTop}>
+            <Button className={button.button_card}>
+              <AppRegistrationIcon
+                sx={{
+                  fontSize: '25px',
+                  mb: '-9.5px',
+                  mr: '3px',
+                  '@media screen and (max-width:600px)': {
+                    fontSize: '20.5px',
+                    mb: '-7.5px',
+                  },
+                }}
+              />
+              日記を表示
+            </Button>
+          </Link>
+          <Button className={button.button_card} onClick={() => deleteUser()}>
+            <BrokenImageIcon
               sx={{
-                fontSize: '25px',
-                mb: '-9.5px',
-                mr: '3px',
-                '@media screen and (max-width:600px)': {
-                  fontSize: '20.5px',
-                  mb: '-7.5px',
-                },
+                fontSize: '23px',
+                mb: '-6px',
+                mr: '5px',
+                color: '#000',
               }}
-            />
-            このユーザーの日記を表示
+            />{' '}
+            ユーザーを削除
           </Button>
-        </Link>
+        </div>
       </p>
     </Card>
   );

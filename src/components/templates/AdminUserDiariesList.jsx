@@ -4,7 +4,7 @@ import { RedirectToLogin } from './../pages/Pages';
 import { AdminUserDiaryCard } from './../organisms/Organisms';
 import { useAdminDiariesApi } from './../../hooks/useAdminDiary';
 
-const AdminUserDiariesList = ({ userId, role }) => {
+const AdminUserDiariesList = ({ role, userId }) => {
   const { useGetAdminDiaries } = useAdminDiariesApi();
   const {
     data: adminUserDiaries,
@@ -33,7 +33,8 @@ const AdminUserDiariesList = ({ userId, role }) => {
               return (
                 <AdminUserDiaryCard
                   key={index}
-                  id={diary.attributes.id}
+                  diaryId={diary.attributes.id}
+                  userId={userId}
                   diaryImages={diary.attributes.diary_images}
                   diaryMemberGroup={diary.attributes.diary_member_group}
                   diaryMemberNickname={diary.attributes.diary_member_nickname}
