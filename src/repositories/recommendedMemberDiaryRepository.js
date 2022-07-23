@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { REST_API_URL } from '../urls/index';
 
 export const recommendedMemberDiaryRepository = {

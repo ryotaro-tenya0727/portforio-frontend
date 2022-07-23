@@ -1,7 +1,9 @@
-import { useUsersApi } from './../../hooks/useUsers';
-import { RedirectToLogin } from './Pages';
 import { useQueryClient } from 'react-query';
+
 import { Loading, AdminUserList } from './../templates/Templates';
+import { RedirectToLogin } from './Pages';
+import { useUsersApi } from './../../hooks/useUsers';
+
 const AdminUsers = () => {
   const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
     useUsersApi();

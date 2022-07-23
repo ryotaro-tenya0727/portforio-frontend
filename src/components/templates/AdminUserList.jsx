@@ -1,7 +1,7 @@
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { RedirectToLogin } from './../pages/Pages';
 import { AdminUserCard } from './../organisms/Organisms';
+import { RedirectToLogin } from './../pages/Pages';
 import { useAdminUsersApi } from './../../hooks/useAdminUser';
 
 const AdminUserList = ({ role }) => {

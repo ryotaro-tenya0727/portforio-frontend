@@ -1,6 +1,5 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { MenuButton, HomeBreadText } from './../atoms/atoms';
 import { BreadCrumbs } from './../organisms/Organisms';

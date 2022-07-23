@@ -1,9 +1,8 @@
-// ユーザーに関するカスタムフックは単数形
-import { useMutation, useQueryClient } from 'react-query';
-import { AuthGuardContext } from './../providers/AuthGuard';
 import { useContext, useEffect } from 'react';
+import { useMutation, useQueryClient } from 'react-query';
 import { useAuth0 } from '@auth0/auth0-react';
 
+import { AuthGuardContext } from './../providers/AuthGuard';
 import { userRepository } from '../repositories/userRepository';
 
 export const useUsersApi = () => {

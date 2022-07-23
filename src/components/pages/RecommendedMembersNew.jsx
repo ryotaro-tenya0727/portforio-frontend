@@ -1,4 +1,3 @@
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { useQueryClient } from 'react-query';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 

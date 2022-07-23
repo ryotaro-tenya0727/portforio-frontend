@@ -1,8 +1,8 @@
 import Grid from '@mui/material/Grid';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import Card from '@mui/material/Card';
-
 import Zoom from 'react-medium-image-zoom';
+
 import { Button } from './../atoms/atoms';
 import { useAdminDiariesApi } from './../../hooks/useAdminDiary';
 

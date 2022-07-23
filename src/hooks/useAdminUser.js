@@ -1,8 +1,9 @@
-import { useMutation, useQueryClient, useQuery } from 'react-query';
-import { adminUserRepository } from './../repositories/adminUserRepository';
 import { useContext } from 'react';
+import { useMutation, useQueryClient, useQuery } from 'react-query';
 
 import { AuthGuardContext } from './../providers/AuthGuard';
+import { adminUserRepository } from './../repositories/adminUserRepository';
+
 export const useAdminUsersApi = () => {
   const { accessToken } = useContext(AuthGuardContext);
 

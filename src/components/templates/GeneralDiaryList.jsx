@@ -1,6 +1,6 @@
-import CircularProgress from '@mui/material/CircularProgress';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Autoplay, Pagination, Navigation } from 'swiper';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { GeneralUserDiaryCard } from './../organisms/Organisms';
 import { useGeneralDiariesApi } from '../../hooks/useGeneralDiary';

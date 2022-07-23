@@ -11,7 +11,6 @@ const RecommenedMemberEdit = () => {
   const { recommended_member_uuid, recommended_member_id } = useParams();
   const { search } = useLocation();
   const query = new URLSearchParams(search);
-
   const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
     useUsersApi();
   const queryClient = useQueryClient();
