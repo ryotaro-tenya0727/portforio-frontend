@@ -1,15 +1,15 @@
 import { useMutation, useQueryClient, useQuery } from 'react-query';
-import { adminDiaryRepository } from './../repositories/adminDiaryRepository';
+import { adminDiaryRepository } from '../repositories/adminDiaryRepository';
 import { useContext } from 'react';
 
 import { AuthGuardContext } from './../providers/AuthGuard';
-export const useAdminUsersApi = () => {
+export const useAdminDiariesApi = () => {
   const { accessToken } = useContext(AuthGuardContext);
 
-  const useGetAdminDiaries = () => {
+  const useGetAdminDiaries = (userId) => {
     return useQuery({
       queryKey: 'admin_diaries',
-      queryFn: () => adminDiaryRepository.getAdminDiary(accessToken),
+      queryFn: () => adminDiaryRepository.getAdminDiary(accessToken, userId),
       staleTime: 30000000,
       cacheTime: 30000000,
     });

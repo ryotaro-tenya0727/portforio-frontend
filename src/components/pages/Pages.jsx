@@ -16,3 +16,4 @@ export { default as RedirectToLogin } from './RedirectToLogin';
 export { default as TermsOfService } from './TermsOfService';
 export { default as Page404 } from './Page404';
 export { default as AdminUsers } from './AdminUsers';
+export { default as AdminUserDiaries } from './AdminUserDiaries';

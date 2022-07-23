@@ -9,6 +9,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import CircularProgress from '@mui/material/CircularProgress';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { Button } from './../atoms/atoms';
 import { RecommendedMemberCard } from './../organisms/Organisms';
@@ -86,6 +87,7 @@ const RecommendedMembersList = () => {
   // isIdle || isLoading
   return (
     <div className={list.list}>
+      <ReactQueryDevtools />
       <ThemeProvider theme={theme}>
         {isIdle || isLoading ? (
           <div

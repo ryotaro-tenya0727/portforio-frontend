@@ -14,6 +14,7 @@ import {
   TermsOfService,
   GeneralDiaryShow,
   Page404,
+  AdminUserDiaries,
 } from '../components/pages/Pages';
 
 export const Routers = () => {
@@ -21,6 +22,7 @@ export const Routers = () => {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/admin' element={<AdminUsers />} />
+      <Route path='/admin/:user_id/diaries' element={<AdminUserDiaries />} />
       <Route path='/mypage' element={<MyPage />} />
       <Route path='/privacy-policy' element={<PrivacyPolicy />} />
       <Route path='/term-of-service' element={<TermsOfService />} />

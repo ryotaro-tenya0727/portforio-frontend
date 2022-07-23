@@ -25,6 +25,7 @@ const AdminUserList = ({ role }) => {
           {adminUsers.data.map((user, index) => {
             return (
               <AdminUserCard
+                key={index}
                 id={user.attributes.id}
                 name={user.attributes.name}
                 sub={user.attributes.sub}
