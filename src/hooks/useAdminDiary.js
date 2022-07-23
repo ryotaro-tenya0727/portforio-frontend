@@ -1,36 +1,36 @@
 import { useMutation, useQueryClient, useQuery } from 'react-query';
-import { adminUserRepository } from './../repositories/adminUserRepository';
+import { adminDiaryRepository } from './../repositories/adminDiaryRepository';
 import { useContext } from 'react';
 
 import { AuthGuardContext } from './../providers/AuthGuard';
 export const useAdminUsersApi = () => {
   const { accessToken } = useContext(AuthGuardContext);
 
-  const useGetAdminUsers = () => {
+  const useGetAdminDiaries = () => {
     return useQuery({
-      queryKey: 'admin_users',
-      queryFn: () => adminUserRepository.getAdminUser(accessToken),
+      queryKey: 'admin_diaries',
+      queryFn: () => adminDiaryRepository.getAdminDiary(accessToken),
       staleTime: 30000000,
       cacheTime: 30000000,
     });
   };
 
-  const useDeleteAdminUser = (userId) => {
+  const useDeleteAdminDiary = (diaryId) => {
     const queryClient = useQueryClient();
-    const queryKey = 'admin_users';
+    const queryKey = 'admin_diaries';
 
     const updater = (previousData) => {
       previousData.data = previousData.data.filter(
-        (member) => member.id !== userId
+        (member) => member.id !== diaryId
       );
       return previousData;
     };
 
     return useMutation(
       async () => {
-        return await adminUserRepository.deleteAdminUser(
+        return await adminDiaryRepository.deleteAdmindiary(
           accessToken || '',
-          userId
+          diaryId
         );
       },
       {
@@ -50,11 +50,11 @@ export const useAdminUsersApi = () => {
         },
         onSettled: () => {
           queryClient.invalidateQueries(queryKey);
-          alert(`${userId}のユーザーを削除しました`);
+          alert(`${diaryId}のユーザーを削除しました`);
         },
       }
     );
   };
 
-  return { useGetAdminUsers, useDeleteAdminUser };
+  return { useGetAdminDiaries, useDeleteAdminDiary };
 };
