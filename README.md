@@ -3,9 +3,9 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/f03042d62ad2f2d6026f/maintainability)](https://codeclimate.com/github/ryotaro-tenya0727/portfolio-backend/maintainability)
 <a href="https://codeclimate.com/github/ryotaro-tenya0727/portfolio-backend/test_coverage"><img src="https://api.codeclimate.com/v1/badges/f03042d62ad2f2d6026f/test_coverage" /></a>
 
-こちらは「推し♡だいありー」のバックエンドのリポジトリになります。
+こちらは「推し♡だいありー」のフロントエンドのリポジトリになります。
 
-フロントエンドのリポジトリは[こちら](https://github.com/ryotaro-tenya0727/portforio-frontend)
+バックエンドのリポジトリは[こちら](https://github.com/ryotaro-tenya0727/portfolio-backend)
 
 サービスへのリンク: [推し♡だいありー](https://www.oshi-diary.com/)
 
