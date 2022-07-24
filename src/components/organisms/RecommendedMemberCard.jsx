@@ -53,6 +53,7 @@ const RecommendedMemberCard = ({
             </span>
             &nbsp;
             {nickname ? nickname : '未入力'}
+            {/* 推しメンカードのペン */}
             <img
               src={`${imageDomain}/admin/member_pen.png`}
               alt='picture'
