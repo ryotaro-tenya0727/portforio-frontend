@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ReactCrop from 'react-image-crop';
+import imageCompression from 'browser-image-compression';
 import 'react-image-crop/dist/ReactCrop.css';
 
 import { SampleImageButton } from './../atoms/atoms';
@@ -73,6 +74,11 @@ const TrimmingModal = ({
     textAlign: 'center',
   };
 
+  const compressOption = {
+    maxSizeMB: 1500,
+    maxWidthOrHeight: 1000,
+  };
+
   const resetErrors = () => {
     onSetIsFileTypeError(false);
     onSetIsNumberTypeError(false);
@@ -88,6 +94,7 @@ const TrimmingModal = ({
   const firstFileUpload = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
+    const compressFile = await imageCompression(file, compressOption);
     resetErrors();
     if (
       !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
@@ -101,28 +108,27 @@ const TrimmingModal = ({
       return;
     }
     setLoading(true);
+    // s3の署名URLを作成
     const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
       {
         presigned_url: {
+          // 名前はファイルの名前のまま
           filename: file.name,
         },
       },
       accessToken
     );
     setLoading(false);
-    // s3の署名URLを作成
+
     SetMadeFirstUrls(imageUrls);
     const reader = new FileReader();
-
     // readAsDataURLでファイルを読み込むと発動
-    reader.addEventListener('load', () => {
-      // ここでリサイズするための画像を格納
+    reader.addEventListener('load', async () => {
+      // ここでリサイズするための画像を圧縮してトリミングするためのイメージに格納
       setImageToFirstCrop(reader.result);
     });
-
-    reader.readAsDataURL(event.target.files[0]);
+    reader.readAsDataURL(compressFile);
     setFirstOpen(true);
-
     // console.log(imageUrls);
     event.target.value = '';
     // ここでリサイズする画像を格納
@@ -131,6 +137,7 @@ const TrimmingModal = ({
   const secondFileUpload = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
+    const compressFile = await imageCompression(file, compressOption);
     resetErrors();
     if (
       !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
@@ -162,7 +169,7 @@ const TrimmingModal = ({
       setImageToSecondCrop(reader.result);
     });
 
-    reader.readAsDataURL(event.target.files[0]);
+    reader.readAsDataURL(compressFile);
     setSecondOpen(true);
     event.target.value = '';
     // ここでリサイズする画像を格納
@@ -201,9 +208,8 @@ const TrimmingModal = ({
       unit: 'px', // Can be 'px' or '%'
       x: 20,
       y: 20,
-      width: 40,
-      height: 40,
-      aspect: 1,
+      width: 60,
+      aspect: 3 / 4,
     });
   };
 
@@ -216,9 +222,8 @@ const TrimmingModal = ({
       unit: 'px', // Can be 'px' or '%'
       x: 20,
       y: 20,
-      width: 40,
-      height: 40,
-      aspect: 1,
+      width: 60,
+      aspect: 3 / 4,
     });
   };
 
