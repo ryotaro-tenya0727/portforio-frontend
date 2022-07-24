@@ -35,9 +35,9 @@ const TrimmingModal = ({
     unit: 'px', // Can be 'px' or '%'
     x: 20,
     y: 20,
-    width: 40,
-    height: 40,
-    aspect: 1,
+    width: 60,
+    // height: 40,
+    aspect: 3 / 4,
   });
 
   const [loading, setLoading] = useState(false);
@@ -319,7 +319,7 @@ const TrimmingModal = ({
               src={window.URL.createObjectURL(firstImage)}
               alt={`あなたの写真 `}
               width='200'
-              height='200'
+              height='266.7'
               style={{ border: '4px solid #ff99c5' }}
             />
           </div>
@@ -344,7 +344,7 @@ const TrimmingModal = ({
               src={window.URL.createObjectURL(secondImage)}
               alt={`あなたの写真 `}
               width='200'
-              height='200'
+              height='266.7'
               style={{ border: '4px solid #ff99c5' }}
             />
           </div>

@@ -67,11 +67,11 @@ const LoginUserDiaryCard = ({
                 日記を編集する
               </Button>
             </Link>
+            {/* 日記カードの日記 */}
             <img
               src={`${imageDomain}/admin/diary_card_image.png`}
               alt='picture'
               width='130'
-              height='130'
               style={{ margin: '-5px 10px 0px 0px' }}
               className={card.recommended_member_card_image}
             />
@@ -141,8 +141,6 @@ const LoginUserDiaryCard = ({
                       src={`${diaryImageUrl}`}
                       alt='picture'
                       width='150'
-                      height='150'
-                      className={card.card_photo}
                       style={{
                         border: '2px solid #ff99c5',
                         borderRadius: '5px',
