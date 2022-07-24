@@ -94,7 +94,6 @@ const TrimmingModal = ({
   const firstFileUpload = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
-    const compressFile = await imageCompression(file, compressOption);
     resetErrors();
     if (
       !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
@@ -118,6 +117,7 @@ const TrimmingModal = ({
       },
       accessToken
     );
+    const compressFile = await imageCompression(file, compressOption);
     setLoading(false);
 
     SetMadeFirstUrls(imageUrls);
@@ -137,7 +137,6 @@ const TrimmingModal = ({
   const secondFileUpload = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
-    const compressFile = await imageCompression(file, compressOption);
     resetErrors();
     if (
       !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
@@ -159,6 +158,7 @@ const TrimmingModal = ({
       },
       accessToken
     );
+    const compressFile = await imageCompression(file, compressOption);
     setLoading(false);
     SetMadeSecondUrls(imageUrls);
     const reader = new FileReader();
