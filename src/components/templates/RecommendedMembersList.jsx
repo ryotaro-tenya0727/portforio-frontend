@@ -66,7 +66,7 @@ const RecommendedMembersList = () => {
     breakpoints: {
       values: {
         xs: 0,
-        sm: 940,
+        sm: 950,
         md: 1370,
         lg: 1400,
         xl: 1536,

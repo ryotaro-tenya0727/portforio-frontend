@@ -11,7 +11,7 @@
   color: #ff66d1;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 700px) {
   .button_card{
     padding: 10px 6px 10px 6px;
     font-size: 11px;

@@ -2,6 +2,21 @@
 .card_whole{
   padding: 10px 10px 5px 10px;
   position: relative;
+  margin: 0 auto;
+}
+
+
+
+@media (max-width: 700px) {
+  .card_whole{
+    width: 80%;
+  }
+}
+
+@media screen and (min-width:700px) and ( max-width:950px){
+  .card_whole{
+    width: 70%;
+  }
 }
 
 @media (min-width: 500px) {
@@ -33,6 +48,13 @@
   margin: 0px 0px 15px 0px;
   padding: 0px 0px 10px 0px;
   font-weight: bold;
+  font-size: 12px;
+}
+
+@media (min-width: 800px) {
+  .card_text{
+font-size: 14px;
+  }
 }
 
 .card_text_property{

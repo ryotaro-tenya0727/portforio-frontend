@@ -17,9 +17,9 @@
 }
 
 .member_search_form{
-  width: 270px;
+  width: 240px;
   height: 30px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
   border-radius: 3px;
   border: 2px solid #ffbeea;
@@ -27,27 +27,17 @@
   font-family: 'M PLUS Rounded 1c', sans-serif;
   background-color: #ffdff6;
   outline: 0;
+  margin-bottom: 25px;
 }
 
-@media (min-width: 500px) {
-.member_search_form{
-  width: 270px;
-  height: 35px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 3px;
-  border: 2px solid #ffbeea;
-  box-sizing: border-box;
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  background-color: #ffdff6;
-  outline: 0;
-}
+@media (min-width: 700px) {
+  .member_search_form{
+    width: 270px;
+    font-size: 16px;
+  }
 }
 
-
-
-@media (max-width: 570px) {
-
+@media (max-width: 700px) {
   .pagination_and_search_wrap{
     text-align: center;
   }
@@ -55,8 +45,5 @@
     margin-bottom: 15px;
     margin-left: 18px;
   }
-  .member_search_form{
-    width: 70%;
-    margin-bottom: 15px;
-  }
+
 }

@@ -111,7 +111,6 @@ const PolaroidGraph = () => {
             // drawline
             const halfwidth = width / 2;
             const halfheight = height / 2;
-
             const xLine = x >= halfwidth ? x + 40 : x - 40;
             const yLine = y >= halfheight ? y + 35 : y - 35;
             const extraLine = x >= halfwidth ? 20 : -20;
@@ -165,7 +164,7 @@ const PolaroidGraph = () => {
               data={data}
               options={options}
               width={800}
-              height={400}
+              height={450}
               plugins={[doughnutLabelsLine]}
             />
           )}
