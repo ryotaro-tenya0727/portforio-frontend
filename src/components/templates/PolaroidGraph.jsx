@@ -99,44 +99,48 @@ const PolaroidGraph = () => {
         ctx,
         chartArea: { top, bottom, left, right, width, height },
       } = chart;
-      chart.data.datasets.forEach((dataset, i) => {
-        chart.getDatasetMeta(i).data.forEach((datapoint, index) => {
-          const { x, y } = datapoint.tooltipPosition();
-          // ctx.fillStyle = dataset.borderColor[index];
-          // ctx.fillRect(x, y, 0, 0);
 
-          // drawline
-          const halfwidth = width / 2;
-          const halfheight = height / 2;
+      if (window.outerWidth > 750) {
+        console.log(window.outerWidth);
+        chart.data.datasets.forEach((dataset, i) => {
+          chart.getDatasetMeta(i).data.forEach((datapoint, index) => {
+            const { x, y } = datapoint.tooltipPosition();
+            // ctx.fillStyle = dataset.borderColor[index];
+            // ctx.fillRect(x, y, 0, 0);
 
-          const xLine = x >= halfwidth ? x + 40 : x - 40;
-          const yLine = y >= halfheight ? y + 35 : y - 35;
-          const extraLine = x >= halfwidth ? 30 : -30;
+            // drawline
+            const halfwidth = width / 2;
+            const halfheight = height / 2;
 
-          // line
-          ctx.beginPath();
-          ctx.moveTo(x, y);
-          ctx.lineTo(xLine, yLine);
-          ctx.lineTo(xLine + extraLine, yLine);
-          ctx.strokeStyle = dataset.borderColor[index];
-          ctx.stroke();
+            const xLine = x >= halfwidth ? x + 40 : x - 40;
+            const yLine = y >= halfheight ? y + 35 : y - 35;
+            const extraLine = x >= halfwidth ? 20 : -20;
 
-          // text
-          ctx.font = '13px "M PLUS Rounded"';
+            // line
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(xLine, yLine);
+            ctx.lineTo(xLine + extraLine, yLine);
+            ctx.strokeStyle = dataset.borderColor[index];
+            ctx.stroke();
 
-          // control the position
-          const textXPosition = x >= halfwidth ? 'left' : 'right';
-          const plusFivePx = x >= halfwidth ? 5 : -5;
-          ctx.textAlign = textXPosition;
-          ctx.textBaseLine = 'middle';
-          ctx.fillStyle = dataset.borderColor[index];
-          ctx.fillText(
-            chart.data.labels[index],
-            xLine + extraLine + plusFivePx,
-            yLine + 5
-          );
+            // text
+            ctx.font = '13px "M PLUS Rounded"';
+
+            // control the position
+            const textXPosition = x >= halfwidth ? 'left' : 'right';
+            const plusFivePx = x >= halfwidth ? 5 : -5;
+            ctx.textAlign = textXPosition;
+            ctx.textBaseLine = 'middle';
+            ctx.fillStyle = dataset.borderColor[index];
+            ctx.fillText(
+              chart.data.labels[index],
+              xLine + extraLine + plusFivePx,
+              yLine + 5
+            );
+          });
         });
-      });
+      }
     },
   };
   return (
@@ -160,9 +164,8 @@ const PolaroidGraph = () => {
             <Doughnut
               data={data}
               options={options}
-              width={900}
-              height={500}
-              style={{ margin: '0 auto' }}
+              width={800}
+              height={400}
               plugins={[doughnutLabelsLine]}
             />
           )}
