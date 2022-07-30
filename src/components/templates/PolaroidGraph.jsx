@@ -2,6 +2,7 @@ import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
+import CircularProgress from '@mui/material/CircularProgress';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -13,28 +14,35 @@ const PolaroidGraph = () => {
     isLoading,
     isIdle,
   } = useGetRecommendedMembers();
+
   const polaroidCounts =
     recommendedMembers === undefined
       ? []
-      : recommendedMembers.data.map(
-          (member) => member.attributes.total_member_polaroid_count
-        );
+      : recommendedMembers.data
+          .filter(
+            (member) => member.attributes.total_member_polaroid_count !== 0
+          )
+          .map((member) => member.attributes.total_member_polaroid_count);
 
-  const sum = polaroidCounts.reduce((a, b) => {
+  const sum = polaroidCounts.reduce((a, b = 0) => {
     return a + b;
-  });
+  }, 0);
 
   const members =
     recommendedMembers === undefined
       ? []
-      : recommendedMembers.data.map(
-          (member) =>
-            `${member.attributes.nickname}: ${
-              member.attributes.total_member_polaroid_count
-            }枚 (${Math.round(
-              (member.attributes.total_member_polaroid_count / sum) * 100
-            )}%)`
-        );
+      : recommendedMembers.data
+          .filter(
+            (member) => member.attributes.total_member_polaroid_count !== 0
+          )
+          .map(
+            (member) =>
+              `${member.attributes.nickname}: ${
+                member.attributes.total_member_polaroid_count
+              }枚 (${Math.round(
+                (member.attributes.total_member_polaroid_count / sum) * 100
+              )}%)`
+          );
 
   const data = {
     labels: members,
@@ -48,6 +56,7 @@ const PolaroidGraph = () => {
           'rgba(75, 192, 192, 0.2)',
           'rgba(153, 102, 255, 0.2)',
           'rgba(255, 159, 64, 0.2)',
+          'rgb(255 , 105 , 180 , 0.2)',
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
@@ -56,16 +65,19 @@ const PolaroidGraph = () => {
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(255, 159, 64, 1)',
+          'rgb(255 , 105 , 180 , 1)',
         ],
         borderWidth: 1,
       },
     ],
   };
+
   const options = {
     cutout: '80%',
     borderRadius: 20,
     offset: 10,
-    responsive: false,
+    responsive: true,
+    maintainAspectRatio: false,
     layout: {
       padding: 50,
     },
@@ -89,11 +101,10 @@ const PolaroidGraph = () => {
       } = chart;
       chart.data.datasets.forEach((dataset, i) => {
         chart.getDatasetMeta(i).data.forEach((datapoint, index) => {
-          // console.log(datapoint.tooltipPosition);
           const { x, y } = datapoint.tooltipPosition();
           // ctx.fillStyle = dataset.borderColor[index];
-          console.log(dataset);
           // ctx.fillRect(x, y, 0, 0);
+
           // drawline
           const halfwidth = width / 2;
           const halfheight = height / 2;
@@ -111,8 +122,7 @@ const PolaroidGraph = () => {
           ctx.stroke();
 
           // text
-          console.log(ctx);
-          ctx.font = '15px "M PLUS Rounded"';
+          ctx.font = '13px "M PLUS Rounded"';
 
           // control the position
           const textXPosition = x >= halfwidth ? 'left' : 'right';
@@ -125,20 +135,40 @@ const PolaroidGraph = () => {
             xLine + extraLine + plusFivePx,
             yLine + 5
           );
-          // console.log(chart.data.labels[index])
         });
       });
     },
   };
   return (
-    <Doughnut
-      data={data}
-      options={options}
-      width={800}
-      height={500}
-      style={{ margin: '0 auto' }}
-      plugins={[doughnutLabelsLine]}
-    />
+    <>
+      {isIdle || isLoading ? (
+        <div
+          style={{
+            textAlign: 'center',
+          }}
+        >
+          <br />
+          <CircularProgress size={130} sx={{ mt: '100px', color: '#ff7bd7' }} />
+        </div>
+      ) : (
+        <>
+          {sum === 0 ? (
+            <div style={{ textAlign: 'center', marginTop: '40px' }}>
+              現在、総チェキ数は0枚です
+            </div>
+          ) : (
+            <Doughnut
+              data={data}
+              options={options}
+              width={900}
+              height={500}
+              style={{ margin: '0 auto' }}
+              plugins={[doughnutLabelsLine]}
+            />
+          )}
+        </>
+      )}
+    </>
   );
 };
 
