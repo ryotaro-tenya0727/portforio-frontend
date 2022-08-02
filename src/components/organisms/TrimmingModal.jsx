@@ -75,7 +75,7 @@ const TrimmingModal = ({
   };
 
   const compressOption = {
-    maxSizeMB: 1500,
+    maxSizeMB: 1000,
     maxWidthOrHeight: 800,
   };
 
