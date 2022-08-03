@@ -6,6 +6,7 @@ import { Button, HomeBreadText, MenuButton } from './../atoms/atoms';
 import { BreadCrumbs } from './../organisms/Organisms';
 import { MyPageMenu, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
+import { LoginName } from './../molecules/Molecules';
 import { useUsersApi } from './../../hooks/useUsers';
 
 import button from './../../css/atoms/button.module.css';
@@ -43,7 +44,7 @@ const MyPage = () => {
           <Loading />
         ) : (
           <>
-            <p>{data.name}さんログイン中</p>
+            <LoginName name={data.name} />
             <MenuButton />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
 
@@ -72,10 +73,9 @@ const MyPage = () => {
         )
       ) : (
         <>
-          <p>{userData.name}さんログイン中</p>
+          <LoginName name={userData.name} />
           <MenuButton />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
-
           <Link to='/recommended-members/new'>
             <Button
               className={button.recommended_and_diary_button}

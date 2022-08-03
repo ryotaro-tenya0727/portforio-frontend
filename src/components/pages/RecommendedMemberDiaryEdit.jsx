@@ -8,6 +8,7 @@ import {
   Loading,
 } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
+import { LoginName } from './../molecules/Molecules';
 import { useUsersApi } from './../../hooks/useUsers';
 
 const RecommendedMemberDiaryEdit = () => {
@@ -48,7 +49,7 @@ const RecommendedMemberDiaryEdit = () => {
           <Loading />
         ) : (
           <>
-            <p>{data.name}さんログイン中</p>
+            <LoginName name={data.name} />
             <MenuButton />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
             <RecommenedMemberDiaryEditForm
@@ -62,7 +63,7 @@ const RecommendedMemberDiaryEdit = () => {
         )
       ) : (
         <>
-          <p> {userData.name}さんログイン中</p>
+          <LoginName name={userData.name} />
           <MenuButton />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <RecommenedMemberDiaryEditForm

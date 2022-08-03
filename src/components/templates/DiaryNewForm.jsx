@@ -120,15 +120,7 @@ const DiaryNewForm = ({
             </p>
           )}
 
-          <p
-            style={{
-              textAlign: 'center',
-              fontSize: '22px',
-              marginBottom: '35px',
-              marginTop: '30px',
-              fontWeight: 'bold',
-            }}
-          >
+          <p className={form.image_up_title}>
             <InsertPhotoIcon
               sx={{
                 fontSize: '26px',

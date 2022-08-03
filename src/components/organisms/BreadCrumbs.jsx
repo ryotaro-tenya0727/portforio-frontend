@@ -14,6 +14,7 @@ const BreadCrumbs = ({ breadcrumbs }) => {
           fontWeight: 'bold',
           '@media screen and (max-width:800px)': {
             fontSize: '12px',
+            mt: 1,
           },
         }}
       >

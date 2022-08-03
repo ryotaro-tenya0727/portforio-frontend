@@ -58,7 +58,7 @@ const RecommenedMembersNewForm = () => {
           <p className={form.form_title}>
             <LoyaltyIcon
               sx={{
-                mb: '-4px',
+                // mb: '-4px',
                 mr: '7px',
                 color: '#ff6fc8',
               }}

@@ -9,6 +9,7 @@ import {
   Loading,
 } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
+import { LoginName } from './../molecules/Molecules';
 import { useUsersApi } from './../../hooks/useUsers';
 
 import button from './../../css/atoms/button.module.css';
@@ -45,7 +46,7 @@ const RecommenedMembersDiaries = () => {
           <Loading />
         ) : (
           <>
-            <p>{data.name}さんログイン中</p>
+            <LoginName name={data.name} />
             <MenuButton />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
 
@@ -80,10 +81,9 @@ const RecommenedMembersDiaries = () => {
         )
       ) : (
         <>
-          <p> {userData.name}さんログイン中</p>
+          <LoginName name={userData.name} />
           <MenuButton />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
-
           <Link
             to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new?nickname=${query.get(
               'nickname'
