@@ -16,12 +16,14 @@
 
 }
 
-.login__name{
-  font-size: 12px;
+.login_name{
+  font-size: 13px;
+  color: #ff88db;
+  font-weight: bold;
 }
 
 @media (min-width: 700px){
-  .login__name{
-
+  .login_name{
+    font-size: 15px;
   }
 }
