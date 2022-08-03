@@ -1,3 +1,45 @@
+.card_general_whole{
+  padding: 10px 10px 5px 10px;
+  position: relative;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .card_general_whole{
+    width: 80%;
+  }
+}
+
+@media screen and (min-width:600px) and ( max-width:830px){
+  .card_general_whole{
+    width: 70%;
+  }
+}
+
+.card_general_title{
+  color: #ff6fc8;
+  font-weight: bold;
+  font-size: 13px;
+  margin: 0px 0px 7px 10px;
+}
+
+
+@media (min-width: 830px) {
+  .card_general_title{
+  font-size: 15px;
+  margin: 0px 0px 10px 10px;
+  }
+}
+
+.card_general_photo{
+  width: 30px;
+}
+
+@media (min-width: 830px) {
+  .card_general_photo{
+    width: 40px;
+  }
+}
 
 .card_whole{
   padding: 10px 10px 5px 10px;
@@ -5,11 +47,9 @@
   margin: 0 auto;
 }
 
-
-
 @media (max-width: 700px) {
   .card_whole{
-    width: 80%;
+    width: 85%;
   }
 }
 
@@ -51,21 +91,23 @@
   font-size: 12px;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 700px) {
   .card_text{
-font-size: 14px;
+  font-size: 15px;
   }
 }
 
 .card_text_property{
   color: #ff6fc8;
   font-weight: bold;
+
 }
 
 .card_photo_list{
   display : flex;
   justify-content: space-around;
 }
+
 .card_diary_button_list{
   margin: 0px 0px 10px -10px;
 }
@@ -156,7 +198,6 @@ font-size: 14px;
 
 @media (min-width: 800px) {
   .user_info{
-
-
+    font-size: 14px;
   }
 }

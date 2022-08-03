@@ -289,26 +289,26 @@
 
 .about_title{
   margin-top: 20px;
-  font-size: 17px;
+  font-size: 15px;
   border-bottom: dashed 2px #ff7bd7;
   display: inline-block;
 }
 
 @media (min-width: 600px) {
   .about_title{
-    font-size: 25px;
+    font-size: 19px;
   }
 }
 
 .about_description{
   margin-top: 15px;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 @media (min-width: 600px) {
 .about_description{
   margin-top: 20px;
-  font-size: 17px;
+  font-size: 15px;
 }
 }
 

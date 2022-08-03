@@ -46,7 +46,6 @@ const RecommendedMembersList = () => {
   const [searchText, setSearchText] = useState('');
   // 検索フィールドが空の場合、ここに入らない
   const searchKeywords = searchText.trim().match(/[^\s]+/g);
-  console.log(searchKeywords);
   if (searchKeywords !== null) {
     data = recommendedMembers.data.filter((member) =>
       searchKeywords.every(

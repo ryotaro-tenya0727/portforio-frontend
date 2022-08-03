@@ -46,9 +46,11 @@ const PolaroidGraph = () => {
 
   const data = {
     labels: members,
+
     datasets: [
       {
         data: polaroidCounts,
+        radius: '90%',
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -73,21 +75,42 @@ const PolaroidGraph = () => {
   };
 
   const options = {
+    // circumference: Math.PI,
+    // rotation: 100 * Math.PI,
     cutout: '80%',
     borderRadius: 20,
     offset: 10,
     responsive: true,
     maintainAspectRatio: false,
     layout: {
-      padding: 50,
+      padding: 10,
     },
     plugins: {
       tooltip: {
         enabled: false,
       },
       legend: {
-        display: false,
+        display: true,
+        labels: {
+          padding: 20,
+        },
       },
+    },
+  };
+
+  // legend margin
+  const legendMargin = {
+    id: 'legendMargin',
+    beforeInit(chart) {
+      // Get reference to the original fit function
+      const originalFit = chart.legend.fit;
+      // Override the fit function
+      chart.legend.fit = function fit() {
+        // Call original function and bind scope in order to use `this` correctly inside it
+        originalFit.bind(chart.legend)();
+        // Change the height as suggested in another answers
+        this.height -= 8;
+      };
     },
   };
 
@@ -100,8 +123,7 @@ const PolaroidGraph = () => {
         chartArea: { top, bottom, left, right, width, height },
       } = chart;
 
-      if (window.outerWidth > 750) {
-        console.log(window.outerWidth);
+      if (window.outerWidth > 810) {
         chart.data.datasets.forEach((dataset, i) => {
           chart.getDatasetMeta(i).data.forEach((datapoint, index) => {
             const { x, y } = datapoint.tooltipPosition();
@@ -163,9 +185,9 @@ const PolaroidGraph = () => {
             <Doughnut
               data={data}
               options={options}
-              width={800}
-              height={450}
-              plugins={[doughnutLabelsLine]}
+              width={1000}
+              height={500}
+              plugins={[doughnutLabelsLine, legendMargin]}
             />
           )}
         </>

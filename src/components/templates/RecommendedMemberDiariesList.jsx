@@ -90,17 +90,17 @@ const RecommendedMemberDiariesList = ({
   return (
     <div className={list.list}>
       <ThemeProvider theme={theme}>
-        <h2>
+        <div className={list.recommended_member_diaries}>
           <MenuBookIcon
             sx={{
               fontSize: '28px',
-              mb: '-4.5px',
+              mb: '-6.5px',
               mr: '10px',
               color: '#ff6fc8',
             }}
           />
           {recommendedMemberNickname}の日記一覧
-        </h2>
+        </div>
         {isIdle || isLoading ? (
           <div
             style={{
