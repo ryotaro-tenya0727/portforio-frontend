@@ -36,7 +36,7 @@ const GeneralUserDiaryCard = ({
   };
   return (
     <Card
-      className={card.card_whole}
+      className={card.card_general_whole}
       sx={{
         boxShadow:
           'rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;',
@@ -44,13 +44,7 @@ const GeneralUserDiaryCard = ({
       }}
     >
       <div className={card.card_diary_button_list}>
-        <p
-          style={{
-            margin: '0px 0px 7px 10px',
-            fontSize: '17px',
-          }}
-          className={card.card_text_property}
-        >
+        <p className={card.card_general_title}>
           {DiaryMemberNickname}との思い出
         </p>
         <Link to={showUrl}>
@@ -82,8 +76,8 @@ const GeneralUserDiaryCard = ({
         <img
           src={`${diaryUserImage}`}
           alt='picture'
-          width='50'
-          className={card.card_photo}
+          // width='50'
+          className={card.card_general_photo}
           style={{
             border: '2px solid #ff99c5',
             borderRadius: '50%',
@@ -92,7 +86,7 @@ const GeneralUserDiaryCard = ({
         />
         ユーザーネーム:&emsp;<strong>{diaryUserName}</strong>
       </div>
-      <p className={card.card_text} style={{ marginTop: '10px' }}>
+      <p className={card.card_text} style={{ marginTop: '20px' }}>
         <span className={card.card_text_property}>
           <LibraryMusicIcon
             sx={{ fontSize: '19px', mb: '-4px', color: 'red' }}

@@ -45,11 +45,7 @@ const RecommendedMembersList = () => {
   // 検索
   const [searchText, setSearchText] = useState('');
   // 検索フィールドが空の場合、ここに入らない
-  const searchKeywords = searchText
-    .trim()
-    .toLowerCase()
-    .match(/[^\s]+/g);
-
+  const searchKeywords = searchText.trim().match(/[^\s]+/g);
   if (searchKeywords !== null) {
     data = recommendedMembers.data.filter((member) =>
       searchKeywords.every(
@@ -69,7 +65,7 @@ const RecommendedMembersList = () => {
     breakpoints: {
       values: {
         xs: 0,
-        sm: 940,
+        sm: 950,
         md: 1370,
         lg: 1400,
         xl: 1536,

@@ -3,8 +3,8 @@
   margin-top: auto;
   text-align: center;
   background-color: #ffc9ef;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
 .links{
@@ -15,7 +15,7 @@
 }
 
 .link{
-color: #000;
+  color: #000;
 }
 
 .link:hover{

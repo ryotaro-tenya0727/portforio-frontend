@@ -8,7 +8,11 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import MonochromePhotosIcon from '@mui/icons-material/MonochromePhotos';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
-import { RecommendedMembersList, LoginUserInformation } from './Templates';
+import {
+  RecommendedMembersList,
+  LoginUserInformation,
+  PolaroidGraph,
+} from './Templates';
 
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
 
@@ -131,16 +135,7 @@ const MyPageMenu = () => {
             </p>
           </TabPanel>
           <TabPanel value={'1'} sx={{ padding: 0 }}>
-            {' '}
-            <p
-              style={{
-                textAlign: 'center',
-                marginTop: '50px',
-                fontSize: '20px',
-              }}
-            >
-              Comming soon...
-            </p>
+            <PolaroidGraph />
           </TabPanel>
           <TabPanel value={'2'} sx={{ padding: 0 }}>
             <RecommendedMembersList />

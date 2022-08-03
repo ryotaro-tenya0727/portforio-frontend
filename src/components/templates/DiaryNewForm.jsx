@@ -10,7 +10,6 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
-import imageCompression from 'browser-image-compression';
 
 import { TrimmingModal } from './../organisms/Organisms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
@@ -60,9 +59,6 @@ const DiaryNewForm = ({
 
   const onSubmit = async (data) => {
     const l = s3ImageUrls.length;
-    // console.log(s3ImageUrls);
-    // console.log(imageFiles);
-
     if (l !== 0) {
       [...Array(l)].map(async (_, index) => {
         await axios.put(s3ImageUrls[index].presigned_url, imageFiles[index], {

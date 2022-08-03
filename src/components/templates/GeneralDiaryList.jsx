@@ -36,7 +36,7 @@ const GeneralDiaryList = () => {
           delay: 1000,
         }}
         breakpoints={{
-          780: {
+          830: {
             slidesPerView: 2,
           },
         }}
