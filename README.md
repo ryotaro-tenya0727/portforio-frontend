@@ -1,7 +1,5 @@
 
-<img src="https://img.shields.io/badge/react-v18.0.0-green">
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/6e95e4571f59ead7e3ea/maintainability)](https://codeclimate.com/github/ryotaro-tenya0727/portforio-frontend/maintainability)
+<img src="https://img.shields.io/badge/react-v18.0.0-green">  [![Maintainability](https://api.codeclimate.com/v1/badges/6e95e4571f59ead7e3ea/maintainability)](https://codeclimate.com/github/ryotaro-tenya0727/portforio-frontend/maintainability)
 
 
 こちらは「推し♡だいありー」のフロントエンドのリポジトリになります。
