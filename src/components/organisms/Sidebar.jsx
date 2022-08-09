@@ -28,12 +28,34 @@ function Sidebar() {
   const SidebarData = [
     {
       title: 'ホーム',
-      icon: <HomeIcon sx={{ color: '#ff94df' }} />,
+      icon: (
+        <HomeIcon
+          sx={{
+            color: '#ff94df',
+            fontSize: '20.5px',
+            '@media screen and (min-width:500px)': {
+              fontSize: '22.5px',
+              mr: 0.5,
+            },
+          }}
+        />
+      ),
       link: '/',
     },
     {
       title: 'マイページ',
-      icon: <PersonIcon sx={{ color: '#ff94df' }} />,
+      icon: (
+        <PersonIcon
+          sx={{
+            color: '#ff94df',
+            fontSize: '20.5px',
+            '@media screen and (min-width:500px)': {
+              fontSize: '22.5px',
+              mr: 0.5,
+            },
+          }}
+        />
+      ),
       link: '/mypage',
     },
     {
@@ -73,9 +95,27 @@ function Sidebar() {
       icon: (
         <>
           {isAuthenticated ? (
-            <LogoutIcon sx={{ color: '#ff94df' }} />
+            <LogoutIcon
+              sx={{
+                color: '#ff94df',
+                fontSize: '20.5px',
+                '@media screen and (min-width:500px)': {
+                  fontSize: '22.5px',
+                  mr: 0.5,
+                },
+              }}
+            />
           ) : (
-            <LoginIcon sx={{ color: '#ff94df' }} />
+            <LoginIcon
+              sx={{
+                color: '#ff94df',
+                fontSize: '20.5px',
+                '@media screen and (min-width:500px)': {
+                  fontSize: '22.5px',
+                  mr: 0.5,
+                },
+              }}
+            />
           )}
         </>
       ),
@@ -110,6 +150,11 @@ function Sidebar() {
         <TwitterIcon
           sx={{
             color: '#2C7CFF',
+            fontSize: '20.5px',
+            '@media screen and (min-width:500px)': {
+              fontSize: '22.5px',
+              mr: 0.5,
+            },
           }}
         />
       ),
@@ -121,6 +166,11 @@ function Sidebar() {
         <TwitterIcon
           sx={{
             color: '#2C7CFF',
+            fontSize: '20.5px',
+            '@media screen and (min-width:500px)': {
+              fontSize: '22.5px',
+              mr: 0.5,
+            },
           }}
         />
       ),
@@ -151,7 +201,21 @@ function Sidebar() {
           )}
         </>
       ),
-      icon: <>{isAuthenticated && <BrokenImageIcon />}</>,
+      icon: (
+        <>
+          {isAuthenticated && (
+            <BrokenImageIcon
+              sx={{
+                fontSize: '20.5px',
+                '@media screen and (min-width:500px)': {
+                  fontSize: '22.5px',
+                  mr: 0.5,
+                },
+              }}
+            />
+          )}
+        </>
+      ),
       function:
         isAuthenticated &&
         (async () => {
