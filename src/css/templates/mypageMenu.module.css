@@ -5,7 +5,7 @@
   width: 33px
 }
 
-@media (min-width: 500px) {
+@media (min-width: 700px) {
   .menu_recommended_member_icon{
     border-radius: 10%;
     margin: 6px 0px 0px 0px;
@@ -16,7 +16,7 @@
 
 .menu_text{
   font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-size: 10px;
+  font-size: 9px;
 }
 
 @media (min-width: 400px) {

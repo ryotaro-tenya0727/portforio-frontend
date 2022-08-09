@@ -102,7 +102,17 @@ const RecommendedMembersList = () => {
             <div className={list.pagination_and_search_wrap}>
               <Pagination
                 color='primary'
-                size='large'
+                sx={{
+                  fontSize: 40,
+                  mb: -0.5,
+                  mt: -1.5,
+                  color: 'secondary.main',
+                  '@media screen and (max-width:500px)': {
+                    fontSize: 35,
+                    mb: 0.5,
+                    mt: -1.5,
+                  },
+                }}
                 className={list.pagination}
                 count={count}
                 page={page}
@@ -155,7 +165,7 @@ const RecommendedMembersList = () => {
                             mr: 0.5,
                             mb: '-3.5px',
                             color: '#ff6fc8',
-                            '@media screen and (max-width:600px)': {
+                            '@media screen and (max-width:700px)': {
                               fontSize: '14.5px',
                               mr: 0.5,
                             },

@@ -10,10 +10,11 @@ const BreadCrumbs = ({ breadcrumbs }) => {
       <Breadcrumbs
         aria-label='breadcrumb'
         sx={{
-          pt: 1,
+          pt: 2,
           fontWeight: 'bold',
-          '@media screen and (max-width:800px)': {
+          '@media screen and (max-width:700px)': {
             fontSize: '12px',
+            pt: 1,
             mt: 1,
           },
         }}

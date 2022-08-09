@@ -63,7 +63,7 @@ const MyPageMenu = () => {
                 <NotificationsIcon
                   sx={{
                     fontSize: 39,
-                    '@media screen and (max-width:500px)': {
+                    '@media screen and (max-width:700px)': {
                       fontSize: 30,
                     },
                   }}
@@ -80,7 +80,7 @@ const MyPageMenu = () => {
                 <MonochromePhotosIcon
                   sx={{
                     fontSize: 39,
-                    '@media screen and (max-width:500px)': {
+                    '@media screen and (max-width:700px)': {
                       fontSize: 30,
                     },
                   }}
@@ -111,7 +111,7 @@ const MyPageMenu = () => {
                 <AccountBoxIcon
                   sx={{
                     fontSize: 39,
-                    '@media screen and (max-width:500px)': {
+                    '@media screen and (max-width:700px)': {
                       fontSize: 30,
                     },
                   }}

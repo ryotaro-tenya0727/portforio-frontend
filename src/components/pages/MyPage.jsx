@@ -47,7 +47,6 @@ const MyPage = () => {
             <LoginName name={data.name} />
             <MenuButton />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
-
             <Link to='/recommended-members/new'>
               <Button
                 className={button.recommended_and_diary_button}
@@ -59,7 +58,7 @@ const MyPage = () => {
                     mr: 0.5,
                     mb: '-3.5px',
                     color: '#ff6fc8',
-                    '@media screen and (max-width:600px)': {
+                    '@media screen and (max-width:700px)': {
                       fontSize: '14.5px',
                       mr: 0.5,
                     },
@@ -87,7 +86,7 @@ const MyPage = () => {
                   mr: 0.5,
                   mb: '-3.5px',
                   color: '#ff6fc8',
-                  '@media screen and (max-width:600px)': {
+                  '@media screen and (max-width:700px)': {
                     fontSize: '14.5px',
                     mr: 0.5,
                   },
