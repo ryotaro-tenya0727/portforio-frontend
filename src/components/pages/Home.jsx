@@ -39,14 +39,14 @@ const Home = () => {
             <br />
             {isLoading ? (
               <button className={home.login_button}>
-                <CircularProgress sx={{ color: '#ff94df' }} />
+                <CircularProgress size={30} sx={{ color: '#ff94df' }} />
               </button>
             ) : (
               <>
                 {isAuthenticated ||
                   (loading ? (
                     <button className={home.login_button}>
-                      <CircularProgress sx={{ color: '#ff94df' }} />
+                      <CircularProgress size={30} sx={{ color: '#ff94df' }} />
                     </button>
                   ) : (
                     <button
@@ -61,7 +61,7 @@ const Home = () => {
                         sx={{
                           color: '#ff94df',
                           fontSize: '16px',
-                          mb: -0.5,
+                          mb: -0.2,
                           '@media screen and (min-width:700px)': {
                             fontSize: '22px',
                           },
@@ -74,7 +74,7 @@ const Home = () => {
                   (loading ? (
                     <>
                       <button className={home.login_button}>
-                        <CircularProgress sx={{ color: '#ff94df' }} />
+                        <CircularProgress size={30} sx={{ color: '#ff94df' }} />
                       </button>
                     </>
                   ) : (
@@ -90,7 +90,7 @@ const Home = () => {
                         sx={{
                           color: '#ff94df',
                           fontSize: '16px',
-                          mb: -0.5,
+                          mb: -0.2,
                           '@media screen and (min-width:700px)': {
                             fontSize: '22px',
                           },
