@@ -111,17 +111,17 @@
 
 .menu_button span:nth-of-type(1) {
   left: 15px;
-  top:12px;
+  top:10px;
 }
 
 .menu_button span:nth-of-type(2) {
   left: 15px;
-  top:20px;
+  top:18px;
 }
 
 .menu_button span:nth-of-type(3) {
   left: 15px;
-  top:28px;
+  top:26px;
 }
 
 @media (min-width: 500px) {
@@ -159,7 +159,7 @@
 }
 
 .menu_button_text{
-  margin-top: 30px;
+  margin-top: 28px;
   color: white;
 }
 
@@ -174,24 +174,36 @@
   position: relative;
   background:#ffffff;
   cursor: pointer;
-  width: 70px;
-  height:70px;
+  width: 50px;
+  height:50px;
   color:  #ff7bd7;
   border: 2px solid #ff7bd7;
   border-radius: 50%;
   font-weight: bold;
   margin-bottom: 15px;
+  font-size: 8px;
+}
+
+
+
+@media (min-width: 500px) {
+  .login_button{
+    width: 60px;
+    height:60px;
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 700px) {
+  .login_button{
+    width: 65px;
+    height:65px;
+    font-size: 10px;
+  }
 }
 
 .login_button:hover{
   opacity: 0.9
-}
-
-@media (max-width: 700px) {
-  .login_button{
-    width: 60px;
-    height:60px;
-  }
 }
 
 .register_button{
@@ -247,8 +259,8 @@
 }
 
 .active span:nth-of-type(1) {
-  top: 20.5px;
-  left: 19px;
+  top: 14.5px;
+  left: 14px;
   transform: translateY(6px) rotate(-135deg);
   width: 45%;
 }
@@ -258,13 +270,16 @@
 }
 
 .active span:nth-of-type(3){
-  top: 32px;
-  left: 18.5px;
+  top: 26px;
+  left: 13.5px;
   transform: translateY(-6px) rotate(135deg);
   width: 45%;
 }
 
-@media (max-width: 700px) {
+@media (min-width: 500px) {
+.active .openbtn-area{
+  transform: rotateY(-360deg);
+}
 
 .active span:nth-of-type(1) {
   top: 18.5px;
@@ -283,6 +298,26 @@
   transform: translateY(-6px) rotate(135deg);
   width: 45%;
 }
+}
+
+@media (min-width: 700px) {
+  .active span:nth-of-type(1) {
+    top: 18.5px;
+    left: 18px;
+    transform: translateY(6px) rotate(-135deg);
+    width: 45%;
+  }
+
+  .active span:nth-of-type(2) {
+    opacity: 0;
+  }
+
+  .active span:nth-of-type(3){
+    top: 29.5px;
+    left: 17.5px;
+    transform: translateY(-6px) rotate(135deg);
+    width: 45%;
+  }
 }
 
 .about:hover{

@@ -57,8 +57,17 @@ const Home = () => {
                       }}
                       className={home.login_button}
                     >
-                      <LoginIcon sx={{ color: '#ff94df' }} />
-                      <p style={{ fontSize: '10px' }}>ログイン</p>
+                      <LoginIcon
+                        sx={{
+                          color: '#ff94df',
+                          fontSize: '16px',
+                          mb: -0.5,
+                          '@media screen and (min-width:700px)': {
+                            fontSize: '22px',
+                          },
+                        }}
+                      />
+                      <p>ログイン</p>
                     </button>
                   ))}
                 {isAuthenticated &&
@@ -80,12 +89,18 @@ const Home = () => {
                       <LogoutIcon
                         sx={{
                           color: '#ff94df',
-                          '@media screen and (max-width:700px)': {
-                            fontSize: '18px',
+                          fontSize: '16px',
+                          mb: -0.5,
+                          '@media screen and (min-width:700px)': {
+                            fontSize: '22px',
                           },
                         }}
                       />
-                      <p style={{ fontSize: '10px' }}>ログアウト</p>
+                      <p>
+                        ログ
+                        <br />
+                        アウト
+                      </p>
                     </button>
                   ))}
               </>
