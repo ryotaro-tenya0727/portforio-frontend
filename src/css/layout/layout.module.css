@@ -17,9 +17,15 @@
 }
 
 .login_name{
-  font-size: 13px;
+  font-size: 11px;
   color: #ff88db;
   font-weight: bold;
+}
+
+@media (min-width: 500px){
+  .login_name{
+    font-size: 13px;
+  }
 }
 
 @media (min-width: 700px){

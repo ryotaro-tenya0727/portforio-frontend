@@ -76,12 +76,19 @@
   border-radius: 5px;
   border: 2px solid;
   padding: 10px 6px 10px 6px;
-  margin: 18px 0px 35px 0px;
+  margin: 18px 0px 25px 0px;
   font-weight: bold;
   font-size: 11px;
   font-family: 'M PLUS Rounded 1c', sans-serif;
   color: #ff66d1;
   box-shadow: 2.7px 3.2px 2px 0.3px #938d90;
+}
+
+@media (min-width: 500px) {
+  .recommended_and_diary_button{
+    padding: 14px 6px 14px 6px;
+    margin: 20px 0px 30px 0px;
+  }
 }
 
 @media (min-width: 700px) {
