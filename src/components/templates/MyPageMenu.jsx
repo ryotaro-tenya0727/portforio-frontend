@@ -53,8 +53,8 @@ const MyPageMenu = () => {
               },
               '@media screen and (max-width:400px)': {
                 height: '70px',
-                margin: 'calc(50% - 50vw)',
-                width: '99.2vw',
+                // margin: 'calc(50% - 50vw)',
+                // width: '99.2vw',
               },
             }}
           >

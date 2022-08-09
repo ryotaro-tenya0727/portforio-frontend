@@ -60,27 +60,113 @@
   position: relative;
   background:#ff7bd7;
   cursor: pointer;
-  width: 60px;
-  height:60px;
+  width: 50px;
+  height:50px;
   border: none;
   border-radius: 50%;
+  font-size: 11px;
+}
+
+@media (min-width: 500px) {
+  .menu_button{
+    width: 60px;
+    height:60px;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 700px) {
+  .menu_button{
+    width: 65px;
+    height:65px;
+    font-size: 14px;
+  }
 }
 
 .menu_button:hover{
   opacity: 0.9
 }
 
-@media (min-width: 600px) {
-  .menu_button{
-    width: 65px;
-    height:65px;
+.menu_button .openbtn-area{
+  transition: all .4s;
+}
+
+.menu_button span{
+  display: inline-block;
+  transition: all .4s;
+  position: absolute;
+  left: 14px;
+  height: 3px;
+  border-radius: 2px;
+  background: #fff;
+  width: 40%;
+}
+
+@media (min-width: 700px) {
+  .menu_button span{
+    width: 45%;
+  }
+}
+
+
+.menu_button span:nth-of-type(1) {
+  left: 15px;
+  top:12px;
+}
+
+.menu_button span:nth-of-type(2) {
+  left: 15px;
+  top:20px;
+}
+
+.menu_button span:nth-of-type(3) {
+  left: 15px;
+  top:28px;
+}
+
+@media (min-width: 500px) {
+  .menu_button span:nth-of-type(1) {
+    left: 18px;
+    top:16px;
+  }
+
+  .menu_button span:nth-of-type(2) {
+    left: 18px;
+    top:24px;
+  }
+
+  .menu_button span:nth-of-type(3) {
+    left: 18px;
+    top:32px;
   }
 }
 
 @media (min-width: 700px) {
-  .menu_button{
-  width: 70px;
-  height:70px;
+  .menu_button span:nth-of-type(1) {
+    left: 18px;
+    top:14px;
+  }
+
+  .menu_button span:nth-of-type(2) {
+    left: 18px;
+    top:24px;
+  }
+
+  .menu_button span:nth-of-type(3) {
+    left: 18px;
+    top:34px;
+  }
+}
+
+.menu_button_text{
+  margin-top: 30px;
+  color: white;
+}
+
+@media (min-width: 500px) {
+  .menu_button_text{
+    margin-top: 34px;
+    color: white;
   }
 }
 
@@ -154,54 +240,7 @@
   }
 }
 
-.menu_button .openbtn-area{
-  transition: all .4s;
-}
 
-.menu_button span{
-  display: inline-block;
-  transition: all .4s;
-  position: absolute;
-  left: 14px;
-  height: 3px;
-  border-radius: 2px;
-  background: #fff;
-  width: 45%;
-}
-
-.menu_button span:nth-of-type(1) {
-  left: 19px;
-  top:20px;
-
-}
-
-.menu_button span:nth-of-type(2) {
-  left: 19px;
-  top:28px;
-}
-
-.menu_button span:nth-of-type(3) {
-  left: 19px;
-  top:36px;
-}
-
-@media (max-width: 700px) {
-
-.menu_button span:nth-of-type(1) {
-  left: 17px;
-  top:16px;
-}
-
-.menu_button span:nth-of-type(2) {
-  left: 17px;
-  top:24px;
-}
-
-.menu_button span:nth-of-type(3) {
-  left: 17px;
-  top:32px;
-}
-}
 
 .active .openbtn-area{
   transform: rotateY(-360deg);

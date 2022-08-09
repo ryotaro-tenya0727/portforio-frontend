@@ -18,7 +18,7 @@ const MenuButton = () => {
           <span></span>
           <span></span>
         </div>
-        <p style={{ marginTop: '34px', color: 'white' }}>Menu</p>
+        <p className={home.menu_button_text}>Menu</p>
       </button>
     </>
   );
