@@ -39,10 +39,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
             textAlign: 'center',
           }}
         >
-          <CircularProgress
-            size={150}
-            sx={{ mt: '150px', color: '#ff7bd7', ml: '70px' }}
-          />
+          <CircularProgress size={150} sx={{ mt: '150px', color: '#ff7bd7' }} />
         </div>
       ) : (
         <>
@@ -52,8 +49,8 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                 variant='contained'
                 color='secondary'
                 sx={{
-                  width: '125px',
-                  fontSize: '10.5px',
+                  width: '135px',
+                  fontSize: '10px',
                   mt: 2.5,
                   mb: 2,
                   '@media screen and (min-width:500px)': {
@@ -85,7 +82,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                     fontSize: 25,
                     mr: 1,
                     '@media screen and (max-width:500px)': {
-                      fontSize: 21,
+                      fontSize: 19,
                     },
                   }}
                 />
