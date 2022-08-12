@@ -59,28 +59,25 @@
 
 @media (min-width: 500px) {
   .tweet_text{
+    font-size: 15px;
 
   }
 }
 
 @media (min-width: 700px){
   .tweet_text{
-    font-size: 16px;
+    font-size: 17px;
+
   }
 }
 
 @media (min-width: 900px)  {
   .tweet_text{
+    font-size: 19px;
 
   }
 }
 
-@media (min-width: 1200px)  {
-  .tweet_text{
-
-
-  }
-}
 
 .diary_header_image{
   width: 100%;

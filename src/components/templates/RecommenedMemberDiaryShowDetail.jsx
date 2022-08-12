@@ -46,7 +46,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
         </div>
       ) : (
         <>
-          <p style={{ textAlign: 'center', marginLeft: '50px' }}>
+          <p style={{ textAlign: 'center' }}>
             <ThemeProvider theme={theme2}>
               <Button
                 variant='contained'
