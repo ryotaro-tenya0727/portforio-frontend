@@ -5,7 +5,7 @@
   border-radius: 5px;
   border: 2px solid;
   padding: 15px 5px 15px 5px;
-  margin: 3px 0px 0px 10px;
+  margin: 3px 0px 0px 7px;
   font-weight: bold;
   font-family: 'M PLUS Rounded 1c', sans-serif;
   color: #ff66d1;
@@ -13,7 +13,7 @@
 
 @media (max-width: 700px) {
   .button_card{
-    padding: 10px 6px 10px 6px;
+    padding: 10px 6px 12px 6px;
     font-size: 11px;
   }
 }

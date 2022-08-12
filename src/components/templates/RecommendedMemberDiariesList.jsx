@@ -93,10 +93,13 @@ const RecommendedMemberDiariesList = ({
         <div className={list.recommended_member_diaries}>
           <MenuBookIcon
             sx={{
-              fontSize: '28px',
+              fontSize: '24px',
               mb: '-6.5px',
               mr: '10px',
               color: '#ff6fc8',
+              '@media screen and (min-width:500px)': {
+                fontSize: '28px',
+              },
             }}
           />
           {recommendedMemberNickname}の日記一覧
@@ -117,9 +120,17 @@ const RecommendedMemberDiariesList = ({
           <>
             <div className={list.pagination_and_search_wrap}>
               <Pagination
-                sx={{ mt: '15px' }}
                 color='primary'
-                size='large'
+                sx={{
+                  fontSize: 40,
+                  mb: -0.5,
+                  mt: 0.3,
+                  '@media screen and (max-width:500px)': {
+                    fontSize: 35,
+                    mt: 0,
+                    mb: -5,
+                  },
+                }}
                 className={list.pagination}
                 count={count}
                 page={page}
@@ -134,13 +145,17 @@ const RecommendedMemberDiariesList = ({
                 )}
                 onChange={handleChange}
               />
-              <div style={{ marginTop: '15px' }}>
+              <div style={{ marginTop: '10px' }}>
                 <SavedSearchIcon
                   sx={{
-                    fontSize: 40,
+                    fontSize: 33,
                     mb: -1.7,
                     mr: 1,
                     color: 'secondary.main',
+                    '@media screen and (min-width:500px)': {
+                      fontSize: 40,
+                      mr: 0.5,
+                    },
                   }}
                 />
                 <input

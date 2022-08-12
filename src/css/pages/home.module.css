@@ -184,8 +184,6 @@
   font-size: 8px;
 }
 
-
-
 @media (min-width: 500px) {
   .login_button{
     width: 60px;

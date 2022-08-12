@@ -106,7 +106,6 @@ const RecommendedMembersList = () => {
                   fontSize: 40,
                   mb: -0.5,
                   mt: -1.5,
-                  color: 'secondary.main',
                   '@media screen and (max-width:500px)': {
                     fontSize: 35,
                     mb: 0.5,

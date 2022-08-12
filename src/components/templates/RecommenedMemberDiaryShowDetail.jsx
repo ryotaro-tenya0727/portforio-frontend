@@ -51,7 +51,22 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
               <Button
                 variant='contained'
                 color='secondary'
-                sx={{ width: '160px', mt: 1, mb: 2 }}
+                sx={{
+                  width: '125px',
+                  fontSize: '10.5px',
+                  mt: 2.5,
+                  mb: 2,
+                  '@media screen and (min-width:500px)': {
+                    width: '150px',
+                    fontSize: '13.5px',
+                    mr: 0.5,
+                  },
+                  '@media screen and (min-width:700px)': {
+                    width: '160px',
+                    fontSize: '13.5px',
+                    mr: 0.5,
+                  },
+                }}
                 href={`https://twitter.com/intent/tweet?text=%0a${
                   recommended_member_diary_show.data.attributes
                     .diary_member_nickname
@@ -65,11 +80,18 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                 )}`}
                 target='_blank'
               >
-                <TwitterIcon sx={{ mr: 1.5, mb: 0.1 }} />
+                <TwitterIcon
+                  sx={{
+                    fontSize: 25,
+                    mr: 1,
+                    '@media screen and (max-width:500px)': {
+                      fontSize: 21,
+                    },
+                  }}
+                />
                 ツイートする
               </Button>
-              <p style={{ textAlign: 'center', marginRight: '50px' }}>
-                {' '}
+              <p className={diary.tweet_text}>
                 (推しの名前が入った画像をツイートできます)
               </p>
             </ThemeProvider>

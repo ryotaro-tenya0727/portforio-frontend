@@ -116,13 +116,6 @@ const RecommenedMemberDiaryEditForm = ({
           <ThemeProvider theme={theme}>
             <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
               <p className={form.form_title} style={{ marginTop: '20px' }}>
-                {' '}
-                <img
-                  src={`${imageDomain}/admin/diary_title-min.png`}
-                  alt='picture'
-                  width={30}
-                  style={{ margin: '5px 10px 2px 0px' }}
-                />
                 {`${recommendedMemberNickname}との日記編集中`}
               </p>
               <br />

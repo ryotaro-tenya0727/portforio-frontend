@@ -53,6 +53,35 @@
   }
 }
 
+.tweet_text{
+  font-size: 14px;
+}
+
+@media (min-width: 500px) {
+  .tweet_text{
+
+  }
+}
+
+@media (min-width: 700px){
+  .tweet_text{
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 900px)  {
+  .tweet_text{
+
+  }
+}
+
+@media (min-width: 1200px)  {
+  .tweet_text{
+
+
+  }
+}
+
 .diary_header_image{
   width: 100%;
   object-fit: cover;

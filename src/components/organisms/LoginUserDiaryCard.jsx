@@ -50,7 +50,7 @@ const LoginUserDiaryCard = ({
               <Button className={button.button_card} onClick={returnTop}>
                 <AppRegistrationIcon
                   sx={{
-                    fontSize: '25px',
+                    fontSize: '23px',
                     mb: '-9.5px',
                     mr: '3px',
                     '@media screen and (max-width:600px)': {
@@ -67,11 +67,9 @@ const LoginUserDiaryCard = ({
                 日記を編集する
               </Button>
             </Link>
-            {/* 日記カードの日記 */}
             <img
               src={`${imageDomain}/admin/diary_card_image.png`}
               alt='picture'
-              width='130'
               style={{ margin: '-5px 10px 0px 0px' }}
               className={card.recommended_member_card_image}
             />

@@ -16,14 +16,14 @@
 }
 
 @keyframes SlideIn {
-0% {
-  opacity:  1;
-  transform: translateX(-64px);
-}
-100% {
-  opacity: 1;
-  transform: translateX(0);
-}
+  0% {
+    opacity:  1;
+    transform: translateX(-64px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .SidebarList {
@@ -55,12 +55,6 @@
   flex: 30%;
   display: grid;
   place-items: center;
-}
-
-@media (min-width: 500px) {
-  .row #icon {
-
-  }
 }
 
 .row #title {

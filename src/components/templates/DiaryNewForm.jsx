@@ -9,7 +9,6 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
-import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 import { TrimmingModal } from './../organisms/Organisms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
@@ -22,7 +21,6 @@ const DiaryNewForm = ({
   recommendedMemberNickname,
   recommendedMemberGroup,
 }) => {
-  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
   const [s3ImageUrls, setImageUrls] = useState([]);
@@ -101,12 +99,6 @@ const DiaryNewForm = ({
       <ThemeProvider theme={theme}>
         <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
           <p className={form.form_title} style={{ marginTop: '20px' }}>
-            <img
-              src={`${imageDomain}/admin/diary_title-min.png`}
-              alt='picture'
-              width={30}
-              style={{ margin: '5px 10px 2px 0px' }}
-            />
             {`${recommendedMemberNickname}との日記追加中`}
           </p>
           {isNumberError && (
@@ -120,17 +112,7 @@ const DiaryNewForm = ({
             </p>
           )}
 
-          <p className={form.image_up_title}>
-            <InsertPhotoIcon
-              sx={{
-                fontSize: '26px',
-                mb: '-5px',
-                mr: '10px',
-                color: '#ff66d1',
-              }}
-            />
-            日記に使う画像を選択
-          </p>
+          <p className={form.image_up_title}>日記に使う画像を選択</p>
           <TrimmingModal
             imageFiles={imageFiles}
             s3ImageUrls={s3ImageUrls}

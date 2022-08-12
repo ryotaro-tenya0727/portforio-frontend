@@ -61,13 +61,17 @@ const LoginUserInformation = () => {
               backgroundImage: `url(${imageDomain}/admin/login_profile_image-min.png)`,
             }}
           >
-            <p style={{ fontSize: '18px' }}>
+            <p className={card.login_card_title}>
               <LocalFloristIcon
                 sx={{
-                  fontSize: '20px',
+                  fontSize: '17px',
                   mb: '-3.5px',
                   mr: '5px',
                   color: '#ff6fc8',
+                  '@media screen and (min-width:700px)': {
+                    fontSize: '22.5px',
+                    mr: 0.5,
+                  },
                 }}
               />
               あなたのプロフィール
