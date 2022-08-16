@@ -2,17 +2,23 @@
   padding: 10px 10px 5px 10px;
   position: relative;
   margin: 0 auto;
-  width: 80%;
+  width: 85%;
 }
 
 
 @media (min-width: 500px) {
   .card_general_whole{
+    width: 80%;
+  }
+}
+
+@media (min-width: 650px) {
+  .card_general_whole{
     width: 70%;
   }
 }
 
-@media (min-width: 700px){
+@media (min-width: 850px){
   .card_general_whole{
     width: 97%;
   }

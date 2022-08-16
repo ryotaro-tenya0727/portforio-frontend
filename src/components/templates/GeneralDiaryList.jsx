@@ -36,11 +36,8 @@ const GeneralDiaryList = () => {
           delay: 1000,
         }}
         breakpoints={{
-          700: {
+          850: {
             slidesPerView: 2,
-          },
-          1200: {
-            slidesPerView: 3,
           },
         }}
         preventInteractionOnTransition={true}
