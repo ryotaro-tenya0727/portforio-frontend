@@ -153,7 +153,6 @@ const RecommenedMembersNewForm = () => {
             />
             推しメンの所属グループ (15文字以内)
           </label>
-
           <Controller
             defaultValue=''
             name='recommended_member.group'
@@ -196,7 +195,6 @@ const RecommenedMembersNewForm = () => {
             />
             初めて会った日
           </label>
-
           <Controller
             defaultValue=''
             name='recommended_member.first_met_date'
@@ -241,5 +239,4 @@ const RecommenedMembersNewForm = () => {
     </>
   );
 };
-
 export default RecommenedMembersNewForm;

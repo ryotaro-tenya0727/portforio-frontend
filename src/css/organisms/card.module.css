@@ -2,19 +2,28 @@
   padding: 10px 10px 5px 10px;
   position: relative;
   margin: 0 auto;
+  width: 80%;
 }
 
-@media (max-width: 600px) {
-  .card_general_whole{
-    width: 80%;
-  }
-}
 
-@media screen and (min-width:600px) and ( max-width:830px){
+@media (min-width: 500px) {
   .card_general_whole{
     width: 70%;
   }
 }
+
+@media (min-width: 700px){
+  .card_general_whole{
+    width: 97%;
+  }
+}
+
+@media (min-width: 1200px)  {
+  .card_general_whole{
+    width: 95%
+  }
+}
+
 
 .card_general_title{
   color: #ff6fc8;

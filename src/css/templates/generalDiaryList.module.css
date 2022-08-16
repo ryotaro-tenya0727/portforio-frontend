@@ -4,4 +4,6 @@
 
 .wrapper{
   margin-top: 20px;
+  margin-left: calc(50% - 48vw);
+  margin-right: calc(50% - 48vw);
 }

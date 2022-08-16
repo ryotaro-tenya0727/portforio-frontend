@@ -36,8 +36,11 @@ const GeneralDiaryList = () => {
           delay: 1000,
         }}
         breakpoints={{
-          830: {
+          700: {
             slidesPerView: 2,
+          },
+          1200: {
+            slidesPerView: 3,
           },
         }}
         preventInteractionOnTransition={true}
@@ -59,7 +62,6 @@ const GeneralDiaryList = () => {
                 eventPolaroidCount={diary.attributes.event_polaroid_count}
                 ImpressiveMemory={diary.attributes.impressive_memory}
                 showUrl={`/diaries/show/${diary.attributes.id}}`}
-                // editUrl={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/edit/${diary.attributes.id}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
               />
             </SwiperSlide>
           );
