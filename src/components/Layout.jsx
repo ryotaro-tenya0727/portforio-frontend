@@ -12,7 +12,12 @@ export const DefaultLayout = ({ children }) => {
   const handleClose = () => setOpenMenu(false);
   return (
     <>
-      <div className={layout.layout}>
+      <div
+        className={layout.layout}
+        // style={{
+        //   backgroundImage: `url(https://sozaino.site/wp-content/uploads/2022/06/nizi86.png)`,
+        // }}
+      >
         <Modal open={isOpenMenu} onClose={handleClose}>
           <>
             <Sidebar />

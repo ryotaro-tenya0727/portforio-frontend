@@ -376,6 +376,7 @@
 
 .about_wrapper{
   margin: 0 auto;
+  background-size: contain;
 }
 
 @media (max-width: 1000px) {
@@ -420,6 +421,7 @@
 .about_diary_image{
   margin: 0 auto;
   width: 270px;
+  border-radius: 5px;
 
 }
 

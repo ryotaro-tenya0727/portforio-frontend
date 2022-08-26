@@ -10,8 +10,10 @@ import { LoginName } from './../molecules/Molecules';
 import { useUsersApi } from './../../hooks/useUsers';
 
 import button from './../../css/atoms/button.module.css';
+import mypage from './../../css/pages/mypage.module.css';
 
 const MyPage = () => {
+  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const { useGetAccesstokenAndCreateUser, isAuthenticated, isAuthLoading } =
     useUsersApi();
   const queryClient = useQueryClient();
@@ -36,14 +38,18 @@ const MyPage = () => {
     });
   };
   return (
-    <div style={{ paddingBottom: '280px' }}>
+    <div
+      style={{
+        paddingBottom: '280px',
+      }}
+    >
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
 
       {userData === undefined ? (
         isIdle || isLoading ? (
           <Loading />
         ) : (
-          <>
+          <div>
             <LoginName name={data.name} />
             <MenuButton />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
@@ -68,10 +74,10 @@ const MyPage = () => {
               </Button>
             </Link>
             <MyPageMenu />
-          </>
+          </div>
         )
       ) : (
-        <>
+        <div>
           <LoginName name={userData.name} />
           <MenuButton />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
@@ -96,7 +102,7 @@ const MyPage = () => {
             </Button>
           </Link>
           <MyPageMenu />
-        </>
+        </div>
       )}
     </div>
   );
