@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Autoplay, Pagination, Navigation } from 'swiper';
 import CircularProgress from '@mui/material/CircularProgress';
-
+import useMedia from 'use-media';
 import { GeneralUserDiaryCard } from './../organisms/Organisms';
 import { useGeneralDiariesApi } from '../../hooks/useGeneralDiary';
 import generalDiaryList from './../../css/templates/generalDiaryList.module.css';
@@ -11,10 +11,13 @@ import 'swiper/css';
 const GeneralDiaryList = () => {
   const { useGetGeneralDiaries } = useGeneralDiariesApi();
   const { data: generalDiaries, isLoading, isIdle } = useGetGeneralDiaries();
-
+  const isWide = useMedia({ minWidth: '700px' });
   return isIdle || isLoading ? (
     <div className={generalDiaryList.loading}>
-      <CircularProgress size={130} sx={{ mt: '50px', color: '#ff7bd7' }} />
+      <CircularProgress
+        size={isWide ? 130 : 70}
+        sx={{ mt: '50px', color: '#ff7bd7' }}
+      />
     </div>
   ) : (
     <div className={generalDiaryList.wrapper}>

@@ -14,14 +14,21 @@
 .main_image{
   width: 100%;
   object-fit: cover;
-  height:350px;
+  height:230px;
   object-position: 50% 0%;
   max-width: 1000px;
 }
 
+@media (min-width: 400px) {
+  .main_image{
+  height:285px;
+  object-position: 50% 0%;
+  }
+}
+
 @media (min-width: 500px) {
   .main_image{
-  height:400px;
+  height:350px;
   object-position: 50% 0%;
   }
 }
@@ -238,18 +245,18 @@
 }
 
 .register_button{
-  width: 165px;
-  height: 50px;
+  width: 150px;
+  height: 45px;
   cursor: pointer;
   background-color: #ffffff;
   border-radius: 5px;
   border: 2px solid;
-  padding: 12px 8px 30px 8px;
+  padding: 10px 8px 30px 8px;
   font-weight: bold;
   color:  #ff7bd7;
   position: absolute;
-  bottom: 20px;
-  right: 28%;
+  bottom: 15px;
+  right: 29%;
   font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
@@ -268,14 +275,22 @@
   .register_button {
     width: 180px;
     right: 38.5%;
-      height: 60px;
-        padding: 18px 8px 30px 8px;
+    height: 60px;
+    padding: 18px 8px 30px 8px;
   }
 }
 
 .register_text{
-  font-size: 12px;
+  font-size: 10px;
+  color:  #ff7bd7;
 }
+
+@media (min-width: 700px)  {
+  .register_text{
+    font-size: 12px;
+  }
+}
+
 
 @media (min-width: 700px)  {
   .register_text{
@@ -359,6 +374,14 @@
   margin: 0px 0px 0px 7px;
   font-size: 10px;
 }
+
+@media (max-width: 500px) {
+  .about_text{
+    display: none;
+  }
+}
+
+
 
 @media (min-width: 700px) {
   .about_text{

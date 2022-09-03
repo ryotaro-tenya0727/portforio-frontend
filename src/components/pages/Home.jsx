@@ -7,6 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import HelpIcon from '@mui/icons-material/Help';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { Link as Scroll } from 'react-scroll';
+import useMedia from 'use-media';
 import usePageTracking from './../../hooks/useTracking';
 
 import { Button, MenuButton } from './../atoms/atoms';
@@ -21,7 +22,7 @@ const Home = () => {
   const handleClick = () => {
     setLoading(true);
   };
-
+  const isWide = useMedia({ minWidth: '700px' });
   return (
     <>
       <div
@@ -74,7 +75,7 @@ const Home = () => {
                   (loading ? (
                     <>
                       <button className={home.login_button}>
-                        <CircularProgress size={30} sx={{ color: '#ff94df' }} />
+                        <CircularProgress sx={{ color: '#ff94df' }} />
                       </button>
                     </>
                   ) : (
@@ -108,7 +109,15 @@ const Home = () => {
 
             <Link to='#' style={{ margin: '0 auto' }} className={home.about}>
               <Scroll to='about' smooth={true}>
-                <HelpIcon sx={{ color: '#ff94df', fontSize: '30px' }} />
+                <HelpIcon
+                  sx={{
+                    color: '#ff94df',
+                    fontSize: '30px',
+                    '@media screen and (max-width:700px)': {
+                      display: 'none',
+                    },
+                  }}
+                />
                 <br />
                 <span
                   style={{
@@ -123,30 +132,69 @@ const Home = () => {
               </Scroll>
             </Link>
           </div>
-          {loading ? (
-            <button className={home.register_button}>
-              <CircularProgress sx={{ color: '#ff94df', mt: -1 }} size={40} />
-            </button>
-          ) : (
-            <Button
-              className={home.register_button}
-              onClick={() => {
-                handleClick();
-                loginWithRedirect();
-              }}
-            >
-              <HowToRegIcon
-                sx={{
-                  fontSize: '22px',
-                  mb: '-5.5px',
-                  mr: '10px',
-                  color: '#ff6fc8',
-                }}
-              />
-              <span className={home.register_text}>新規登録 / ログイン</span>
-            </Button>
-          )}
-
+          <div style={{ textAlign: 'center' }}>
+            {loading ? (
+              <button className={home.register_button}>
+                <CircularProgress
+                  sx={{
+                    color: '#ff94df',
+                    mt: -1,
+                    fontSize: '80px',
+                    '@media screen and (max-width:700px)': {
+                      mt: -0.4,
+                    },
+                  }}
+                  size={isWide ? 40 : 30}
+                />
+              </button>
+            ) : (
+              <>
+                {isAuthenticated ? (
+                  <>
+                    {' '}
+                    <Button className={home.register_button}>
+                      <HowToRegIcon
+                        sx={{
+                          fontSize: '22px',
+                          mb: '-5.5px',
+                          mr: '10px',
+                          color: '#ff6fc8',
+                        }}
+                      />
+                      <Link to='mypage'>
+                        <span className={home.register_text}>
+                          マイページに行く
+                        </span>
+                      </Link>
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    {' '}
+                    <Button
+                      className={home.register_button}
+                      onClick={() => {
+                        handleClick();
+                        loginWithRedirect();
+                      }}
+                    >
+                      <HowToRegIcon
+                        sx={{
+                          fontSize: '22px',
+                          mb: '-5.5px',
+                          mr: '10px',
+                          color: '#ff6fc8',
+                        }}
+                      />
+                      <span className={home.register_text}>
+                        新規登録 / ログイン
+                      </span>
+                    </Button>
+                  </>
+                )}
+              </>
+            )}
+          </div>
           <div style={{ textAlign: 'center' }}>
             <img
               src={`${imageDomain}/admin/main-image.png`}
