@@ -75,7 +75,7 @@ const Home = () => {
                   (loading ? (
                     <>
                       <button className={home.login_button}>
-                        <CircularProgress sx={{ color: '#ff94df' }} />
+                        <CircularProgress sx={{ color: '#ff94df' }} size={30} />
                       </button>
                     </>
                   ) : (

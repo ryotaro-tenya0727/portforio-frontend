@@ -369,7 +369,7 @@
   font-size: 10px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .about_text{
     display: none;
   }
