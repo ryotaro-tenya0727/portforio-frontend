@@ -8,10 +8,10 @@ import HelpIcon from '@mui/icons-material/Help';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { Link as Scroll } from 'react-scroll';
 import useMedia from 'use-media';
-import usePageTracking from './../../hooks/useTracking';
 
 import { Button, MenuButton } from './../atoms/atoms';
 import { GeneralDiaryList } from './../templates/Templates';
+import usePageTracking from './../../hooks/useTracking';
 import home from './../../css/pages/home.module.css';
 
 const Home = () => {
