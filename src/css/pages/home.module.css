@@ -33,6 +33,13 @@
   }
 }
 
+@media (min-width: 600px){
+  .main_image{
+    height:400px;
+    object-position: 50% 0%;
+  }
+}
+
 @media (min-width: 700px){
   .main_image{
     height:470px;
@@ -42,17 +49,12 @@
 
 @media (min-width: 900px)  {
   .main_image{
-    height:580px;
+    height:550px;
     object-position: 50% 0%;
   }
 }
 
-@media (min-width: 1200px)  {
-  .main_image{
-    height:580px;
-    object-position: 50% 0%;
-  }
-}
+
 
 .logo{
   width: 150px;
