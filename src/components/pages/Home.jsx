@@ -152,21 +152,22 @@ const Home = () => {
                 {isAuthenticated ? (
                   <>
                     {' '}
-                    <Button className={home.register_button}>
-                      <HowToRegIcon
-                        sx={{
-                          fontSize: '22px',
-                          mb: '-5.5px',
-                          mr: '10px',
-                          color: '#ff6fc8',
-                        }}
-                      />
-                      <Link to='mypage'>
+                    <Link to='mypage'>
+                      <Button className={home.register_button}>
+                        <HowToRegIcon
+                          sx={{
+                            fontSize: '22px',
+                            mb: '-5.5px',
+                            mr: '10px',
+                            color: '#ff6fc8',
+                          }}
+                        />
+
                         <span className={home.register_text}>
                           マイページに行く
                         </span>
-                      </Link>
-                    </Button>
+                      </Button>
+                    </Link>
                   </>
                 ) : (
                   <>

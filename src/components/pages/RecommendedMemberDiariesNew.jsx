@@ -18,14 +18,14 @@ const RecommenedMemberDiariesNew = () => {
   const userData = queryClient.getQueryData('users');
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
   const breadcrumbs = [
-    {
-      title: (
-        <>
-          <HomeBreadText />
-        </>
-      ),
-      to: '/',
-    },
+    // {
+    //   title: (
+    //     <>
+    //       <HomeBreadText />
+    //     </>
+    //   ),
+    //   to: '/',
+    // },
     { title: 'マイページ', to: '/mypage' },
     {
       title: `${query.get('nickname')}の日記一覧`,
@@ -33,7 +33,7 @@ const RecommenedMemberDiariesNew = () => {
         'nickname'
       )}&group=${query.get('group')}`,
     },
-    { title: `${query.get('nickname')}の日記作成ページ` },
+    { title: `日記作成ページ` },
   ];
 
   return (

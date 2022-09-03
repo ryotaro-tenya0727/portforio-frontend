@@ -59,17 +59,18 @@
   padding: 10px 10px 5px 10px;
   position: relative;
   margin: 0 auto;
+  width: 92%;
 }
 
-@media (max-width: 700px) {
+@media (min-width: 500px) {
   .card_whole{
-    width: 85%;
+    width: 70%;
   }
 }
 
-@media screen and (min-width:700px) and ( max-width:950px){
+@media (min-width: 955px) {
   .card_whole{
-    width: 70%;
+    width: 95%;
   }
 }
 

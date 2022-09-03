@@ -233,7 +233,7 @@ const RecommenedMemberEditForm = ({
                           color: '#ff64db',
                         }}
                       />
-                      推しメンと会った日
+                      初めて会った日
                     </span>
                   }
                   color='primary'

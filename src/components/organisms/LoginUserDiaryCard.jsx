@@ -9,6 +9,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
+import useMedia from 'use-media';
 
 import { Button } from './../atoms/atoms';
 
@@ -33,6 +34,7 @@ const LoginUserDiaryCard = ({
       behavior: 'smooth',
     });
   };
+  const isWide = useMedia({ minWidth: '700px' });
   return (
     <Grid item xs={12} sm={6}>
       <Card
@@ -138,7 +140,7 @@ const LoginUserDiaryCard = ({
                       key={index}
                       src={`${diaryImageUrl}`}
                       alt='picture'
-                      width='150'
+                      width={isWide ? '150px' : '120px'}
                       style={{
                         border: '2px solid #ff99c5',
                         borderRadius: '5px',

@@ -10,6 +10,7 @@ import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import CircularProgress from '@mui/material/CircularProgress';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import useMedia from 'use-media';
 
 import { Button } from './../atoms/atoms';
 import { RecommendedMemberCard } from './../organisms/Organisms';
@@ -21,7 +22,7 @@ import list from './../../css/templates/list.module.css';
 
 const RecommendedMembersList = () => {
   const { useGetRecommendedMembers } = useRecommendedMembersApi();
-
+  const isWide = useMedia({ minWidth: '700px' });
   const {
     data: recommendedMembers,
     isLoading,
@@ -108,10 +109,11 @@ const RecommendedMembersList = () => {
                   mt: -1.5,
                   '@media screen and (max-width:500px)': {
                     fontSize: 35,
-                    mb: 0.5,
-                    mt: -1.5,
+                    mb: -0.5,
+                    mt: -3.5,
                   },
                 }}
+                size={isWide ? 'medium' : 'small'}
                 className={list.pagination}
                 count={count}
                 page={page}

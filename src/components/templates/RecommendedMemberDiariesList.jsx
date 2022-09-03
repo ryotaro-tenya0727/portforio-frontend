@@ -10,6 +10,7 @@ import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import CircularProgress from '@mui/material/CircularProgress';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import useMedia from 'use-media';
 
 import { Button } from './../atoms/atoms';
 import { LoginUserDiaryCard } from './../organisms/Organisms';
@@ -39,7 +40,7 @@ const RecommendedMemberDiariesList = ({
       behavior: 'smooth',
     });
   };
-
+  const isWide = useMedia({ minWidth: '700px' });
   // ページネーション
   let [page, setPage] = useState(1);
   const PER_PAGE = 2;
@@ -124,13 +125,14 @@ const RecommendedMemberDiariesList = ({
                 sx={{
                   fontSize: 40,
                   mb: -0.5,
-                  mt: 0.3,
+                  mt: -0.5,
                   '@media screen and (max-width:500px)': {
                     fontSize: 35,
-                    mt: 0,
-                    mb: -5,
+                    mb: -1.5,
+                    mt: -1.0,
                   },
                 }}
+                size={isWide ? 'medium' : 'small'}
                 className={list.pagination}
                 count={count}
                 page={page}

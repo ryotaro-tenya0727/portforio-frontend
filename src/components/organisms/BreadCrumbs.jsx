@@ -27,7 +27,7 @@ const BreadCrumbs = ({ breadcrumbs }) => {
                 {item.title}
               </Link>
             ) : (
-              <span className={bread.active}>{item.title}（現在のページ）</span>
+              <span className={bread.active}>{item.title}</span>
             )}
           </li>
         ))}

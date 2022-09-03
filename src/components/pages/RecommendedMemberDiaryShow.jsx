@@ -24,14 +24,6 @@ const RecommenedMemberDiaryShow = () => {
   const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
 
   const breadcrumbs = [
-    {
-      title: (
-        <>
-          <HomeBreadText />
-        </>
-      ),
-      to: '/',
-    },
     { title: 'マイページ', to: '/mypage' },
     {
       title: <>{`${query.get('recommended_member_nickname')}`}の日記一覧</>,
@@ -39,7 +31,7 @@ const RecommenedMemberDiaryShow = () => {
         'recommended_member_nickname'
       )}&group=${query.get('group')}`,
     },
-    { title: `${query.get('recommended_member_nickname')}の日記詳細ページ` },
+    { title: `日記詳細ページ` },
   ];
 
   return (
