@@ -52,7 +52,6 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                   mx: 'auto',
                   width: '135px',
                   fontSize: '10px',
-                  ml: '9%',
                   mt: 2.5,
                   mb: 2,
                   '@media screen and (min-width:500px)': {

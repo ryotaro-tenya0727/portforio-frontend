@@ -9,7 +9,7 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { Link as Scroll } from 'react-scroll';
 import useMedia from 'use-media';
 
-import { Button, MenuButton } from './../atoms/atoms';
+import { Button, HomeMenuButtom } from './../atoms/atoms';
 import { GeneralDiaryList } from './../templates/Templates';
 import usePageTracking from './../../hooks/useTracking';
 import home from './../../css/pages/home.module.css';
@@ -36,7 +36,7 @@ const Home = () => {
       >
         <div className={home.home}>
           <div className={home.buttons}>
-            <MenuButton />
+            <HomeMenuButtom />
             <br />
             {isLoading ? (
               <button className={home.login_button}>

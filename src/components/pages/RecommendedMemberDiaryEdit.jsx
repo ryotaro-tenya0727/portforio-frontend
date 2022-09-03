@@ -1,14 +1,12 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
-import { HomeBreadText, MenuButton } from './../atoms/atoms';
-import { BreadCrumbs } from './../organisms/Organisms';
+import { BreadCrumbs, Headers } from './../organisms/Organisms';
 import {
   RecommenedMemberDiaryEditForm,
   Loading,
 } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
-import { LoginName } from './../molecules/Molecules';
 import { useUsersApi } from './../../hooks/useUsers';
 
 const RecommendedMemberDiaryEdit = () => {
@@ -41,8 +39,7 @@ const RecommendedMemberDiaryEdit = () => {
           <Loading />
         ) : (
           <>
-            <LoginName name={data.name} />
-            <MenuButton />
+            <Headers name={data.name} />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
             <RecommenedMemberDiaryEditForm
               recommendedMemberId={recommended_member_id}
@@ -55,8 +52,7 @@ const RecommendedMemberDiaryEdit = () => {
         )
       ) : (
         <>
-          <LoginName name={userData.name} />
-          <MenuButton />
+          <Headers name={userData.name} />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <RecommenedMemberDiaryEditForm
             recommendedMemberId={recommended_member_id}

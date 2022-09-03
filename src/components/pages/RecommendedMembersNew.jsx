@@ -1,11 +1,10 @@
 import { useQueryClient } from 'react-query';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
-import { HomeBreadText, MenuButton } from './../atoms/atoms';
-import { BreadCrumbs } from './../organisms/Organisms';
+import { HomeBreadText } from './../atoms/atoms';
+import { BreadCrumbs, Headers } from './../organisms/Organisms';
 import { RecommenedMembersNewForm, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
-import { LoginName } from './../molecules/Molecules';
 import { useUsersApi } from './../../hooks/useUsers';
 
 const RecommenedMembersNew = () => {
@@ -51,16 +50,14 @@ const RecommenedMembersNew = () => {
           <Loading />
         ) : (
           <>
-            <LoginName name={data.name} />
-            <MenuButton />
+            <Headers name={data.name} />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
             <RecommenedMembersNewForm />
           </>
         )
       ) : (
         <>
-          <LoginName name={userData.name} />
-          <MenuButton />
+          <Headers name={userData.name} />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <RecommenedMembersNewForm />
         </>

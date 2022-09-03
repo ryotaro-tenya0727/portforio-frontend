@@ -1,11 +1,10 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
-import { HomeBreadText, MenuButton } from './../atoms/atoms';
-import { BreadCrumbs } from './../organisms/Organisms';
+import { HomeBreadText } from './../atoms/atoms';
+import { BreadCrumbs, Headers } from './../organisms/Organisms';
 import { RecommenedMemberEditForm, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
-import { LoginName } from './../molecules/Molecules';
 import { useUsersApi } from './../../hooks/useUsers';
 
 const RecommenedMemberEdit = () => {
@@ -41,8 +40,7 @@ const RecommenedMemberEdit = () => {
           <Loading />
         ) : (
           <>
-            <LoginName name={data.name} />
-            <MenuButton />
+            <Headers name={data.name} />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
             <RecommenedMemberEditForm
               recommendedMemberUuid={recommended_member_uuid}
@@ -56,8 +54,7 @@ const RecommenedMemberEdit = () => {
         )
       ) : (
         <>
-          <LoginName name={userData.name} />
-          <MenuButton />
+          <Headers name={userData.name} />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <RecommenedMemberEditForm
             recommendedMemberUuid={recommended_member_uuid}

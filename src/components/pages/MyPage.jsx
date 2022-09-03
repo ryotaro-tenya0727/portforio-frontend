@@ -2,18 +2,16 @@ import { Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
-import { Button, HomeBreadText, MenuButton } from './../atoms/atoms';
+import { Button, HomeBreadText } from './../atoms/atoms';
 import { BreadCrumbs } from './../organisms/Organisms';
 import { MyPageMenu, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
-import { LoginName } from './../molecules/Molecules';
+import { Headers } from './../organisms/Organisms';
 import { useUsersApi } from './../../hooks/useUsers';
 
 import button from './../../css/atoms/button.module.css';
-import mypage from './../../css/pages/mypage.module.css';
 
 const MyPage = () => {
-  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const { useGetAccesstokenAndCreateUser, isAuthenticated, isAuthLoading } =
     useUsersApi();
   const queryClient = useQueryClient();
@@ -41,6 +39,8 @@ const MyPage = () => {
     <div
       style={{
         paddingBottom: '280px',
+        maxWidth: '1200px',
+        margin: '0 auto',
       }}
     >
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
@@ -50,8 +50,7 @@ const MyPage = () => {
           <Loading />
         ) : (
           <div>
-            <LoginName name={data.name} />
-            <MenuButton />
+            <Headers name={userData.name} />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
             <Link to='/recommended-members/new'>
               <Button
@@ -78,8 +77,7 @@ const MyPage = () => {
         )
       ) : (
         <div>
-          <LoginName name={userData.name} />
-          <MenuButton />
+          <Headers name={userData.name} />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <Link to='/recommended-members/new'>
             <Button

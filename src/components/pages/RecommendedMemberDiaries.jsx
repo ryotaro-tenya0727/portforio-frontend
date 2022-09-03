@@ -2,14 +2,13 @@ import { useParams, useLocation, Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 
-import { Button, HomeBreadText, MenuButton } from './../atoms/atoms';
-import { BreadCrumbs } from './../organisms/Organisms';
+import { Button, HomeBreadText } from './../atoms/atoms';
+import { BreadCrumbs, Headers } from './../organisms/Organisms';
 import {
   RecommendedMemberDiariesList,
   Loading,
 } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
-import { LoginName } from './../molecules/Molecules';
 import { useUsersApi } from './../../hooks/useUsers';
 
 import button from './../../css/atoms/button.module.css';
@@ -46,10 +45,8 @@ const RecommenedMembersDiaries = () => {
           <Loading />
         ) : (
           <>
-            <LoginName name={data.name} />
-            <MenuButton />
+            <Headers name={data.name} />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
-
             <Link
               to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new?nickname=${query.get(
                 'nickname'
@@ -81,8 +78,7 @@ const RecommenedMembersDiaries = () => {
         )
       ) : (
         <>
-          <LoginName name={userData.name} />
-          <MenuButton />
+          <Headers name={userData.name} />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <Link
             to={`/recommended-member/${recommended_member_uuid}/diaries/${recommended_member_id}/new?nickname=${query.get(

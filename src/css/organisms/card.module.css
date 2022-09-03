@@ -64,7 +64,14 @@
 
 @media (min-width: 500px) {
   .card_whole{
-    width: 70%;
+    width: 85%;
+  }
+}
+
+
+@media (min-width: 700px) {
+  .card_whole{
+    width: 65%;
   }
 }
 

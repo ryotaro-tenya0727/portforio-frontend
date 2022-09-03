@@ -4,12 +4,12 @@ import { AuthGuardContext } from './../../providers/AuthGuard';
 
 import home from './../../css/pages/home.module.css';
 
-const MenuButton = () => {
+const HomeMenuButtom = () => {
   const { isOpenMenu, setOpenMenu } = useContext(AuthGuardContext);
   return (
     <>
       <button
-        style={{ marginTop: '15px' }}
+        style={{ marginTop: '-10px' }}
         onClick={() => setOpenMenu(true)}
         className={`${home.menu_button} ${isOpenMenu ? home.active : ''}`}
       >
@@ -24,4 +24,4 @@ const MenuButton = () => {
   );
 };
 
-export default MenuButton;
+export default HomeMenuButtom;
