@@ -3,17 +3,17 @@
   "name": "推し♡だいありー",
   "icons": [
     {
-      "src": "https://d2dshvnpldvez1.cloudfront.net/admin/menu-image.png",
+      "src": "loading-image-old.png",
       "type": "image/png",
       "sizes": "180x180"
     },
     {
-      "src": "https://d2dshvnpldvez1.cloudfront.net/admin/menu-image.png",
+      "src": "loading-image-old.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "https://d2dshvnpldvez1.cloudfront.net/admin/menu-image.png",
+      "src": "loading-image-old.png",
       "type": "image/png",
       "sizes": "512x512"
     }
