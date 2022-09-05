@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import {
@@ -17,7 +18,7 @@ import {
   AdminUserDiaries,
 } from '../components/pages/Pages';
 
-export const Routers = () => {
+export const Routers = memo(() => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
@@ -57,4 +58,4 @@ export const Routers = () => {
       </Route>
     </Routes>
   );
-};
+});
