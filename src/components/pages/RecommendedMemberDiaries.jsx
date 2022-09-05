@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -13,7 +14,7 @@ import { useUsersApi } from './../../hooks/useUsers';
 
 import button from './../../css/atoms/button.module.css';
 
-const RecommenedMembersDiaries = () => {
+const RecommenedMembersDiaries = memo(() => {
   const { recommended_member_uuid, recommended_member_id } = useParams();
   const { search } = useLocation();
   const query = new URLSearchParams(search);
@@ -112,6 +113,6 @@ const RecommenedMembersDiaries = () => {
       <br />
     </>
   );
-};
+});
 
 export default RecommenedMembersDiaries;

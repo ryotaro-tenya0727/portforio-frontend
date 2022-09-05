@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
@@ -9,7 +10,7 @@ import {
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 
-const RecommenedMemberDiaryShow = () => {
+const RecommenedMemberDiaryShow = memo(() => {
   const { recommended_member_uuid, recommended_member_id, diary_id } =
     useParams();
   const { search } = useLocation();
@@ -55,6 +56,6 @@ const RecommenedMemberDiaryShow = () => {
       <br />
     </>
   );
-};
+});
 
 export default RecommenedMemberDiaryShow;

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
@@ -11,7 +12,7 @@ import { useUsersApi } from './../../hooks/useUsers';
 
 import button from './../../css/atoms/button.module.css';
 
-const MyPage = () => {
+const MyPage = memo(() => {
   const { useGetAccesstokenAndCreateUser, isAuthenticated, isAuthLoading } =
     useUsersApi();
   const queryClient = useQueryClient();
@@ -44,13 +45,12 @@ const MyPage = () => {
       }}
     >
       {isAuthLoading || isAuthenticated || <RedirectToLogin />}
-
       {userData === undefined ? (
         isIdle || isLoading ? (
           <Loading />
         ) : (
           <div>
-            <Headers name={userData.name} />
+            <Headers name={data.name} />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
             <Link to='/recommended-members/new'>
               <Button
@@ -104,6 +104,6 @@ const MyPage = () => {
       )}
     </div>
   );
-};
+});
 
 export default MyPage;

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useQueryClient } from 'react-query';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
@@ -7,7 +8,7 @@ import { RecommenedMembersNewForm, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 
-const RecommenedMembersNew = () => {
+const RecommenedMembersNew = memo(() => {
   const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
     useUsersApi();
   const queryClient = useQueryClient();
@@ -64,6 +65,6 @@ const RecommenedMembersNew = () => {
       )}
     </>
   );
-};
+});
 
 export default RecommenedMembersNew;

@@ -35,6 +35,7 @@ export const useUsersApi = () => {
 
   const useGetAccesstokenAndCreateUser = () => {
     const createUser = useAddUser();
+    // console.log(createUser);
     useEffect(() => {
       if (isAuthenticated && user) {
         (async () => {
@@ -50,6 +51,7 @@ export const useUsersApi = () => {
         })();
       }
     }, [user]);
+    // console.log(createUser);
     return createUser;
   };
 

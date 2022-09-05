@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQueryClient } from 'react-query';
 
@@ -7,7 +8,7 @@ import { RecommenedMemberEditForm, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 
-const RecommenedMemberEdit = () => {
+const RecommenedMemberEdit = memo(() => {
   const { recommended_member_uuid, recommended_member_id } = useParams();
   const { search } = useLocation();
   const query = new URLSearchParams(search);
@@ -69,6 +70,6 @@ const RecommenedMemberEdit = () => {
       <br />
     </>
   );
-};
+});
 
 export default RecommenedMemberEdit;
