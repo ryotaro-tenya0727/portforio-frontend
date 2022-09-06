@@ -12,8 +12,7 @@ const GeneralDiaryList = () => {
   const { useGetGeneralDiaries } = useGeneralDiariesApi();
   const { data: generalDiaries, isLoading, isIdle } = useGetGeneralDiaries();
   const isWide = useMedia({ minWidth: '700px' });
-  // isIdle || isLoading;
-  return true ? (
+  return isIdle || isLoading ? (
     <div className={generalDiaryList.loading}>
       <CircularProgress
         size={isWide ? 130 : 70}
