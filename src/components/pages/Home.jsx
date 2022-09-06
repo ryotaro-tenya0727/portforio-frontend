@@ -10,6 +10,7 @@ import { Link as Scroll } from 'react-scroll';
 import useMedia from 'use-media';
 
 import { Button, HomeMenuButtom } from './../atoms/atoms';
+import { HomeHeaders } from './../organisms/Organisms';
 import { GeneralDiaryList } from './../templates/Templates';
 import usePageTracking from './../../hooks/useTracking';
 import home from './../../css/pages/home.module.css';
@@ -34,6 +35,7 @@ const Home = () => {
           width: '100vw',
         }}
       >
+        <HomeHeaders />
         <div className={home.home}>
           <div className={home.buttons}>
             <HomeMenuButtom />

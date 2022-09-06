@@ -5,7 +5,9 @@ const PrivacyPolicy = () => {
   return (
     <>
       <div className={privacypolicy.wrapper}>
-        <MenuButton />
+        <p style={{ textAlign: 'right' }}>
+          <MenuButton />
+        </p>
         <p className={privacypolicy.title}>プライバシーポリシー</p>
         <h3>お客様から取得する情報</h3>
         <p className={privacypolicy.text}>

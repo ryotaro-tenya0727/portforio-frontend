@@ -13,3 +13,4 @@ export { default as RecommenedMembersNewForm } from './RecommenedMembersNewForm'
 export { default as AdminUserList } from './AdminUserList';
 export { default as AdminUserDiariesList } from './AdminUserDiariesList';
 export { default as PolaroidGraph } from './PolaroidGraph';
+export { default as UsersList } from './UsersList';
