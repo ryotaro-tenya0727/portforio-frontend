@@ -1,10 +1,10 @@
 .wrapper{
-  background-color: #ffd5f2;
-  height: 60px
+  background-color: #ffd9f3;
+  height: 60px;
 }
 
 @media (min-width: 700px){
   .wrapper{
-    height: 65px
+    height: 80px
   }
 }

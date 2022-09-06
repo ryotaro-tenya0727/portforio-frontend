@@ -36,7 +36,6 @@ const UsersList = ({ isAuthenticated }) => {
   if (isLoading) {
     return <div>ユーザーローディング</div>;
   }
-  console.log(all_users);
   return (
     <div>
       {all_users.data.map((user, index) => (
