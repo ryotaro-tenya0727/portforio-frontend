@@ -181,3 +181,39 @@
     min-width: 130px;
   }
 }
+
+.users{
+  cursor: pointer;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid;
+  padding: 10px 6px 10px 6px;
+  margin: 10px 5px 5px 0px;
+  font-weight: bold;
+  font-size: 9px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  color: #ff66d1;
+  box-shadow: 2.7px 3.2px 2px 0.3px #938d90;
+}
+
+.users:hover {
+  opacity: 0.8
+}
+
+.users:active {
+  box-shadow: none;
+
+}
+
+@media (min-width: 500px) {
+  .users{
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 700px) {
+  .users{
+    font-size: 12px;
+    margin: 7px 5px 2px 0px;
+  }
+}

@@ -24,7 +24,7 @@ const UserCard = ({
       <Card
         style={{
           maxWidth: '700px',
-          marginBottom: '13px',
+          marginBottom: '25px',
         }}
         className={card.card_whole}
         sx={{
