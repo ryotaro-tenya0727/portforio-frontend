@@ -7,3 +7,5 @@ export { default as AdminUserCard } from './AdminUserCard';
 export { default as GeneralUserDiaryCard } from './GeneralUserDiaryCard';
 export { default as AdminUserDiaryCard } from './AdminUserDiaryCard';
 export { default as Headers } from './Headers';
+export { default as HomeHeaders } from './HomeHeaders';
+export { default as UserCard } from './UserCard';

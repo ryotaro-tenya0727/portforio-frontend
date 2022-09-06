@@ -16,6 +16,7 @@ import {
   GeneralDiaryShow,
   Page404,
   AdminUserDiaries,
+  Users,
 } from '../components/pages/Pages';
 
 export const Routers = memo(() => {
@@ -28,6 +29,7 @@ export const Routers = memo(() => {
       <Route path='/privacy-policy' element={<PrivacyPolicy />} />
       <Route path='/term-of-service' element={<TermsOfService />} />
       <Route path='/diaries/show/:diary_id' element={<GeneralDiaryShow />} />
+      <Route path='/users' element={<Users />} />
       <Route path='*' element={<Page404 />} />
       <Route
         path='/recommended-members/new'
