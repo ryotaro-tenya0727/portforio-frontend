@@ -28,7 +28,7 @@ const Home = () => {
     <>
       <div
         style={{
-          backgroundColor: '#FFF4F6',
+          backgroundColor: '#fff',
           marginTop: '-2.5px',
           borderRadius: '5px',
           margin: '0 calc(50% - 50vw)',
