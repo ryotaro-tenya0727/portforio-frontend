@@ -129,3 +129,55 @@
 .diary_tweet_button{
   color: #3f464b;
 }
+
+.follow{
+  cursor: pointer;
+  min-width: 100px;
+  border: none;
+  background-color: #ff87d1;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+  font-size: 11px;
+  min-width: 100px;
+  padding: 5px;
+}
+
+.follow:hover{
+  opacity: 0.7;
+
+}
+
+@media (min-width: 700px){
+  .follow{
+    padding: 10px;
+    font-size: 15px;
+    min-width: 130px;
+  }
+}
+
+.unfollow{
+  cursor: pointer;
+  border: none;
+  background-color: #fa4646;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+  font-size: 11px;
+  min-width: 100px;
+  padding: 5px;
+}
+
+
+.unfollow:hover{
+  opacity: 0.7;
+
+}
+
+@media (min-width: 700px){
+  .unfollow{
+    padding: 10px;
+    font-size: 15px;
+    min-width: 130px;
+  }
+}

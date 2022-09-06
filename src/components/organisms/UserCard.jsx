@@ -1,16 +1,12 @@
-import card from './../../css/organisms/card.module.css';
+import { useState } from 'react';
 
 import Card from '@mui/material/Card';
-import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
-import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
-import CircularProgress from '@mui/material/CircularProgress';
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
+import { FollowButton, UnFollowButton } from './../atoms/atoms';
+import card from './../../css/organisms/card.module.css';
 const UserCard = ({
   id,
   name,
@@ -21,6 +17,7 @@ const UserCard = ({
   totalPolaroidCount,
   following,
 }) => {
+  const [followingState, setFollowingState] = useState(following);
   return (
     <div>
       {' '}
@@ -35,32 +32,52 @@ const UserCard = ({
             'rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;',
         }}
       >
-        <p className={card.card_text}>
-          <p style={{ display: 'flex' }}>
-            <img
-              src={`${userImage}`}
-              alt='picture'
-              className={card.card_general_photo}
-              style={{
-                border: '2px solid #ff99c5',
-                borderRadius: '50%',
-                marginRight: '5px',
-              }}
-            />
-            <p style={{ marginTop: '7px' }}>
-              <span className={card.card_text_property}>&nbsp;&nbsp;名前:</span>
-              &nbsp;
-              <span>{name}</span>
-              <br />
+        <p
+          style={{ display: 'flex', justifyContent: 'space-between' }}
+          className={card.card_text}
+        >
+          <p>
+            <p style={{ display: 'flex' }}>
+              <img
+                src={`${userImage}`}
+                alt='picture'
+                className={card.card_general_photo}
+                style={{
+                  border: '2px solid #ff99c5',
+                  borderRadius: '50%',
+                  marginRight: '5px',
+                }}
+              />
+              <p style={{ marginTop: '9px' }}>
+                <span className={card.card_text_property}>
+                  &nbsp;&nbsp;名前:
+                </span>
+                &nbsp;
+                <span>{name}</span>
+                <br />
+              </p>
             </p>
+            <p
+              style={{ marginTop: '5px' }}
+              className={card.login_card_text_property}
+            >
+              自己紹介:
+            </p>
+            {meIntroduction}
           </p>
-          <p
-            style={{ marginTop: '5px' }}
-            className={card.login_card_text_property}
-          >
-            自己紹介:
+          <p>
+            {followingState === 'Not Loggin' ? (
+              <></>
+            ) : (
+              <>
+                {followingState ? (
+                  <UnFollowButton id={id} changeFollow={setFollowingState} />
+                ) : (
+                  <FollowButton id={id} changeFollow={setFollowingState} />
+                )}
+              </>
+            )}
           </p>
-          {meIntroduction}
         </p>
         <p
           style={{ display: 'flex', justifyContent: 'space-between' }}
