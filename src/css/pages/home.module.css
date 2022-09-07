@@ -50,28 +50,33 @@
 
 
 .logo{
-  width: 125px;
-  margin-top: 3px;
+  width: 150px;
+  position: absolute;
+  top: 2px;
+  left: 0px;
 }
 
 @media (min-width: 500px) {
   .logo{
-    width: 130px;
-    margin-top: 2px;
+    width: 170px;
+    top: 5px;
+    left: 2px;
   }
 }
 
 @media (min-width: 700px){
   .logo{
-    width: 180px;
-    margin-top: 1px;
+    width: 200px;
+    top: 0px;
+    left: 3px;
   }
 }
 
 @media (min-width: 900px)  {
   .logo{
-    width: 195px;
-    margin-top: -2px;
+    width: 250px;
+    top: 3px;
+    left: 5px;
   }
 }
 

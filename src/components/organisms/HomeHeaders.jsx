@@ -5,10 +5,8 @@ import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 
 import homeheaders from './../../css/organisms/homeheaders.module.css';
 import button from './../../css/atoms/button.module.css';
-import home from './../../css/pages/home.module.css';
 
 const HomeHeaders = () => {
-  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   return (
     <div className={homeheaders.wrapper}>
       <div
@@ -16,16 +14,9 @@ const HomeHeaders = () => {
           maxWidth: '1000px',
           margin: '0 auto',
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-end',
         }}
       >
-        <div>
-          <img
-            src={`${imageDomain}/admin/logonewest.png`}
-            alt='picture'
-            className={home.logo}
-          />
-        </div>
         <div>
           <Link to='/users'>
             <Button className={button.users}>

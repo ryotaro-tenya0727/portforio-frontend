@@ -205,6 +205,13 @@ const Home = () => {
               className={home.main_image}
             />
           </div>
+          <div>
+            <img
+              src={`${imageDomain}/admin/logonewest.png`}
+              alt='picture'
+              className={home.logo}
+            />
+          </div>
         </div>
       </div>
 
