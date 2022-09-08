@@ -1,13 +1,19 @@
+import { useState } from 'react';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useQuery } from 'react-query';
 import { useContext } from 'react';
 import { AuthGuardContext } from './../../providers/AuthGuard';
+import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 
 import { UserCard } from './../organisms/Organisms';
 import { API_URL } from '../../urls/index';
 
+import list from './../../css/templates/list.module.css';
+
 const UsersList = ({ isAuthenticated }) => {
+  const [users, setUsers] = useState([]);
+  const [searchText, setSearchText] = useState('');
   const { setAccessToken } = useContext(AuthGuardContext);
   const { getAccessTokenSilently } = useAuth0();
   const { isLoading, data: all_users } = useQuery(
@@ -22,11 +28,10 @@ const UsersList = ({ isAuthenticated }) => {
             'Content-Type': 'application/json',
           },
         })
-
         .catch((error) => {
           console.error(error.response.data);
         });
-      return response.data;
+      setUsers(response.data);
     },
     {
       cacheTime: 0,
@@ -38,7 +43,24 @@ const UsersList = ({ isAuthenticated }) => {
   }
   return (
     <div>
-      {all_users.data.map((user, index) => (
+      <SavedSearchIcon
+        sx={{
+          fontSize: 40,
+          mb: -1.7,
+          mr: 1,
+          color: '#ff94df',
+          '@media screen and (max-width:700px)': {
+            fontSize: 35,
+          },
+        }}
+      />
+      <input
+        className={list.member_search_form}
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+        placeholder={'ユーザー名で検索'}
+      />
+      {users.data.map((user, index) => (
         <UserCard
           key={index}
           id={user.attributes.id}

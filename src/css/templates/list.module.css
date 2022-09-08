@@ -17,7 +17,7 @@
 }
 
 .member_search_form{
-  width: 240px;
+  width: 180px;
   height: 30px;
   font-size: 12px;
   font-weight: bold;
@@ -27,7 +27,7 @@
   font-family: 'M PLUS Rounded 1c', sans-serif;
   background-color: #ffdff6;
   outline: 0;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 @media (min-width: 700px) {

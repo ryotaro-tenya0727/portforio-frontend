@@ -54,6 +54,7 @@ const GeneralUserDiaryCard = ({
                 fontSize: '25px',
                 mb: '-9.5px',
                 mr: '3px',
+
                 '@media screen and (max-width:600px)': {
                   fontSize: '20.5px',
                   mb: '-7.5px',

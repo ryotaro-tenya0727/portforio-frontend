@@ -33,7 +33,7 @@ const HomeHeaders = () => {
                   },
                 }}
               />
-              ユーザ検索
+              ユーザ一覧
             </Button>
           </Link>
         </div>

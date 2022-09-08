@@ -108,7 +108,6 @@ const Home = () => {
                   ))}
               </>
             )}
-
             <Link to='#' style={{ margin: '0 auto' }} className={home.about}>
               <Scroll to='about' smooth={true}>
                 <HelpIcon
