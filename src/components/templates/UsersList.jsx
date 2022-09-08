@@ -107,7 +107,7 @@ const UsersList = ({ isAuthenticated }) => {
           value='検索'
           style={{
             padding: '3px 6px 3px 6px',
-            margin: '-1px 0px 0px 5px',
+            margin: '0px 0px 0px 5px',
             cursor: 'pointer',
             backgroundColor: '#ffffff',
           }}

@@ -9,7 +9,7 @@ const MenuButton = () => {
   return (
     <>
       <button
-        style={{ marginTop: '15px' }}
+        style={{ marginTop: '5px' }}
         onClick={() => setOpenMenu(true)}
         className={`${home.menu_button} ${isOpenMenu ? home.active : ''}`}
       >

@@ -11,10 +11,9 @@ const BreadCrumbs = ({ breadcrumbs }) => {
         aria-label='breadcrumb'
         sx={{
           fontWeight: 'bold',
-          mt: -5,
+          mt: -4,
           '@media screen and (max-width:700px)': {
             fontSize: '12px',
-            mt: -5,
           },
         }}
       >

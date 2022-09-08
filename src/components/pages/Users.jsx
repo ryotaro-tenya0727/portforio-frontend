@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import HomeIcon from '@mui/icons-material/Home';
+import CircularProgress from '@mui/material/CircularProgress';
+import useMedia from 'use-media';
 
 import { Button, MenuButton } from './../atoms/atoms';
 import { UsersList } from './../templates/Templates';
@@ -9,8 +11,23 @@ import users from './../../css/pages/users.module.css';
 
 const Users = () => {
   const { isAuthenticated, isLoading } = useAuth0();
+  const isWide = useMedia({ minWidth: '700px' });
   if (isLoading) {
-    return <>ローディング</>;
+    return (
+      <div style={{ textAlign: 'center', marginTop: '150px' }}>
+        <CircularProgress
+          sx={{
+            color: '#ff94df',
+            mt: -1,
+            fontSize: '80px',
+            '@media screen and (max-width:700px)': {
+              mt: -0.4,
+            },
+          }}
+          size={isWide ? 140 : 100}
+        />
+      </div>
+    );
   }
 
   return (
