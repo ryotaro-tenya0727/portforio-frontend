@@ -161,6 +161,9 @@ const Home = () => {
                             mb: '-5.5px',
                             mr: '10px',
                             color: '#ff6fc8',
+                            '@media screen and (max-width:700px)': {
+                              fontSize: '18px',
+                            },
                           }}
                         />
 

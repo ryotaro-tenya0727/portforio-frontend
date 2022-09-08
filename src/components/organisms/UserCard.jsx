@@ -20,7 +20,6 @@ const UserCard = ({
   const [followingState, setFollowingState] = useState(following);
   return (
     <div>
-      {' '}
       <Card
         style={{
           maxWidth: '700px',
@@ -57,13 +56,6 @@ const UserCard = ({
                 <br />
               </p>
             </p>
-            <p
-              style={{ marginTop: '5px' }}
-              className={card.login_card_text_property}
-            >
-              自己紹介:
-            </p>
-            {meIntroduction}
           </p>
           <p>
             {followingState === 'Not Loggin' ? (
@@ -78,6 +70,15 @@ const UserCard = ({
               </>
             )}
           </p>
+        </p>
+        <p className={card.card_text}>
+          <p
+            style={{ marginTop: '5px' }}
+            className={card.login_card_text_property}
+          >
+            自己紹介:
+          </p>
+          {meIntroduction}
         </p>
         <p
           style={{ display: 'flex', justifyContent: 'space-between' }}
