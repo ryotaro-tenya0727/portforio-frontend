@@ -99,26 +99,6 @@ const GeneralUserDiaryCard = ({
       </p>
       <p className={card.card_text}>
         <span className={card.card_text_property}>
-          <CalendarMonthIcon
-            sx={{ fontSize: '20px', mb: '-3.3px', color: '#3300FF' }}
-          />
-          &nbsp;&nbsp;日付:
-        </span>
-        &nbsp;
-        {eventDate ? eventDate : '未入力'}
-      </p>
-      <p className={card.card_text}>
-        <span className={card.card_text_property}>
-          <AccountBalanceIcon
-            sx={{ fontSize: '19px', mb: '-2.9px', color: '#00AA00' }}
-          />
-          &nbsp;&nbsp;会場:
-        </span>
-        &nbsp;
-        {eventVenue ? eventVenue : '未入力'}
-      </p>
-      <p className={card.card_text}>
-        <span className={card.card_text_property}>
           <PhotoCameraBackIcon
             sx={{ fontSize: '19px', mb: '-3.5px', color: '#FF8C00' }}
           />
