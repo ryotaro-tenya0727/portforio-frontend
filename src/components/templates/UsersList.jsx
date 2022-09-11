@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { useForm } from 'react-hook-form';
 import CircularProgress from '@mui/material/CircularProgress';
+import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import useMedia from 'use-media';
 
 import { UserCard } from './../organisms/Organisms';
@@ -77,6 +78,23 @@ const UsersList = ({ isAuthenticated }) => {
     setUsers(response.data);
     setIsLoading(false);
   };
+
+  const createTotalPoraloidRank = async () => {
+    setIsLoading(true);
+    const token = isAuthenticated ? await getAccessTokenSilently() : null;
+    const response = await axios
+      .get(`${API_URL}/api/v1/user/rankings/total_polaroid_count`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+      });
+    setUsers(response.data);
+    setIsLoading(false);
+  };
   if (queryLoading || isLoading) {
     return (
       <div style={{ textAlign: 'center', marginTop: '150px' }}>
@@ -96,24 +114,57 @@ const UsersList = ({ isAuthenticated }) => {
   }
   return (
     <div>
-      <form onSubmit={handleSubmit(searchUser)}>
-        <input
-          className={list.member_search_form}
-          {...register('search.name')}
-          placeHolder='ユーザー名で検索'
-        />
-        <input
-          type='submit'
-          value='検索'
-          style={{
-            padding: '3px 6px 3px 6px',
-            margin: '0px 0px 0px 5px',
-            cursor: 'pointer',
-            backgroundColor: '#ffffff',
-          }}
-          className={button.recommended_and_diary_button}
-        />
-      </form>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginBottom: '10px',
+        }}
+      >
+        <form onSubmit={handleSubmit(searchUser)}>
+          <input
+            className={list.member_search_form}
+            {...register('search.name')}
+            placeHolder='ユーザー名で検索'
+          />
+          <input
+            type='submit'
+            value='検索'
+            style={{
+              padding: '3px 6px 3px 6px',
+              margin: '0px 0px 0px 5px',
+              cursor: 'pointer',
+              backgroundColor: '#ffffff',
+            }}
+            className={button.recommended_and_diary_button}
+          />
+        </form>
+        <p>
+          <button
+            className={button.recommended_and_diary_button}
+            onClick={createTotalPoraloidRank}
+            style={{
+              padding: '3px 6px 3px 6px',
+              margin: '0px 0px 0px 0px',
+              cursor: 'pointer',
+              backgroundColor: '#ffffff',
+            }}
+          >
+            <PhotoCameraBackIcon
+              sx={{
+                fontSize: '19px',
+                mb: '-3.5px',
+                mr: 0.5,
+                color: '#FF8C00',
+                '@media screen and (max-width:700px)': {
+                  fontSize: '15px',
+                },
+              }}
+            />
+            チェキ数ランキング
+          </button>
+        </p>
+      </div>
       {users.data.map((user, index) => (
         <UserCard
           key={index}
