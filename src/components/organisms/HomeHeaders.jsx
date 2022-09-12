@@ -24,11 +24,11 @@ const HomeHeaders = () => {
               <SpeakerNotesIcon
                 sx={{
                   color: '#ff66d1',
-                  fontSize: '16px',
+                  fontSize: '17px',
                   mr: 0.4,
-                  mb: -0.5,
+                  mb: -0.7,
                   '@media screen and (min-width:700px)': {
-                    fontSize: '22px',
+                    fontSize: '23px',
                     mb: -1,
                     mr: 1,
                   },
