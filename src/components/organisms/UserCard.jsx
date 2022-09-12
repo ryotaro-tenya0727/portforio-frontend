@@ -22,7 +22,8 @@ const UserCard = ({
     <div>
       <Card
         style={{
-          maxWidth: '700px',
+          maxWidth: '800px',
+          width: '90%',
           marginBottom: '25px',
         }}
         className={card.card_whole}

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from './../atoms/atoms';
 
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
+import SpeakerNotesIcon from '@mui/icons-material/SpeakerNotes';
 
 import homeheaders from './../../css/organisms/homeheaders.module.css';
 import button from './../../css/atoms/button.module.css';
@@ -18,6 +19,24 @@ const HomeHeaders = () => {
         }}
       >
         <div>
+          <Link to='/timeline'>
+            <Button className={button.users}>
+              <SpeakerNotesIcon
+                sx={{
+                  color: '#ff66d1',
+                  fontSize: '16px',
+                  mr: 0.4,
+                  mb: -0.5,
+                  '@media screen and (min-width:700px)': {
+                    fontSize: '22px',
+                    mb: -1,
+                    mr: 1,
+                  },
+                }}
+              />
+              タイムライン
+            </Button>
+          </Link>
           <Link to='/users'>
             <Button className={button.users}>
               <SupervisedUserCircleIcon

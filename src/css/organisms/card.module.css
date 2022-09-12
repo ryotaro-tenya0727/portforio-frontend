@@ -30,7 +30,6 @@
   }
 }
 
-
 .card_general_title{
   color: #ff6fc8;
   font-weight: bold;
@@ -256,8 +255,18 @@
   font-size: 12px;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 700px) {
   .user_info{
     font-size: 14px;
+  }
+}
+
+.timeline{
+  display : flex;
+}
+
+@media (min-width: 700px){
+  .timeline{
+    display : flex;
   }
 }

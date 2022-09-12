@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
-import CircularProgress from '@mui/material/CircularProgress';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
@@ -13,7 +10,6 @@ import { Button } from './../atoms/atoms';
 
 import button from './../../css/atoms/button.module.css';
 import card from './../../css/organisms/card.module.css';
-import diary from './../../css/templates/diary.module.css';
 
 const GeneralUserDiaryCard = ({
   diaryUserName,

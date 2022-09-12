@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import LoginIcon from '@mui/icons-material/Login';
@@ -8,11 +9,14 @@ import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useAuth0 } from '@auth0/auth0-react';
 
+import { AuthGuardContext } from './../../providers/AuthGuard';
 import { userRepository } from './../../repositories/userRepository';
 
 import './../../css/organisms/sidebar.css';
 
 function Sidebar() {
+  const navigate = useNavigate();
+  const { setOpenMenu } = useContext(AuthGuardContext);
   const {
     loginWithRedirect,
     logout,
@@ -244,7 +248,8 @@ function Sidebar() {
                 } else if (value.link === 'https://twitter.com/naka_ryo_z') {
                   window.open(value.link, '_blank');
                 } else if (value.link !== undefined) {
-                  window.location.pathname = value.link;
+                  navigate(value.link);
+                  setOpenMenu(false);
                 }
                 value.function();
               }}

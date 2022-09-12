@@ -188,7 +188,7 @@
   border-radius: 5px;
   border: 2px solid;
   padding: 10px 6px 10px 6px;
-  margin: 10px 5px 5px 0px;
+  margin: 10px 12px 5px 0px;
   font-weight: bold;
   font-size: 9px;
   font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -214,6 +214,6 @@
 @media (min-width: 700px) {
   .users{
     font-size: 12px;
-    margin: 9px 8px 2px 0px;
+    margin: 9px 10px 2px 0px;
   }
 }

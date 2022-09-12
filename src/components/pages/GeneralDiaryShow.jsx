@@ -6,6 +6,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import CircularProgress from '@mui/material/CircularProgress';
 import HomeIcon from '@mui/icons-material/Home';
+import SpeakerNotesIcon from '@mui/icons-material/SpeakerNotes';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 
@@ -46,13 +47,36 @@ const GeneralDiaryShow = () => {
             <Button className={button.recommended_and_diary_button}>
               <HomeIcon
                 sx={{
-                  fontSize: '20px',
+                  fontSize: '16px',
                   mb: '-4.5px',
                   mr: '5px',
                   color: '#ff64db',
+                  '@media screen and (min-width:700px)': {
+                    fontSize: '22px',
+                    mb: -1,
+                    mr: 1,
+                  },
                 }}
               />
               トップページへ
+            </Button>
+          </Link>
+          <Link style={{ marginLeft: '15px' }} to='/timeline'>
+            <Button className={button.recommended_and_diary_button}>
+              <SpeakerNotesIcon
+                sx={{
+                  color: '#ff66d1',
+                  fontSize: '16px',
+                  mr: 0.4,
+                  mb: -0.5,
+                  '@media screen and (min-width:700px)': {
+                    fontSize: '22px',
+                    mb: -1,
+                    mr: 1,
+                  },
+                }}
+              />
+              タイムラインへ
             </Button>
           </Link>
           <div
