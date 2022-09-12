@@ -134,16 +134,24 @@ const TimeLineCard = ({
               textAlign: 'center',
             }}
           >
-            <p style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <p
+              style={{
+                display: 'inline-block',
+                justifyContent: 'flex-end',
+                borderBottom: '2px dashed #ff8a8a',
+                fontSize: isWide ? '17px' : '13px',
+                float: 'right',
+              }}
+            >
               <CalendarMonthIcon
                 sx={{
-                  fontSize: '20px',
-                  mb: '-3.3px',
+                  fontSize: '17px',
+                  mb: -0.4,
                   mr: 1,
                   color: '#3300FF',
-                  '@media screen and (max-width:600px)': {
+                  '@media screen and (min-width:700px)': {
                     fontSize: '20.5px',
-                    mb: '-7.5px',
+                    mb: -0.45,
                   },
                 }}
               />
@@ -151,7 +159,7 @@ const TimeLineCard = ({
             </p>
             <p
               style={{
-                marginTop: isWide ? '40px' : '53px',
+                marginTop: isWide ? '65px' : '75px',
                 fontSize: isWide ? '17px' : '13px',
                 textAlign: 'center',
                 marginLeft: isWide ? '20px' : '12px',
