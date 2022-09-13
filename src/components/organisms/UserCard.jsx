@@ -16,6 +16,7 @@ const UserCard = ({
   diariesCount,
   totalPolaroidCount,
   following,
+  me,
 }) => {
   const [followingState, setFollowingState] = useState(following);
   return (
@@ -58,19 +59,23 @@ const UserCard = ({
               </p>
             </p>
           </p>
-          <p>
-            {followingState === 'Not Loggin' ? (
-              <></>
-            ) : (
-              <>
-                {followingState ? (
-                  <UnFollowButton id={id} changeFollow={setFollowingState} />
-                ) : (
-                  <FollowButton id={id} changeFollow={setFollowingState} />
-                )}
-              </>
-            )}
-          </p>
+          {me ? (
+            <></>
+          ) : (
+            <p>
+              {followingState === 'Not Loggin' ? (
+                <></>
+              ) : (
+                <>
+                  {followingState ? (
+                    <UnFollowButton id={id} changeFollow={setFollowingState} />
+                  ) : (
+                    <FollowButton id={id} changeFollow={setFollowingState} />
+                  )}
+                </>
+              )}
+            </p>
+          )}
         </p>
         <p className={card.card_text}>
           <p
