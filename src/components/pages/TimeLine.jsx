@@ -50,7 +50,6 @@ const TimeLine = () => {
         </Link>
         <MenuButton />
       </p>
-
       <TimeLineList isAuthenticated={isAuthenticated} />
     </>
   );
