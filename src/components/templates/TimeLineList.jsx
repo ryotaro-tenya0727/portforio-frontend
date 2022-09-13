@@ -1,23 +1,27 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useQuery } from 'react-query';
 import { useContext } from 'react';
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import CircularProgress from '@mui/material/CircularProgress';
+import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import InfiniteScroll from 'react-infinite-scroller';
 
 import useMedia from 'use-media';
 
+import { Button } from './../atoms/atoms';
 import { TimeLineCard } from './../organisms/Organisms';
 import { API_URL } from '../../urls/index';
+
+import button from './../../css/atoms/button.module.css';
 
 const TimeLineList = ({ isAuthenticated }) => {
   const isWide = useMedia({ minWidth: '700px' });
   const [diaries, setDiaries] = useState([]);
   const { accessToken, setAccessToken } = useContext(AuthGuardContext);
   const { getAccessTokenSilently } = useAuth0();
-  // const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   let { isLoading: queryLoading, data: time_lines } = useQuery(
     ['time_lines'],
@@ -43,7 +47,6 @@ const TimeLineList = ({ isAuthenticated }) => {
   );
 
   const loadMore = async (page) => {
-    // const response = await fetch(`http://localhost:3000/api/test?page=${page}`); //API通信
     await axios
       .get(`${API_URL}/api/v1/user/timeline?page=${page}`, {
         headers: {
@@ -63,8 +66,6 @@ const TimeLineList = ({ isAuthenticated }) => {
       .catch((error) => {
         console.error(error.response.data);
       });
-
-    //取得データをリストに追加
   };
   const loader = (
     <div style={{ textAlign: 'center', marginTop: '150px' }}>
@@ -93,12 +94,50 @@ const TimeLineList = ({ isAuthenticated }) => {
               mt: -0.4,
             },
           }}
-          size={isWide ? 100 : 80}
+          size={isWide ? 60 : 30}
         />
       </div>
     );
   }
   console.log(time_lines);
+  if (time_lines.length === 0) {
+    return (
+      <div style={{ textAlign: 'center', marginTop: '40px' }}>
+        <p style={{ fontSize: '13px' }}>
+          {' '}
+          フォローしたユーザーまたはあなたの日記の投稿がありません
+        </p>
+        <p>
+          {' '}
+          <Link to='/users'>
+            <Button className={button.recommended_and_diary_button}>
+              <SupervisedUserCircleIcon
+                sx={{
+                  color: '#ff66d1',
+                  fontSize: '16px',
+                  mr: 0.4,
+                  mb: -0.5,
+                  '@media screen and (min-width:700px)': {
+                    fontSize: '22px',
+                    mb: -0.8,
+                    mr: 1,
+                  },
+                }}
+              />
+              ユーザ一覧へ
+            </Button>
+          </Link>
+        </p>
+        <p>
+          <Link to='/mypage'>
+            <Button className={button.recommended_and_diary_button}>
+              マイページへ
+            </Button>
+          </Link>
+        </p>
+      </div>
+    );
+  }
   return (
     <>
       {time_lines.map((diary, index) => (

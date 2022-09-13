@@ -9,7 +9,6 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import CircularProgress from '@mui/material/CircularProgress';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import useMedia from 'use-media';
 
 import { Button } from './../atoms/atoms';
