@@ -99,7 +99,6 @@ const TimeLineList = ({ isAuthenticated }) => {
       </div>
     );
   }
-  console.log(time_lines);
   if (time_lines.length === 0) {
     return (
       <div style={{ textAlign: 'center', marginTop: '40px' }}>
