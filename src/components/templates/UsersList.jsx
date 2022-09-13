@@ -155,7 +155,7 @@ const UsersList = ({ isAuthenticated }) => {
   };
   if (queryLoading || isLoading) {
     return (
-      <div style={{ textAlign: 'center', marginTop: '10px' }}>
+      <div style={{ textAlign: 'center', marginTop: '150px' }}>
         <CircularProgress
           sx={{
             color: '#ff94df',
