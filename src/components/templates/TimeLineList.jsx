@@ -68,7 +68,7 @@ const TimeLineList = ({ isAuthenticated }) => {
       });
   };
   const loader = (
-    <div style={{ textAlign: 'center', marginTop: '150px' }}>
+    <div style={{ textAlign: 'center', marginTop: '10px' }}>
       <CircularProgress
         sx={{
           color: '#ff94df',
