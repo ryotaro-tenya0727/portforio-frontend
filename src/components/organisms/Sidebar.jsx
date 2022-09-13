@@ -7,6 +7,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import CircularProgress from '@mui/material/CircularProgress';
+import SpeakerNotesIcon from '@mui/icons-material/SpeakerNotes';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { AuthGuardContext } from './../../providers/AuthGuard';
@@ -61,6 +62,22 @@ function Sidebar() {
         />
       ),
       link: '/mypage',
+    },
+    {
+      title: 'タイムライン',
+      icon: (
+        <SpeakerNotesIcon
+          sx={{
+            color: '#ff94df',
+            fontSize: '20.5px',
+            '@media screen and (min-width:500px)': {
+              fontSize: '22.5px',
+              mr: 0.5,
+            },
+          }}
+        />
+      ),
+      link: '/timeline',
     },
     {
       title: (
@@ -165,7 +182,7 @@ function Sidebar() {
       link: 'https://twitter.com/idol_otaku_web',
     },
     {
-      title: '開発者アカウント',
+      title: 'ツイートでシェア',
       icon: (
         <TwitterIcon
           sx={{
@@ -178,7 +195,7 @@ function Sidebar() {
           }}
         />
       ),
-      link: 'https://twitter.com/naka_ryo_z',
+      link: 'https://twitter.com/intent/tweet?text=%0a%23推しだいありー%0ahttps://www.oshi-diary.com/',
     },
     {
       title: (
@@ -245,7 +262,7 @@ function Sidebar() {
               onClick={() => {
                 if (value.link === 'https://twitter.com/idol_otaku_web') {
                   window.open(value.link, '_blank');
-                } else if (value.link === 'https://twitter.com/naka_ryo_z') {
+                } else if (value.title === 'ツイートでシェア') {
                   window.open(value.link, '_blank');
                 } else if (value.link !== undefined) {
                   navigate(value.link);
