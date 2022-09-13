@@ -73,7 +73,7 @@ const UsersList = ({ isAuthenticated }) => {
     //取得データをリストに追加
   };
   const loader = (
-    <div style={{ textAlign: 'center', marginTop: '150px' }}>
+    <div style={{ textAlign: 'center', marginTop: '10px' }}>
       <CircularProgress
         sx={{
           color: '#ff94df',
