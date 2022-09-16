@@ -98,7 +98,8 @@
 
 ## ER図
 
-![ER_figure 2 drawio](https://user-images.githubusercontent.com/71915489/176408993-afc680e7-c584-4245-8cdb-178c367671bd.png)
+
+![ER_figure 2 drawio (1)](https://user-images.githubusercontent.com/71915489/190622051-bd535d0e-0ee8-4577-b27e-e7900ebe27a7.png)
 
 
 ## 実際に作成した推しメンとの日記
