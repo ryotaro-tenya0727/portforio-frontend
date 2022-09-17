@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
@@ -9,12 +11,13 @@ import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import useMedia from 'use-media';
 
-import { Button } from './../atoms/atoms';
+import { Button, LikeButton } from './../atoms/atoms';
 
 import button from './../../css/atoms/button.module.css';
 import card from './../../css/organisms/card.module.css';
 
 const TimeLineCard = ({
+  diaryId,
   diaryUserName,
   diaryUserImage,
   DiaryMemberNickname,
@@ -27,6 +30,7 @@ const TimeLineCard = ({
   me,
   liked,
 }) => {
+  const [LikedState, setLikedState] = useState(liked);
   const isWide = useMedia({ minWidth: '700px' });
   const returnTop = () => {
     window.scrollTo({
@@ -82,10 +86,16 @@ const TimeLineCard = ({
                   <></>
                 ) : (
                   <p>
-                    {liked === 'Not Loggin' ? (
+                    {LikedState === 'Not Loggin' ? (
                       <></>
                     ) : (
-                      <>{liked ? <>いいね解除</> : <>いいね</>}</>
+                      <>
+                        {LikedState ? (
+                          <>いいね解除</>
+                        ) : (
+                          <LikeButton id={diaryId} changeLike={setLikedState} />
+                        )}
+                      </>
                     )}
                   </p>
                 )}

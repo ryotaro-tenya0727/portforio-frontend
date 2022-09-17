@@ -5,3 +5,5 @@ export { default as SampleImageButton } from './SampleImageButton';
 export { default as HomeMenuButtom } from './HomeMenuButtom';
 export { default as FollowButton } from './FollowButton';
 export { default as UnFollowButton } from './UnFollowButton';
+export { default as LikeButton } from './LikeButton';
+export { default as UnLikeButton } from './UnLikeButton';

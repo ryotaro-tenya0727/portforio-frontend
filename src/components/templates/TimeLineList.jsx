@@ -218,7 +218,7 @@ const TimeLineList = ({ isAuthenticated }) => {
               backgroundColor: '#ffffff',
             }}
           >
-            フォローしたユーザーの日記
+            フォローしたユーザーの日記をみる
           </button>
         ) : (
           <></>
@@ -267,7 +267,7 @@ const TimeLineList = ({ isAuthenticated }) => {
             backgroundColor: '#ffffff',
           }}
         >
-          全てのユーザーの日記
+          全てのユーザーの日記を見る
         </button>
         <div style={{ marginTop: '25px' }}>
           <InfiniteScroll
