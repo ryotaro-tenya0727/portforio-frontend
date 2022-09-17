@@ -23,8 +23,9 @@ const TimeLineCard = ({
   eventVenue,
   eventPolaroidCount,
   diaryImage,
-  ImpressiveMemory,
   showUrl,
+  me,
+  liked,
 }) => {
   const isWide = useMedia({ minWidth: '700px' });
   const returnTop = () => {
@@ -52,23 +53,44 @@ const TimeLineCard = ({
             <p className={card.card_general_title}>
               {DiaryMemberNickname}との思い出
             </p>
-
-            <Link to={showUrl}>
-              <Button className={button.button_card} onClick={returnTop}>
-                <AppRegistrationIcon
-                  sx={{
-                    fontSize: '25px',
-                    mb: '-9.5px',
-                    mr: '3px',
-                    '@media screen and (max-width:600px)': {
-                      fontSize: '20.5px',
-                      mb: '-7.5px',
-                    },
-                  }}
-                />
-                日記の詳細を見る
-              </Button>
-            </Link>
+            <p
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <Link to={showUrl}>
+                <Button className={button.button_card} onClick={returnTop}>
+                  <AppRegistrationIcon
+                    sx={{
+                      fontSize: '25px',
+                      mb: '-9.5px',
+                      mr: '3px',
+                      '@media screen and (max-width:600px)': {
+                        fontSize: '20.5px',
+                        mb: '-7.5px',
+                      },
+                    }}
+                  />
+                  日記の詳細を見る
+                </Button>
+              </Link>
+              <p className={card.like_text}>
+                {' '}
+                {me ? (
+                  <></>
+                ) : (
+                  <p>
+                    {liked === 'Not Loggin' ? (
+                      <></>
+                    ) : (
+                      <>{liked ? <>いいね解除</> : <>いいね</>}</>
+                    )}
+                  </p>
+                )}
+              </p>
+            </p>
           </div>
           <div className={card.user_info}>
             <img

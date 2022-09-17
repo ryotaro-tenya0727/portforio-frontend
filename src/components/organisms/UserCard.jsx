@@ -23,7 +23,7 @@ const UserCard = ({
     <div>
       <Card
         style={{
-          maxWidth: '800px',
+          maxWidth: '600px',
           width: '90%',
           marginBottom: '25px',
         }}
