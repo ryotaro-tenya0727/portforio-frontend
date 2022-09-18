@@ -22,7 +22,9 @@ const TimeLineList = ({ isAuthenticated }) => {
   const [diaries, setDiaries] = useState([]);
   const { accessToken, setAccessToken } = useContext(AuthGuardContext);
   const { getAccessTokenSilently } = useAuth0();
+  const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  let [loadType, setLoadType] = useState('all');
   let { isLoading: queryLoading, data: time_lines } = useQuery(
     ['time_lines'],
     async () => {
@@ -38,7 +40,7 @@ const TimeLineList = ({ isAuthenticated }) => {
         .catch((error) => {
           console.error(error.response.data);
         });
-      return response.data.data;
+      setDiaries(response.data.data);
     },
     {
       cacheTime: 0,
@@ -67,6 +69,70 @@ const TimeLineList = ({ isAuthenticated }) => {
         console.error(error.response.data);
       });
   };
+
+  const followUser = async () => {
+    setHasMore(true);
+    setLoadType('follow');
+    setIsLoading(true);
+    const token = isAuthenticated ? await getAccessTokenSilently() : null;
+    setAccessToken(token);
+    const response = await axios
+      .get(`${API_URL}/api/v1/user/timeline/follow?page=1`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+      });
+    setDiaries([...response.data.data]);
+    setIsLoading(false);
+  };
+
+  const followLoadMore = async (page) => {
+    await axios
+      .get(`${API_URL}/api/v1/user/timeline/follow?page=${page}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        const data = response.data.data;
+        //データ件数が0件の場合、処理終了
+        if (data.length < 1) {
+          setHasMore(false);
+          return;
+        }
+        setDiaries([...diaries, ...data]);
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+      });
+
+    //取得データをリストに追加
+  };
+
+  const allUser = async () => {
+    setHasMore(true);
+    setLoadType('all');
+    setIsLoading(true);
+    const token = isAuthenticated ? await getAccessTokenSilently() : null;
+    setAccessToken(token);
+    const response = await axios
+      .get(`${API_URL}/api/v1/user/timeline?page=1`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+      });
+    setDiaries(response.data.data);
+    setIsLoading(false);
+  };
   const loader = (
     <div style={{ textAlign: 'center', marginTop: '10px' }}>
       <CircularProgress
@@ -82,7 +148,7 @@ const TimeLineList = ({ isAuthenticated }) => {
       />
     </div>
   );
-  if (queryLoading) {
+  if (queryLoading || isLoading) {
     return (
       <div style={{ textAlign: 'center', marginTop: '150px' }}>
         <CircularProgress
@@ -99,7 +165,7 @@ const TimeLineList = ({ isAuthenticated }) => {
       </div>
     );
   }
-  if (time_lines.length === 0) {
+  if (diaries.length === 0) {
     return (
       <div style={{ textAlign: 'center', marginTop: '40px' }}>
         <p style={{ fontSize: '13px' }}>
@@ -137,50 +203,105 @@ const TimeLineList = ({ isAuthenticated }) => {
       </div>
     );
   }
-  return (
-    <>
-      {time_lines.map((diary, index) => (
-        <TimeLineCard
-          key={index}
-          diaryId={diary.attributes.id}
-          diaryUserName={diary.attributes.diary_user_name}
-          diaryUserImage={diary.attributes.diary_user_image}
-          eventName={diary.attributes.event_name}
-          eventDate={diary.attributes.event_date}
-          eventVenue={diary.attributes.event_venue}
-          DiaryMemberNickname={diary.attributes.diary_member_nickname}
-          diaryImage={diary.attributes.diary_image}
-          eventPolaroidCount={diary.attributes.event_polaroid_count}
-          ImpressiveMemory={diary.attributes.impressive_memory}
-          showUrl={`/diaries/show/${diary.attributes.id}}`}
-        />
-      ))}
-      <InfiniteScroll
-        loadMore={loadMore} //項目を読み込む際に処理するコールバック関数
-        hasMore={hasMore} //読み込みを行うかどうかの判定
-        loader={loader}
-        initialLoad={false}
-        pageStart={1}
-      >
-        {diaries.map((diary, index) => (
-          <TimeLineCard
-            key={index}
-            diaryId={diary.attributes.id}
-            diaryUserName={diary.attributes.diary_user_name}
-            diaryUserImage={diary.attributes.diary_user_image}
-            eventName={diary.attributes.event_name}
-            eventDate={diary.attributes.event_date}
-            eventVenue={diary.attributes.event_venue}
-            DiaryMemberNickname={diary.attributes.diary_member_nickname}
-            diaryImage={diary.attributes.diary_image}
-            eventPolaroidCount={diary.attributes.event_polaroid_count}
-            ImpressiveMemory={diary.attributes.impressive_memory}
-            showUrl={`/diaries/show/${diary.attributes.id}}`}
-          />
-        ))}
-      </InfiniteScroll>
-    </>
-  );
+
+  if (loadType === 'all') {
+    return (
+      <div>
+        {isAuthenticated ? (
+          <button
+            className={button.recommended_and_diary_button}
+            onClick={followUser}
+            style={{
+              padding: '3px 6px 3px 6px',
+              marginTop: '0px',
+              marginBottom: '5px',
+              cursor: 'pointer',
+              backgroundColor: '#ffffff',
+            }}
+          >
+            フォローしたユーザーの日記
+          </button>
+        ) : (
+          <></>
+        )}
+        <div style={{ marginTop: '25px' }}>
+          <InfiniteScroll
+            loadMore={loadMore} //項目を読み込む際に処理するコールバック関数
+            hasMore={hasMore} //読み込みを行うかどうかの判定
+            loader={loader}
+            initialLoad={false}
+            pageStart={1}
+          >
+            {diaries.map((diary, index) => (
+              <TimeLineCard
+                key={index}
+                diaryId={diary.attributes.id}
+                diaryUserName={diary.attributes.diary_user_name}
+                diaryUserImage={diary.attributes.diary_user_image}
+                eventName={diary.attributes.event_name}
+                eventDate={diary.attributes.event_date}
+                eventVenue={diary.attributes.event_venue}
+                DiaryMemberNickname={diary.attributes.diary_member_nickname}
+                diaryImage={diary.attributes.diary_image}
+                eventPolaroidCount={diary.attributes.event_polaroid_count}
+                ImpressiveMemory={diary.attributes.impressive_memory}
+                showUrl={`/diaries/show/${diary.attributes.id}}`}
+                liked={diary.attributes.liked}
+                me={diary.attributes.me}
+              />
+            ))}
+          </InfiniteScroll>
+        </div>
+      </div>
+    );
+  }
+  if (loadType === 'follow') {
+    return (
+      <div>
+        <button
+          className={button.recommended_and_diary_button}
+          onClick={allUser}
+          style={{
+            padding: '3px 6px 3px 6px',
+            marginTop: '0px',
+            marginBottom: '5px',
+            cursor: 'pointer',
+            backgroundColor: '#ffffff',
+          }}
+        >
+          全てのユーザーの日記を見る
+        </button>
+        <div style={{ marginTop: '25px' }}>
+          <InfiniteScroll
+            loadMore={followLoadMore} //項目を読み込む際に処理するコールバック関数
+            hasMore={hasMore} //読み込みを行うかどうかの判定
+            loader={loader}
+            initialLoad={false}
+            pageStart={1}
+          >
+            {diaries.map((diary, index) => (
+              <TimeLineCard
+                key={index}
+                diaryId={diary.attributes.id}
+                diaryUserName={diary.attributes.diary_user_name}
+                diaryUserImage={diary.attributes.diary_user_image}
+                eventName={diary.attributes.event_name}
+                eventDate={diary.attributes.event_date}
+                eventVenue={diary.attributes.event_venue}
+                DiaryMemberNickname={diary.attributes.diary_member_nickname}
+                diaryImage={diary.attributes.diary_image}
+                eventPolaroidCount={diary.attributes.event_polaroid_count}
+                ImpressiveMemory={diary.attributes.impressive_memory}
+                showUrl={`/diaries/show/${diary.attributes.id}}`}
+                liked={diary.attributes.liked}
+                me={diary.attributes.me}
+              />
+            ))}
+          </InfiniteScroll>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default TimeLineList;

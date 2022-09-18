@@ -4,17 +4,18 @@
   background-color: #ffffff;
   border-radius: 5px;
   border: 2px solid;
-  padding: 15px 5px 15px 5px;
+  padding: 10px 4px 12px 4px;
   margin: 3px 0px 0px 7px;
   font-weight: bold;
   font-family: 'M PLUS Rounded 1c', sans-serif;
   color: #ff66d1;
+  font-size: 11px;
 }
 
-@media (max-width: 700px) {
+@media (min-width: 700px) {
   .button_card{
-    padding: 10px 6px 12px 6px;
-    font-size: 11px;
+    font-size: 13px;
+    padding: 11px 5px 13px 5px;
   }
 }
 
@@ -215,5 +216,45 @@
   .users{
     font-size: 12px;
     margin: 9px 10px 2px 0px;
+  }
+}
+
+.like{
+  font-size: 10px;
+  border: 2px solid;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  color: #ff7fe5;
+  font-weight: bold;
+  padding: 6px 6px 6px 6px;
+}
+
+.like:hover {
+  opacity: 0.8
+}
+@media (min-width: 700px) {
+  .like{
+    font-size: 13px;
+
+  }
+}
+
+.unlike{
+  font-size: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #ff7fe5;
+  color: white;
+  font-weight: bold;
+  padding: 6px 1.5px 6px 1px;
+}
+
+@media (min-width: 700px) {
+  .unlike{
+    font-size: 13px;
+    padding: 6px 4px 6px 4px;
+
   }
 }

@@ -49,7 +49,6 @@ const UsersList = ({ isAuthenticated }) => {
     }
   );
   const loadMore = async (page) => {
-    // const response = await fetch(`http://localhost:3000/api/test?page=${page}`); //API通信
     await axios
       .get(`${API_URL}/api/v1/user/user_relationships?page=${page}`, {
         headers: {
@@ -69,8 +68,6 @@ const UsersList = ({ isAuthenticated }) => {
       .catch((error) => {
         console.error(error.response.data);
       });
-
-    //取得データをリストに追加
   };
   const loader = (
     <div style={{ textAlign: 'center', marginTop: '10px' }}>
@@ -132,8 +129,6 @@ const UsersList = ({ isAuthenticated }) => {
       .catch((error) => {
         console.error(error.response.data);
       });
-
-    //取得データをリストに追加
   };
 
   const createTotalPoraloidRank = async () => {

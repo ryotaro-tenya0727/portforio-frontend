@@ -114,6 +114,17 @@
 
 @media (min-width: 700px) {
   .card_text{
+    font-size: 15px;
+  }
+}
+
+.like_text{
+  font-size: 11px;
+  font-weight: bold;
+}
+
+@media (min-width: 700px) {
+  .like_text{
   font-size: 15px;
   }
 }

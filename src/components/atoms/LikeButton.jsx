@@ -3,35 +3,35 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { REST_API_URL } from '../../urls/index';
 import { AuthGuardContext } from './../../providers/AuthGuard';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import button from './../../css/atoms/button.module.css';
 
-const FollowButton = ({ id, changeFollow }) => {
+const LikeButton = ({ id, changeLike }) => {
   const { accessToken } = useContext(AuthGuardContext);
   const { register, handleSubmit } = useForm({});
-
   const onSubmit = (data) => {
-    console.log(data);
     axios
-      .post(`${REST_API_URL}/user/user_relationships`, data, {
+      .post(`${REST_API_URL}/user/likes`, data, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           'Content-Type': 'application/json',
         },
       })
       .then((response) => {
-        changeFollow(true);
+        changeLike(true);
       })
       .catch((error) => {
-        console.log('follow error');
+        console.error(error);
       });
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input {...register('id', { value: id })} type='hidden' />
-      <input type='submit' value={`フォローする`} className={button.follow} />
+
+      <input type='submit' value={`いいね`} className={button.like} />
     </form>
   );
 };
 
-export default FollowButton;
+export default LikeButton;

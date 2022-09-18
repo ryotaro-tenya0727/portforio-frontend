@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
@@ -9,12 +11,13 @@ import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import useMedia from 'use-media';
 
-import { Button } from './../atoms/atoms';
+import { Button, LikeButton, UnLikeButton } from './../atoms/atoms';
 
 import button from './../../css/atoms/button.module.css';
 import card from './../../css/organisms/card.module.css';
 
 const TimeLineCard = ({
+  diaryId,
   diaryUserName,
   diaryUserImage,
   DiaryMemberNickname,
@@ -23,9 +26,11 @@ const TimeLineCard = ({
   eventVenue,
   eventPolaroidCount,
   diaryImage,
-  ImpressiveMemory,
   showUrl,
+  me,
+  liked,
 }) => {
+  const [LikedState, setLikedState] = useState(liked);
   const isWide = useMedia({ minWidth: '700px' });
   const returnTop = () => {
     window.scrollTo({
@@ -52,23 +57,53 @@ const TimeLineCard = ({
             <p className={card.card_general_title}>
               {DiaryMemberNickname}との思い出
             </p>
-
-            <Link to={showUrl}>
-              <Button className={button.button_card} onClick={returnTop}>
-                <AppRegistrationIcon
-                  sx={{
-                    fontSize: '25px',
-                    mb: '-9.5px',
-                    mr: '3px',
-                    '@media screen and (max-width:600px)': {
-                      fontSize: '20.5px',
-                      mb: '-7.5px',
-                    },
-                  }}
-                />
-                日記の詳細を見る
-              </Button>
-            </Link>
+            <p
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <Link to={showUrl}>
+                <Button className={button.button_card} onClick={returnTop}>
+                  <AppRegistrationIcon
+                    sx={{
+                      fontSize: '25px',
+                      mb: '-9.5px',
+                      mr: '3px',
+                      '@media screen and (max-width:700px)': {
+                        fontSize: '20.5px',
+                        mb: '-7.5px',
+                      },
+                    }}
+                  />
+                  日記の詳細を見る
+                </Button>
+              </Link>
+              <p className={card.like_text}>
+                {' '}
+                {me ? (
+                  <></>
+                ) : (
+                  <p>
+                    {LikedState === 'Not Loggin' ? (
+                      <></>
+                    ) : (
+                      <>
+                        {LikedState ? (
+                          <UnLikeButton
+                            id={diaryId}
+                            changeLike={setLikedState}
+                          />
+                        ) : (
+                          <LikeButton id={diaryId} changeLike={setLikedState} />
+                        )}
+                      </>
+                    )}
+                  </p>
+                )}
+              </p>
+            </p>
           </div>
           <div className={card.user_info}>
             <img
@@ -88,7 +123,15 @@ const TimeLineCard = ({
           <p className={card.card_text} style={{ marginTop: '20px' }}>
             <span className={card.card_text_property}>
               <LibraryMusicIcon
-                sx={{ fontSize: '19px', mb: '-4px', color: 'red' }}
+                sx={{
+                  fontSize: '17px',
+                  mb: '-5px',
+                  color: 'red',
+                  '@media screen and (min-width:700px)': {
+                    fontSize: '19px',
+                    mb: '-7.5px',
+                  },
+                }}
               />
               &nbsp;&nbsp;イベント名:
             </span>
@@ -98,7 +141,15 @@ const TimeLineCard = ({
           <p className={card.card_text}>
             <span className={card.card_text_property}>
               <AccountBalanceIcon
-                sx={{ fontSize: '19px', mb: '-2.9px', color: '#00AA00' }}
+                sx={{
+                  fontSize: '17px',
+                  mb: '-5px',
+                  color: '#00AA00',
+                  '@media screen and (min-width:700px)': {
+                    fontSize: '19px',
+                    mb: '-7.5px',
+                  },
+                }}
               />
               &nbsp;&nbsp;会場:
             </span>
@@ -108,7 +159,15 @@ const TimeLineCard = ({
           <p className={card.card_text}>
             <span className={card.card_text_property}>
               <PhotoCameraBackIcon
-                sx={{ fontSize: '19px', mb: '-3.5px', color: '#FF8C00' }}
+                sx={{
+                  fontSize: '17px',
+                  mb: '-5px',
+                  color: '#FF8C00',
+                  '@media screen and (min-width:700px)': {
+                    fontSize: '19px',
+                    mb: '-7.5px',
+                  },
+                }}
               />
               &nbsp;&nbsp;この日のチェキ数:
             </span>
@@ -159,7 +218,7 @@ const TimeLineCard = ({
             </p>
             <p
               style={{
-                marginTop: isWide ? '65px' : '75px',
+                marginTop: isWide ? '75px' : '75px',
                 fontSize: isWide ? '17px' : '13px',
                 textAlign: 'center',
                 marginLeft: isWide ? '20px' : '12px',
@@ -170,7 +229,7 @@ const TimeLineCard = ({
 
             <p
               style={{
-                marginTop: '15px',
+                marginTop: '5px',
               }}
             >
               <Zoom zoomMargin={40}>
