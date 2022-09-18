@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { REST_API_URL } from '../../urls/index';
 import { AuthGuardContext } from './../../providers/AuthGuard';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import button from './../../css/atoms/button.module.css';
 
@@ -27,7 +28,8 @@ const LikeButton = ({ id, changeLike }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input {...register('id', { value: id })} type='hidden' />
-      <input type='submit' value={`いいねする`} className={button.like} />
+
+      <input type='submit' value={`いいね`} className={button.like} />
     </form>
   );
 };

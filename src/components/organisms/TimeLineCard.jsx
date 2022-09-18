@@ -11,7 +11,7 @@ import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import useMedia from 'use-media';
 
-import { Button, LikeButton } from './../atoms/atoms';
+import { Button, LikeButton, UnLikeButton } from './../atoms/atoms';
 
 import button from './../../css/atoms/button.module.css';
 import card from './../../css/organisms/card.module.css';
@@ -71,7 +71,7 @@ const TimeLineCard = ({
                       fontSize: '25px',
                       mb: '-9.5px',
                       mr: '3px',
-                      '@media screen and (max-width:600px)': {
+                      '@media screen and (max-width:700px)': {
                         fontSize: '20.5px',
                         mb: '-7.5px',
                       },
@@ -91,7 +91,10 @@ const TimeLineCard = ({
                     ) : (
                       <>
                         {LikedState ? (
-                          <>いいね解除</>
+                          <UnLikeButton
+                            id={diaryId}
+                            changeLike={setLikedState}
+                          />
                         ) : (
                           <LikeButton id={diaryId} changeLike={setLikedState} />
                         )}
@@ -120,7 +123,15 @@ const TimeLineCard = ({
           <p className={card.card_text} style={{ marginTop: '20px' }}>
             <span className={card.card_text_property}>
               <LibraryMusicIcon
-                sx={{ fontSize: '19px', mb: '-4px', color: 'red' }}
+                sx={{
+                  fontSize: '17px',
+                  mb: '-5px',
+                  color: 'red',
+                  '@media screen and (min-width:700px)': {
+                    fontSize: '19px',
+                    mb: '-7.5px',
+                  },
+                }}
               />
               &nbsp;&nbsp;イベント名:
             </span>
@@ -130,7 +141,15 @@ const TimeLineCard = ({
           <p className={card.card_text}>
             <span className={card.card_text_property}>
               <AccountBalanceIcon
-                sx={{ fontSize: '19px', mb: '-2.9px', color: '#00AA00' }}
+                sx={{
+                  fontSize: '17px',
+                  mb: '-5px',
+                  color: '#00AA00',
+                  '@media screen and (min-width:700px)': {
+                    fontSize: '19px',
+                    mb: '-7.5px',
+                  },
+                }}
               />
               &nbsp;&nbsp;会場:
             </span>
@@ -140,7 +159,15 @@ const TimeLineCard = ({
           <p className={card.card_text}>
             <span className={card.card_text_property}>
               <PhotoCameraBackIcon
-                sx={{ fontSize: '19px', mb: '-3.5px', color: '#FF8C00' }}
+                sx={{
+                  fontSize: '17px',
+                  mb: '-5px',
+                  color: '#FF8C00',
+                  '@media screen and (min-width:700px)': {
+                    fontSize: '19px',
+                    mb: '-7.5px',
+                  },
+                }}
               />
               &nbsp;&nbsp;この日のチェキ数:
             </span>
@@ -191,7 +218,7 @@ const TimeLineCard = ({
             </p>
             <p
               style={{
-                marginTop: isWide ? '65px' : '75px',
+                marginTop: isWide ? '75px' : '75px',
                 fontSize: isWide ? '17px' : '13px',
                 textAlign: 'center',
                 marginLeft: isWide ? '20px' : '12px',
@@ -202,7 +229,7 @@ const TimeLineCard = ({
 
             <p
               style={{
-                marginTop: '15px',
+                marginTop: '5px',
               }}
             >
               <Zoom zoomMargin={40}>

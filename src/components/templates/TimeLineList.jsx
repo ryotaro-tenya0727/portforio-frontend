@@ -213,12 +213,13 @@ const TimeLineList = ({ isAuthenticated }) => {
             onClick={followUser}
             style={{
               padding: '3px 6px 3px 6px',
-              margin: '0px 0px 0px 0px',
+              marginTop: '0px',
+              marginBottom: '5px',
               cursor: 'pointer',
               backgroundColor: '#ffffff',
             }}
           >
-            フォローしたユーザーの日記をみる
+            フォローしたユーザーの日記
           </button>
         ) : (
           <></>
@@ -262,7 +263,8 @@ const TimeLineList = ({ isAuthenticated }) => {
           onClick={allUser}
           style={{
             padding: '3px 6px 3px 6px',
-            margin: '0px 0px 0px 0px',
+            marginTop: '0px',
+            marginBottom: '5px',
             cursor: 'pointer',
             backgroundColor: '#ffffff',
           }}
