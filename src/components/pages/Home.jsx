@@ -35,6 +35,7 @@ const Home = () => {
           width: '100vw',
         }}
       >
+        <div></div>
         <HomeHeaders />
         <div className={home.home}>
           <div className={home.buttons}>

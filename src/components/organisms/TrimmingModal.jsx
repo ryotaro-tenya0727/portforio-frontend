@@ -310,7 +310,7 @@ const TrimmingModal = ({
       />
       <div className={form.images}>
         {firstImage !== null ? (
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative', marginTop: '25px' }}>
             {loading || (
               <button
                 className={button.image_cancel_button}
@@ -334,7 +334,7 @@ const TrimmingModal = ({
         <br />
         <br />
         {secondImage !== null ? (
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative', marginTop: '25px' }}>
             {loading || (
               <button
                 className={button.image_cancel_button}

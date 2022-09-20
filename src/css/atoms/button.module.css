@@ -233,6 +233,7 @@
 .like:hover {
   opacity: 0.8
 }
+
 @media (min-width: 700px) {
   .like{
     font-size: 13px;
@@ -257,4 +258,8 @@
     padding: 6px 4px 6px 4px;
 
   }
+}
+
+.unlike:hover {
+  opacity: 0.8
 }
