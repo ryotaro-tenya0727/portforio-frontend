@@ -12,6 +12,7 @@ import {
   RecommendedMembersList,
   LoginUserInformation,
   PolaroidGraph,
+  Notifications,
 } from './Templates';
 
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
@@ -124,11 +125,10 @@ const MyPageMenu = ({ newNotificationCount }) => {
             <p
               style={{
                 textAlign: 'center',
-                marginTop: '50px',
-                fontSize: '20px',
+                marginTop: '40px',
               }}
             >
-              Comming soon...
+              <Notifications />
             </p>
           </TabPanel>
           <TabPanel value={'1'} sx={{ padding: 0 }}>
