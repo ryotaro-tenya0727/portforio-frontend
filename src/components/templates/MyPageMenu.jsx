@@ -16,10 +16,10 @@ import {
 
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
 
-const MyPageMenu = () => {
+const MyPageMenu = ({ newNotificationCount }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
-  const handleChange = (event, newValue) => {
+  const handleChange = (_event, newValue) => {
     setValue(newValue);
   };
 
@@ -44,7 +44,6 @@ const MyPageMenu = () => {
             textColor={'primary'}
             indicatorColor={'primary'}
             sx={{
-              // width: 1,
               bgcolor: '#fff',
               borderRadius: '8px',
               border: 'solid 2px #EEEEEE',
@@ -53,8 +52,6 @@ const MyPageMenu = () => {
               },
               '@media screen and (max-width:400px)': {
                 height: '70px',
-                // margin: 'calc(50% - 50vw)',
-                // width: '99.2vw',
               },
             }}
           >
