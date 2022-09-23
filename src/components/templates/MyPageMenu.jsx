@@ -73,9 +73,13 @@ const MyPageMenu = ({ newNotificationCount }) => {
               label={
                 <span className={MypageMenu.menu_text}>
                   通知
-                  <span className={MypageMenu.notification_count}>
-                    {notificationCount === 0 ? '' : notificationCount}
-                  </span>
+                  {notificationCount === 0 ? (
+                    <></>
+                  ) : (
+                    <span className={MypageMenu.notification_count}>
+                      {notificationCount}
+                    </span>
+                  )}
                 </span>
               }
               sx={{ width: 1 / 4 }}
