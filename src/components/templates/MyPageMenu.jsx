@@ -20,6 +20,8 @@ import MypageMenu from './../../css/templates/mypageMenu.module.css';
 const MyPageMenu = ({ newNotificationCount }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
+  const [notificationCount, setNotificationCount] =
+    useState(newNotificationCount);
   const handleChange = (_event, newValue) => {
     setValue(newValue);
   };
@@ -68,7 +70,11 @@ const MyPageMenu = ({ newNotificationCount }) => {
                 />
               }
               iconPosition='bottom'
-              label={<span className={MypageMenu.menu_text}>お知らせ</span>}
+              label={
+                <span className={MypageMenu.menu_text}>
+                  通知{notificationCount === 0 ? '' : notificationCount}
+                </span>
+              }
               sx={{ width: 1 / 4 }}
               value='0'
             />
@@ -128,7 +134,7 @@ const MyPageMenu = ({ newNotificationCount }) => {
                 marginTop: '40px',
               }}
             >
-              <Notifications />
+              <Notifications changeNotificationCount={setNotificationCount} />
             </p>
           </TabPanel>
           <TabPanel value={'1'} sx={{ padding: 0 }}>

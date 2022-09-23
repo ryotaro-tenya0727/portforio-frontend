@@ -8,10 +8,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
-import CircularProgress from '@mui/material/CircularProgress';
 import useMedia from 'use-media';
 
-import { Button } from './../atoms/atoms';
+import { Button, Circular } from './../atoms/atoms';
 import { RecommendedMemberCard } from './../organisms/Organisms';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { usePagination } from './../../hooks/usePagination';
@@ -90,11 +89,7 @@ const RecommendedMembersList = () => {
               textAlign: 'center',
             }}
           >
-            <br />
-            <CircularProgress
-              size={130}
-              sx={{ mt: '100px', color: '#ff7bd7' }}
-            />
+            <Circular large={80} small={60} top={120} />
           </div>
         ) : (
           <>

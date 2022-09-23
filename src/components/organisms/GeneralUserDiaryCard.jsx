@@ -16,8 +16,6 @@ const GeneralUserDiaryCard = ({
   diaryUserImage,
   DiaryMemberNickname,
   eventName,
-  eventDate,
-  eventVenue,
   eventPolaroidCount,
   diaryImages,
   ImpressiveMemory,
@@ -73,7 +71,6 @@ const GeneralUserDiaryCard = ({
         <img
           src={`${diaryUserImage}`}
           alt='picture'
-          // width='50'
           className={card.card_general_photo}
           style={{
             border: '2px solid #ff99c5',

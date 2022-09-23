@@ -10,3 +10,4 @@ export { default as Headers } from './Headers';
 export { default as HomeHeaders } from './HomeHeaders';
 export { default as UserCard } from './UserCard';
 export { default as TimeLineCard } from './TimeLineCard';
+export { default as NotificationCard } from './NotificationCard';
