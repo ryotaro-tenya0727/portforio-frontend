@@ -48,3 +48,26 @@
     font-size: 14px;
   }
 }
+
+.notification_count{
+  display: inline-block;
+  color: white;
+   width: 12px;
+  text-align:center;
+  border-radius: 50%;
+  margin-left: 2px;
+  background-color: #ff88db;
+}
+@media (min-width: 500px) {
+  .notification_count{
+    width: 15px;
+    margin-left: 3px;
+  }
+}
+
+@media (min-width: 700px) {
+  .notification_count{
+    width: 17px;
+    margin-left: 5px;
+  }
+}

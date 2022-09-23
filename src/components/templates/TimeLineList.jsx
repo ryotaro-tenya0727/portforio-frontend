@@ -11,7 +11,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 import useMedia from 'use-media';
 
-import { Button } from './../atoms/atoms';
+import { Button, Circular } from './../atoms/atoms';
 import { TimeLineCard } from './../organisms/Organisms';
 import { API_URL } from '../../urls/index';
 
@@ -135,33 +135,13 @@ const TimeLineList = ({ isAuthenticated }) => {
   };
   const loader = (
     <div style={{ textAlign: 'center', marginTop: '10px' }}>
-      <CircularProgress
-        sx={{
-          color: '#ff94df',
-          mt: -0.4,
-          fontSize: '80px',
-          '@media screen and (min-width:700px)': {
-            mt: -1,
-          },
-        }}
-        size={isWide ? 60 : 30}
-      />
+      <Circular large={60} small={30} />
     </div>
   );
   if (queryLoading || isLoading) {
     return (
       <div style={{ textAlign: 'center', marginTop: '150px' }}>
-        <CircularProgress
-          sx={{
-            color: '#ff94df',
-            mt: -1,
-            fontSize: '80px',
-            '@media screen and (max-width:700px)': {
-              mt: -0.4,
-            },
-          }}
-          size={isWide ? 60 : 30}
-        />
+        <Circular large={60} small={60} />
       </div>
     );
   }

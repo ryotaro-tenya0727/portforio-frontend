@@ -45,7 +45,6 @@ export const useRecommendedMembersApi = () => {
               return updater(previousData, data);
             });
           }
-
           return previousData;
         },
         onError: (err, _, context) => {

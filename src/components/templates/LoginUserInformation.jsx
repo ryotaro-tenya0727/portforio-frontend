@@ -5,7 +5,7 @@ import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import CircularProgress from '@mui/material/CircularProgress';
+import { Circular } from './../atoms/atoms';
 
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { getUserUrl } from './../../urls/index';
@@ -47,8 +47,7 @@ const LoginUserInformation = () => {
             textAlign: 'center',
           }}
         >
-          <br />
-          <CircularProgress size={130} sx={{ mt: '100px', color: '#ff7bd7' }} />
+          <Circular large={80} small={60} top={120} />
         </div>
       ) : (
         <div>

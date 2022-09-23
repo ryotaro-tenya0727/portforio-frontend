@@ -1,0 +1,36 @@
+.card{
+  font-size: 12px;
+  font-weight: bold;
+}
+
+@media (min-width: 500px){
+  .card{
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 700px){
+  .card{
+    font-size: 18px;
+    margin-top: 2px;
+  }
+}
+
+.created{
+  font-size: 10px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+@media (min-width: 500px){
+  .created{
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 700px){
+  .created{
+    font-size: 16px;
+
+  }
+}

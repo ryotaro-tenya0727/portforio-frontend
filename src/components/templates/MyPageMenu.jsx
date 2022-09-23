@@ -12,14 +12,17 @@ import {
   RecommendedMembersList,
   LoginUserInformation,
   PolaroidGraph,
+  Notifications,
 } from './Templates';
 
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
 
-const MyPageMenu = () => {
+const MyPageMenu = ({ newNotificationCount }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
-  const handleChange = (event, newValue) => {
+  const [notificationCount, setNotificationCount] =
+    useState(newNotificationCount);
+  const handleChange = (_event, newValue) => {
     setValue(newValue);
   };
 
@@ -44,7 +47,6 @@ const MyPageMenu = () => {
             textColor={'primary'}
             indicatorColor={'primary'}
             sx={{
-              // width: 1,
               bgcolor: '#fff',
               borderRadius: '8px',
               border: 'solid 2px #EEEEEE',
@@ -53,8 +55,6 @@ const MyPageMenu = () => {
               },
               '@media screen and (max-width:400px)': {
                 height: '70px',
-                // margin: 'calc(50% - 50vw)',
-                // width: '99.2vw',
               },
             }}
           >
@@ -70,7 +70,14 @@ const MyPageMenu = () => {
                 />
               }
               iconPosition='bottom'
-              label={<span className={MypageMenu.menu_text}>お知らせ</span>}
+              label={
+                <span className={MypageMenu.menu_text}>
+                  通知
+                  <span className={MypageMenu.notification_count}>
+                    {notificationCount === 0 ? '' : notificationCount}
+                  </span>
+                </span>
+              }
               sx={{ width: 1 / 4 }}
               value='0'
             />
@@ -127,11 +134,10 @@ const MyPageMenu = () => {
             <p
               style={{
                 textAlign: 'center',
-                marginTop: '50px',
-                fontSize: '20px',
+                marginTop: '40px',
               }}
             >
-              Comming soon...
+              <Notifications changeNotificationCount={setNotificationCount} />
             </p>
           </TabPanel>
           <TabPanel value={'1'} sx={{ padding: 0 }}>

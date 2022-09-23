@@ -72,7 +72,7 @@ const MyPage = memo(() => {
                 推しメン登録ページへ
               </Button>
             </Link>
-            <MyPageMenu />
+            <MyPageMenu newNotificationCount={data.new_notifications_count} />
           </div>
         )
       ) : (
@@ -99,7 +99,7 @@ const MyPage = memo(() => {
               推しメン登録ページへ
             </Button>
           </Link>
-          <MyPageMenu />
+          <MyPageMenu newNotificationCount={userData.new_notifications_count} />
         </div>
       )}
     </div>

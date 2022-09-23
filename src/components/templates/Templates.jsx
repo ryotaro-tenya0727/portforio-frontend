@@ -15,3 +15,4 @@ export { default as AdminUserDiariesList } from './AdminUserDiariesList';
 export { default as PolaroidGraph } from './PolaroidGraph';
 export { default as UsersList } from './UsersList';
 export { default as TimeLineList } from './TimeLineList';
+export { default as Notifications } from '../templates/Notifications';
