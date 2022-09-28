@@ -4,11 +4,11 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
-import CircularProgress from '@mui/material/CircularProgress';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 
+import { Circular } from './../atoms/atoms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import diary from './../../css/templates/diary.module.css';
 
@@ -39,7 +39,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
             textAlign: 'center',
           }}
         >
-          <CircularProgress size={150} sx={{ mt: '150px', color: '#ff7bd7' }} />
+          <Circular large={80} small={50} top='150px' />
         </div>
       ) : (
         <>
