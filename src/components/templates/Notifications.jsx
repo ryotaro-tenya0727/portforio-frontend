@@ -50,9 +50,17 @@ const Notifications = ({ changeNotificationCount }) => {
             key={index}
             notifierName={notification.attributes.notifier_name}
             notifierImage={notification.attributes.notifier_image}
+            diaryId={notification.attributes.diary_id}
             diaryEventName={notification.attributes.diary_event_name}
+            recommendedMemberId={notification.attributes.recommended_member_id}
+            recommendedMemberUuid={
+              notification.attributes.recommended_member_uuid
+            }
             recommendedMemberName={
               notification.attributes.recommended_member_name
+            }
+            recommendedMemberGroup={
+              notification.attributes.recommended_member_group
             }
             action={notification.attributes.action}
             checked={notification.attributes.checked}
