@@ -45,7 +45,7 @@ const RecommenedMembersDiaries = memo(() => {
         isIdle || isLoading ? (
           <Loading />
         ) : (
-          <>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             <Headers name={data.name} />
             <BreadCrumbs breadcrumbs={breadcrumbs} />
             <Link
@@ -75,10 +75,10 @@ const RecommenedMembersDiaries = memo(() => {
               recommendedMemberNickname={query.get('nickname')}
               recommendedMemberGroup={query.get('group')}
             />
-          </>
+          </div>
         )
       ) : (
-        <>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <Headers name={userData.name} />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <Link
@@ -108,7 +108,7 @@ const RecommenedMembersDiaries = memo(() => {
             recommendedMemberNickname={query.get('nickname')}
             recommendedMemberGroup={query.get('group')}
           />
-        </>
+        </div>
       )}
       <br />
     </>

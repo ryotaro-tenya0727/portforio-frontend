@@ -7,6 +7,7 @@
   flex-flow: column;
   min-height: 1100px;
   margin: 0 auto;
+  max-width: 1200px;
 }
 
 .layout_page{
