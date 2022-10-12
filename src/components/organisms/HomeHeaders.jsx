@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Button } from './../atoms/atoms';
-
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import SpeakerNotesIcon from '@mui/icons-material/SpeakerNotes';
+
+import { Button } from './../atoms/atoms';
 
 import homeheaders from './../../css/organisms/homeheaders.module.css';
 import button from './../../css/atoms/button.module.css';
