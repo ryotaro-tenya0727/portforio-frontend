@@ -47,8 +47,6 @@
   }
 }
 
-
-
 .logo{
   width: 150px;
   position: absolute;
@@ -370,8 +368,6 @@
   }
 }
 
-
-
 @media (min-width: 700px) {
   .about_text{
     margin: 0px 0px 0px 6px;
@@ -391,15 +387,14 @@
 }
 
 @media (max-width: 1000px) {
-.about_wrapper{
-  width: 93%;
-}
-
+  .about_wrapper{
+    width: 93%;
+  }
 }
 @media (min-width: 470px) {
-.about_wrapper{
-  max-width: 1000px;
-}
+  .about_wrapper{
+    max-width: 1000px;
+  }
 }
 
 .about_title{
@@ -431,7 +426,6 @@
   margin: 0 auto;
   width: 270px;
   border-radius: 5px;
-
 }
 
 @media (min-width: 450px) {

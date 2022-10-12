@@ -60,21 +60,18 @@
 @media (min-width: 500px) {
   .tweet_text{
     font-size: 15px;
-
   }
 }
 
 @media (min-width: 700px){
   .tweet_text{
     font-size: 17px;
-
   }
 }
 
 @media (min-width: 900px)  {
   .tweet_text{
     font-size: 19px;
-
   }
 }
 
@@ -87,9 +84,9 @@
 }
 
 @media (min-width: 500px) {
-.diary_header_image{
-  height: 180px;
-  object-position: 50% 20%;
+  .diary_header_image{
+    height: 180px;
+    object-position: 50% 20%;
   }
 }
 
@@ -109,7 +106,6 @@
 
 @media (min-width: 1200px)  {
   .diary_header_image{
-
     height: 200px;
     object-position: 50% 30%;
   }
@@ -155,7 +151,6 @@
   margin: 10px 0px 20px 0px;
   font-weight: bold;
   font-size: 14px;
-
 }
 
 @media (min-width: 500px) {
@@ -169,7 +164,6 @@
   .diary_member_title{
     border-bottom: 2px dashed rgb(255, 151, 151);
     font-size: 18px;
-
   }
 }
 
@@ -199,6 +193,7 @@
     margin: 0px 10px -5px 0px;
   }
 }
+
 .diary_sub_text_wrapper{
   margin-bottom: 20px;
   position: relative;
@@ -207,7 +202,6 @@
 @media (min-width: 700px) {
   .diary_sub_text_wrapper{
     margin-bottom: 30px;
-
   }
 }
 

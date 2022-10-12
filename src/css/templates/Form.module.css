@@ -22,9 +22,9 @@
 }
 
 @media (min-width: 500px) {
-.form_header_image{
-  height: 180px;
-  object-position: 50% 20%;
+  .form_header_image{
+    height: 180px;
+    object-position: 50% 20%;
   }
 }
 
