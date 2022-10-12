@@ -1,6 +1,6 @@
 import { useState } from 'react';
-
 import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import Card from '@mui/material/Card';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
@@ -31,6 +31,7 @@ const TimeLineCard = ({
   liked,
 }) => {
   const [LikedState, setLikedState] = useState(liked);
+  const { loginWithRedirect } = useAuth0();
   const isWide = useMedia({ minWidth: '700px' });
   const returnTop = () => {
     window.scrollTo({
@@ -87,7 +88,16 @@ const TimeLineCard = ({
                 ) : (
                   <p>
                     {LikedState === 'Not Loggin' ? (
-                      <></>
+                      <>
+                        <input
+                          type='submit'
+                          value={`いいね`}
+                          className={button.like}
+                          onClick={() => {
+                            loginWithRedirect();
+                          }}
+                        />
+                      </>
                     ) : (
                       <>
                         {LikedState ? (

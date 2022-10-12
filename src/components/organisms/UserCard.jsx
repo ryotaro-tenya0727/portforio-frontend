@@ -1,11 +1,13 @@
 import { useState } from 'react';
-
+import { useAuth0 } from '@auth0/auth0-react';
 import Card from '@mui/material/Card';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 
 import { FollowButton, UnFollowButton } from './../atoms/atoms';
+
+import button from './../../css/atoms/button.module.css';
 import card from './../../css/organisms/card.module.css';
 const UserCard = ({
   id,
@@ -19,6 +21,7 @@ const UserCard = ({
   me,
 }) => {
   const [followingState, setFollowingState] = useState(following);
+  const { loginWithRedirect } = useAuth0();
   return (
     <div>
       <Card
@@ -64,7 +67,17 @@ const UserCard = ({
           ) : (
             <p>
               {followingState === 'Not Loggin' ? (
-                <></>
+                <>
+                  {' '}
+                  <input
+                    type='submit'
+                    value={`フォロー`}
+                    className={button.follow}
+                    onClick={() => {
+                      loginWithRedirect();
+                    }}
+                  />
+                </>
               ) : (
                 <>
                   {followingState ? (
