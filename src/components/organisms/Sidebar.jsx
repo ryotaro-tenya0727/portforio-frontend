@@ -151,20 +151,21 @@ function Sidebar() {
           },
     },
     {
-      title: '利用規約',
-      link: '/term-of-service',
+      title: '開発したオタク',
+      icon: (
+        <TwitterIcon
+          sx={{
+            color: '#2C7CFF',
+            fontSize: '20.5px',
+            '@media screen and (min-width:500px)': {
+              fontSize: '22.5px',
+              mr: 0.5,
+            },
+          }}
+        />
+      ),
+      link: 'https://twitter.com/ryotaro_mitan',
     },
-    {
-      title: 'プライバシーポリシー',
-
-      link: '/privacy-policy',
-    },
-    // {
-    //   title: 'お問い合わせ',
-
-    //   link: '/upload',
-    // },
-
     {
       title: '公式アカウント',
       icon: (
@@ -197,6 +198,20 @@ function Sidebar() {
       ),
       link: 'https://twitter.com/intent/tweet?text=%0a%23推しだいありー%0ahttps://www.oshi-diary.com/',
     },
+    {
+      title: '利用規約',
+      link: '/term-of-service',
+    },
+    {
+      title: 'プライバシーポリシー',
+
+      link: '/privacy-policy',
+    },
+    // {
+    //   title: 'お問い合わせ',
+
+    //   link: '/upload',
+    // },
     {
       title: (
         <>
@@ -262,8 +277,13 @@ function Sidebar() {
               onClick={() => {
                 if (value.link === 'https://twitter.com/idol_otaku_web') {
                   window.open(value.link, '_blank');
+                  return;
                 } else if (value.title === 'ツイートでシェア') {
                   window.open(value.link, '_blank');
+                  return;
+                } else if (value.link === 'https://twitter.com/ryotaro_mitan') {
+                  window.open(value.link, '_blank');
+                  return;
                 } else if (value.link !== undefined) {
                   navigate(value.link);
                   setOpenMenu(false);

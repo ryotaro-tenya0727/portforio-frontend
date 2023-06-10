@@ -1,5 +1,5 @@
-const AdminUserCard = () => {
-  return <div></div>;
+const FollowerUsers = () => {
+  return <div>フォロワー</div>;
 };
 
-export default AdminUserCard;
+export default FollowerUsers;
