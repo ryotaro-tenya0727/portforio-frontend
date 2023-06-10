@@ -151,7 +151,7 @@ function Sidebar() {
           },
     },
     {
-      title: '開発したオタク',
+      title: '開発者のアカウント',
       icon: (
         <TwitterIcon
           sx={{
@@ -164,7 +164,7 @@ function Sidebar() {
           }}
         />
       ),
-      link: 'https://twitter.com/ryotaro_mitan',
+      link: 'https://twitter.com/naka_ryo_z',
     },
     {
       title: '公式アカウント',
@@ -281,7 +281,7 @@ function Sidebar() {
                 } else if (value.title === 'ツイートでシェア') {
                   window.open(value.link, '_blank');
                   return;
-                } else if (value.link === 'https://twitter.com/ryotaro_mitan') {
+                } else if (value.link === 'https://twitter.com/naka_ryo_z') {
                   window.open(value.link, '_blank');
                   return;
                 } else if (value.link !== undefined) {
