@@ -74,7 +74,7 @@ const Home = () => {
                     </button>
                   ))}
                 {isAuthenticated &&
-                  (loading ? (
+                  (isLoading ? (
                     <>
                       <button className={home.login_button}>
                         <CircularProgress sx={{ color: '#ff94df' }} size={30} />

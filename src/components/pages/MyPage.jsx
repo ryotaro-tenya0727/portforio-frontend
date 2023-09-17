@@ -17,6 +17,9 @@ const MyPage = memo(() => {
     useUsersApi();
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData('users');
+  // 最初はuseGetAccesstokenAndCreateUserのuseEffectの中のmutateがうごいていないので、isIdleはずっとtrueになっている
+  // そしてuserの変更を検知してuseEffectの中のif分が走る。
+  // isIdleがtrueならisLoadingはfalseになる。
   const { data, isIdle, isLoading } = useGetAccesstokenAndCreateUser();
   const breadcrumbs = [
     {
