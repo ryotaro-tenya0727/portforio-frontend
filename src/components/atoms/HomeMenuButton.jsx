@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 
-import { AuthGuardContext } from './../../providers/AuthGuard';
+import { AuthGuardContext } from '../../providers/AuthGuard';
 
 import home from './../../css/pages/home.module.css';
 
-const HomeMenuButtom = () => {
+const HomeMenuButton = () => {
   const { isOpenMenu, setOpenMenu } = useContext(AuthGuardContext);
   return (
     <>
@@ -24,4 +24,4 @@ const HomeMenuButtom = () => {
   );
 };
 
-export default HomeMenuButtom;
+export default HomeMenuButton;

@@ -9,7 +9,7 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { Link as Scroll } from 'react-scroll';
 import useMedia from 'use-media';
 
-import { Button, HomeMenuButtom } from './../atoms/atoms';
+import { Button, HomeMenuButton } from './../atoms/atoms';
 import { HomeHeaders } from './../organisms/Organisms';
 import { GeneralDiaryList } from './../templates/Templates';
 import usePageTracking from './../../hooks/useTracking';
@@ -38,7 +38,7 @@ const Home = () => {
         <HomeHeaders />
         <div className={home.home}>
           <div className={home.buttons}>
-            <HomeMenuButtom />
+            <HomeMenuButton />
             <br />
             {isLoading ? (
               <button className={home.login_button}>
@@ -151,27 +151,47 @@ const Home = () => {
             ) : (
               <>
                 {isAuthenticated ? (
-                  <>
-                    {' '}
-                    <Link to='mypage'>
+                  isLoading ? (
+                    <>
                       <Button className={home.register_button}>
-                        <HowToRegIcon
-                          sx={{
-                            fontSize: '22px',
-                            mb: '-5.5px',
-                            mr: '10px',
-                            color: '#ff6fc8',
-                            '@media screen and (max-width:700px)': {
-                              fontSize: '18px',
-                            },
-                          }}
+                        <CircularProgress
+                          sx={{ color: '#ff94df', mt: '-2.5px' }}
+                          size={30}
                         />
-
-                        <span className={home.register_text}>
-                          マイページに行く
-                        </span>
                       </Button>
-                    </Link>
+                    </>
+                  ) : (
+                    <>
+                      {' '}
+                      <Link to='mypage'>
+                        <Button className={home.register_button}>
+                          <HowToRegIcon
+                            sx={{
+                              fontSize: '22px',
+                              mb: '-5.5px',
+                              mr: '10px',
+                              color: '#ff6fc8',
+                              '@media screen and (max-width:700px)': {
+                                fontSize: '18px',
+                              },
+                            }}
+                          />
+
+                          <span className={home.register_text}>
+                            マイページに行く
+                          </span>
+                        </Button>
+                      </Link>
+                    </>
+                  )
+                ) : isLoading ? (
+                  <>
+                    <Button className={home.register_button}>
+                      <CircularProgress
+                        sx={{ color: '#ff94df', mt: '-2.5px' }}
+                        size={30}
+                      />
+                    </Button>
                   </>
                 ) : (
                   <>

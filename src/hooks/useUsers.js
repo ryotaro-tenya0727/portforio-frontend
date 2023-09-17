@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { AuthGuardContext } from './../providers/AuthGuard';
+import { AuthGuardContext } from '../providers/AuthGuard';
 import { userRepository } from '../repositories/userRepository';
 
 export const useUsersApi = () => {
@@ -16,7 +16,7 @@ export const useUsersApi = () => {
 
   const useAddUser = () => {
     const queryClient = useQueryClient();
-    // mutateメソッドの引数がmutate関数の引数になる。
+    // mutateメソッドの引数がmutate関数の引数になる。下のcreateUser.mutate
     return useMutation(
       async (params) => {
         setAccessToken(params.accessToken);
@@ -35,7 +35,6 @@ export const useUsersApi = () => {
 
   const useGetAccesstokenAndCreateUser = () => {
     const createUser = useAddUser();
-    // console.log(createUser);
     useEffect(() => {
       if (isAuthenticated && user) {
         (async () => {
@@ -51,7 +50,6 @@ export const useUsersApi = () => {
         })();
       }
     }, [user]);
-    // console.log(createUser);
     return createUser;
   };
 
