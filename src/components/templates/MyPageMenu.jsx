@@ -7,6 +7,11 @@ import TabContext from '@mui/lab/TabContext';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import MonochromePhotosIcon from '@mui/icons-material/MonochromePhotos';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import axios from 'axios';
+import { API_URL } from '../../urls/index';
+import { useQuery } from 'react-query';
+import { useAuth0 } from '@auth0/auth0-react';
+import { Circular } from './../atoms/atoms';
 
 import {
   RecommendedMembersList,
@@ -17,11 +22,38 @@ import {
 
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
 
-const MyPageMenu = ({ newNotificationCount }) => {
+const MyPageMenu = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
-  const [notificationCount, setNotificationCount] =
-    useState(newNotificationCount);
+  const { getAccessTokenSilently } = useAuth0();
+  const [notificationCount, setNotificationCount] = useState(0);
+  const { isLoading, data: response } = useQuery(
+    ['notifications'],
+    async () => {
+      const accessToken = await getAccessTokenSilently();
+      const response = await axios
+        .get(`${API_URL}/api/v1/user/users/user_info`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        })
+        .catch((error) => {
+          console.error(error.response.data);
+        });
+      return response.data;
+    },
+    {
+      onSuccess: (data) => {
+        setNotificationCount(data.new_notifications_count);
+      },
+    },
+    {
+      cacheTime: 0,
+      staleTime: 3000000,
+    }
+  );
+
   const handleChange = (_event, newValue) => {
     setValue(newValue);
   };
@@ -36,6 +68,9 @@ const MyPageMenu = ({ newNotificationCount }) => {
       },
     },
   });
+  if (isLoading) {
+    return <Circular large={80} small={60} top={120} />;
+  }
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -144,7 +179,7 @@ const MyPageMenu = ({ newNotificationCount }) => {
               <Notifications changeNotificationCount={setNotificationCount} />
             </p>
           </TabPanel>
-          <TabPanel value={'1'} sx={{ padding: 0 }}>
+          {/* <TabPanel value={'1'} sx={{ padding: 0 }}>
             <PolaroidGraph />
           </TabPanel>
           <TabPanel value={'2'} sx={{ padding: 0 }}>
@@ -152,7 +187,7 @@ const MyPageMenu = ({ newNotificationCount }) => {
           </TabPanel>
           <TabPanel value={'3'} sx={{ padding: 0 }}>
             <LoginUserInformation />
-          </TabPanel>
+          </TabPanel> */}
         </TabContext>
       </ThemeProvider>
     </>

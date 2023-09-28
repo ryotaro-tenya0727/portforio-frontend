@@ -66,7 +66,7 @@ const MyPage = memo(() => {
               推しメン登録ページへ
             </Button>
           </Link>
-          {/* <MyPageMenu newNotificationCount={data.new_notifications_count} /> */}
+          <MyPageMenu />
         </div>
       </div>
     )

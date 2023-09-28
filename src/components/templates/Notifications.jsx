@@ -1,5 +1,3 @@
-//newNotificationCount =0
-// キャッシュを0にする
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { useContext } from 'react';
 import { useQueryClient, useQuery } from 'react-query';
