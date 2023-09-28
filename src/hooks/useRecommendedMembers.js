@@ -22,7 +22,7 @@ export const useRecommendedMembersApi = () => {
     const queryKey = 'recommended_members';
 
     const updater = (previousData, data) => {
-      previousData.data.unshift({
+      previousData.data.push({
         attributes: data.recommended_member,
       });
       return previousData;

@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { AuthGuardContext } from '../providers/AuthGuard';
 import { userRepository } from '../repositories/userRepository';
+import { useState } from 'react';
 
 export const useUsersApi = () => {
   const { setAccessToken } = useContext(AuthGuardContext);
@@ -13,7 +14,7 @@ export const useUsersApi = () => {
     user,
     isLoading: isAuthLoading,
   } = useAuth0();
-
+  const [isLoading, setisLoading] = useState(true);
   const useAddUser = () => {
     const queryClient = useQueryClient();
     // mutateメソッドの引数がmutate関数の引数になる。下のcreateUser.mutate
@@ -27,30 +28,34 @@ export const useUsersApi = () => {
       },
       {
         onSuccess: (data) => {
-          queryClient.setQueryData('users', data);
+          queryClient.setQueryData('users', data, {
+            staleTime: Infinity,
+            cacheTime: Infinity,
+          });
         },
       }
     );
   };
 
-  const useGetAccesstokenAndCreateUser = () => {
-    const createUser = useAddUser();
-    useEffect(() => {
-      if (isAuthenticated && user) {
-        (async () => {
-          const token = await getAccessTokenSilently();
-          try {
-            createUser.mutate({
-              value: { user: { name: user.name, user_image: user.picture } },
-              accessToken: token,
-            });
-          } catch (error) {
-            console.error(error.response.data);
-          }
-        })();
-      }
-    }, [user]);
-    return createUser;
+  const useGetAccesstokenAndCreateUser = async () => {
+    // const createUser = useAddUser();
+    // useEffect(() => {
+    //   if (isAuthenticated && user) {
+    //     (async () => {
+    //       const token = await getAccessTokenSilently();
+    //       try {
+    //         createUser.mutate({
+    //           value: { user: { name: user.name, user_image: user.picture } },
+    //           accessToken: token,
+    //         });
+    //       } catch (error) {
+    //         console.error(error.response.data);
+    //       }
+    //     })();
+    //   }
+    // }, [user]);
+    // return createUser;
+    const token = await getAccessTokenSilently();
   };
 
   const useGetUser = () => {
@@ -62,7 +67,10 @@ export const useUsersApi = () => {
       },
       {
         onSuccess: (data) => {
-          queryClient.setQueryData('users', data);
+          queryClient.setQueryData('users', data, {
+            staleTime: Infinity,
+            cacheTime: Infinity,
+          });
         },
       }
     );
@@ -88,8 +96,9 @@ export const useUsersApi = () => {
 
   return {
     isAuthenticated,
+    // useGetAccesstokenAndCreateUser,
+    // useGetAccesstokenAndGetUser,
     isAuthLoading,
-    useGetAccesstokenAndCreateUser,
-    useGetAccesstokenAndGetUser,
+    user,
   };
 };
