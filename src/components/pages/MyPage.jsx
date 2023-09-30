@@ -6,6 +6,7 @@ import { Button, HomeBreadText } from './../atoms/atoms';
 import { BreadCrumbs } from './../organisms/Organisms';
 import { MyPageMenu, Loading } from './../templates/Templates';
 import { Headers } from './../organisms/Organisms';
+import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 
 import button from './../../css/atoms/button.module.css';
@@ -33,6 +34,9 @@ const MyPage = memo(() => {
   };
   if (isAuthLoading) {
     return <Loading />;
+  }
+  if (isAuthenticated === false) {
+    return <RedirectToLogin />;
   }
   return (
     isAuthenticated && (

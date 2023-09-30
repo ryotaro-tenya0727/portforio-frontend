@@ -37,26 +37,26 @@ export const useUsersApi = () => {
     );
   };
 
-  const useGetAccesstokenAndCreateUser = async () => {
-    // const createUser = useAddUser();
-    // useEffect(() => {
-    //   if (isAuthenticated && user) {
-    //     (async () => {
-    //       const token = await getAccessTokenSilently();
-    //       try {
-    //         createUser.mutate({
-    //           value: { user: { name: user.name, user_image: user.picture } },
-    //           accessToken: token,
-    //         });
-    //       } catch (error) {
-    //         console.error(error.response.data);
-    //       }
-    //     })();
-    //   }
-    // }, [user]);
-    // return createUser;
-    const token = await getAccessTokenSilently();
-  };
+  // const useGetAccesstokenAndCreateUser = async () => {
+  // const createUser = useAddUser();
+  // useEffect(() => {
+  //   if (isAuthenticated && user) {
+  //     (async () => {
+  //       const token = await getAccessTokenSilently();
+  //       try {
+  //         createUser.mutate({
+  //           value: { user: { name: user.name, user_image: user.picture } },
+  //           accessToken: token,
+  //         });
+  //       } catch (error) {
+  //         console.error(error.response.data);
+  //       }
+  //     })();
+  //   }
+  // }, [user]);
+  // return createUser;
+  //   const token = await getAccessTokenSilently();
+  // };
 
   const useGetUser = () => {
     const queryClient = useQueryClient();

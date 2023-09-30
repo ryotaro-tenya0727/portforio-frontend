@@ -27,8 +27,8 @@ const MyPageMenu = () => {
   const [value, setValue] = useState('2');
   const { getAccessTokenSilently } = useAuth0();
   const [notificationCount, setNotificationCount] = useState(0);
-  const { isLoading, data: response } = useQuery(
-    ['notifications'],
+  const { isLoading, data } = useQuery(
+    ['user_info'],
     async () => {
       const accessToken = await getAccessTokenSilently();
       const response = await axios
@@ -49,8 +49,8 @@ const MyPageMenu = () => {
       },
     },
     {
-      cacheTime: 0,
-      staleTime: 3000000,
+      staleTime: 300000000,
+      cacheTime: 300000000,
     }
   );
 
@@ -179,7 +179,7 @@ const MyPageMenu = () => {
               <Notifications changeNotificationCount={setNotificationCount} />
             </p>
           </TabPanel>
-          {/* <TabPanel value={'1'} sx={{ padding: 0 }}>
+          <TabPanel value={'1'} sx={{ padding: 0 }}>
             <PolaroidGraph />
           </TabPanel>
           <TabPanel value={'2'} sx={{ padding: 0 }}>
@@ -187,7 +187,7 @@ const MyPageMenu = () => {
           </TabPanel>
           <TabPanel value={'3'} sx={{ padding: 0 }}>
             <LoginUserInformation />
-          </TabPanel> */}
+          </TabPanel>
         </TabContext>
       </ThemeProvider>
     </>

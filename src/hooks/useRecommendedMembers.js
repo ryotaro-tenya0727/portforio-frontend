@@ -3,59 +3,66 @@ import { useMutation, useQueryClient, useQuery } from 'react-query';
 
 import { AuthGuardContext } from './../providers/AuthGuard';
 import { recommendedMemberRepository } from './../repositories/recommendedMemberRepository';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export const useRecommendedMembersApi = () => {
-  const { accessToken } = useContext(AuthGuardContext);
+  const { getAccessTokenSilently } = useAuth0();
 
   const useGetRecommendedMembers = () => {
     return useQuery({
       queryKey: 'recommended_members',
-      queryFn: () =>
-        recommendedMemberRepository.getRecommendedMember(accessToken || ''),
-      staleTime: 30000000,
-      cacheTime: 30000000,
+      queryFn: async () => {
+        const accessToken = await getAccessTokenSilently();
+        const response = await recommendedMemberRepository.getRecommendedMember(
+          accessToken || ''
+        );
+        return response.data;
+      },
+      staleTime: 0,
+      cacheTime: 3000000,
     });
   };
 
   const useCreateRecommendedMembers = () => {
-    const queryClient = useQueryClient();
-    const queryKey = 'recommended_members';
+    // const queryClient = useQueryClient();
+    // const queryKey = 'recommended_members';
 
-    const updater = (previousData, data) => {
-      previousData.data.push({
-        attributes: data.recommended_member,
-      });
-      return previousData;
-    };
+    // const updater = (previousData, data) => {
+    //   previousData.data.push({
+    //     attributes: data.recommended_member,
+    //   });
+    //   return previousData;
+    // };
 
     return useMutation(
       async (params) => {
+        const accessToken = await getAccessTokenSilently();
         return await recommendedMemberRepository.createRecommendedMember(
           params,
           accessToken || ''
         );
-      },
-      {
-        onMutate: async (data) => {
-          await queryClient.cancelQueries(queryKey);
-          const previousData = await queryClient.getQueryData(queryKey);
-
-          if (previousData) {
-            queryClient.setQueryData(queryKey, () => {
-              return updater(previousData, data);
-            });
-          }
-          return previousData;
-        },
-        onError: (err, _, context) => {
-          queryClient.setQueryData(queryKey, context);
-
-          console.warn(err);
-        },
-        onSettled: () => {
-          queryClient.invalidateQueries(queryKey);
-        },
       }
+      // {
+      //   onMutate: async (data) => {
+      //     await queryClient.cancelQueries(queryKey);
+      //     const previousData = await queryClient.getQueryData(queryKey);
+
+      //     if (previousData) {
+      //       queryClient.setQueryData(queryKey, () => {
+      //         return updater(previousData, data);
+      //       });
+      //     }
+      //     return previousData;
+      //   },
+      //   onError: (err, _, context) => {
+      //     queryClient.setQueryData(queryKey, context);
+
+      //     console.warn(err);
+      //   },
+      //   onSettled: () => {
+      //     queryClient.invalidateQueries(queryKey);
+      //   },
+      // }
     );
   };
 
@@ -78,6 +85,7 @@ export const useRecommendedMembersApi = () => {
 
     return useMutation(
       async (params) => {
+        const accessToken = await getAccessTokenSilently();
         return await recommendedMemberRepository.putRecommendedMember(
           params,
           recommendedMemberId,
@@ -120,6 +128,7 @@ export const useRecommendedMembersApi = () => {
 
     return useMutation(
       async () => {
+        const accessToken = await getAccessTokenSilently();
         return await recommendedMemberRepository.deleteRecommendedMember(
           recommendedMemberId,
           accessToken || ''
@@ -153,11 +162,13 @@ export const useRecommendedMembersApi = () => {
         'recommended_member_show',
         { recommendedMemberId: recommendedMemberId },
       ],
-      queryFn: () =>
+      queryFn: async () => {
+        const accessToken = await getAccessTokenSilently();
         recommendedMemberRepository.showRecommendedMember(
           recommendedMemberId,
           accessToken || ''
-        ),
+        );
+      },
       enabled: !!recommendedMemberId,
       staleTime: 30000000,
       cacheTime: 0,

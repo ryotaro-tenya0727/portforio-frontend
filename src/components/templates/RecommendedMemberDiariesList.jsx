@@ -47,14 +47,14 @@ const RecommendedMemberDiariesList = ({
   let data =
     recommendedMemberDiaries === undefined
       ? [{ length: 0 }]
-      : recommendedMemberDiaries.data;
+      : recommendedMemberDiaries;
 
   // 検索
   const [searchText, setSearchText] = useState('');
   const searchKeywords = searchText.trim().match(/[^\s]+/g);
   if (searchKeywords !== null) {
     // 検索フィールドが空の場合、ここに入らない
-    data = recommendedMemberDiaries.data.filter((diary) =>
+    data = recommendedMemberDiaries.filter((diary) =>
       searchKeywords.every(
         (kw) => diary.attributes.event_name.indexOf(kw) !== -1
       )

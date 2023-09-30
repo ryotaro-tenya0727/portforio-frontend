@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
-
+import { useAuth0 } from '@auth0/auth0-react';
 import { AuthGuardContext } from './../providers/AuthGuard';
 import { recommendedMemberDiaryRepository } from './../repositories/recommendedMemberDiaryRepository';
 
 export const useRecommendedMemberDiariesApi = () => {
-  const { accessToken } = useContext(AuthGuardContext);
+  const { getAccessTokenSilently } = useAuth0();
 
   // 推しメンの日記一覧取得
   const useGetRecommendedMemberDiaries = (recommendedMemberId) => {
@@ -14,11 +14,15 @@ export const useRecommendedMemberDiariesApi = () => {
         'recommended_member_diaries',
         { recommendedMemberId: recommendedMemberId },
       ],
-      queryFn: () =>
-        recommendedMemberDiaryRepository.getRecommendedMemberDiary(
-          recommendedMemberId,
-          accessToken || ''
-        ),
+      queryFn: async () => {
+        const accessToken = await getAccessTokenSilently();
+        const response =
+          await recommendedMemberDiaryRepository.getRecommendedMemberDiary(
+            recommendedMemberId,
+            accessToken || ''
+          );
+        return response.data;
+      },
       enabled: !!recommendedMemberId,
       staleTime: 30000000,
       cacheTime: 30000000,
@@ -67,6 +71,7 @@ export const useRecommendedMemberDiariesApi = () => {
 
     return useMutation(
       async (params) => {
+        const accessToken = await getAccessTokenSilently();
         return await recommendedMemberDiaryRepository.createRecommendedMemberDiary(
           params,
           recommendedMemberId,
@@ -166,6 +171,7 @@ export const useRecommendedMemberDiariesApi = () => {
 
     return useMutation(
       async (params) => {
+        const accessToken = await getAccessTokenSilently();
         return await recommendedMemberDiaryRepository.putRecommendedMemberDiary(
           params,
           diaryId,
@@ -258,6 +264,7 @@ export const useRecommendedMemberDiariesApi = () => {
 
     return useMutation(
       async () => {
+        const accessToken = await getAccessTokenSilently();
         return await recommendedMemberDiaryRepository.deleteRecommendedMemberDiary(
           diaryId,
           accessToken || ''
@@ -309,11 +316,15 @@ export const useRecommendedMemberDiariesApi = () => {
   const useShowRecommendedMemberDiary = (diaryId) => {
     return useQuery({
       queryKey: ['recommended_member_diary_show', { diaryId: diaryId }],
-      queryFn: () =>
-        recommendedMemberDiaryRepository.getRecommendedMemberDiaryShow(
-          diaryId,
-          accessToken || ''
-        ),
+      queryFn: async () => {
+        const accessToken = await getAccessTokenSilently();
+        const response =
+          recommendedMemberDiaryRepository.getRecommendedMemberDiaryShow(
+            diaryId,
+            accessToken || ''
+          );
+        return response.data;
+      },
       enabled: !!diaryId,
       staleTime: 30000000,
       cacheTime: 0,

@@ -21,11 +21,7 @@ import list from './../../css/templates/list.module.css';
 const RecommendedMembersList = () => {
   const { useGetRecommendedMembers } = useRecommendedMembersApi();
   const isWide = useMedia({ minWidth: '700px' });
-  const {
-    data: recommendedMembers,
-    isLoading,
-    isIdle,
-  } = useGetRecommendedMembers();
+  const { data: recommendedMembers, isLoading } = useGetRecommendedMembers();
 
   const returnTop = () => {
     window.scrollTo({
@@ -37,16 +33,14 @@ const RecommendedMembersList = () => {
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
   let data =
-    recommendedMembers === undefined
-      ? [{ length: 0 }]
-      : recommendedMembers.data;
+    recommendedMembers === undefined ? [{ length: 0 }] : recommendedMembers;
 
   // 検索
   const [searchText, setSearchText] = useState('');
   // 検索フィールドが空の場合、ここに入らない
   const searchKeywords = searchText.trim().match(/[^\s]+/g);
   if (searchKeywords !== null) {
-    data = recommendedMembers.data.filter((member) =>
+    data = recommendedMembers.filter((member) =>
       searchKeywords.every(
         (kw) => member.attributes.nickname.indexOf(kw) !== -1
       )
@@ -79,11 +73,11 @@ const RecommendedMembersList = () => {
       },
     },
   });
-  // isIdle || isLoading
+
   return (
     <div className={list.list}>
       <ThemeProvider theme={theme}>
-        {isIdle || isLoading ? (
+        {isLoading ? (
           <div
             style={{
               textAlign: 'center',

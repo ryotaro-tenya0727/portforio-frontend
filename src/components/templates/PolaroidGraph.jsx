@@ -8,17 +8,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PolaroidGraph = () => {
   const { useGetRecommendedMembers } = useRecommendedMembersApi();
-
-  const {
-    data: recommendedMembers,
-    isLoading,
-    isIdle,
-  } = useGetRecommendedMembers();
-
+  const { data: recommendedMembers, isLoading } = useGetRecommendedMembers();
   const polaroidCounts =
     recommendedMembers === undefined
       ? []
-      : recommendedMembers.data
+      : recommendedMembers
           .filter(
             (member) => member.attributes.total_member_polaroid_count !== 0
           )
@@ -31,7 +25,7 @@ const PolaroidGraph = () => {
   const members =
     recommendedMembers === undefined
       ? []
-      : recommendedMembers.data
+      : recommendedMembers
           .filter(
             (member) => member.attributes.total_member_polaroid_count !== 0
           )
@@ -166,7 +160,7 @@ const PolaroidGraph = () => {
   };
   return (
     <>
-      {isIdle || isLoading ? (
+      {isLoading ? (
         <div
           style={{
             textAlign: 'center',
