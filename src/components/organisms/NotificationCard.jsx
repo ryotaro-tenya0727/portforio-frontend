@@ -46,7 +46,6 @@ const NotificationCard = ({
               )}
               <img
                 src={`${notifierImage}`}
-                alt='picture'
                 className={card.card_general_photo}
                 style={{
                   border: '2px solid #ff99c5',
@@ -94,7 +93,6 @@ const NotificationCard = ({
               )}
               <img
                 src={`${notifierImage}`}
-                alt='picture'
                 className={card.card_general_photo}
                 style={{
                   border: '2px solid #ff99c5',

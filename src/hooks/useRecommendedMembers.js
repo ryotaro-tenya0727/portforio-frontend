@@ -1,12 +1,19 @@
 import { useContext } from 'react';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
-
+import { useNavigate } from 'react-router-dom';
 import { AuthGuardContext } from './../providers/AuthGuard';
 import { recommendedMemberRepository } from './../repositories/recommendedMemberRepository';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export const useRecommendedMembersApi = () => {
+  const navigate = useNavigate();
   const { getAccessTokenSilently } = useAuth0();
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   const useGetRecommendedMembers = () => {
     return useQuery({
@@ -19,13 +26,13 @@ export const useRecommendedMembersApi = () => {
         return response.data;
       },
       staleTime: 0,
-      cacheTime: 3000000,
+      cacheTime: 0,
     });
   };
 
   const useCreateRecommendedMembers = () => {
-    // const queryClient = useQueryClient();
-    // const queryKey = 'recommended_members';
+    const queryClient = useQueryClient();
+    const queryKey = 'recommended_members';
 
     // const updater = (previousData, data) => {
     //   previousData.data.push({
@@ -41,28 +48,31 @@ export const useRecommendedMembersApi = () => {
           params,
           accessToken || ''
         );
+      },
+      {
+        //   onMutate: async (data) => {
+        //     await queryClient.cancelQueries(queryKey);
+        //     const previousData = await queryClient.getQueryData(queryKey);
+        //     if (previousData) {
+        //       queryClient.setQueryData(queryKey, () => {
+        //         return updater(previousData, data);
+        //       });
+        //     }
+        //     return previousData;
+        //   },
+        //   onError: (err, _, context) => {
+        //     queryClient.setQueryData(queryKey, context);
+        //     console.warn(err);
+        //   },
+        //   onSettled: () => {
+        //     queryClient.invalidateQueries(queryKey);
+        //   },
+        onSuccess: async () => {
+          // await queryClient.invalidateQueries(queryKey);
+          navigate('/mypage');
+          returnTop();
+        },
       }
-      // {
-      //   onMutate: async (data) => {
-      //     await queryClient.cancelQueries(queryKey);
-      //     const previousData = await queryClient.getQueryData(queryKey);
-
-      //     if (previousData) {
-      //       queryClient.setQueryData(queryKey, () => {
-      //         return updater(previousData, data);
-      //       });
-      //     }
-      //     return previousData;
-      //   },
-      //   onError: (err, _, context) => {
-      //     queryClient.setQueryData(queryKey, context);
-
-      //     console.warn(err);
-      //   },
-      //   onSettled: () => {
-      //     queryClient.invalidateQueries(queryKey);
-      //   },
-      // }
     );
   };
 
@@ -70,18 +80,18 @@ export const useRecommendedMembersApi = () => {
     const queryClient = useQueryClient();
     const queryKey = 'recommended_members';
 
-    const updater = (previousData, params) => {
-      previousData.data = previousData.data.map((member) => {
-        if (member.id === recommendedMemberId) {
-          return {
-            attributes: { ...member.attributes, ...params.recommended_member },
-          };
-        } else {
-          return member;
-        }
-      });
-      return previousData;
-    };
+    // const updater = (previousData, params) => {
+    //   previousData.data = previousData.data.map((member) => {
+    //     if (member.id === recommendedMemberId) {
+    //       return {
+    //         attributes: { ...member.attributes, ...params.recommended_member },
+    //       };
+    //     } else {
+    //       return member;
+    //     }
+    //   });
+    //   return previousData;
+    // };
 
     return useMutation(
       async (params) => {
@@ -94,22 +104,28 @@ export const useRecommendedMembersApi = () => {
       },
 
       {
-        onMutate: async (params) => {
-          await queryClient.cancelQueries(queryKey);
-          const previousData = await queryClient.getQueryData(queryKey);
-          if (previousData) {
-            queryClient.setQueryData(queryKey, () => {
-              return updater(previousData, params);
-            });
-          }
-          return previousData;
-        },
-        onError: (err, _, context) => {
-          queryClient.setQueryData(queryKey, context);
-          console.warn(err);
-        },
-        onSettled: () => {
-          queryClient.invalidateQueries(queryKey);
+        // onMutate: async (params) => {
+        //   await queryClient.cancelQueries(queryKey);
+        //   const previousData = await queryClient.getQueryData(queryKey);
+        //   if (previousData) {
+        //     queryClient.setQueryData(queryKey, () => {
+        //       return updater(previousData, params);
+        //     });
+        //   }
+        //   return previousData;
+        // },
+        // onError: (err, _, context) => {
+        //   queryClient.setQueryData(queryKey, context);
+        //   console.warn(err);
+        // },
+        // onSettled: () => {
+        //   queryClient.invalidateQueries(queryKey);
+        // },
+
+        onSuccess: async () => {
+          // await queryClient.invalidateQueries(queryKey);
+          navigate('/mypage');
+          returnTop();
         },
       }
     );
@@ -135,22 +151,23 @@ export const useRecommendedMembersApi = () => {
         );
       },
       {
-        onMutate: async () => {
-          await queryClient.cancelQueries(queryKey);
-          const previousData = await queryClient.getQueryData(queryKey);
-          if (previousData) {
-            queryClient.setQueryData(queryKey, () => {
-              return updater(previousData);
-            });
-          }
-          return previousData;
-        },
-        onError: (err, _, context) => {
-          queryClient.setQueryData(queryKey, context);
-          console.warn(err);
-        },
+        // onMutate: async () => {
+        //   await queryClient.cancelQueries(queryKey);
+        //   const previousData = await queryClient.getQueryData(queryKey);
+        //   if (previousData) {
+        //     queryClient.setQueryData(queryKey, () => {
+        //       return updater(previousData);
+        //     });
+        //   }
+        //   return previousData;
+        // },
+        // onError: (err, _, context) => {
+        //   queryClient.setQueryData(queryKey, context);
+        //   console.warn(err);
+        // },
         onSettled: () => {
-          queryClient.invalidateQueries(queryKey);
+          navigate('/mypage');
+          returnTop();
         },
       }
     );

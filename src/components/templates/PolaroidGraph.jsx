@@ -1,8 +1,7 @@
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-
+import { Circular } from './../atoms/atoms';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
-import CircularProgress from '@mui/material/CircularProgress';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -167,7 +166,7 @@ const PolaroidGraph = () => {
           }}
         >
           <br />
-          <CircularProgress size={130} sx={{ mt: '100px', color: '#ff7bd7' }} />
+          <Circular large={80} small={60} top={120} />
         </div>
       ) : (
         <>
