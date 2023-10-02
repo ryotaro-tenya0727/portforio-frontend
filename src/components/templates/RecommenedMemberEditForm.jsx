@@ -27,14 +27,7 @@ const RecommenedMemberEditForm = ({
     },
   });
 
-  const returnTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
-  const navigate = useNavigate();
   const { control, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -55,8 +48,6 @@ const RecommenedMemberEditForm = ({
       )
     ) {
       deleteRecommendedMember.mutate();
-      navigate('/mypage');
-      returnTop();
     }
   };
 
@@ -66,8 +57,6 @@ const RecommenedMemberEditForm = ({
     } catch (error) {
       console.error(error.response.data);
     }
-    navigate('/mypage');
-    returnTop();
   };
 
   return (

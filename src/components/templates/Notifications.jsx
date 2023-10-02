@@ -1,5 +1,3 @@
-//newNotificationCount =0
-// キャッシュを0にする
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { useContext } from 'react';
 import { useQueryClient, useQuery } from 'react-query';
@@ -8,11 +6,14 @@ import { API_URL } from '../../urls/index';
 
 import { Circular } from './../atoms/atoms';
 import { NotificationCard } from './../organisms/Organisms';
+import { useAuth0 } from '@auth0/auth0-react';
+
 const Notifications = ({ changeNotificationCount }) => {
-  const { accessToken } = useContext(AuthGuardContext);
+  const { getAccessTokenSilently } = useAuth0();
   const { isLoading, data: notifications } = useQuery(
     ['notifications'],
     async () => {
+      const accessToken = await getAccessTokenSilently();
       const response = await axios
         .get(`${API_URL}/api/v1/user/notifications`, {
           headers: {
@@ -27,11 +28,10 @@ const Notifications = ({ changeNotificationCount }) => {
       return response.data.data;
     },
     {
-      cacheTime: 0,
-      staleTime: 3000000,
+      staleTime: 3000000000,
+      cacheTime: 3000000000,
     }
   );
-
   if (isLoading) {
     return <Circular large={80} small={60} top={120} />;
   }

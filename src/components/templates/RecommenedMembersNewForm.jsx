@@ -29,21 +29,12 @@ const RecommenedMembersNewForm = () => {
     },
   });
 
-  const returnTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   const onSubmit = (data) => {
     try {
       createRecommendedMember.mutate(data);
     } catch (error) {
       console.error(error.response.data);
     }
-    navigate('/mypage');
-    returnTop();
   };
 
   return (
@@ -231,7 +222,6 @@ const RecommenedMembersNewForm = () => {
               type='submit'
               className={form.submit_button}
               value='この内容で登録'
-              onClick={returnTop}
             />
           </div>
         </form>

@@ -9,11 +9,7 @@ import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 
 const RecommenedMembersNew = memo(() => {
-  const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
-    useUsersApi();
-  const queryClient = useQueryClient();
-  const userData = queryClient.getQueryData('users');
-  const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
+  const { isAuthenticated, user, isAuthLoading } = useUsersApi();
   const breadcrumbs = [
     {
       title: (
@@ -42,28 +38,20 @@ const RecommenedMembersNew = memo(() => {
       to: '/recommended-members/new',
     },
   ];
-
+  if (isAuthLoading) {
+    return <Loading />;
+  }
+  if (isAuthenticated === false) {
+    return <RedirectToLogin />;
+  }
   return (
-    <>
-      {isAuthLoading || isAuthenticated || <RedirectToLogin />}
-      {userData === undefined ? (
-        isIdle || isLoading ? (
-          <Loading />
-        ) : (
-          <>
-            <Headers name={data.name} />
-            <BreadCrumbs breadcrumbs={breadcrumbs} />
-            <RecommenedMembersNewForm />
-          </>
-        )
-      ) : (
-        <>
-          <Headers name={userData.name} />
-          <BreadCrumbs breadcrumbs={breadcrumbs} />
-          <RecommenedMembersNewForm />
-        </>
-      )}
-    </>
+    isAuthenticated && (
+      <>
+        <Headers name={user.name} />
+        <BreadCrumbs breadcrumbs={breadcrumbs} />
+        <RecommenedMembersNewForm />
+      </>
+    )
   );
 });
 

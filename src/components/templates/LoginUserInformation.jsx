@@ -6,6 +6,7 @@ import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { Circular } from './../atoms/atoms';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { getUserUrl } from './../../urls/index';
@@ -14,11 +15,13 @@ import card from './../../css/organisms/card.module.css';
 
 const LoginUserInformation = () => {
   const { accessToken } = useContext(AuthGuardContext);
+  const { getAccessTokenSilently } = useAuth0();
   const [loading, setLoading] = useState(true);
   const [userData, setUser] = useState('');
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
 
   const getUser = async () => {
+    const accessToken = await getAccessTokenSilently();
     await axios
       .get(getUserUrl, {
         headers: {
