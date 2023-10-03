@@ -1,17 +1,10 @@
 import { useMutation, useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+
 import { recommendedMemberRepository } from './../repositories/recommendedMemberRepository';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export const useRecommendedMembersApi = () => {
-  const navigate = useNavigate();
   const { getAccessTokenSilently } = useAuth0();
-  const returnTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
 
   const useGetRecommendedMembers = () => {
     return useQuery({
@@ -39,8 +32,10 @@ export const useRecommendedMembersApi = () => {
       },
       {
         onSuccess: async () => {
-          navigate('/mypage');
-          returnTop();
+          window.location.href = '/mypage';
+        },
+        onError: (err) => {
+          console.warn(err);
         },
       }
     );
@@ -58,8 +53,10 @@ export const useRecommendedMembersApi = () => {
       },
       {
         onSuccess: async () => {
-          navigate('/mypage');
-          returnTop();
+          window.location.href = '/mypage';
+        },
+        onError: (err) => {
+          console.warn(err);
         },
       }
     );
@@ -75,9 +72,11 @@ export const useRecommendedMembersApi = () => {
         );
       },
       {
-        onSettled: () => {
-          navigate('/mypage');
-          returnTop();
+        onSuccess: () => {
+          window.location.href = '/mypage';
+        },
+        onError: (err) => {
+          console.warn(err);
         },
       }
     );
@@ -97,7 +96,7 @@ export const useRecommendedMembersApi = () => {
         );
       },
       enabled: !!recommendedMemberId,
-      staleTime: 30000000,
+      staleTime: 0,
       cacheTime: 0,
     });
   };

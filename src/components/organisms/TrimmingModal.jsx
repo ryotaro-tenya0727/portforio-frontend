@@ -9,6 +9,7 @@ import 'react-image-crop/dist/ReactCrop.css';
 import { SampleImageButton } from './../atoms/atoms';
 import { AuthGuardContext } from './../../providers/AuthGuard';
 import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRepository';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import form from './../../css/templates/form.module.css';
 import button from './../../css/atoms/button.module.css';
@@ -28,7 +29,7 @@ const TrimmingModal = ({
   onSetSecondImageFiles,
   onSetSecondImageUrls,
 }) => {
-  const { accessToken } = useContext(AuthGuardContext);
+  const { getAccessTokenSilently } = useAuth0();
   // 画像アップロード時にセット
   const [imageRef, setImageRef] = useState();
   // リサイズ中に変化するリサイズ後のサイズ
@@ -108,6 +109,7 @@ const TrimmingModal = ({
     }
     setLoading(true);
     // s3の署名URLを作成
+    const accessToken = await getAccessTokenSilently();
     const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
       {
         presigned_url: {
@@ -150,6 +152,7 @@ const TrimmingModal = ({
       return;
     }
     setLoading(true);
+    const accessToken = await getAccessTokenSilently();
     const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
       {
         presigned_url: {

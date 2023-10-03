@@ -16,11 +16,8 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const { useShowRecommendedMemberDiary } = useRecommendedMemberDiariesApi();
 
-  let {
-    data: recommended_member_diary_show,
-    isIdle,
-    isLoading,
-  } = useShowRecommendedMemberDiary(diaryId);
+  let { data: recommended_member_diary_show, isLoading } =
+    useShowRecommendedMemberDiary(diaryId);
 
   const theme2 = createTheme({
     palette: {
@@ -30,10 +27,9 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
     },
   });
 
-  // isIdle || isLoading
   return (
     <>
-      {isIdle || isLoading ? (
+      {isLoading ? (
         <div
           style={{
             textAlign: 'center',

@@ -25,24 +25,21 @@ const DiaryNewForm = ({
   const [isFileTypeError, setIsFileTypeError] = useState(false);
   const [s3ImageUrls, setImageUrls] = useState([]);
   const [imageFiles, setImageFiles] = useState([]);
-  const navigate = useNavigate();
+
   const { control, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
 
-  const returnTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   const { useCreateRecommendedMemberDiaries } =
     useRecommendedMemberDiariesApi();
 
-  const createRecommendedMemberDiary =
-    useCreateRecommendedMemberDiaries(recommendedMemberId);
+  const createRecommendedMemberDiary = useCreateRecommendedMemberDiaries(
+    recommendedMemberId,
+    recommendedMemberUuid,
+    recommendedMemberNickname,
+    recommendedMemberGroup
+  );
 
   const theme = createTheme({
     palette: {
@@ -78,20 +75,13 @@ const DiaryNewForm = ({
           diary_images_attributes: paramsDiaryImageUrls,
         },
       });
-      navigate(
-        `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
-      );
-      returnTop();
+
       return;
     }
 
     createRecommendedMemberDiary.mutate({
       diary: { ...data.diary },
     });
-    navigate(
-      `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
-    );
-    returnTop();
   };
 
   return (
