@@ -46,7 +46,6 @@ const RecommenedMemberDiaryEditForm = ({
   } = useRecommendedMemberDiariesApi();
 
   let { data: diaryShow, isLoading } = useShowRecommendedMemberDiary(diaryId);
-
   const putRecommendedMemberDiary = usePutRecommendedMemberDiary(
     recommendedMemberId,
     diaryId,
@@ -114,7 +113,7 @@ const RecommenedMemberDiaryEditForm = ({
                 イベント名 (25文字以内)
               </label>
               <Controller
-                defaultValue={`${diaryShow.attributes.event_name || ''}`}
+                defaultValue={`${diaryShow.data.attributes.event_name || ''}`}
                 rules={{ maxLength: 25 }}
                 name='diary.event_name'
                 control={control}
@@ -157,7 +156,7 @@ const RecommenedMemberDiaryEditForm = ({
                 イベントの日付
               </label>
               <Controller
-                defaultValue={`${diaryShow.attributes.event_date}`}
+                defaultValue={`${diaryShow.data.attributes.event_date}`}
                 name='diary.event_date'
                 control={control}
                 render={({ field }) => (
@@ -199,7 +198,7 @@ const RecommenedMemberDiaryEditForm = ({
                 イベント会場 (25文字以内)
               </label>
               <Controller
-                defaultValue={`${diaryShow.attributes.event_venue || ''}`}
+                defaultValue={`${diaryShow.data.attributes.event_venue || ''}`}
                 name='diary.event_venue'
                 rules={{ maxLength: 25 }}
                 control={control}
@@ -241,7 +240,7 @@ const RecommenedMemberDiaryEditForm = ({
                 この日のチェキ枚数
               </label>
               <Controller
-                defaultValue={`${diaryShow.event_polaroid_count}`}
+                defaultValue={`${diaryShow.data.event_polaroid_count}`}
                 name='diary.event_polaroid_count'
                 rules={{ max: 99 }}
                 control={control}
@@ -276,7 +275,9 @@ const RecommenedMemberDiaryEditForm = ({
                 印象に残った出来事 (30文字以内)
               </label>
               <Controller
-                defaultValue={`${diaryShow.attributes.impressive_memory || ''}`}
+                defaultValue={`${
+                  diaryShow.data.attributes.impressive_memory || ''
+                }`}
                 name='diary.impressive_memory'
                 rules={{ maxLength: 30 }}
                 control={control}
@@ -303,7 +304,7 @@ const RecommenedMemberDiaryEditForm = ({
 
               <Controller
                 defaultValue={`${
-                  diaryShow.attributes.impressive_memory_detail || ''
+                  diaryShow.data.attributes.impressive_memory_detail || ''
                 }`}
                 name='diary.impressive_memory_detail'
                 rules={{ maxLength: 60000 }}
