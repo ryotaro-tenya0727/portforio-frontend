@@ -23,6 +23,12 @@ const Home = () => {
   const handleClick = () => {
     setLoading(true);
   };
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   const isWide = useMedia({ minWidth: '700px' });
   return (
     <>
@@ -164,7 +170,10 @@ const Home = () => {
                     <>
                       {' '}
                       <Link to='mypage'>
-                        <Button className={home.register_button}>
+                        <Button
+                          className={home.register_button}
+                          onClick={returnTop}
+                        >
                           <HowToRegIcon
                             sx={{
                               fontSize: '22px',

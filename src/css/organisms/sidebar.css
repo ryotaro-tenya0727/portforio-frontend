@@ -7,6 +7,7 @@
   border: 2px solid #ff94df;
   border-radius: 2px;
   animation: SlideIn 0.6s;
+  overflow: auto;
 }
 
 @media (min-width: 500px) {
