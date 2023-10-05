@@ -88,7 +88,9 @@ export const useRecommendedMemberDiariesApi = () => {
           console.warn(err);
         },
         onSuccess: async () => {
-          window.location.href = `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`;
+          navigate(
+            `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
+          );
           returnTop();
         },
       }
@@ -116,7 +118,9 @@ export const useRecommendedMemberDiariesApi = () => {
           console.warn(err);
         },
         onSuccess: async () => {
-          window.location.href = `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`;
+          navigate(
+            `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
+          );
           returnTop();
         },
       }
