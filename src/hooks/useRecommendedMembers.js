@@ -1,11 +1,17 @@
 import { useMutation, useQuery } from 'react-query';
-
+import { useNavigate } from 'react-router-dom';
 import { recommendedMemberRepository } from './../repositories/recommendedMemberRepository';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export const useRecommendedMembersApi = () => {
+  const navigate = useNavigate();
   const { getAccessTokenSilently } = useAuth0();
-
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   const useGetRecommendedMembers = () => {
     return useQuery({
       queryKey: 'recommended_members',
@@ -32,7 +38,8 @@ export const useRecommendedMembersApi = () => {
       },
       {
         onSuccess: async () => {
-          window.location.href = '/mypage';
+          navigate('/mypage');
+          returnTop();
         },
         onError: (err) => {
           console.warn(err);
@@ -53,7 +60,8 @@ export const useRecommendedMembersApi = () => {
       },
       {
         onSuccess: async () => {
-          window.location.href = '/mypage';
+          navigate('/mypage');
+          returnTop();
         },
         onError: (err) => {
           console.warn(err);
@@ -73,7 +81,8 @@ export const useRecommendedMembersApi = () => {
       },
       {
         onSuccess: () => {
-          window.location.href = '/mypage';
+          navigate('/mypage');
+          returnTop();
         },
         onError: (err) => {
           console.warn(err);

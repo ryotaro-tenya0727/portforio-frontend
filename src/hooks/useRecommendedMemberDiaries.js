@@ -1,9 +1,11 @@
 import { useMutation, useQueryClient, useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { recommendedMemberDiaryRepository } from './../repositories/recommendedMemberDiaryRepository';
 
 export const useRecommendedMemberDiariesApi = () => {
   const { getAccessTokenSilently } = useAuth0();
+  const navigate = useNavigate();
   const returnTop = () => {
     window.scrollTo({
       top: 0,
@@ -55,7 +57,10 @@ export const useRecommendedMemberDiariesApi = () => {
           console.warn(err);
         },
         onSuccess: () => {
-          window.location.href = `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`;
+          navigate(
+            `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
+          );
+          returnTop();
         },
       }
     );
@@ -84,6 +89,7 @@ export const useRecommendedMemberDiariesApi = () => {
         },
         onSuccess: async () => {
           window.location.href = `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`;
+          returnTop();
         },
       }
     );
@@ -111,6 +117,7 @@ export const useRecommendedMemberDiariesApi = () => {
         },
         onSuccess: async () => {
           window.location.href = `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`;
+          returnTop();
         },
       }
     );
