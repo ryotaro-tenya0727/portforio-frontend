@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -12,7 +11,6 @@ import form from './../../css/templates/form.module.css';
 
 const RecommenedMembersNewForm = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
-  const navigate = useNavigate();
   const { useCreateRecommendedMembers } = useRecommendedMembersApi();
   const createRecommendedMember = useCreateRecommendedMembers();
 

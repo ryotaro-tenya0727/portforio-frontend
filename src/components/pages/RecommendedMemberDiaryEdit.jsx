@@ -15,11 +15,7 @@ const RecommendedMemberDiaryEdit = memo(() => {
     useParams();
   const { search } = useLocation();
   const query = new URLSearchParams(search);
-  const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
-    useUsersApi();
-  const queryClient = useQueryClient();
-  const userData = queryClient.getQueryData('users');
-  const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
+  const { isAuthenticated, user, isAuthLoading } = useUsersApi();
 
   const breadcrumbs = [
     { title: 'マイページ', to: '/mypage' },
@@ -31,29 +27,17 @@ const RecommendedMemberDiaryEdit = memo(() => {
     },
     { title: `日記編集ページ` },
   ];
+  if (isAuthLoading) {
+    return <Loading />;
+  }
+  if (isAuthenticated === false) {
+    return <RedirectToLogin />;
+  }
   return (
     <>
-      {isAuthLoading || isAuthenticated || <RedirectToLogin />}
-
-      {userData === undefined ? (
-        isIdle || isLoading ? (
-          <Loading />
-        ) : (
-          <>
-            <Headers name={data.name} />
-            <BreadCrumbs breadcrumbs={breadcrumbs} />
-            <RecommenedMemberDiaryEditForm
-              recommendedMemberId={recommended_member_id}
-              recommendedMemberUuid={recommended_member_uuid}
-              recommendedMemberNickname={query.get('nickname')}
-              recommendedMemberGroup={query.get('group')}
-              diaryId={diary_id}
-            />
-          </>
-        )
-      ) : (
+      {isAuthenticated && (
         <>
-          <Headers name={userData.name} />
+          <Headers name={user.name} />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <RecommenedMemberDiaryEditForm
             recommendedMemberId={recommended_member_id}

@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { useQueryClient } from 'react-query';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 import { HomeBreadText } from './../atoms/atoms';

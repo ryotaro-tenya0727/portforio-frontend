@@ -23,7 +23,6 @@ const RecommenedMemberDiaryEditForm = ({
   recommendedMemberGroup,
   diaryId,
 }) => {
-  const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const theme = createTheme({
     palette: {
       primary: {
@@ -34,39 +33,33 @@ const RecommenedMemberDiaryEditForm = ({
       },
     },
   });
-  const navigate = useNavigate();
+
   const { control, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
 
-  const returnTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
   const {
     useShowRecommendedMemberDiary,
     usePutRecommendedMemberDiary,
     useDeleteRecommendedMemberDiary,
   } = useRecommendedMemberDiariesApi();
 
-  let {
-    data: diaryShow,
-    isIdle,
-    isLoading,
-  } = useShowRecommendedMemberDiary(diaryId);
-  diaryShow = diaryShow && diaryShow.data.attributes;
-
+  let { data: diaryShow, isLoading } = useShowRecommendedMemberDiary(diaryId);
   const putRecommendedMemberDiary = usePutRecommendedMemberDiary(
     recommendedMemberId,
-    diaryId
+    diaryId,
+    recommendedMemberUuid,
+    recommendedMemberNickname,
+    recommendedMemberGroup
   );
 
   const deleteRecommendedMemberDiary = useDeleteRecommendedMemberDiary(
     recommendedMemberId,
-    diaryId
+    diaryId,
+    recommendedMemberUuid,
+    recommendedMemberNickname,
+    recommendedMemberGroup
   );
 
   const deleteDiary = () => {
@@ -76,11 +69,6 @@ const RecommenedMemberDiaryEditForm = ({
       )
     ) {
       deleteRecommendedMemberDiary.mutate();
-
-      navigate(
-        `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
-      );
-      returnTop();
     }
   };
 
@@ -90,15 +78,11 @@ const RecommenedMemberDiaryEditForm = ({
     } catch (error) {
       console.error(error.response.data);
     }
-    navigate(
-      `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
-    );
-    returnTop();
   };
-  // isIdle || isLoading
+
   return (
     <>
-      {isIdle || isLoading ? (
+      {isLoading ? (
         <div
           style={{
             textAlign: 'center',
@@ -129,7 +113,7 @@ const RecommenedMemberDiaryEditForm = ({
                 イベント名 (25文字以内)
               </label>
               <Controller
-                defaultValue={`${diaryShow.event_name}`}
+                defaultValue={`${diaryShow.data.attributes.event_name || ''}`}
                 rules={{ maxLength: 25 }}
                 name='diary.event_name'
                 control={control}
@@ -172,7 +156,7 @@ const RecommenedMemberDiaryEditForm = ({
                 イベントの日付
               </label>
               <Controller
-                defaultValue={`${diaryShow.event_date}`}
+                defaultValue={`${diaryShow.data.attributes.event_date}`}
                 name='diary.event_date'
                 control={control}
                 render={({ field }) => (
@@ -214,7 +198,7 @@ const RecommenedMemberDiaryEditForm = ({
                 イベント会場 (25文字以内)
               </label>
               <Controller
-                defaultValue={`${diaryShow.event_venue}`}
+                defaultValue={`${diaryShow.data.attributes.event_venue || ''}`}
                 name='diary.event_venue'
                 rules={{ maxLength: 25 }}
                 control={control}
@@ -256,7 +240,7 @@ const RecommenedMemberDiaryEditForm = ({
                 この日のチェキ枚数
               </label>
               <Controller
-                defaultValue={`${diaryShow.event_polaroid_count}`}
+                defaultValue={`${diaryShow.data.event_polaroid_count}`}
                 name='diary.event_polaroid_count'
                 rules={{ max: 99 }}
                 control={control}
@@ -291,7 +275,9 @@ const RecommenedMemberDiaryEditForm = ({
                 印象に残った出来事 (30文字以内)
               </label>
               <Controller
-                defaultValue={`${diaryShow.impressive_memory}`}
+                defaultValue={`${
+                  diaryShow.data.attributes.impressive_memory || ''
+                }`}
                 name='diary.impressive_memory'
                 rules={{ maxLength: 30 }}
                 control={control}
@@ -317,7 +303,9 @@ const RecommenedMemberDiaryEditForm = ({
               </label>
 
               <Controller
-                defaultValue={`${diaryShow.impressive_memory_detail}`}
+                defaultValue={`${
+                  diaryShow.data.attributes.impressive_memory_detail || ''
+                }`}
                 name='diary.impressive_memory_detail'
                 rules={{ maxLength: 60000 }}
                 control={control}
@@ -340,7 +328,7 @@ const RecommenedMemberDiaryEditForm = ({
               />
               <br />
               <br />
-              <label htmlFor='status'>他のユーザーへの公開設定</label>
+              <label htmlFor='status'>トップページでの公開設定</label>
               <Controller
                 defaultValue=''
                 name='diary.status'

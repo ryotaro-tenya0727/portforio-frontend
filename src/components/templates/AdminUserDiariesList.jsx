@@ -12,7 +12,6 @@ const AdminUserDiariesList = ({ role, userId }) => {
     isIdle,
     isLoading,
   } = useGetAdminDiaries(userId);
-  console.log(adminUserDiaries);
 
   return (
     <>

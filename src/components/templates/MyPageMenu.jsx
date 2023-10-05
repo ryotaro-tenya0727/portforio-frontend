@@ -27,7 +27,7 @@ const MyPageMenu = () => {
   const [value, setValue] = useState('2');
   const { getAccessTokenSilently } = useAuth0();
   const [notificationCount, setNotificationCount] = useState(0);
-  const { isLoading, data } = useQuery(
+  const { isLoading } = useQuery(
     ['user_info'],
     async () => {
       const accessToken = await getAccessTokenSilently();

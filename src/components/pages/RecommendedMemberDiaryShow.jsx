@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { useQueryClient } from 'react-query';
 
 import { BreadCrumbs, Headers } from './../organisms/Organisms';
 import {
@@ -16,11 +15,7 @@ const RecommenedMemberDiaryShow = memo(() => {
   const { search } = useLocation();
   const query = new URLSearchParams(search);
 
-  const { useGetAccesstokenAndGetUser, isAuthenticated, isAuthLoading } =
-    useUsersApi();
-  const queryClient = useQueryClient();
-  const userData = queryClient.getQueryData('users');
-  const { data, isIdle, isLoading } = useGetAccesstokenAndGetUser();
+  const { isAuthenticated, user, isAuthLoading } = useUsersApi();
 
   const breadcrumbs = [
     { title: 'マイページ', to: '/mypage' },
@@ -32,23 +27,17 @@ const RecommenedMemberDiaryShow = memo(() => {
     },
     { title: `日記詳細ページ` },
   ];
-
+  if (isAuthLoading) {
+    return <Loading />;
+  }
+  if (isAuthenticated === false) {
+    return <RedirectToLogin />;
+  }
   return (
     <>
-      {isAuthLoading || isAuthenticated || <RedirectToLogin />}
-      {userData === undefined ? (
-        isIdle || isLoading ? (
-          <Loading />
-        ) : (
-          <>
-            <Headers name={data.name} />
-            <BreadCrumbs breadcrumbs={breadcrumbs} />
-            <RecommenedMemberDiaryShowDetail diaryId={diary_id} />
-          </>
-        )
-      ) : (
+      {isAuthenticated && (
         <>
-          <Headers name={userData.name} />
+          <Headers name={user.name} />
           <BreadCrumbs breadcrumbs={breadcrumbs} />
           <RecommenedMemberDiaryShowDetail diaryId={diary_id} />
         </>

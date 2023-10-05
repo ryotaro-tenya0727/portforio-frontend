@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { useQueryClient } from 'react-query';
 
 import { HomeBreadText } from './../atoms/atoms';
 import { BreadCrumbs, Headers } from './../organisms/Organisms';

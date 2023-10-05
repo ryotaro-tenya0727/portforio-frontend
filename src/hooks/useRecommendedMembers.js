@@ -12,7 +12,6 @@ export const useRecommendedMembersApi = () => {
       behavior: 'smooth',
     });
   };
-
   const useGetRecommendedMembers = () => {
     return useQuery({
       queryKey: 'recommended_members',
@@ -42,6 +41,9 @@ export const useRecommendedMembersApi = () => {
           navigate('/mypage');
           returnTop();
         },
+        onError: (err) => {
+          console.warn(err);
+        },
       }
     );
   };
@@ -61,6 +63,9 @@ export const useRecommendedMembersApi = () => {
           navigate('/mypage');
           returnTop();
         },
+        onError: (err) => {
+          console.warn(err);
+        },
       }
     );
   };
@@ -75,9 +80,12 @@ export const useRecommendedMembersApi = () => {
         );
       },
       {
-        onSettled: () => {
+        onSuccess: () => {
           navigate('/mypage');
           returnTop();
+        },
+        onError: (err) => {
+          console.warn(err);
         },
       }
     );
@@ -97,7 +105,7 @@ export const useRecommendedMembersApi = () => {
         );
       },
       enabled: !!recommendedMemberId,
-      staleTime: 30000000,
+      staleTime: 0,
       cacheTime: 0,
     });
   };
