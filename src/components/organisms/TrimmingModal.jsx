@@ -18,14 +18,14 @@ import card from './../../css/organisms/card.module.css';
 const TrimmingModal = ({
   onSetIsFileTypeError,
   onSetIsNumberTypeError,
+  onSetDiaryImageUrlAndIndex,
+  diaryImageUrls,
   onSetDiaryImageUrls,
-
-  onSetModifyImageFiles,
-  onSetModifyImageUrls,
 }) => {
   const { getAccessTokenSilently } = useAuth0();
   // 画像アップロード時にセット
-  const [imageRef, setImageRef] = useState();
+  const [firstImageRef, setFirstImageRef] = useState();
+  const [secondImageRef, setSecondImageRef] = useState();
   // リサイズ中に変化するリサイズ後のサイズ
   const [cropConfig, setCropConfig] = useState({
     unit: 'px', // Can be 'px' or '%'
@@ -36,22 +36,22 @@ const TrimmingModal = ({
     aspect: 3 / 4,
   });
 
-  const [loading, setLoading] = useState(false);
+  const [firstLoading, setFirstLoading] = useState(false);
+  const [secondLoading, setSecondLoading] = useState(false);
 
   const [firstOpen, setFirstOpen] = useState(false);
   const handleFirstClose = () => setFirstOpen(false);
   const firstInputRef = useRef(null);
-  const [FirstimageToCrop, setFirstImageToCrop] = useState(undefined);
+  const [firstImageToCrop, setFirstImageToCrop] = useState(undefined);
   const [croppedFirstImage, SetCroppedFirstImage] = useState(null);
   const [firstImage, setFirstImage] = useState(null);
 
-  // const [secondOpen, setSecondOpen] = useState(false);
-  // const handleSecondClose = () => setSecondOpen(false);
-  // const secondInputRef = useRef(null);
-  // const [madeSecondUrls, SetMadeSecondUrls] = useState(null);
-  // const [imageToSecondCrop, setImageToSecondCrop] = useState(undefined);
-  // const [croppedSecondImage, SetCroppedSecondImage] = useState(null);
-  // const [secondImage, setSecondImage] = useState(null);
+  const [secondOpen, setSecondOpen] = useState(false);
+  const handleSecondClose = () => setSecondOpen(false);
+  const secondInputRef = useRef(null);
+  const [secondImageToCrop, setSecondImageToCrop] = useState(undefined);
+  const [croppedSecondImage, SetCroppedSecondImage] = useState(null);
+  const [secondImage, setSecondImage] = useState(null);
 
   const style = {
     position: 'absolute',
@@ -82,9 +82,9 @@ const TrimmingModal = ({
     firstInputRef.current.click();
   };
 
-  // const secondFileClick = () => {
-  //   secondInputRef.current.click();
-  // };
+  const secondFileClick = () => {
+    secondInputRef.current.click();
+  };
   const openFirstTrimmingModal = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
@@ -107,47 +107,27 @@ const TrimmingModal = ({
     event.target.value = '';
   };
 
-  // const secondFileUpload = async (event) => {
-  //   if (!event) return;
-  //   const file = event.target.files[0];
-  //   resetErrors();
-  //   if (
-  //     !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
-  //   ) {
-  //     onSetIsFileTypeError(true);
-  //     return;
-  //   }
+  const openSecondTrimmingModal = async (event) => {
+    if (!event) return;
+    const file = event.target.files[0];
+    resetErrors();
+    if (
+      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
+    ) {
+      onSetIsFileTypeError(true);
+      return;
+    }
 
-  //   if (imageFiles.length >= 2) {
-  //     onSetIsNumberTypeError(true);
-  //     return;
-  //   }
-  //   setLoading(true);
-  //   const accessToken = await getAccessTokenSilently();
-  //   const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
-  //     {
-  //       presigned_url: {
-  //         filename: file.name,
-  //       },
-  //     },
-  //     accessToken
-  //   );
-  //   const compressFile = await imageCompression(file, compressOption);
-  //   setLoading(false);
-  //   SetMadeSecondUrls(imageUrls);
-  //   const reader = new FileReader();
+    const reader = new FileReader();
+    // readAsDataURLでファイルを読み込むと発動
+    reader.addEventListener('load', async () => {
+      setSecondImageToCrop(reader.result);
+    });
+    reader.readAsDataURL(file);
 
-  //   // readAsDataURLでファイルを読み込むと発動
-  //   reader.addEventListener('load', () => {
-  //     // ここでリサイズする画像を格納
-  //     setImageToSecondCrop(reader.result);
-  //   });
-
-  //   reader.readAsDataURL(compressFile);
-  //   setSecondOpen(true);
-  //   event.target.value = '';
-  //   // ここでリサイズする画像を格納
-  // };
+    setSecondOpen(true);
+    event.target.value = '';
+  };
 
   const getCroppedImage = (sourceImage, cropConfig, fileName) => {
     // creating the cropped image from the source image
@@ -192,9 +172,9 @@ const TrimmingModal = ({
   };
 
   const cropFirstImage = async (crop) => {
-    if (imageRef && crop.width && crop.height) {
+    if (firstImageRef && crop.width && crop.height) {
       const croppedImage = await getCroppedImage(
-        imageRef,
+        firstImageRef,
         crop,
         `CropImage.png` // destination filename
       );
@@ -203,23 +183,22 @@ const TrimmingModal = ({
     }
   };
 
-  // const cropSecondImage = async (crop) => {
-  //   if (imageRef && crop.width && crop.height) {
-  //     const croppedImage = await getCroppedImage(
-  //       imageRef,
-  //       crop,
-  //       `CropImage.png` // destination filename
-  //     );
-  //     // リサイズ後に表示する画像をstateに格納
-  //     SetCroppedSecondImage(croppedImage);
-  //   }
-  // };
+  const cropSecondImage = async (crop) => {
+    if (secondImageRef && crop.width && crop.height) {
+      const croppedImage = await getCroppedImage(
+        secondImageRef,
+        crop,
+        `CropImage.png` // destination filename
+      );
+      // リサイズ後に表示する画像をstateに格納
+      SetCroppedSecondImage(croppedImage);
+    }
+  };
 
   const registerFirstImage = async () => {
-    // s3の署名URLを作成
     handleFirstClose();
     setFirstImage(croppedFirstImage);
-    setLoading(true);
+    setFirstLoading(true);
     const accessToken = await getAccessTokenSilently();
     const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
       {
@@ -229,8 +208,7 @@ const TrimmingModal = ({
       },
       accessToken
     );
-    console.log(imageUrls);
-    onSetDiaryImageUrls(imageUrls.diary_image_url);
+    onSetDiaryImageUrlAndIndex(imageUrls.diary_image_url, 0);
     const compressFile = await imageCompression(
       croppedFirstImage,
       compressOption
@@ -241,7 +219,7 @@ const TrimmingModal = ({
         'Content-Type': 'image/*',
       },
     });
-    setLoading(false);
+    setFirstLoading(false);
 
     setCropConfig({
       unit: 'px', // Can be 'px' or '%'
@@ -252,19 +230,40 @@ const TrimmingModal = ({
     });
   };
 
-  // const registerSecondImage = () => {
-  //   // setSecondImage(croppedSecondImage);
-  //   onSetSecondImageFiles(croppedSecondImage);
-  //   onSetSecondImageUrls(madeSecondUrls);
-  //   // handleSecondClose();
-  //   setCropConfig({
-  //     unit: 'px', // Can be 'px' or '%'
-  //     x: 20,
-  //     y: 20,
-  //     width: 60,
-  //     aspect: 3 / 4,
-  //   });
-  // };
+  const registerSecondImage = async () => {
+    handleSecondClose();
+    setSecondImage(croppedSecondImage);
+    setSecondLoading(true);
+    const accessToken = await getAccessTokenSilently();
+    const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
+      {
+        presigned_url: {
+          filename: `${crypto.randomUUID()}`,
+        },
+      },
+      accessToken
+    );
+    onSetDiaryImageUrlAndIndex(imageUrls.diary_image_url, 1);
+    const compressFile = await imageCompression(
+      croppedSecondImage,
+      compressOption
+    );
+
+    await axios.put(imageUrls.presigned_url, compressFile, {
+      headers: {
+        'Content-Type': 'image/*',
+      },
+    });
+    setSecondLoading(false);
+
+    setCropConfig({
+      unit: 'px', // Can be 'px' or '%'
+      x: 20,
+      y: 20,
+      width: 60,
+      aspect: 3 / 4,
+    });
+  };
 
   // このまま
   const handleCancel = (imageIndex) => {
@@ -272,10 +271,13 @@ const TrimmingModal = ({
       resetErrors();
       if (imageIndex === 0) {
         setFirstImage(null);
+      } else if (imageIndex === 1) {
+        setSecondImage(null);
       }
-      // else {
-      //   setSecondImage(null);
-      // }
+      const filteredDiaryImageUrls = diaryImageUrls.filter((obj) => {
+        return obj.diary_image_index !== imageIndex;
+      });
+      onSetDiaryImageUrls(filteredDiaryImageUrls);
     }
   };
 
@@ -288,25 +290,20 @@ const TrimmingModal = ({
         onChange={(event) => openFirstTrimmingModal(event)}
         hidden
       />
-      {/* <input
+      <input
         ref={secondInputRef}
         type='file'
         accept='image/*'
-        onChange={(event) => secondFileUpload(event)}
+        onChange={(event) => openSecondTrimmingModal(event)}
         hidden
-      /> */}
+      />
       <div className={form.images}>
         {firstImage !== null ? (
           <div
-            style={
-              // loading
-              //   ? { position: 'relative', marginTop: '25px' }
-              //   :
-              {
-                position: 'relative',
-                marginTop: '25px',
-              }
-            }
+            style={{
+              position: 'relative',
+              marginTop: '25px',
+            }}
           >
             <button
               className={button.image_cancel_button}
@@ -315,7 +312,7 @@ const TrimmingModal = ({
             >
               <DeleteForeverIcon />
             </button>
-            {loading && (
+            {firstLoading && (
               <Circular
                 large={45}
                 small={45}
@@ -335,7 +332,7 @@ const TrimmingModal = ({
               width='200'
               height='266.7'
               style={
-                loading
+                firstLoading
                   ? {
                       border: '4px solid #ff99c5',
                       filter: 'brightness(50%)',
@@ -351,16 +348,32 @@ const TrimmingModal = ({
         )}
         <br />
         <br />
-        {/* {secondImage !== null ? (
-          <div style={{ position: 'relative', marginTop: '25px' }}>
-            {loading || (
-              <button
-                className={button.image_cancel_button}
-                type='button'
-                onClick={() => handleCancel(1)}
-              >
-                {loading || <DeleteForeverIcon />}
-              </button>
+        {secondImage !== null ? (
+          <div
+            style={{
+              position: 'relative',
+              marginTop: '25px',
+            }}
+          >
+            <button
+              className={button.image_cancel_button}
+              type='button'
+              onClick={() => handleCancel(1)}
+            >
+              <DeleteForeverIcon />
+            </button>
+            {secondLoading && (
+              <Circular
+                large={45}
+                small={45}
+                circleStyle={{
+                  position: 'absolute',
+                  top: '120px',
+                  left: '85px',
+                  zIndex: '1',
+                }}
+                color='#fff'
+              />
             )}
 
             <img
@@ -368,12 +381,21 @@ const TrimmingModal = ({
               alt={`あなたの写真 `}
               width='200'
               height='266.7'
-              style={{ border: '4px solid #ff99c5' }}
-            />
+              style={
+                secondLoading
+                  ? {
+                      border: '4px solid #ff99c5',
+                      filter: 'brightness(50%)',
+                    }
+                  : {
+                      border: '4px solid #ff99c5',
+                    }
+              }
+            ></img>
           </div>
         ) : (
           <SampleImageButton onClick={secondFileClick} />
-        )} */}
+        )}
       </div>
       <Modal
         open={firstOpen}
@@ -385,19 +407,19 @@ const TrimmingModal = ({
           <div className={card.trimming_card}>
             <ReactCrop
               style={{}}
-              src={FirstimageToCrop}
+              src={firstImageToCrop}
               crop={cropConfig}
               ruleOfThirds
               onImageLoaded={(imageRef) => {
-                console.log('onImageLoaded');
+                // console.log('onImageLoaded');
                 // <img ...>がimageRefに入る
                 // imageRef.width = '300px';
                 // src={FirstimageToCrop}で画像が読み込まれたらこの関数が実行される。
-                setImageRef(imageRef);
+                setFirstImageRef(imageRef);
               }}
               // リサイズ中(マウスを持っているとき)
               onChange={(cropConfig) => {
-                console.log('onChange');
+                // console.log('onChange');
                 setCropConfig(cropConfig);
               }}
               // リサイズ後（マウス離したとき）
@@ -415,7 +437,7 @@ const TrimmingModal = ({
           </button>
         </Box>
       </Modal>
-      {/* <Modal
+      <Modal
         open={secondOpen}
         onClose={handleSecondClose}
         aria-labelledby='modal-modal-title'
@@ -424,37 +446,30 @@ const TrimmingModal = ({
         <Box sx={style}>
           <div className={card.trimming_card}>
             <ReactCrop
-              src={imageToSecondCrop}
+              style={{}}
+              src={secondImageToCrop}
               crop={cropConfig}
               ruleOfThirds
-              // 画像選択時
               onImageLoaded={(imageRef) => {
-                // console.log(imageRef.class);
-                // console.log(imageRef.width);
-                // <img ...>がimageRefに入る
-                setImageRef(imageRef);
+                setSecondImageRef(imageRef);
               }}
-              // リサイズ中(マウスを持っているとき)
               onChange={(cropConfig) => {
-                // console.log('onChange');
                 setCropConfig(cropConfig);
               }}
-              // リサイズ後（マウス離したとき）
-              onComplete={(cropConfig) => {
-                // console.log('リサイズ');
+              onComplete={async (cropConfig) => {
                 cropSecondImage(cropConfig);
               }}
-              crossorigin='anonymous' // to avoid CORS-related problems
+              crossorigin='anonymous'
             />
           </div>
           <button
             onClick={registerSecondImage}
             className={button.button_trimming}
           >
-            トリミングする
+            トリミング
           </button>
         </Box>
-      </Modal> */}
+      </Modal>
     </div>
   );
 };

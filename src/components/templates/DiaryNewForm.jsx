@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -55,10 +54,9 @@ const DiaryNewForm = ({
     const paramsDiaryImageUrls = [];
     [...Array(l)].map((_, index) => {
       paramsDiaryImageUrls.push({
-        diary_image_url: diaryImageUrls[index],
+        diary_image_url: diaryImageUrls[index].url,
       });
     });
-
     createRecommendedMemberDiary.mutate({
       diary: {
         ...data.diary,
@@ -88,15 +86,16 @@ const DiaryNewForm = ({
 
           <p className={form.image_up_title}>日記に使う画像を選択</p>
           <TrimmingModal
-            onSetDiaryImageUrls={(url) => {
-              setDiaryImageUrls([...diaryImageUrls, url]);
+            onSetDiaryImageUrlAndIndex={(url, index) => {
+              setDiaryImageUrls([
+                ...diaryImageUrls,
+                { diary_image_index: index, url: url },
+              ]);
             }}
-            onSetResetImageUrls={() => {
-              setDiaryImageUrls([]);
-            }}
-            onSetModifyImageUrls={(urls) => {
+            onSetDiaryImageUrls={(urls) => {
               setDiaryImageUrls(urls);
             }}
+            diaryImageUrls={diaryImageUrls}
             onSetIsFileTypeError={(result) => setIsFileTypeError(result)}
             onSetIsNumberTypeError={(result) => setIsNumberError(result)}
           />
