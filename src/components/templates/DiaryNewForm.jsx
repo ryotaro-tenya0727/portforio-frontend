@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -23,8 +21,7 @@ const DiaryNewForm = ({
 }) => {
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
-  const [s3ImageUrls, setImageUrls] = useState([]);
-  const [imageFiles, setImageFiles] = useState([]);
+  const [diaryImageUrls, setDiaryImageUrls] = useState([]);
 
   const { control, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
@@ -53,35 +50,20 @@ const DiaryNewForm = ({
   });
 
   const onSubmit = async (data) => {
-    const l = s3ImageUrls.length;
-    if (l !== 0) {
-      [...Array(l)].map(async (_, index) => {
-        await axios.put(s3ImageUrls[index].presigned_url, imageFiles[index], {
-          headers: {
-            'Content-Type': 'image/*',
-          },
-        });
+    const l = diaryImageUrls.length;
+    const paramsDiaryImageUrls = [];
+    [...Array(l)].map((_, index) => {
+      paramsDiaryImageUrls.push({
+        diary_image_url: diaryImageUrls[index].url,
       });
-      const paramsDiaryImageUrls = [];
-      [...Array(l)].map((_, index) => {
-        paramsDiaryImageUrls.push({
-          diary_image_url: s3ImageUrls[index].diary_image_url,
-        });
-      });
-
-      createRecommendedMemberDiary.mutate({
-        diary: {
-          ...data.diary,
-          diary_images_attributes: paramsDiaryImageUrls,
-        },
-      });
-
-      return;
-    }
-
-    createRecommendedMemberDiary.mutate({
-      diary: { ...data.diary },
     });
+    createRecommendedMemberDiary.mutate({
+      diary: {
+        ...data.diary,
+        diary_images_attributes: paramsDiaryImageUrls,
+      },
+    });
+    setDiaryImageUrls([]);
   };
 
   return (
@@ -104,36 +86,16 @@ const DiaryNewForm = ({
 
           <p className={form.image_up_title}>日記に使う画像を選択</p>
           <TrimmingModal
-            imageFiles={imageFiles}
-            s3ImageUrls={s3ImageUrls}
-            // first
-            onSetFirstImageFiles={(image) => {
-              setImageFiles([image, ...imageFiles]);
+            onSetDiaryImageUrlAndIndex={(url, index) => {
+              setDiaryImageUrls([
+                ...diaryImageUrls,
+                { diary_image_index: index, url: url },
+              ]);
             }}
-            onSetFirstImageUrls={(imageUrls) =>
-              setImageUrls([imageUrls, ...s3ImageUrls])
-            }
-            // second
-            onSetSecondImageFiles={(image) => {
-              setImageFiles([...imageFiles, image]);
+            onSetDiaryImageUrls={(urls) => {
+              setDiaryImageUrls(urls);
             }}
-            onSetSecondImageUrls={(imageUrls) =>
-              setImageUrls([...s3ImageUrls, imageUrls])
-            }
-            //reset
-            onSetResetImageFiles={() => {
-              setImageFiles([]);
-            }}
-            onSetResetImageUrls={() => {
-              setImageUrls([]);
-            }}
-            //modify
-            onSetModifyImageFiles={(files) => {
-              setImageFiles(files);
-            }}
-            onSetModifyImageUrls={(urls) => {
-              setImageUrls(urls);
-            }}
+            diaryImageUrls={diaryImageUrls}
             onSetIsFileTypeError={(result) => setIsFileTypeError(result)}
             onSetIsNumberTypeError={(result) => setIsNumberError(result)}
           />
