@@ -22,7 +22,7 @@ import {
 
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
 
-const MyPageMenu = () => {
+const MyPageMenu = ({ user }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
   const { getAccessTokenSilently } = useAuth0();
@@ -186,7 +186,7 @@ const MyPageMenu = () => {
             <RecommendedMembersList />
           </TabPanel>
           <TabPanel value={'3'} sx={{ padding: 0 }}>
-            <LoginUserInformation />
+            <LoginUserInformation user={user} />
           </TabPanel>
         </TabContext>
       </ThemeProvider>

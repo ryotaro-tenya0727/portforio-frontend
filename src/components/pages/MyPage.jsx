@@ -70,7 +70,7 @@ const MyPage = memo(() => {
               推しメン登録ページへ
             </Button>
           </Link>
-          <MyPageMenu />
+          <MyPageMenu user={user} />
         </div>
       </div>
     )

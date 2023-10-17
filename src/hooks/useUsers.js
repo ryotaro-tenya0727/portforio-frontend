@@ -14,28 +14,28 @@ export const useUsersApi = () => {
     user,
     isLoading: isAuthLoading,
   } = useAuth0();
-  const [isLoading, setisLoading] = useState(true);
-  const useAddUser = () => {
-    const queryClient = useQueryClient();
-    // mutateメソッドの引数がmutate関数の引数になる。下のcreateUser.mutate
-    return useMutation(
-      async (params) => {
-        setAccessToken(params.accessToken);
-        return await userRepository.createUser(
-          params.value,
-          params.accessToken || ''
-        );
-      },
-      {
-        onSuccess: (data) => {
-          queryClient.setQueryData('users', data, {
-            staleTime: Infinity,
-            cacheTime: Infinity,
-          });
-        },
-      }
-    );
-  };
+  // const [isLoading, setisLoading] = useState(true);
+  // const useAddUser = () => {
+  //   const queryClient = useQueryClient();
+  //   // mutateメソッドの引数がmutate関数の引数になる。下のcreateUser.mutate
+  //   return useMutation(
+  //     async (params) => {
+  //       setAccessToken(params.accessToken);
+  //       return await userRepository.createUser(
+  //         params.value,
+  //         params.accessToken || ''
+  //       );
+  //     },
+  //     {
+  //       onSuccess: (data) => {
+  //         queryClient.setQueryData('users', data, {
+  //           staleTime: Infinity,
+  //           cacheTime: Infinity,
+  //         });
+  //       },
+  //     }
+  //   );
+  // };
 
   // const useGetAccesstokenAndCreateUser = async () => {
   // const createUser = useAddUser();

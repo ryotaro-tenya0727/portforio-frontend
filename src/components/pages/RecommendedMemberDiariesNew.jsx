@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { useQueryClient } from 'react-query';
 
 import { BreadCrumbs, Headers } from './../organisms/Organisms';
 import { DiaryNewForm, Loading } from './../templates/Templates';

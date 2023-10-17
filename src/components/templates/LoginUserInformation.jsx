@@ -8,13 +8,12 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { Circular } from './../atoms/atoms';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { AuthGuardContext } from './../../providers/AuthGuard';
 import { getUserUrl } from './../../urls/index';
 
 import card from './../../css/organisms/card.module.css';
 
-const LoginUserInformation = () => {
-  const { accessToken } = useContext(AuthGuardContext);
+const LoginUserInformation = ({ user }) => {
+  console.log(user);
   const { getAccessTokenSilently } = useAuth0();
   const [loading, setLoading] = useState(true);
   const [userData, setUser] = useState('');
@@ -80,7 +79,7 @@ const LoginUserInformation = () => {
             </p>
 
             <img
-              src={userData.user_image}
+              src={userData.user_image ? userData.user_image : user.picture}
               alt='picture'
               width='60'
               height='60'
@@ -90,7 +89,7 @@ const LoginUserInformation = () => {
 
             <p className={card.login_card_text}>
               <p className={card.login_card_text_property}>名前</p>{' '}
-              {userData.name}
+              {userData.name ? userData.name : user.nickname}
             </p>
 
             <p className={card.login_card_text}>
