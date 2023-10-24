@@ -7,6 +7,7 @@ import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { Circular } from './../atoms/atoms';
 import { useAuth0 } from '@auth0/auth0-react';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { getUserUrl } from './../../urls/index';
 
@@ -77,9 +78,8 @@ const LoginUserInformation = ({ user }) => {
               />
               あなたのプロフィール
             </p>
-
             <img
-              src={userData.user_image ? userData.user_image : user.picture}
+              src={user.picture}
               alt='picture'
               width='60'
               height='60'
