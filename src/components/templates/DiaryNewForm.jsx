@@ -7,6 +7,10 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
+import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
+
+import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRepository';
 
 import { TrimmingModal } from './../organisms/Organisms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
@@ -22,6 +26,7 @@ const DiaryNewForm = ({
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
   const [diaryImageUrls, setDiaryImageUrls] = useState([]);
+  const { getAccessTokenSilently } = useAuth0();
 
   const { control, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
@@ -66,9 +71,29 @@ const DiaryNewForm = ({
     setDiaryImageUrls([]);
   };
 
+  const onVideoSubmit = async (e) => {
+    const selectedFile = e.target.files[0];
+    const accessToken = await getAccessTokenSilently();
+    const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
+      {
+        presigned_url: {
+          filename: `${crypto.randomUUID()}`,
+        },
+      },
+      accessToken
+    );
+    console.log(imageUrls);
+    await axios.put(imageUrls.presigned_url, selectedFile, {
+      headers: {
+        'Content-Type': selectedFile.type,
+      },
+    });
+  };
+
   return (
     <>
       <ThemeProvider theme={theme}>
+        <input type='file' accept='video/*' onChange={onVideoSubmit} />
         <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
           <p className={form.form_title} style={{ marginTop: '20px' }}>
             {`${recommendedMemberNickname}との日記追加中`}
