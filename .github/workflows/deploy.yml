@@ -28,7 +28,7 @@ jobs:
         run: pwd
       - name: Debug
         run: |
-          cd /home/runner/work/portforio-frontend/portforio-frontend/src/components/organisms && cd .. && cd ..
+          cd /home/runner/work/portforio-frontend/portforio-frontend/src/components/organisms
       - name: PWD execute
         run: pwd
 
