@@ -28,8 +28,8 @@ jobs:
         run: pwd
       - name: Debug
         run: |
-          cd /home/runner/work/portforio-frontend/portforio-frontend/src/components/organisms
-          ls
+          cd /home/runner/work/portforio-frontend/portforio-frontend/src/components/organisms && cd .. && cd ..
+          pwd
           cat ./../../css/templates/form.module.css
       - name: Install dependencies
         run: yarn install
