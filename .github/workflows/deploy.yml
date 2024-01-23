@@ -31,3 +31,5 @@ jobs:
           yarn build
           aws s3 cp ./build s3://${{ secrets.AWS_S3_BUCKET }} --recursive
           aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUD_FRONT_DISTRIBUTION_ID }} --paths '/*'
+        env:
+          CI: false
