@@ -30,6 +30,7 @@ jobs:
         run: |
           cd /home/runner/work/portforio-frontend/portforio-frontend/src/components/organisms
           pwd
+          ls ./../../css/templates/
 
       - name: Install dependencies
         run: yarn install
