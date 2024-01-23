@@ -24,7 +24,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: pwd run
+      - name: PWD execute
         run: pwd
       - name: Install dependencies
         run: yarn install
