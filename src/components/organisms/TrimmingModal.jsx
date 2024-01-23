@@ -216,7 +216,7 @@ const TrimmingModal = ({
 
     await axios.put(imageUrls.presigned_url, compressFile, {
       headers: {
-        'Content-Type': 'image/*',
+        'Content-Type': compressFile.type,
       },
     });
     setFirstLoading(false);
@@ -248,10 +248,9 @@ const TrimmingModal = ({
       croppedSecondImage,
       compressOption
     );
-
     await axios.put(imageUrls.presigned_url, compressFile, {
       headers: {
-        'Content-Type': 'image/*',
+        'Content-Type': compressFile.type,
       },
     });
     setSecondLoading(false);

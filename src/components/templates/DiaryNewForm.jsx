@@ -82,7 +82,7 @@ const DiaryNewForm = ({
       },
       accessToken
     );
-    console.log(imageUrls);
+    console.log(selectedFile.type);
     await axios.put(imageUrls.presigned_url, selectedFile, {
       headers: {
         'Content-Type': selectedFile.type,
