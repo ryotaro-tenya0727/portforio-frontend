@@ -29,6 +29,7 @@ jobs:
       - name: Debug
         run: |
           cd /home/runner/work/portforio-frontend/portforio-frontend/src/components/organisms
+          ls
           cat ./../../css/templates/form.module.css
       - name: Install dependencies
         run: yarn install
