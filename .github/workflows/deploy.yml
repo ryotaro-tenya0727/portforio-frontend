@@ -21,6 +21,10 @@ jobs:
           cat << EOF > .env.production
           REACT_APP_IMAGE_DOMAIN=${{ secrets.REACT_APP_IMAGE_DOMAIN }}
           REACT_APP_GA_ID=${{ secrets.REACT_APP_GA_ID }}
+          REACT_APP_AUTH0_DOMAIN=${{ secrets.REACT_APP_AUTH0_DOMAIN }}
+          REACT_APP_AUTH0_CLIENT_ID=${{ secrets.REACT_APP_AUTH0_CLIENT_ID }}
+          REACT_APP_AUTH0_AUDIENCE=${{ secrets.REACT_APP_AUTH0_AUDIENCE }}
+          REACT_APP_REST_URL=${{ secrets.REACT_APP_REST_URL }}
           EOF
       - name: AWS CLI installation
         uses: aws-actions/configure-aws-credentials@v2
