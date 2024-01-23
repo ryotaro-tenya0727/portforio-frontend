@@ -22,8 +22,6 @@ jobs:
           REACT_APP_IMAGE_DOMAIN=${{ secrets.REACT_APP_IMAGE_DOMAIN }}
           REACT_APP_GA_ID=${{ secrets.REACT_APP_GA_ID }}
           EOF
-
-          cat .env.production
       - name: AWS CLI installation
         uses: aws-actions/configure-aws-credentials@v2
         with:
