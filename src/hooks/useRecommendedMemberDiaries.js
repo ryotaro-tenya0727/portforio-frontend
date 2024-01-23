@@ -240,7 +240,7 @@ export const useRecommendedMemberDiariesApi = () => {
 //           accessToken || ''
 //         );
 //       },
-//       //mutateAsyncを開始したタイミングで実行
+//       //mutateAsyncを開始したタイミングで実行。
 //       // paramsはmutateに渡した引数
 //       {
 //         onMutate: async (params) => {
