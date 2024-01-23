@@ -29,8 +29,9 @@ jobs:
       - name: Debug
         run: |
           cd /home/runner/work/portforio-frontend/portforio-frontend/src/components/organisms && cd .. && cd ..
-          pwd
-          cat ./../../css/templates/form.module.css
+      - name: PWD execute
+        run: pwd
+
       - name: Install dependencies
         run: yarn install
       - name: Build and deploy
