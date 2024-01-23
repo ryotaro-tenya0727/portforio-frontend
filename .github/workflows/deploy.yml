@@ -16,6 +16,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.8
+      - name: Prepare .env.production file
+        run: |
+          cat << EOF > .env.production
+          REACT_APP_IMAGE_DOMAIN=${{ secrets.REACT_APP_IMAGE_DOMAIN }}
+          REACT_APP_GA_ID=${{ secrets.REACT_APP_GA_ID }}
+          EOF
 
       - name: AWS CLI installation
         uses: aws-actions/configure-aws-credentials@v2
