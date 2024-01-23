@@ -1,17 +1,17 @@
-.form{
+.form {
   width: 70%;
   max-width: 800px;
   margin: 0 auto;
 }
 
 @media (min-width: 0px) and (max-width: 700px) {
-  .form{
+  .form {
     width: 90%;
     margin: 0 auto;
   }
 }
 
-.form_header_image{
+.form_header_image {
   margin: 20px 0px 20px 0px;
   width: 100%;
   object-fit: cover;
@@ -22,71 +22,71 @@
 }
 
 @media (min-width: 500px) {
-  .form_header_image{
+  .form_header_image {
     height: 180px;
     object-position: 50% 20%;
   }
 }
 
-@media (min-width: 700px){
-  .form_header_image{
+@media (min-width: 700px) {
+  .form_header_image {
     height: 200px;
     object-position: 50% 25%;
   }
 }
 
-.form_title{
+.form_title {
   text-align: center;
   font-weight: bold;
   font-size: 17px;
   color: #ff96df;
 }
 
-@media (min-width: 500px){
-  .form_title{
+@media (min-width: 500px) {
+  .form_title {
     font-size: 20px;
   }
 }
 
-@media (min-width: 700px){
-  .form_title{
+@media (min-width: 700px) {
+  .form_title {
     font-size: 25px;
   }
 }
 
-.image_up_title{
+.image_up_title {
   text-align: center;
   font-size: 17px;
   margin: 15px 0px 20px 0px;
   font-weight: bold;
 }
 
-@media (min-width: 500px){
-  .image_up_title{
+@media (min-width: 500px) {
+  .image_up_title {
     font-size: 17px;
     margin: 15px 0px 40px 0px;
   }
 }
 
-@media (min-width: 700px){
-  .image_up_title{
+@media (min-width: 700px) {
+  .image_up_title {
     font-size: 22px;
     margin: 15px 0px 30px 0px;
   }
 }
 
-.text_label{
+.text_label {
   color: #000;
   font-weight: bold;
   font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
-.text_error{
+.text_error {
   color: rgb(255, 119, 119);
   font-weight: bold;
 }
 
-.submit_button{
+.submit_button {
   cursor: pointer;
   background-color: #ffffff;
   border-radius: 5px;
@@ -109,11 +109,11 @@
   box-shadow: none;
 }
 
-.form_label{
+.form_label {
   margin-bottom: 10px
 }
 
-.images{
+.images {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -124,8 +124,9 @@
 @media (max-width: 500px) {
   .images {
     display: flex;
-    flex-direction:column;
-    /*コレ*/align-items: center;
+    flex-direction: column;
+    /*コレ*/
+    align-items: center;
   }
 }
 
