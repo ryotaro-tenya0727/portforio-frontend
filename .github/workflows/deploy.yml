@@ -22,4 +22,11 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          region: ${{ secrets.AWS_REGION }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      # - name: Install dependencies
+      #   run: yarn install
+      # - name: Build and deploy
+      #   run: |
+      #     yarn build
+      #     aws s3 sync build/ s3://your-s3-bucket
+      #     aws cloudfront create-invalidation --distribution-id your-cloudfront-distribution-id --paths '/*'
