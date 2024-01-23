@@ -24,10 +24,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: pwd run
+        run: pwd
       - name: Install dependencies
         run: yarn install
       - name: Build and deploy
-        run: pwd
         run: |
           yarn build
           aws s3 cp ./build s3://${{ secrets.AWS_S3_BUCKET }} --recursive
