@@ -46,6 +46,7 @@
 }
 
 .card_general_photo{
+  height: 40px;
   width: 30px;
 }
 
@@ -247,7 +248,7 @@
   position:  absolute;
   top: -5px;
   right: -25px;
-   width: 110px;
+  width: 110px;
 }
 
 

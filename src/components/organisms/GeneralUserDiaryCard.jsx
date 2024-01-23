@@ -121,6 +121,7 @@ const GeneralUserDiaryCard = ({
                 src={`${diaryImageUrl}`}
                 alt='picture'
                 width='130'
+                height='173'
                 style={{
                   border: '2px solid #ff99c5',
                   borderRadius: '5px',
