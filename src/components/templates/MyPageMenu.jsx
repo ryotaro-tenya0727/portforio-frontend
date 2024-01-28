@@ -25,19 +25,23 @@ import MypageMenu from './../../css/templates/mypageMenu.module.css';
 const MyPageMenu = ({ user }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, user: authUser } = useAuth0();
   const [notificationCount, setNotificationCount] = useState(0);
   const { isLoading } = useQuery(
     ['user_info'],
     async () => {
       const accessToken = await getAccessTokenSilently();
       const response = await axios
-        .get(`${API_URL}/api/v1/user/users/user_info`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-        })
+        .post(
+          `${API_URL}/api/v1/user/users/user_info`,
+          { name: authUser.name, image: authUser.picture },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        )
         .catch((error) => {
           console.error(error.response.data);
         });

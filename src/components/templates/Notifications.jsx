@@ -1,6 +1,4 @@
-import { AuthGuardContext } from './../../providers/AuthGuard';
-import { useContext } from 'react';
-import { useQueryClient, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import axios from 'axios';
 import { API_URL } from '../../urls/index';
 
