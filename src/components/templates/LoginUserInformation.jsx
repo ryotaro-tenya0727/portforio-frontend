@@ -14,7 +14,6 @@ import { getUserUrl } from './../../urls/index';
 import card from './../../css/organisms/card.module.css';
 
 const LoginUserInformation = ({ user }) => {
-  console.log(user);
   const { getAccessTokenSilently } = useAuth0();
   const [loading, setLoading] = useState(true);
   const [userData, setUser] = useState('');

@@ -46,13 +46,14 @@
 }
 
 .card_general_photo{
-  height: 40px;
+  height: 30px;
   width: 30px;
 }
 
 @media (min-width: 700px) {
   .card_general_photo{
     width: 40px;
+    height: 40px;
   }
 }
 
