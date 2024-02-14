@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -21,12 +21,24 @@ import {
 } from './Templates';
 
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
+import Pusher from 'pusher-js';
 
 const MyPageMenu = ({ user }) => {
+  const pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
+    cluster: process.env.REACT_APP_PUSHER_CLUSTER,
+    channelAuthorization: {
+      endpoint: `${API_URL}/api/v1/user/pusher_auth`,
+    },
+  });
+
+  let channel;
+  let channelName;
+
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
   const { getAccessTokenSilently, user: authUser } = useAuth0();
   const [notificationCount, setNotificationCount] = useState(0);
+
   const { isLoading } = useQuery(
     ['user_info'],
     async () => {
@@ -50,6 +62,12 @@ const MyPageMenu = ({ user }) => {
     {
       onSuccess: (data) => {
         setNotificationCount(data.new_notifications_count);
+        channelName = `private-notification-user-${data.user_id}-channel`;
+        channel = pusher.subscribe(channelName);
+        channel.bind('new-notification-event', function (data) {
+          setNotificationCount(data.new_notifications_count);
+        });
+        // notificationRef.current.reFetchNotification();
       },
     },
     {
@@ -58,10 +76,15 @@ const MyPageMenu = ({ user }) => {
     }
   );
 
+  useEffect(() => {
+    return () => {
+      pusher.unsubscribe(channelName);
+    };
+  }, []);
+
   const handleChange = (_event, newValue) => {
     setValue(newValue);
   };
-
   const theme = createTheme({
     palette: {
       primary: {
@@ -180,7 +203,10 @@ const MyPageMenu = ({ user }) => {
                 marginTop: '40px',
               }}
             >
-              <Notifications changeNotificationCount={setNotificationCount} />
+              <Notifications
+                changeNotificationCount={setNotificationCount}
+                notificationCount={notificationCount}
+              />
             </p>
           </TabPanel>
           <TabPanel value={'1'} sx={{ padding: 0 }}>
