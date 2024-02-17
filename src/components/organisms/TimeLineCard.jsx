@@ -247,6 +247,7 @@ const TimeLineCard = ({
                   src={`${diaryImage}`}
                   alt='picture'
                   width={isWide ? '150px' : '120px'}
+                  height={isWide ? '201px' : '160.8px'}
                   style={{
                     border: '2px solid #ff99c5',
                     borderRadius: '5px',

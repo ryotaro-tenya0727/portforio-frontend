@@ -26,18 +26,6 @@ const UnLikeButton = ({ id, changeLike }) => {
   };
   return (
     <button type='button' onClick={unLike} className={button.unlike}>
-      <FavoriteBorderIcon
-        sx={{
-          fontSize: '14px',
-          mb: -0.5,
-          mr: 0.1,
-          color: 'white',
-          '@media screen and (min-width:700px)': {
-            fontSize: '20.5px',
-            mb: -0.7,
-          },
-        }}
-      />
       いいね済
     </button>
   );
