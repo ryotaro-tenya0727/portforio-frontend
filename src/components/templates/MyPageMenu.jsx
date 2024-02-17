@@ -24,15 +24,15 @@ import MypageMenu from './../../css/templates/mypageMenu.module.css';
 import Pusher from 'pusher-js';
 
 const MyPageMenu = ({ user }) => {
-  const pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
+  let pusher;
+  let channel;
+  let channelName;
+  pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
     cluster: process.env.REACT_APP_PUSHER_CLUSTER,
     channelAuthorization: {
       endpoint: `${API_URL}/api/v1/user/pusher_auth`,
     },
   });
-
-  let channel;
-  let channelName;
 
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
@@ -75,12 +75,6 @@ const MyPageMenu = ({ user }) => {
       cacheTime: 300000000,
     }
   );
-
-  useEffect(() => {
-    return () => {
-      pusher.unsubscribe(channelName);
-    };
-  }, []);
 
   const handleChange = (_event, newValue) => {
     setValue(newValue);
