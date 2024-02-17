@@ -18,23 +18,10 @@ import { usePagination } from './../../hooks/usePagination';
 import button from './../../css/atoms/button.module.css';
 import list from './../../css/templates/list.module.css';
 
-// import Pusher from 'pusher-js';
-
 const RecommendedMembersList = () => {
-  // const pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
-  //   cluster: process.env.REACT_APP_PUSHER_CLUSTER,
-  // });
-
-  // const channel = pusher.subscribe('my-channel');
-  // channel.bind('my-event', function (data) {
-  //   // alert(JSON.stringify(data));
-  // });
   const { useGetRecommendedMembers } = useRecommendedMembersApi();
   const isWide = useMedia({ minWidth: '700px' });
   const { data: recommendedMembers, isLoading } = useGetRecommendedMembers();
-  if (isLoading === false) {
-    // alert('読み込み完了');
-  }
 
   const returnTop = () => {
     window.scrollTo({
