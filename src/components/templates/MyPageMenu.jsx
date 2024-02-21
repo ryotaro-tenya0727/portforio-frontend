@@ -24,26 +24,26 @@ import MypageMenu from './../../css/templates/mypageMenu.module.css';
 import Pusher from 'pusher-js';
 
 const MyPageMenu = ({ user }) => {
-  let pusher;
-  let channel;
-  let channelName;
-  pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
-    cluster: process.env.REACT_APP_PUSHER_CLUSTER,
-    channelAuthorization: {
-      endpoint: `${API_URL}/api/v1/user/pusher_auth`,
-    },
-  });
-
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
   const { getAccessTokenSilently, user: authUser } = useAuth0();
   const [notificationCount, setNotificationCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  let pusher;
+  let channel;
+  let channelName;
 
-  const { isLoading } = useQuery(
-    ['user_info'],
-    async () => {
+  useEffect(() => {
+    pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
+      cluster: process.env.REACT_APP_PUSHER_CLUSTER,
+      channelAuthorization: {
+        endpoint: `${API_URL}/api/v1/user/pusher_auth`,
+      },
+    });
+
+    (async () => {
       const accessToken = await getAccessTokenSilently();
-      const response = await axios
+      await axios
         .post(
           `${API_URL}/api/v1/user/users/user_info`,
           { name: authUser.name, image: authUser.picture },
@@ -54,27 +54,24 @@ const MyPageMenu = ({ user }) => {
             },
           }
         )
+        .then((response) => {
+          console.log(response);
+          channelName = `private-notification-user-${response.data.user_id}-channel`;
+          channel = pusher.subscribe(channelName);
+          channel.bind('new-notification-event', function (data) {
+            setNotificationCount(data.new_notifications_count);
+          });
+          setIsLoading(false);
+        })
         .catch((error) => {
           console.error(error.response.data);
         });
-      return response.data;
-    },
-    {
-      onSuccess: (data) => {
-        setNotificationCount(data.new_notifications_count);
-        channelName = `private-notification-user-${data.user_id}-channel`;
-        channel = pusher.subscribe(channelName);
-        channel.bind('new-notification-event', function (data) {
-          setNotificationCount(data.new_notifications_count);
-        });
-        // notificationRef.current.reFetchNotification();
-      },
-    },
-    {
-      staleTime: 300000000,
-      cacheTime: 300000000,
-    }
-  );
+    })();
+    return () => {
+      // Pusherの接続を切断する
+      pusher.disconnect();
+    };
+  }, []);
 
   const handleChange = (_event, newValue) => {
     setValue(newValue);
