@@ -15,6 +15,9 @@ import { GeneralDiaryList } from './../templates/Templates';
 import usePageTracking from './../../hooks/useTracking';
 import home from './../../css/pages/home.module.css';
 
+import topMainImageSrc from './../../images/home/top_main_image.webp';
+import topLogoImageSrc from './../../images/home/top_logo_image.webp';
+
 const Home = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   usePageTracking();
@@ -234,17 +237,13 @@ const Home = () => {
           </div>
           <div style={{ textAlign: 'center' }}>
             <img
-              src={`${imageDomain}/admin/main-image.png`}
+              src={topMainImageSrc}
               alt='picture'
               className={home.main_image}
             />
           </div>
           <div>
-            <img
-              src={`${imageDomain}/admin/logonewest.png`}
-              alt='picture'
-              className={home.logo}
-            />
+            <img src={topLogoImageSrc} alt='picture' className={home.logo} />
           </div>
         </div>
       </div>
