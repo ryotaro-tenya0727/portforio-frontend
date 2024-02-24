@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -7,8 +7,6 @@ import TabContext from '@mui/lab/TabContext';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import MonochromePhotosIcon from '@mui/icons-material/MonochromePhotos';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import axios from 'axios';
-import { API_URL } from '../../urls/index';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Circular } from './../atoms/atoms';
 
@@ -20,56 +18,16 @@ import {
 } from './Templates';
 
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
-import Pusher from 'pusher-js';
+
+import usePusherChannel from './../../hooks/usePuser';
 
 const MyPageMenu = ({ user }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
   const { getAccessTokenSilently, user: authUser } = useAuth0();
-  const [notificationCount, setNotificationCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  let pusher;
-  let channel;
-  let channelName;
 
-  useEffect(() => {
-    pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
-      cluster: process.env.REACT_APP_PUSHER_CLUSTER,
-      channelAuthorization: {
-        endpoint: `${API_URL}/api/v1/user/pusher_auth`,
-      },
-    });
-
-    (async () => {
-      const accessToken = await getAccessTokenSilently();
-      await axios
-        .post(
-          `${API_URL}/api/v1/user/users/user_info`,
-          { name: authUser.name, image: authUser.picture },
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-              'Content-Type': 'application/json',
-            },
-          }
-        )
-        .then((response) => {
-          channelName = `private-notification-user-${response.data.user_id}-channel`;
-          channel = pusher.subscribe(channelName);
-          channel.bind('new-notification-event', function (data) {
-            setNotificationCount(data.new_notifications_count);
-          });
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.error(error.response.data);
-        });
-    })();
-    return () => {
-      // Pusherの接続を切断する
-      pusher.disconnect();
-    };
-  }, []);
+  const { isLoading, notificationCount, setNotificationCount } =
+    usePusherChannel(authUser, getAccessTokenSilently);
 
   const handleChange = (_event, newValue) => {
     setValue(newValue);
