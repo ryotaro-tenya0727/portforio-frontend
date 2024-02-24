@@ -41,6 +41,10 @@ export default function usePusherChannel(authUser, getAccessTokenSilently) {
           setIsLoading(false);
         });
     })();
+    return () => {
+      // Pusherの接続を切断する
+      pusher.disconnect();
+    };
   }, []);
 
   return { isLoading, notificationCount, setNotificationCount };
