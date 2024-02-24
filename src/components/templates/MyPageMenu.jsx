@@ -9,7 +9,6 @@ import MonochromePhotosIcon from '@mui/icons-material/MonochromePhotos';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import axios from 'axios';
 import { API_URL } from '../../urls/index';
-import { useQuery } from 'react-query';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Circular } from './../atoms/atoms';
 
@@ -55,7 +54,6 @@ const MyPageMenu = ({ user }) => {
           }
         )
         .then((response) => {
-          console.log(response);
           channelName = `private-notification-user-${response.data.user_id}-channel`;
           channel = pusher.subscribe(channelName);
           channel.bind('new-notification-event', function (data) {
