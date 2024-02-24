@@ -98,7 +98,7 @@ const GeneralUserDiaryCard = ({
               <PhotoCameraBackIcon
                 sx={{ fontSize: '19px', mb: '-3.5px', color: '#FF8C00' }}
               />
-              &nbsp;&nbsp;この日のチェキ数:
+              &nbsp;&nbsp;チェキ数:
             </span>
             &nbsp;
             {eventPolaroidCount ? eventPolaroidCount : '未入力'}
@@ -111,7 +111,7 @@ const GeneralUserDiaryCard = ({
                 width='22'
                 style={{ marginTop: '-1px' }}
               />
-              &nbsp;&nbsp;印象に残った出来事:
+              &nbsp;&nbsp;出来事:
             </span>
             &emsp;{ImpressiveMemory ? ImpressiveMemory : '未入力'}
           </p>
