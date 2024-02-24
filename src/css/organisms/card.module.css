@@ -3,7 +3,6 @@
   position: relative;
   margin: 0 auto;
   width: 85%;
-  min-height: 500px;
 }
 
 
@@ -106,10 +105,26 @@
   }
 }
 
+.card_general_detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+
+.card_general_text_wrapper {
+  width: 65%
+}
+
+.general_diary_image{
+  text-align: center;
+  margin: 0 10px 13px 0;
+}
+
 .card_text{
   border-bottom: 2px dashed #ff8a8a;
   color: #000000;
-  margin: 0px 0px 15px 0px;
+  margin: 0px 0px 20px 0px;
   padding: 0px 0px 10px 0px;
   font-weight: bold;
   font-size: 11px;
