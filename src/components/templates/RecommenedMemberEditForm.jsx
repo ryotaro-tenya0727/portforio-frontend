@@ -9,7 +9,7 @@ import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import { Button } from './../atoms/atoms';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 import form from './../../css/templates/form.module.css';
 
 const RecommenedMemberEditForm = ({

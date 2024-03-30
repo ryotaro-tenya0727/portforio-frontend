@@ -1,4 +1,4 @@
-.button_card{
+@mixin buttonStandardStyle {
   text-align: center;
   cursor: pointer;
   background-color: #ffffff;
@@ -12,14 +12,22 @@
   font-size: 11px;
 }
 
+.button_card{
+  @include buttonStandardStyle;
+}
+
+.profileEdit {
+  @include buttonStandardStyle;
+}
+
 @media (min-width: 700px) {
-  .button_card{
+  .button_card, .profileEdit{
     font-size: 13px;
     padding: 11px 5px 13px 5px;
   }
 }
 
-.button_card:hover {
+.button_card:hover, .profileEdit:hover {
   background-color: rgba(255, 238, 162, 0.3)
 }
 

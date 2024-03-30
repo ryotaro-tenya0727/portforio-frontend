@@ -7,7 +7,7 @@ import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 
 import { FollowButton, UnFollowButton } from './../atoms/atoms';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 import card from './../../css/organisms/card.module.css';
 const UserCard = ({
   id,

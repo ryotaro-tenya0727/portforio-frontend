@@ -12,7 +12,7 @@ import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRep
 import { useAuth0 } from '@auth0/auth0-react';
 
 import form from './../../css/templates/form.module.css';
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 import card from './../../css/organisms/card.module.css';
 
 const TrimmingModal = ({

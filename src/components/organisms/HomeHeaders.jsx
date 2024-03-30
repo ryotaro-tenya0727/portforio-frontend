@@ -5,7 +5,7 @@ import SpeakerNotesIcon from '@mui/icons-material/SpeakerNotes';
 import { Button } from './../atoms/atoms';
 
 import homeheaders from './../../css/organisms/homeheaders.module.css';
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 
 const HomeHeaders = () => {
   return (

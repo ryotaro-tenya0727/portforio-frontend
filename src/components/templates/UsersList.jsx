@@ -13,7 +13,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { UserCard } from './../organisms/Organisms';
 import { API_URL } from '../../urls/index';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 import list from './../../css/templates/list.module.css';
 
 const UsersList = ({ isAuthenticated }) => {
