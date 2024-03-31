@@ -18,6 +18,7 @@
 
 .profileEdit {
   @include buttonStandardStyle;
+  padding: 8px 4px 8px 4px;
 }
 
 @media (min-width: 700px) {
@@ -25,6 +26,7 @@
     font-size: 13px;
     padding: 11px 5px 13px 5px;
   }
+
 }
 
 .button_card:hover, .profileEdit:hover {
