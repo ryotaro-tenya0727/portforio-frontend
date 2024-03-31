@@ -2,9 +2,8 @@ import { useForm, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import GroupsIcon from '@mui/icons-material/Groups';
-import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
-import BrokenImageIcon from '@mui/icons-material/BrokenImage';
+import PersonIcon from '@mui/icons-material/Person';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { Button } from './../atoms/atoms';
 
 import { useProfileApi } from './../../hooks/useProfile';
@@ -29,8 +28,8 @@ const ProfileEditForm = () => {
   });
 
   const onSubmit = (data) => {
-    // putProfile.mutate(data);
-    console.log(data);
+    putProfile.mutate(data);
+    // console.log(data);
   };
   return (
     <>
@@ -68,6 +67,18 @@ const ProfileEditForm = () => {
                 )}
               </>
             )}
+            <br />
+            <label htmlFor='user_image'>
+              <PhotoCameraIcon
+                sx={{
+                  fontSize: '20px',
+                  mb: '-5px',
+                  mr: '10px',
+                  color: '#00B16B',
+                }}
+              />
+              アイコン
+            </label>
             <br />
             <label htmlFor='name'>
               <AutoAwesomeIcon
@@ -112,7 +123,7 @@ const ProfileEditForm = () => {
 
             <label htmlFor='me_introduction'>
               {' '}
-              <GroupsIcon
+              <PersonIcon
                 sx={{ fontSize: '22px', mb: '-5px', mr: '10px', color: 'red' }}
               />
               自己紹介
@@ -125,7 +136,7 @@ const ProfileEditForm = () => {
                   id='me_introduction'
                   label={
                     <span className={form.text_label}>
-                      <GroupsIcon
+                      <PersonIcon
                         sx={{
                           fontSize: '22px',
                           mb: '-5px',
@@ -133,7 +144,7 @@ const ProfileEditForm = () => {
                           color: '#ff64db',
                         }}
                       />
-                      自己紹介
+                      ここに自己紹介を入力
                     </span>
                   }
                   color='primary'
