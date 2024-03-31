@@ -34,7 +34,7 @@ const ProfileEdit = memo(() => {
           プロフィール編集ページ
         </>
       ),
-      to: '/recommended-members/new',
+      to: '/profile/edit',
     },
   ];
   if (isAuthLoading) {
