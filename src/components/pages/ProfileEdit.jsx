@@ -3,7 +3,7 @@ import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 import { HomeBreadText } from './../atoms/atoms';
 import { BreadCrumbs, Headers } from './../organisms/Organisms';
-import { RecommenedMembersNewForm, Loading } from './../templates/Templates';
+import { ProfileEditForm, Loading } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 
@@ -48,7 +48,7 @@ const ProfileEdit = memo(() => {
       <>
         <Headers name={user.name} />
         <BreadCrumbs breadcrumbs={breadcrumbs} />
-        <RecommenedMembersNewForm />
+        <ProfileEditForm />
       </>
     )
   );
