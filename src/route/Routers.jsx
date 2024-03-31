@@ -18,6 +18,7 @@ import {
   AdminUserDiaries,
   Users,
   TimeLine,
+  ProfileEdit,
 } from '../components/pages/Pages';
 
 export const Routers = memo(() => {
@@ -32,6 +33,7 @@ export const Routers = memo(() => {
       <Route path='/diaries/show/:diary_id' element={<GeneralDiaryShow />} />
       <Route path='/users' element={<Users />} />
       <Route path='/timeline' element={<TimeLine />} />
+      <Route path='/profile/edit' element={<ProfileEdit />} />
       <Route path='*' element={<Page404 />} />
       <Route
         path='/recommended-members/new'

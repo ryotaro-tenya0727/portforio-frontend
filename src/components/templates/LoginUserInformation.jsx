@@ -65,7 +65,7 @@ const LoginUserInformation = ({ user }) => {
             }}
           >
             <div style={{ textAlign: 'right' }}>
-              <Link to='/'>
+              <Link to='/profile/edit'>
                 <Button className={button.profileEdit}>
                   プロフィール
                   <br />
