@@ -7,15 +7,15 @@ import imageCompression from 'browser-image-compression';
 import 'react-image-crop/dist/ReactCrop.css';
 import axios from 'axios';
 
-import { SampleImageButton, Circular } from './../atoms/atoms';
-import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRepository';
+import { SampleImageButton, Circular } from '../../atoms/atoms';
+import { s3PresignedUrlRepository } from '../../../repositories/s3PresignedUrlRepository';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import form from './../../css/templates/form.module.css';
-import button from './../../css/atoms/button.module.scss';
-import card from './../../css/organisms/card.module.css';
+import form from './../../../css/templates/form.module.css';
+import button from './../../../css/atoms/button.module.scss';
+import card from './../../../css/organisms/card.module.css';
 
-const TrimmingModal = ({
+const DiaryTrimmingModal = ({
   onSetIsFileTypeError,
   onSetIsNumberTypeError,
   onSetDiaryImageUrlAndIndex,
@@ -85,7 +85,7 @@ const TrimmingModal = ({
   const secondFileClick = () => {
     secondInputRef.current.click();
   };
-  const openFirstTrimmingModal = async (event) => {
+  const openFirstDiaryTrimmingModal = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
     resetErrors();
@@ -107,7 +107,7 @@ const TrimmingModal = ({
     event.target.value = '';
   };
 
-  const openSecondTrimmingModal = async (event) => {
+  const openSecondDiaryTrimmingModal = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
     resetErrors();
@@ -287,14 +287,14 @@ const TrimmingModal = ({
         ref={firstInputRef}
         type='file'
         accept='image/*'
-        onChange={(event) => openFirstTrimmingModal(event)}
+        onChange={(event) => openFirstDiaryTrimmingModal(event)}
         hidden
       />
       <input
         ref={secondInputRef}
         type='file'
         accept='image/*'
-        onChange={(event) => openSecondTrimmingModal(event)}
+        onChange={(event) => openSecondDiaryTrimmingModal(event)}
         hidden
       />
       <div className={form.images}>
@@ -474,4 +474,4 @@ const TrimmingModal = ({
   );
 };
 
-export default TrimmingModal;
+export default DiaryTrimmingModal;
