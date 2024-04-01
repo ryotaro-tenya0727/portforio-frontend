@@ -20,7 +20,7 @@ export const s3PresignedUrlRepository = {
   getProfileImagePresignedUrl: async (params, token) => {
     const response = await axios
       .post(
-        `${REST_API_URL}/api/v1/user/external/aws/s3/presigned_url/profiles`,
+        `${REST_API_URL}/user/external/aws/s3/presigned_url/profiles`,
         params,
         {
           headers: {

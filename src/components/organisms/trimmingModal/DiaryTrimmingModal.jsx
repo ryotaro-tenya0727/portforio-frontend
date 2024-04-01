@@ -48,6 +48,7 @@ const DiaryTrimmingModal = ({
   const [firstImageToCrop, setFirstImageToCrop] = useState(undefined);
   const [croppedFirstImage, SetCroppedFirstImage] = useState(null);
   const [firstImage, setFirstImage] = useState(null);
+  const [firstImageFileName, setFirstImageFileName] = useState(null);
 
   const [secondOpen, setSecondOpen] = useState(false);
   const handleSecondClose = () => setSecondOpen(false);
@@ -55,6 +56,7 @@ const DiaryTrimmingModal = ({
   const [secondImageToCrop, setSecondImageToCrop] = useState(undefined);
   const [croppedSecondImage, SetCroppedSecondImage] = useState(null);
   const [secondImage, setSecondImage] = useState(null);
+  const [secondImageFileName, setSecondImageFileName] = useState(null);
 
   const style = {
     position: 'absolute',
@@ -91,6 +93,8 @@ const DiaryTrimmingModal = ({
   const openFirstDiaryTrimmingModal = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
+    const extension = file.name.match(/[^.]+$/)[0];
+    setFirstImageFileName(`${crypto.randomUUID()}.${extension}`);
     resetErrors();
     if (
       !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
@@ -113,6 +117,8 @@ const DiaryTrimmingModal = ({
   const openSecondDiaryTrimmingModal = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
+    const extension = file.name.match(/[^.]+$/)[0];
+    setSecondImageFileName(`${crypto.randomUUID()}.${extension}`);
     resetErrors();
     if (
       !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
@@ -137,7 +143,7 @@ const DiaryTrimmingModal = ({
       const croppedImage = await getCroppedImage(
         firstImageRef,
         crop,
-        `CropImage.png` // destination filename
+        firstImageFileName // destination filename
       );
       // リサイズ後に表示する画像をstateに格納
       SetCroppedFirstImage(croppedImage);
@@ -149,7 +155,7 @@ const DiaryTrimmingModal = ({
       const croppedImage = await getCroppedImage(
         secondImageRef,
         crop,
-        `CropImage.png` // destination filename
+        secondImageFileName // destination filename
       );
       // リサイズ後に表示する画像をstateに格納
       SetCroppedSecondImage(croppedImage);
@@ -164,7 +170,7 @@ const DiaryTrimmingModal = ({
     const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
       {
         presigned_url: {
-          filename: `${crypto.randomUUID()}`,
+          filename: firstImageFileName,
         },
       },
       accessToken
@@ -199,7 +205,7 @@ const DiaryTrimmingModal = ({
     const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
       {
         presigned_url: {
-          filename: `${crypto.randomUUID()}`,
+          filename: secondImageFileName,
         },
       },
       accessToken

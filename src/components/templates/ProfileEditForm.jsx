@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -7,6 +8,8 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { Button } from './../atoms/atoms';
 
 import { useProfileApi } from './../../hooks/useProfile';
+
+import { ProfileTrimmingModal } from './../organisms/Organisms';
 
 import button from './../../css/atoms/button.module.scss';
 import form from './../../css/templates/form.module.css';
@@ -19,6 +22,9 @@ const ProfileEditForm = () => {
       },
     },
   });
+  const [isNumberError, setIsNumberError] = useState(false);
+  const [isFileTypeError, setIsFileTypeError] = useState(false);
+  const [diaryImageUrl, setDiaryImageUrl] = useState(null);
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const { usePutProfile } = useProfileApi();
   const putProfile = usePutProfile();
@@ -65,6 +71,17 @@ const ProfileEditForm = () => {
                     )}
                   </>
                 )}
+                {isNumberError && (
+                  <p className={form.text_error}>
+                    ※2枚を超えて選択された画像は表示されません
+                  </p>
+                )}
+                {isFileTypeError && (
+                  <p className={form.text_error}>
+                    ※jpeg, png, bmp, gif
+                    以外のファイル形式はアップロードできません
+                  </p>
+                )}
               </>
             )}
             <br />
@@ -79,6 +96,14 @@ const ProfileEditForm = () => {
               />
               アイコン
             </label>
+            <ProfileTrimmingModal
+              onSetDiaryImageUrl={(url) => {
+                setDiaryImageUrl(url);
+              }}
+              diaryImageUrl={diaryImageUrl}
+              onSetIsFileTypeError={(result) => setIsFileTypeError(result)}
+              onSetIsNumberTypeError={(result) => setIsNumberError(result)}
+            />
             <br />
             <label htmlFor='name'>
               <AutoAwesomeIcon
