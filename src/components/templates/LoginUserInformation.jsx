@@ -91,7 +91,7 @@ const LoginUserInformation = ({ user }) => {
               </div>
             </div>
             <img
-              src={user.picture}
+              src={userData.user_image}
               alt='picture'
               width='60'
               height='60'

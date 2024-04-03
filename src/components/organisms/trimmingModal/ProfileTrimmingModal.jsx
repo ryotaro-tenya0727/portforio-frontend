@@ -38,7 +38,7 @@ const ProfileTrimmingModal = ({
     y: 20,
     width: 60,
     // height: 40,
-    aspect: 1,
+    aspect: 3 / 4,
   });
   const { getCroppedImage } = useImageCrop();
   const [Loading, setLoading] = useState(false);
@@ -48,10 +48,13 @@ const ProfileTrimmingModal = ({
   const [imageToCrop, setImageToCrop] = useState(undefined);
   const [croppedImage, SetCroppedImage] = useState(null);
   const [Image, setImage] = useState(null);
+  const [imageFileName, setImageFileName] = useState(null);
 
   const openTrimmingModal = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
+    const extension = file.name.match(/[^.]+$/)[0];
+    setImageFileName(`${crypto.randomUUID()}.${extension}`);
     resetErrors();
     if (
       !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
@@ -99,11 +102,7 @@ const ProfileTrimmingModal = ({
 
   const cropImage = async (crop) => {
     if (imageRef && crop.width && crop.height) {
-      const croppedImage = await getCroppedImage(
-        imageRef,
-        crop,
-        `CropImage.png` // destination filename
-      );
+      const croppedImage = await getCroppedImage(imageRef, crop, imageFileName);
       // リサイズ後に表示する画像をstateに格納
       SetCroppedImage(croppedImage);
     }
@@ -118,7 +117,7 @@ const ProfileTrimmingModal = ({
       await s3PresignedUrlRepository.getProfileImagePresignedUrl(
         {
           presigned_url: {
-            filename: `${crypto.randomUUID()}`,
+            filename: imageFileName,
           },
         },
         accessToken
@@ -131,7 +130,6 @@ const ProfileTrimmingModal = ({
       },
     });
     onSetDiaryImageUrl(imageUrls.diary_image_url);
-    console.log(imageUrls.diary_image_url);
     setLoading(false);
 
     setCropConfig({

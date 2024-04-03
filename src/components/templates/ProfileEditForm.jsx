@@ -34,8 +34,8 @@ const ProfileEditForm = () => {
   });
 
   const onSubmit = (data) => {
+    data.profile.user_image = diaryImageUrl;
     putProfile.mutate(data);
-    // console.log(data);
   };
   return (
     <>
