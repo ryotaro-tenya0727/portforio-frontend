@@ -9,7 +9,9 @@ const ProfileSampleImageButton = ({ onClick }) => {
       type='button'
     >
       <p className={button.profile_sample_button_image_text}>
-        <AddAPhotoIcon sx={{ fontSize: '22px', color: '#fff', mt: '9px' }} />
+        <AddAPhotoIcon
+          sx={{ fontSize: '22px', color: '#fff', mt: '10px', opacity: 0.8 }}
+        />
       </p>
     </button>
   );

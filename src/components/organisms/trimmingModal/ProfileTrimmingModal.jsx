@@ -41,7 +41,7 @@ const ProfileTrimmingModal = ({
     // height: 40,
     aspect: 3 / 4,
   });
-  const { getCroppedImage } = useImageCrop();
+  const { getDiaryCroppedImage } = useImageCrop();
   const [Loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const handleModalClose = () => setModalOpen(false);
@@ -54,6 +54,7 @@ const ProfileTrimmingModal = ({
   const openTrimmingModal = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
+    if (!file) return;
     const extension = file.name.match(/[^.]+$/)[0];
     setImageFileName(`${crypto.randomUUID()}.${extension}`);
     resetErrors();
@@ -103,7 +104,11 @@ const ProfileTrimmingModal = ({
 
   const cropImage = async (crop) => {
     if (imageRef && crop.width && crop.height) {
-      const croppedImage = await getCroppedImage(imageRef, crop, imageFileName);
+      const croppedImage = await getDiaryCroppedImage(
+        imageRef,
+        crop,
+        imageFileName
+      );
       // リサイズ後に表示する画像をstateに格納
       SetCroppedImage(croppedImage);
     }
@@ -154,21 +159,14 @@ const ProfileTrimmingModal = ({
         />
         {Image !== null ? (
           <div>
-            <button
-              className={button.image_cancel_button}
-              type='button'
-              onClick={() => handleCancel()}
-            >
-              <DeleteForeverIcon />
-            </button>
             {Loading && (
               <Circular
                 large={45}
                 small={45}
                 circleStyle={{
                   position: 'absolute',
-                  top: '120px',
-                  left: '85px',
+                  top: '0px',
+                  left: '0px',
                   zIndex: '1',
                 }}
                 color='#fff'
@@ -178,19 +176,30 @@ const ProfileTrimmingModal = ({
             <img
               src={window.URL.createObjectURL(Image)}
               alt={`あなたの写真 `}
-              width='200'
-              height='266.7'
+              width='80'
+              height='80'
               style={
                 Loading
                   ? {
                       border: '4px solid #ff99c5',
+                      borderRadius: '50%',
                       filter: 'brightness(50%)',
                     }
                   : {
+                      borderRadius: '50%',
                       border: '4px solid #ff99c5',
                     }
               }
             ></img>
+            <button
+              className={button.profile_image_cancel_button}
+              type='button'
+              onClick={() => handleCancel()}
+            >
+              <DeleteForeverIcon
+                sx={{ fontSize: '20px', mb: '-4px', ml: '-1px' }}
+              />
+            </button>
           </div>
         ) : (
           <>

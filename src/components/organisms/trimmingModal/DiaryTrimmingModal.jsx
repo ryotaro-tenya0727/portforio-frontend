@@ -37,7 +37,7 @@ const DiaryTrimmingModal = ({
     // height: 40,
     aspect: 3 / 4,
   });
-  const { getCroppedImage } = useImageCrop();
+  const { getDiaryCroppedImage } = useImageCrop();
 
   const [firstLoading, setFirstLoading] = useState(false);
   const [secondLoading, setSecondLoading] = useState(false);
@@ -140,7 +140,7 @@ const DiaryTrimmingModal = ({
 
   const cropFirstImage = async (crop) => {
     if (firstImageRef && crop.width && crop.height) {
-      const croppedImage = await getCroppedImage(
+      const croppedImage = await getDiaryCroppedImage(
         firstImageRef,
         crop,
         firstImageFileName // destination filename
@@ -152,7 +152,7 @@ const DiaryTrimmingModal = ({
 
   const cropSecondImage = async (crop) => {
     if (secondImageRef && crop.width && crop.height) {
-      const croppedImage = await getCroppedImage(
+      const croppedImage = await getDiaryCroppedImage(
         secondImageRef,
         crop,
         secondImageFileName // destination filename

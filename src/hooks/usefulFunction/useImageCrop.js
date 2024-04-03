@@ -1,6 +1,6 @@
 export const useImageCrop = () => {
   // 画像をトリミングする関数
-  const getCroppedImage = (sourceImage, cropConfig, fileName) => {
+  const getDiaryCroppedImage = (sourceImage, cropConfig, fileName) => {
     // creating the cropped image from the source image
     const canvas = document.createElement('canvas');
     const pixelRatio = window.devicePixelRatio;
@@ -30,7 +30,6 @@ export const useImageCrop = () => {
         (blob) => {
           // returning an error
           if (!blob) {
-            reject(new Error('Canvas is empty'));
             return;
           }
           blob.name = fileName;
@@ -42,5 +41,5 @@ export const useImageCrop = () => {
     });
   };
 
-  return { getCroppedImage };
+  return { getDiaryCroppedImage };
 };

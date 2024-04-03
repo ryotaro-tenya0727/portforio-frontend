@@ -60,29 +60,19 @@ const ProfileEditForm = () => {
                         <br />
                       </>
                     )}
-                    {formState.errors.profile.name.type === 'maxLength' && (
-                      <>
-                        <br />
-                        <span className={form.text_error}>
-                          ・名前が文字数を超過しています
-                        </span>
-                        <br />
-                      </>
-                    )}
                   </>
                 )}
-                {isNumberError && (
-                  <p className={form.text_error}>
-                    ※2枚を超えて選択された画像は表示されません
-                  </p>
-                )}
-                {isFileTypeError && (
-                  <p className={form.text_error}>
-                    ※jpeg, png, bmp, gif
-                    以外のファイル形式はアップロードできません
-                  </p>
-                )}
               </>
+            )}
+            {isNumberError && (
+              <p className={form.text_error}>
+                ※2枚を超えて選択された画像は表示されません
+              </p>
+            )}
+            {isFileTypeError && (
+              <p className={form.text_error}>
+                ※jpeg, png, bmp, gif 以外のファイル形式はアップロードできません
+              </p>
             )}
             <br />
             <label htmlFor='user_image'>

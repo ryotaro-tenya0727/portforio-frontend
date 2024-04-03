@@ -93,9 +93,7 @@
 }
 
 .profile_sample_button_image_text {
-  // @include baseBeforeImageUploadButtonHoverStyle
-  // text-align: center;
-  background-color: rgb(104, 104, 104);
+  background-color: rgb(104, 104, 104, 0.8);
   margin: 0 auto;
   width: 45px;
   height: 45px;
@@ -109,6 +107,16 @@
   border-radius: 5px;
   position: absolute;
   top: -25px;
+}
+
+.profile_image_cancel_button {
+  cursor: pointer;
+  background-color: #ff99c5;
+  border: none;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  margin: -10px 0px 10px -10px;
 }
 
 .recommended_and_diary_button{
