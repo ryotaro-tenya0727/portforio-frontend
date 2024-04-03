@@ -2,12 +2,13 @@ import { useState, useRef } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ReactCrop from 'react-image-crop';
 import imageCompression from 'browser-image-compression';
 import 'react-image-crop/dist/ReactCrop.css';
 import axios from 'axios';
 
-import { SampleImageButton, Circular } from '../../atoms/atoms';
+import { ProfileSampleImageButton, Circular } from '../../atoms/atoms';
 import { s3PresignedUrlRepository } from '../../../repositories/s3PresignedUrlRepository';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -152,12 +153,7 @@ const ProfileTrimmingModal = ({
           hidden
         />
         {Image !== null ? (
-          <div
-            style={{
-              position: 'relative',
-              marginTop: '25px',
-            }}
-          >
+          <div>
             <button
               className={button.image_cancel_button}
               type='button'
@@ -197,7 +193,15 @@ const ProfileTrimmingModal = ({
             ></img>
           </div>
         ) : (
-          <SampleImageButton onClick={FileClick} />
+          <>
+            <ProfileSampleImageButton onClick={FileClick} />
+            <span style={{ fontWeight: 'bold' }}>
+              <ArrowBackIcon
+                sx={{ fontSize: '22px', mb: '-4px', ml: '8px', mr: '5px' }}
+              />
+              クリック
+            </span>
+          </>
         )}
       </div>
       <Modal

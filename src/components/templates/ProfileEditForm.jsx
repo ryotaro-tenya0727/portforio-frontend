@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import PersonIcon from '@mui/icons-material/Person';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { Button } from './../atoms/atoms';
 
 import { useProfileApi } from './../../hooks/useProfile';
@@ -86,12 +86,12 @@ const ProfileEditForm = () => {
             )}
             <br />
             <label htmlFor='user_image'>
-              <PhotoCameraIcon
+              <AddAPhotoIcon
                 sx={{
                   fontSize: '20px',
-                  mb: '-5px',
+                  mb: '-3px',
                   mr: '10px',
-                  color: '#00B16B',
+                  color: '#ff66d1',
                 }}
               />
               アイコン

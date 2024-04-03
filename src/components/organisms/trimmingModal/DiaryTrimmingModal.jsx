@@ -7,7 +7,7 @@ import imageCompression from 'browser-image-compression';
 import 'react-image-crop/dist/ReactCrop.css';
 import axios from 'axios';
 
-import { SampleImageButton, Circular } from '../../atoms/atoms';
+import { DiarySampleImageButton, Circular } from '../../atoms/atoms';
 import { s3PresignedUrlRepository } from '../../../repositories/s3PresignedUrlRepository';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -311,7 +311,7 @@ const DiaryTrimmingModal = ({
             ></img>
           </div>
         ) : (
-          <SampleImageButton onClick={firstFileClick} />
+          <DiarySampleImageButton onClick={firstFileClick} />
         )}
         <br />
         <br />
@@ -361,7 +361,7 @@ const DiaryTrimmingModal = ({
             ></img>
           </div>
         ) : (
-          <SampleImageButton onClick={secondFileClick} />
+          <DiarySampleImageButton onClick={secondFileClick} />
         )}
       </div>
       <Modal
