@@ -31,7 +31,7 @@ const ProfileEdit = memo(() => {
               color: '#ff6fc8',
             }}
           />
-          プロフィール編集ページ
+          プロフィール編集
         </>
       ),
       to: '/profile/edit',

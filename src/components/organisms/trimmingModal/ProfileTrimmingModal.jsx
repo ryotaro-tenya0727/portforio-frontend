@@ -39,9 +39,9 @@ const ProfileTrimmingModal = ({
     y: 20,
     width: 60,
     // height: 40,
-    aspect: 3 / 4,
+    aspect: 1 / 1,
   });
-  const { getDiaryCroppedImage } = useImageCrop();
+  const { getCroppedCircleImage } = useImageCrop();
   const [Loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const handleModalClose = () => setModalOpen(false);
@@ -59,7 +59,13 @@ const ProfileTrimmingModal = ({
     setImageFileName(`${crypto.randomUUID()}.${extension}`);
     resetErrors();
     if (
-      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
+      ![
+        'image/gif',
+        'image/jpeg',
+        'image/png',
+        'image/bmp',
+        'image/webp',
+      ].includes(file.type)
     ) {
       onSetIsFileTypeError(true);
       return;
@@ -97,14 +103,13 @@ const ProfileTrimmingModal = ({
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
     paddingBottom: '69px',
     textAlign: 'center',
   };
 
   const cropImage = async (crop) => {
     if (imageRef && crop.width && crop.height) {
-      const croppedImage = await getDiaryCroppedImage(
+      const croppedImage = await getCroppedCircleImage(
         imageRef,
         crop,
         imageFileName
@@ -128,6 +133,11 @@ const ProfileTrimmingModal = ({
         },
         accessToken
       );
+
+    if (!(croppedImage instanceof Blob || croppedImage instanceof File)) {
+      alert('保存に失敗しました。やり直してください。');
+      return;
+    }
     const compressFile = await imageCompression(croppedImage, compressOption);
 
     await axios.put(imageUrls.presigned_url, compressFile, {
@@ -143,7 +153,7 @@ const ProfileTrimmingModal = ({
       x: 20,
       y: 20,
       width: 60,
-      aspect: 3 / 4,
+      aspect: 1 / 1,
     });
   };
 
@@ -157,22 +167,22 @@ const ProfileTrimmingModal = ({
           onChange={(event) => openTrimmingModal(event)}
           hidden
         />
+
         {Image !== null ? (
-          <div>
+          <div style={{ position: 'relative' }}>
             {Loading && (
               <Circular
                 large={45}
                 small={45}
                 circleStyle={{
                   position: 'absolute',
-                  top: '0px',
-                  left: '0px',
+                  top: '30px',
+                  left: '22.5px',
                   zIndex: '1',
                 }}
                 color='#fff'
               />
             )}
-
             <img
               src={window.URL.createObjectURL(Image)}
               alt={`あなたの写真 `}
@@ -197,7 +207,7 @@ const ProfileTrimmingModal = ({
               onClick={() => handleCancel()}
             >
               <DeleteForeverIcon
-                sx={{ fontSize: '20px', mb: '-4px', ml: '-1px' }}
+                sx={{ fontSize: '20px', mb: '-4px', ml: '0.5px' }}
               />
             </button>
           </div>
@@ -237,12 +247,14 @@ const ProfileTrimmingModal = ({
               onChange={(cropConfig) => {
                 // console.log('onChange');
                 setCropConfig(cropConfig);
+                cropConfig.diameter = cropConfig.width;
               }}
               // リサイズ後（マウス離したとき）
               onComplete={async (cropConfig) => {
                 cropImage(cropConfig);
               }}
               crossorigin='anonymous' // to avoid CORS-related problems
+              circularCrop
             />
           </div>
           <button onClick={registerImage} className={button.button_trimming}>

@@ -71,7 +71,8 @@ const ProfileEditForm = () => {
             )}
             {isFileTypeError && (
               <p className={form.text_error}>
-                ※jpeg, png, bmp, gif 以外のファイル形式はアップロードできません
+                ※jpeg, png, bmp, gif, webp
+                以外のファイル形式はアップロードできません
               </p>
             )}
             <br />

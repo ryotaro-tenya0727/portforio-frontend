@@ -20,7 +20,7 @@ import list from './../../css/templates/list.module.css';
 
 const RecommendedMembersList = () => {
   const { useGetRecommendedMembers } = useRecommendedMembersApi();
-  const isWide = useMedia({ minWidth: '700px' });
+  const isWide = useMedia({ minWidth: '710px' });
   const { data: recommendedMembers, isLoading } = useGetRecommendedMembers();
 
   const returnTop = () => {

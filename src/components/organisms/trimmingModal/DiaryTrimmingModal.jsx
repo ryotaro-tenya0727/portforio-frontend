@@ -68,7 +68,6 @@ const DiaryTrimmingModal = ({
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
     paddingBottom: '69px',
     textAlign: 'center',
   };
@@ -97,7 +96,13 @@ const DiaryTrimmingModal = ({
     setFirstImageFileName(`${crypto.randomUUID()}.${extension}`);
     resetErrors();
     if (
-      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
+      ![
+        'image/gif',
+        'image/jpeg',
+        'image/png',
+        'image/bmp',
+        'image/webp',
+      ].includes(file.type)
     ) {
       onSetIsFileTypeError(true);
       return;
@@ -176,6 +181,12 @@ const DiaryTrimmingModal = ({
       accessToken
     );
     onSetDiaryImageUrlAndIndex(imageUrls.diary_image_url, 0);
+    if (
+      !(croppedFirstImage instanceof Blob || croppedFirstImage instanceof File)
+    ) {
+      alert('保存に失敗しました。やり直してください。');
+      return;
+    }
     const compressFile = await imageCompression(
       croppedFirstImage,
       compressOption
@@ -211,6 +222,14 @@ const DiaryTrimmingModal = ({
       accessToken
     );
     onSetDiaryImageUrlAndIndex(imageUrls.diary_image_url, 1);
+    if (
+      !(
+        croppedSecondImage instanceof Blob || croppedSecondImage instanceof File
+      )
+    ) {
+      alert('保存に失敗しました。やり直してください。');
+      return;
+    }
     const compressFile = await imageCompression(
       croppedSecondImage,
       compressOption
