@@ -14,7 +14,7 @@ import { Button } from './../atoms/atoms';
 
 import { useGeneralDiariesApi } from './../../hooks/useGeneralDiary';
 import diary from './../../css/templates/diary.module.css';
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 
 const GeneralDiaryShow = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;

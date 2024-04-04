@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { REST_API_URL } from '../../urls/index';
 import { AuthGuardContext } from './../../providers/AuthGuard';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 
 const LikeButton = ({ id, changeLike }) => {
   const { accessToken } = useContext(AuthGuardContext);

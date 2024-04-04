@@ -6,7 +6,7 @@ import { Loading, AdminUserDiariesList } from './../templates/Templates';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 
 const AdminUserDiaries = () => {
   const { user_id } = useParams();

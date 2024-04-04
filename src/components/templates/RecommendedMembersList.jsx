@@ -15,12 +15,12 @@ import { RecommendedMemberCard } from './../organisms/Organisms';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { usePagination } from './../../hooks/usePagination';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 import list from './../../css/templates/list.module.css';
 
 const RecommendedMembersList = () => {
   const { useGetRecommendedMembers } = useRecommendedMembersApi();
-  const isWide = useMedia({ minWidth: '700px' });
+  const isWide = useMedia({ minWidth: '710px' });
   const { data: recommendedMembers, isLoading } = useGetRecommendedMembers();
 
   const returnTop = () => {

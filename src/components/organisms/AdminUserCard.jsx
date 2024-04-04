@@ -6,7 +6,7 @@ import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import { Button } from './../atoms/atoms';
 import { useAdminUsersApi } from './../../hooks/useAdminUser';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 import card from './../../css/organisms/card.module.css';
 
 const AdminUserCard = ({

@@ -1,7 +1,8 @@
 export { default as Button } from './Button';
 export { default as HomeBreadText } from './HomeBreadText';
 export { default as MenuButton } from './MenuButton';
-export { default as SampleImageButton } from './SampleImageButton';
+export { default as DiarySampleImageButton } from './beforeImageUploadButton/DiarySampleImageButton';
+export { default as ProfileSampleImageButton } from './beforeImageUploadButton/ProfileSampleImageButton';
 export { default as HomeMenuButton } from './HomeMenuButton';
 export { default as FollowButton } from './FollowButton';
 export { default as UnFollowButton } from './UnFollowButton';

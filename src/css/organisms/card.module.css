@@ -164,7 +164,7 @@
 
 .login_card_title{
   font-size: 13px;
-  margin: 0px 0px 10px 0px
+  margin: 0px 0px 10px 0px;
 }
 
 @media (min-width: 500px) {
@@ -189,7 +189,7 @@
 }
 
 .login_user_card{
-  width: 65%;
+  width: 50%;
   text-align: center;
   padding: 10px 10px 35px 10px;
   margin:  0 auto;
@@ -256,7 +256,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0px 15px 0px 5px
+  padding: 0px 5px 0px 5px
 
 }
 

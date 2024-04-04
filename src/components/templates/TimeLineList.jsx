@@ -15,7 +15,7 @@ import { Button, Circular } from './../atoms/atoms';
 import { TimeLineCard } from './../organisms/Organisms';
 import { API_URL } from '../../urls/index';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 
 const TimeLineList = ({ isAuthenticated }) => {
   const isWide = useMedia({ minWidth: '700px' });

@@ -8,7 +8,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 
-import { TrimmingModal } from './../organisms/Organisms';
+import { DiaryTrimmingModal } from './../organisms/Organisms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
 import form from './../../css/templates/form.module.css';
@@ -80,12 +80,13 @@ const DiaryNewForm = ({
           )}
           {isFileTypeError && (
             <p className={form.text_error}>
-              ※jpeg, png, bmp, gif 以外のファイル形式はアップロードできません
+              ※jpeg, png, bmp, gif, webp
+              以外のファイル形式はアップロードできません
             </p>
           )}
 
           <p className={form.image_up_title}>日記に使う画像を選択</p>
-          <TrimmingModal
+          <DiaryTrimmingModal
             onSetDiaryImageUrlAndIndex={(url, index) => {
               setDiaryImageUrls([
                 ...diaryImageUrls,

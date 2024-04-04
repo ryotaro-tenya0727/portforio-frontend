@@ -1,4 +1,5 @@
-import { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from '@mui/material/Card';
 import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
@@ -7,10 +8,12 @@ import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { Circular } from './../atoms/atoms';
 import { useAuth0 } from '@auth0/auth0-react';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { getUserUrl } from './../../urls/index';
 
+import { Button } from './../atoms/atoms';
+
+import button from './../../css/atoms/button.module.scss';
 import card from './../../css/organisms/card.module.css';
 
 const LoginUserInformation = ({ user }) => {
@@ -53,7 +56,6 @@ const LoginUserInformation = ({ user }) => {
         </div>
       ) : (
         <div>
-          <br />
           <Card
             className={card.login_user_card}
             sx={{
@@ -62,23 +64,34 @@ const LoginUserInformation = ({ user }) => {
               backgroundImage: `url(${imageDomain}/admin/login_profile_image-min.png)`,
             }}
           >
-            <p className={card.login_card_title}>
-              <LocalFloristIcon
-                sx={{
-                  fontSize: '17px',
-                  mb: '-3.5px',
-                  mr: '5px',
-                  color: '#ff6fc8',
-                  '@media screen and (min-width:700px)': {
-                    fontSize: '22.5px',
-                    mr: 0.5,
-                  },
-                }}
-              />
-              あなたのプロフィール
-            </p>
+            <div style={{ textAlign: 'right' }}>
+              <Link to='/profile/edit'>
+                <Button className={button.profileEdit}>
+                  プロフィール
+                  <br />
+                  を編集
+                </Button>
+              </Link>
+            </div>
+            <div className={card.login_card_title}>
+              <div>
+                <LocalFloristIcon
+                  sx={{
+                    fontSize: '17px',
+                    mb: '-3.5px',
+                    mr: '5px',
+                    color: '#ff6fc8',
+                    '@media screen and (min-width:700px)': {
+                      fontSize: '22.5px',
+                      mr: 0.5,
+                    },
+                  }}
+                />
+                あなたのプロフィール
+              </div>
+            </div>
             <img
-              src={user.picture}
+              src={userData.user_image}
               alt='picture'
               width='60'
               height='60'

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from './../atoms/atoms';
 
 import loading from './../../css/templates/loading.module.css';
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 const Page404 = () => {
   return (
     <div

@@ -12,7 +12,7 @@ import {
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 
 const RecommenedMembersDiaries = memo(() => {
   const { recommended_member_uuid, recommended_member_id } = useParams();

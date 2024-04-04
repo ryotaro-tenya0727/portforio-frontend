@@ -18,7 +18,7 @@ import list from './../../css/templates/list.module.css';
 import { usePagination } from './../../hooks/usePagination';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 
 const RecommendedMemberDiariesList = ({
   recommendedMemberId,
