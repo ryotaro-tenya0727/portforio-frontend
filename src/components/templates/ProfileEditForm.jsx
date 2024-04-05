@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import PersonIcon from '@mui/icons-material/Person';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import { Circular } from './../atoms/atoms';
 import { Button } from './../atoms/atoms';
 
 import { useProfileApi } from './../../hooks/useProfile';
@@ -22,11 +23,12 @@ const ProfileEditForm = () => {
       },
     },
   });
+  const { useGetProfile, usePutProfile } = useProfileApi();
+  const { data: userData, isLoading } = useGetProfile();
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
   const [diaryImageUrl, setDiaryImageUrl] = useState(null);
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
-  const { usePutProfile } = useProfileApi();
   const putProfile = usePutProfile();
   const { control, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
@@ -37,6 +39,17 @@ const ProfileEditForm = () => {
     data.profile.user_image = diaryImageUrl;
     putProfile.mutate(data);
   };
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          textAlign: 'center',
+        }}
+      >
+        <Circular large={80} small={60} top={120} />
+      </div>
+    );
+  }
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -94,6 +107,7 @@ const ProfileEditForm = () => {
               diaryImageUrl={diaryImageUrl}
               onSetIsFileTypeError={(result) => setIsFileTypeError(result)}
               onSetIsNumberTypeError={(result) => setIsNumberError(result)}
+              defaultImage={userData.user_image}
             />
             <br />
             <label htmlFor='name'>
@@ -108,6 +122,7 @@ const ProfileEditForm = () => {
               名前
             </label>
             <Controller
+              defaultValue={userData.name}
               name='profile.name'
               rules={{ required: true, maxLength: 8 }}
               control={control}
@@ -145,6 +160,7 @@ const ProfileEditForm = () => {
               自己紹介
             </label>
             <Controller
+              defaultValue={userData.me_introduction}
               name='profile.me_introduction'
               control={control}
               render={({ field }) => (

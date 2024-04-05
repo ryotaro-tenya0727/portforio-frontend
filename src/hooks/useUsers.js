@@ -59,19 +59,13 @@ export const useUsersApi = () => {
   // };
 
   const useGetUser = () => {
-    const queryClient = useQueryClient();
     return useMutation(
       async (accessToken) => {
         setAccessToken(accessToken);
         return await userRepository.getUser(accessToken);
       },
       {
-        onSuccess: (data) => {
-          queryClient.setQueryData('users', data, {
-            staleTime: Infinity,
-            cacheTime: Infinity,
-          });
-        },
+        onSuccess: (data) => {},
       }
     );
   };
