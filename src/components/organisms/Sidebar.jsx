@@ -283,6 +283,9 @@ function Sidebar() {
                   navigate(value.link);
                   setOpenMenu(false);
                 }
+                if (value.function) {
+                  value.function();
+                }
               }}
             >
               <div id='icon'>{value.icon}</div>

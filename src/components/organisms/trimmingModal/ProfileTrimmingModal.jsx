@@ -46,13 +46,17 @@ const ProfileTrimmingModal = ({
   const { getCroppedCircleImage } = useImageCrop();
   const [Loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const handleModalClose = () => setModalOpen(false);
   const inputRef = useRef(null);
   const [imageToCrop, setImageToCrop] = useState(undefined);
   const [croppedImage, SetCroppedImage] = useState(null);
   const [Image, setImage] = useState(null);
   const [imageFileName, setImageFileName] = useState(null);
   const [defaultOwnImage, setDefaultOwnerImage] = useState(defaultImage);
+  const handleModalClose = () => {
+    setModalOpen(false);
+    setImageToCrop(undefined);
+    SetCroppedImage(null);
+  };
 
   const openTrimmingModal = async (event) => {
     if (!event) return;

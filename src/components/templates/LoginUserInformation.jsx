@@ -9,6 +9,8 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { Circular } from './../atoms/atoms';
 import { useAuth0 } from '@auth0/auth0-react';
 
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 import { getUserUrl } from './../../urls/index';
 
 import { Button } from './../atoms/atoms';
@@ -90,13 +92,30 @@ const LoginUserInformation = ({ user }) => {
                 あなたのプロフィール
               </div>
             </div>
-            <img
-              src={userData.user_image}
-              alt='picture'
-              width='60'
-              height='60'
-              style={{ borderRadius: '50%', marginBottom: '10px' }}
-            />
+            {userData.user_image ? (
+              <img
+                src={userData.user_image}
+                alt='picture'
+                width='60'
+                height='60'
+                style={{
+                  borderRadius: '50%',
+                  marginBottom: '10px',
+                  marginLeft: '10px',
+                }}
+              />
+            ) : (
+              <>
+                <AccountCircleIcon
+                  sx={{
+                    fontSize: '60px',
+                    mr: '-8px',
+                    color: '#948989',
+                  }}
+                />
+              </>
+            )}
+
             <br />
 
             <p className={card.login_card_text}>
