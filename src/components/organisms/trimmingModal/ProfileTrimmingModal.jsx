@@ -16,11 +16,13 @@ import { useImageCrop } from '../../../hooks/usefulFunction/useImageCrop';
 
 import button from './../../../css/atoms/button.module.scss';
 import card from './../../../css/organisms/card.module.css';
+import { set } from 'react-hook-form';
 
 const ProfileTrimmingModal = ({
   onSetDiaryImageUrl,
   onSetIsFileTypeError,
   onSetIsNumberTypeError,
+  defaultImage,
 }) => {
   const { getAccessTokenSilently } = useAuth0(); // 画像アップロード時にセット
   const [imageRef, setImageRef] = useState();
@@ -50,6 +52,7 @@ const ProfileTrimmingModal = ({
   const [croppedImage, SetCroppedImage] = useState(null);
   const [Image, setImage] = useState(null);
   const [imageFileName, setImageFileName] = useState(null);
+  const [defaultOwnImage, setDefaultOwnerImage] = useState(defaultImage);
 
   const openTrimmingModal = async (event) => {
     if (!event) return;
@@ -86,6 +89,7 @@ const ProfileTrimmingModal = ({
     if (window.confirm('選択した画像を消してよろしいですか？')) {
       resetErrors();
       setImage(null);
+      setDefaultOwnerImage(null);
     }
   };
 
@@ -168,7 +172,7 @@ const ProfileTrimmingModal = ({
           hidden
         />
 
-        {Image !== null ? (
+        {Image !== null || defaultOwnImage !== null ? (
           <div style={{ position: 'relative' }}>
             {Loading && (
               <Circular
@@ -184,7 +188,11 @@ const ProfileTrimmingModal = ({
               />
             )}
             <img
-              src={window.URL.createObjectURL(Image)}
+              src={
+                !!defaultOwnImage
+                  ? defaultOwnImage
+                  : window.URL.createObjectURL(Image)
+              }
               alt={`あなたの写真 `}
               width='80'
               height='80'
