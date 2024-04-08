@@ -7,9 +7,6 @@ import TabContext from '@mui/lab/TabContext';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import MonochromePhotosIcon from '@mui/icons-material/MonochromePhotos';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import axios from 'axios';
-import { API_URL } from '../../urls/index';
-import { useQuery } from 'react-query';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Circular } from './../atoms/atoms';
 
@@ -22,42 +19,19 @@ import {
 
 import MypageMenu from './../../css/templates/mypageMenu.module.css';
 
+import usePusherChannel from './../../hooks/usePuser';
+
 const MyPageMenu = ({ user }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const [value, setValue] = useState('2');
-  const { getAccessTokenSilently } = useAuth0();
-  const [notificationCount, setNotificationCount] = useState(0);
-  const { isLoading } = useQuery(
-    ['user_info'],
-    async () => {
-      const accessToken = await getAccessTokenSilently();
-      const response = await axios
-        .get(`${API_URL}/api/v1/user/users/user_info`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-        })
-        .catch((error) => {
-          console.error(error.response.data);
-        });
-      return response.data;
-    },
-    {
-      onSuccess: (data) => {
-        setNotificationCount(data.new_notifications_count);
-      },
-    },
-    {
-      staleTime: 300000000,
-      cacheTime: 300000000,
-    }
-  );
+  const { getAccessTokenSilently, user: authUser } = useAuth0();
+
+  const { isLoading, notificationCount, setNotificationCount } =
+    usePusherChannel(authUser, getAccessTokenSilently);
 
   const handleChange = (_event, newValue) => {
     setValue(newValue);
   };
-
   const theme = createTheme({
     palette: {
       primary: {
@@ -176,7 +150,10 @@ const MyPageMenu = ({ user }) => {
                 marginTop: '40px',
               }}
             >
-              <Notifications changeNotificationCount={setNotificationCount} />
+              <Notifications
+                changeNotificationCount={setNotificationCount}
+                notificationCount={notificationCount}
+              />
             </p>
           </TabPanel>
           <TabPanel value={'1'} sx={{ padding: 0 }}>

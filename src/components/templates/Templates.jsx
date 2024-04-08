@@ -16,3 +16,4 @@ export { default as PolaroidGraph } from './PolaroidGraph';
 export { default as UsersList } from './UsersList';
 export { default as TimeLineList } from './TimeLineList';
 export { default as Notifications } from '../templates/Notifications';
+export { default as ProfileEditForm } from '../templates/ProfileEditForm';

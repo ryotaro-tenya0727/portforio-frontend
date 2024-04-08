@@ -8,7 +8,7 @@ import 'react-medium-image-zoom/dist/styles.css';
 
 import { Button } from './../atoms/atoms';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 import card from './../../css/organisms/card.module.css';
 
 const GeneralUserDiaryCard = ({
@@ -22,6 +22,7 @@ const GeneralUserDiaryCard = ({
   showUrl,
 }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
+  const diaryImageUrl = diaryImages[0];
   const returnTop = () => {
     window.scrollTo({
       top: 0,
@@ -80,39 +81,60 @@ const GeneralUserDiaryCard = ({
         />
         ユーザーネーム:&emsp;<strong>{diaryUserName}</strong>
       </div>
-      <p className={card.card_text} style={{ marginTop: '20px' }}>
-        <span className={card.card_text_property}>
-          <LibraryMusicIcon
-            sx={{ fontSize: '19px', mb: '-4px', color: 'red' }}
-          />
-          &nbsp;&nbsp;イベント名:
-        </span>
-        &nbsp;
-        {eventName ? eventName : '未入力'}
-      </p>
-      <p className={card.card_text}>
-        <span className={card.card_text_property}>
-          <PhotoCameraBackIcon
-            sx={{ fontSize: '19px', mb: '-3.5px', color: '#FF8C00' }}
-          />
-          &nbsp;&nbsp;この日のチェキ数:
-        </span>
-        &nbsp;
-        {eventPolaroidCount ? eventPolaroidCount : '未入力'}
-      </p>
-      <p className={card.card_text}>
-        <span className={card.card_text_property}>
-          <img
-            src={`${imageDomain}/admin/diary_heart.png`}
-            alt='picture'
-            width='22'
-            style={{ marginTop: '-1px' }}
-          />
-          &nbsp;&nbsp;印象に残った出来事:
-        </span>
-        &emsp;{ImpressiveMemory ? ImpressiveMemory : '未入力'}
-      </p>
-      <div className={card.card_photo_list}>
+      <div className={card.card_general_detail}>
+        <div className={card.card_general_text_wrapper}>
+          <p className={card.card_text} style={{ marginTop: '20px' }}>
+            <span className={card.card_text_property}>
+              <LibraryMusicIcon
+                sx={{ fontSize: '19px', mb: '-4px', color: 'red' }}
+              />
+              &nbsp;&nbsp;イベント名:
+            </span>
+            &nbsp;
+            {eventName ? eventName : '未入力'}
+          </p>
+          <p className={card.card_text}>
+            <span className={card.card_text_property}>
+              <PhotoCameraBackIcon
+                sx={{ fontSize: '19px', mb: '-3.5px', color: '#FF8C00' }}
+              />
+              &nbsp;&nbsp;チェキ数:
+            </span>
+            &nbsp;
+            {eventPolaroidCount ? eventPolaroidCount : '未入力'}
+          </p>
+          <p className={card.card_text}>
+            <span className={card.card_text_property}>
+              <img
+                src={`${imageDomain}/admin/diary_heart.png`}
+                alt='picture'
+                width='22'
+                style={{ marginTop: '-1px' }}
+              />
+              &nbsp;&nbsp;出来事:
+            </span>
+            &emsp;{ImpressiveMemory ? ImpressiveMemory : '未入力'}
+          </p>
+        </div>
+        {diaryImageUrl && (
+          <div class={card.general_diary_image}>
+            <Zoom zoomMargin={40}>
+              <img
+                src={`${diaryImageUrl}`}
+                alt='picture'
+                width='130'
+                height='173'
+                style={{
+                  border: '2px solid #ff99c5',
+                  borderRadius: '5px',
+                }}
+              />
+            </Zoom>
+          </div>
+        )}
+      </div>
+
+      {/* <div className={card.card_photo_list}>
         {diaryImages.map((diaryImageUrl, index) => {
           return (
             <Zoom zoomMargin={40}>
@@ -121,6 +143,7 @@ const GeneralUserDiaryCard = ({
                 src={`${diaryImageUrl}`}
                 alt='picture'
                 width='130'
+                height='173'
                 style={{
                   border: '2px solid #ff99c5',
                   borderRadius: '5px',
@@ -129,7 +152,7 @@ const GeneralUserDiaryCard = ({
             </Zoom>
           );
         })}
-      </div>
+      </div> */}
     </Card>
   );
 };

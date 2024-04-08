@@ -6,7 +6,7 @@ import Zoom from 'react-medium-image-zoom';
 import { Button } from './../atoms/atoms';
 import { useAdminDiariesApi } from './../../hooks/useAdminDiary';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 import card from './../../css/organisms/card.module.css';
 import 'react-medium-image-zoom/dist/styles.css';
 

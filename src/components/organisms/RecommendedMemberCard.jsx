@@ -12,7 +12,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
 import { Button } from './../atoms/atoms';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 import card from './../../css/organisms/card.module.css';
 
 const RecommendedMemberCard = ({

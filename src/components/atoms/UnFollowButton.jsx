@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { REST_API_URL } from '../../urls/index';
 import { AuthGuardContext } from './../../providers/AuthGuard';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 
 const UnFollowButton = ({ id, changeFollow }) => {
   const { accessToken } = useContext(AuthGuardContext);

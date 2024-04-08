@@ -1,6 +1,5 @@
-import { AuthGuardContext } from './../../providers/AuthGuard';
-import { useContext } from 'react';
-import { useQueryClient, useQuery } from 'react-query';
+import { useEffect } from 'react';
+import { useQuery } from 'react-query';
 import axios from 'axios';
 import { API_URL } from '../../urls/index';
 
@@ -8,9 +7,13 @@ import { Circular } from './../atoms/atoms';
 import { NotificationCard } from './../organisms/Organisms';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const Notifications = ({ changeNotificationCount }) => {
+const Notifications = ({ changeNotificationCount, notificationCount }) => {
   const { getAccessTokenSilently } = useAuth0();
-  const { isLoading, data: notifications } = useQuery(
+  let {
+    isLoading,
+    data: notifications,
+    refetch,
+  } = useQuery(
     ['notifications'],
     async () => {
       const accessToken = await getAccessTokenSilently();
@@ -28,10 +31,19 @@ const Notifications = ({ changeNotificationCount }) => {
       return response.data.data;
     },
     {
-      staleTime: 3000000000,
-      cacheTime: 3000000000,
+      staleTime: 0,
+      cacheTime: 0,
     }
   );
+
+  useEffect(() => {
+    if (notificationCount > 0) {
+      (async () => {
+        await refetch();
+      })();
+    }
+  }, [notificationCount]);
+
   if (isLoading) {
     return <Circular large={80} small={60} top={120} />;
   }
@@ -42,6 +54,7 @@ const Notifications = ({ changeNotificationCount }) => {
       </>
     );
   }
+
   return (
     <>
       {notifications.map((notification, index) => {
@@ -71,5 +84,4 @@ const Notifications = ({ changeNotificationCount }) => {
     </>
   );
 };
-
 export default Notifications;

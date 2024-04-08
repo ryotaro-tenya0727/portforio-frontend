@@ -8,11 +8,11 @@
 
 @media (min-width: 570px) {
   .pagination_and_search_wrap{
-  width: 100%;
-  margin: 0 auto;
-  margin-bottom: 25px;
-  display: flex;
-  justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
   }
 }
 
@@ -30,7 +30,7 @@
   margin-bottom: 20px;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 710px) {
   .member_search_form{
     width: 270px;
     font-size: 16px;

@@ -7,15 +7,17 @@ import imageCompression from 'browser-image-compression';
 import 'react-image-crop/dist/ReactCrop.css';
 import axios from 'axios';
 
-import { SampleImageButton, Circular } from './../atoms/atoms';
-import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRepository';
+import { DiarySampleImageButton, Circular } from '../../atoms/atoms';
+import { s3PresignedUrlRepository } from '../../../repositories/s3PresignedUrlRepository';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import form from './../../css/templates/form.module.css';
-import button from './../../css/atoms/button.module.css';
-import card from './../../css/organisms/card.module.css';
+import { useImageCrop } from '../../../hooks/usefulFunction/useImageCrop';
 
-const TrimmingModal = ({
+import form from './../../../css/templates/form.module.css';
+import button from './../../../css/atoms/button.module.scss';
+import card from './../../../css/organisms/card.module.css';
+
+const DiaryTrimmingModal = ({
   onSetIsFileTypeError,
   onSetIsNumberTypeError,
   onSetDiaryImageUrlAndIndex,
@@ -35,6 +37,7 @@ const TrimmingModal = ({
     // height: 40,
     aspect: 3 / 4,
   });
+  const { getDiaryCroppedImage } = useImageCrop();
 
   const [firstLoading, setFirstLoading] = useState(false);
   const [secondLoading, setSecondLoading] = useState(false);
@@ -45,6 +48,7 @@ const TrimmingModal = ({
   const [firstImageToCrop, setFirstImageToCrop] = useState(undefined);
   const [croppedFirstImage, SetCroppedFirstImage] = useState(null);
   const [firstImage, setFirstImage] = useState(null);
+  const [firstImageFileName, setFirstImageFileName] = useState(null);
 
   const [secondOpen, setSecondOpen] = useState(false);
   const handleSecondClose = () => setSecondOpen(false);
@@ -52,6 +56,7 @@ const TrimmingModal = ({
   const [secondImageToCrop, setSecondImageToCrop] = useState(undefined);
   const [croppedSecondImage, SetCroppedSecondImage] = useState(null);
   const [secondImage, setSecondImage] = useState(null);
+  const [secondImageFileName, setSecondImageFileName] = useState(null);
 
   const style = {
     position: 'absolute',
@@ -63,7 +68,6 @@ const TrimmingModal = ({
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
     paddingBottom: '69px',
     textAlign: 'center',
   };
@@ -85,12 +89,20 @@ const TrimmingModal = ({
   const secondFileClick = () => {
     secondInputRef.current.click();
   };
-  const openFirstTrimmingModal = async (event) => {
+  const openFirstDiaryTrimmingModal = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
+    const extension = file.name.match(/[^.]+$/)[0];
+    setFirstImageFileName(`${crypto.randomUUID()}.${extension}`);
     resetErrors();
     if (
-      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
+      ![
+        'image/gif',
+        'image/jpeg',
+        'image/png',
+        'image/bmp',
+        'image/webp',
+      ].includes(file.type)
     ) {
       onSetIsFileTypeError(true);
       return;
@@ -107,9 +119,11 @@ const TrimmingModal = ({
     event.target.value = '';
   };
 
-  const openSecondTrimmingModal = async (event) => {
+  const openSecondDiaryTrimmingModal = async (event) => {
     if (!event) return;
     const file = event.target.files[0];
+    const extension = file.name.match(/[^.]+$/)[0];
+    setSecondImageFileName(`${crypto.randomUUID()}.${extension}`);
     resetErrors();
     if (
       !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
@@ -129,54 +143,12 @@ const TrimmingModal = ({
     event.target.value = '';
   };
 
-  const getCroppedImage = (sourceImage, cropConfig, fileName) => {
-    // creating the cropped image from the source image
-    const canvas = document.createElement('canvas');
-    const pixelRatio = window.devicePixelRatio;
-    const scaleX = sourceImage.naturalWidth / sourceImage.width;
-    const scaleY = sourceImage.naturalHeight / sourceImage.height;
-    const ctx = canvas.getContext('2d');
-    canvas.width = cropConfig.width * pixelRatio * scaleX;
-    canvas.height = cropConfig.height * pixelRatio * scaleY;
-
-    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-    ctx.imageSmoothingQuality = 'high';
-
-    ctx.drawImage(
-      sourceImage,
-      cropConfig.x * scaleX,
-      cropConfig.y * scaleY,
-      cropConfig.width * scaleX,
-      cropConfig.height * scaleY,
-      0,
-      0,
-      cropConfig.width * scaleX,
-      cropConfig.height * scaleY
-    );
-
-    return new Promise((resolve, reject) => {
-      canvas.toBlob(
-        (blob) => {
-          // returning an error
-          if (!blob) {
-            reject(new Error('Canvas is empty'));
-            return;
-          }
-          blob.name = fileName;
-          resolve(blob);
-        },
-        'image/jpeg',
-        1
-      );
-    });
-  };
-
   const cropFirstImage = async (crop) => {
     if (firstImageRef && crop.width && crop.height) {
-      const croppedImage = await getCroppedImage(
+      const croppedImage = await getDiaryCroppedImage(
         firstImageRef,
         crop,
-        `CropImage.png` // destination filename
+        firstImageFileName // destination filename
       );
       // リサイズ後に表示する画像をstateに格納
       SetCroppedFirstImage(croppedImage);
@@ -185,10 +157,10 @@ const TrimmingModal = ({
 
   const cropSecondImage = async (crop) => {
     if (secondImageRef && crop.width && crop.height) {
-      const croppedImage = await getCroppedImage(
+      const croppedImage = await getDiaryCroppedImage(
         secondImageRef,
         crop,
-        `CropImage.png` // destination filename
+        secondImageFileName // destination filename
       );
       // リサイズ後に表示する画像をstateに格納
       SetCroppedSecondImage(croppedImage);
@@ -203,12 +175,18 @@ const TrimmingModal = ({
     const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
       {
         presigned_url: {
-          filename: `${crypto.randomUUID()}`,
+          filename: firstImageFileName,
         },
       },
       accessToken
     );
     onSetDiaryImageUrlAndIndex(imageUrls.diary_image_url, 0);
+    if (
+      !(croppedFirstImage instanceof Blob || croppedFirstImage instanceof File)
+    ) {
+      alert('保存に失敗しました。やり直してください。');
+      return;
+    }
     const compressFile = await imageCompression(
       croppedFirstImage,
       compressOption
@@ -238,12 +216,20 @@ const TrimmingModal = ({
     const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
       {
         presigned_url: {
-          filename: `${crypto.randomUUID()}`,
+          filename: secondImageFileName,
         },
       },
       accessToken
     );
     onSetDiaryImageUrlAndIndex(imageUrls.diary_image_url, 1);
+    if (
+      !(
+        croppedSecondImage instanceof Blob || croppedSecondImage instanceof File
+      )
+    ) {
+      alert('保存に失敗しました。やり直してください。');
+      return;
+    }
     const compressFile = await imageCompression(
       croppedSecondImage,
       compressOption
@@ -286,14 +272,14 @@ const TrimmingModal = ({
         ref={firstInputRef}
         type='file'
         accept='image/*'
-        onChange={(event) => openFirstTrimmingModal(event)}
+        onChange={(event) => openFirstDiaryTrimmingModal(event)}
         hidden
       />
       <input
         ref={secondInputRef}
         type='file'
         accept='image/*'
-        onChange={(event) => openSecondTrimmingModal(event)}
+        onChange={(event) => openSecondDiaryTrimmingModal(event)}
         hidden
       />
       <div className={form.images}>
@@ -343,7 +329,7 @@ const TrimmingModal = ({
             ></img>
           </div>
         ) : (
-          <SampleImageButton onClick={firstFileClick} />
+          <DiarySampleImageButton onClick={firstFileClick} />
         )}
         <br />
         <br />
@@ -393,7 +379,7 @@ const TrimmingModal = ({
             ></img>
           </div>
         ) : (
-          <SampleImageButton onClick={secondFileClick} />
+          <DiarySampleImageButton onClick={secondFileClick} />
         )}
       </div>
       <Modal
@@ -473,4 +459,4 @@ const TrimmingModal = ({
   );
 };
 
-export default TrimmingModal;
+export default DiaryTrimmingModal;

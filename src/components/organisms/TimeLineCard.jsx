@@ -13,7 +13,7 @@ import useMedia from 'use-media';
 
 import { Button, LikeButton, UnLikeButton } from './../atoms/atoms';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 import card from './../../css/organisms/card.module.css';
 
 const TimeLineCard = ({
@@ -247,6 +247,7 @@ const TimeLineCard = ({
                   src={`${diaryImage}`}
                   alt='picture'
                   width={isWide ? '150px' : '120px'}
+                  height={isWide ? '201px' : '160.8px'}
                   style={{
                     border: '2px solid #ff99c5',
                     borderRadius: '5px',

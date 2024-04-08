@@ -1,4 +1,4 @@
-.button_card{
+@mixin buttonStandardStyle {
   text-align: center;
   cursor: pointer;
   background-color: #ffffff;
@@ -12,14 +12,35 @@
   font-size: 11px;
 }
 
+@mixin baseBeforeImageUploadButtonStyle {
+  cursor: pointer;
+  background-color: #ffe8e8;
+  border: dashed 2px #ff96df;
+}
+
+@mixin baseBeforeImageUploadButtonHoverStyle {
+  opacity: 0.7;
+  background-color: #ffdfdf;
+}
+
+.button_card{
+  @include buttonStandardStyle;
+}
+
+.profileEdit {
+  @include buttonStandardStyle;
+  padding: 8px 4px 8px 4px;
+}
+
 @media (min-width: 700px) {
-  .button_card{
+  .button_card, .profileEdit{
     font-size: 13px;
     padding: 11px 5px 13px 5px;
   }
+
 }
 
-.button_card:hover {
+.button_card:hover, .profileEdit:hover {
   background-color: rgba(255, 238, 162, 0.3)
 }
 
@@ -40,26 +61,43 @@
   opacity: 0.7
 }
 
-.sample_image{
+.diary_sample_button_image{
   width: 200px;
   height: 266.7px;
-  cursor: pointer;
-  background-color:#ffe8e8;
-  border: dashed 2px  #ff8a8a;
+  @include baseBeforeImageUploadButtonStyle
 }
-.sample_image:hover {
-  opacity: 0.7;
-  background-color:#ffdfdf;
+.diary_sample_button_image:hover {
+  @include baseBeforeImageUploadButtonHoverStyle
 }
 
-.sample_image_text{
+.diary_sample_button_image_text{
   height: 30px;
   border: dashed 2px #ff64db;
   border-radius: 5px;
-  padding: 20px 00px 10px 0px;
+  padding: 20px 0px 10px 0px;
   background-color:#ffffff;
   text-align: center;
   font-size: 15px;
+}
+
+.profile_sample_button_image {
+  @include baseBeforeImageUploadButtonStyle;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+.profile_sample_button_image:hover {
+  @include baseBeforeImageUploadButtonHoverStyle
+}
+
+.profile_sample_button_image_text {
+  background-color: rgb(104, 104, 104, 0.8);
+  margin: 0 auto;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
 }
 
 .image_cancel_button{
@@ -69,6 +107,16 @@
   border-radius: 5px;
   position: absolute;
   top: -25px;
+}
+
+.profile_image_cancel_button {
+  cursor: pointer;
+  background-color: #ff99c5;
+  border: none;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  margin: -10px 0px 10px -10px;
 }
 
 .recommended_and_diary_button{
@@ -245,7 +293,7 @@
   background-color: #ff7fe5;
   color: white;
   font-weight: bold;
-  padding: 6px 1.5px 6px 1px;
+  padding: 6px 2.5px 6px 2.5px;
 }
 
 @media (min-width: 700px) {

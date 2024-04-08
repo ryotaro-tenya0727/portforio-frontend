@@ -14,7 +14,7 @@ import { Button } from './../atoms/atoms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
 import form from './../../css/templates/form.module.css';
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 
 const RecommenedMemberDiaryEditForm = ({
   recommendedMemberId,

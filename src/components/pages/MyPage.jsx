@@ -9,7 +9,7 @@ import { Headers } from './../organisms/Organisms';
 import { RedirectToLogin } from './Pages';
 import { useUsersApi } from './../../hooks/useUsers';
 
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 
 const MyPage = memo(() => {
   const { isAuthenticated, user, isAuthLoading } = useUsersApi();

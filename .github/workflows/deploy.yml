@@ -1,0 +1,46 @@
+name: Deploy to AWS CloudFront
+run-name: Deploy to AWS CloudFront 🚀
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.8
+      - name: Prepare .env.production file
+        run: |
+          cat << EOF > .env.production
+          REACT_APP_IMAGE_DOMAIN=${{ secrets.REACT_APP_IMAGE_DOMAIN }}
+          REACT_APP_GA_ID=${{ secrets.REACT_APP_GA_ID }}
+          REACT_APP_AUTH0_DOMAIN=${{ secrets.REACT_APP_AUTH0_DOMAIN }}
+          REACT_APP_AUTH0_CLIENT_ID=${{ secrets.REACT_APP_AUTH0_CLIENT_ID }}
+          REACT_APP_AUTH0_AUDIENCE=${{ secrets.REACT_APP_AUTH0_AUDIENCE }}
+          REACT_APP_REST_URL=${{ secrets.REACT_APP_REST_URL }}
+          REACT_APP_PUSHER_KEY=${{ secrets.REACT_APP_PUSHER_KEY }}
+          REACT_APP_PUSHER_CLUSTER=${{ secrets.REACT_APP_PUSHER_CLUSTER }}
+          EOF
+      - name: AWS CLI installation
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Install dependencies
+        run: yarn install
+      - name: Build and deploy
+        run: |
+          yarn build
+          aws s3 cp ./build s3://${{ secrets.AWS_S3_BUCKET }} --recursive
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUD_FRONT_DISTRIBUTION_ID }} --paths '/*'
+        env:
+          CI: false

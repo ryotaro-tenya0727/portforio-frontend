@@ -207,11 +207,6 @@ function Sidebar() {
 
       link: '/privacy-policy',
     },
-    // {
-    //   title: 'お問い合わせ',
-
-    //   link: '/upload',
-    // },
     {
       title: (
         <>
@@ -288,7 +283,9 @@ function Sidebar() {
                   navigate(value.link);
                   setOpenMenu(false);
                 }
-                value.function();
+                if (value.function) {
+                  value.function();
+                }
               }}
             >
               <div id='icon'>{value.icon}</div>

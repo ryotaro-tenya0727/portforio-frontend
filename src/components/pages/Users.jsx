@@ -6,7 +6,7 @@ import useMedia from 'use-media';
 
 import { Button, MenuButton } from './../atoms/atoms';
 import { UsersList } from './../templates/Templates';
-import button from './../../css/atoms/button.module.css';
+import button from './../../css/atoms/button.module.scss';
 import users from './../../css/pages/users.module.css';
 
 const Users = () => {

@@ -3,7 +3,6 @@
   position: relative;
   margin: 0 auto;
   width: 85%;
-  min-height: 500px;
 }
 
 
@@ -46,12 +45,14 @@
 }
 
 .card_general_photo{
+  height: 30px;
   width: 30px;
 }
 
 @media (min-width: 700px) {
   .card_general_photo{
     width: 40px;
+    height: 40px;
   }
 }
 
@@ -104,10 +105,26 @@
   }
 }
 
+.card_general_detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+
+.card_general_text_wrapper {
+  width: 65%
+}
+
+.general_diary_image{
+  text-align: center;
+  margin: 0 10px 13px 20px;
+}
+
 .card_text{
   border-bottom: 2px dashed #ff8a8a;
   color: #000000;
-  margin: 0px 0px 15px 0px;
+  margin: 0px 0px 20px 0px;
   padding: 0px 0px 10px 0px;
   font-weight: bold;
   font-size: 11px;
@@ -147,7 +164,7 @@
 
 .login_card_title{
   font-size: 13px;
-  margin: 0px 0px 10px 0px
+  margin: 0px 0px 10px 0px;
 }
 
 @media (min-width: 500px) {
@@ -172,7 +189,7 @@
 }
 
 .login_user_card{
-  width: 65%;
+  width: 50%;
   text-align: center;
   padding: 10px 10px 35px 10px;
   margin:  0 auto;
@@ -212,7 +229,7 @@
 }
 
 .login_card_text{
-  border-bottom: 2px dashed #ff8a8a;
+  border-bottom: 2px dashed #e9dbdb;
   margin:  0 auto;
   margin-bottom: 15px;
   width: 90%;
@@ -239,7 +256,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0px 15px 0px 5px
+  padding: 0px 5px 0px 5px
 
 }
 
@@ -247,7 +264,7 @@
   position:  absolute;
   top: -5px;
   right: -25px;
-   width: 110px;
+  width: 110px;
 }
 
 

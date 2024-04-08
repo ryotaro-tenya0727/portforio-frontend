@@ -7,44 +7,9 @@
 .main_image{
   width: 100%;
   object-fit: cover;
-  height:230px;
+  aspect-ratio: 16 / 9;
   object-position: 50% 0%;
   max-width: 1000px;
-}
-
-@media (min-width: 400px) {
-  .main_image{
-  height:285px;
-  object-position: 50% 0%;
-  }
-}
-
-@media (min-width: 500px) {
-  .main_image{
-  height:350px;
-  object-position: 50% 0%;
-  }
-}
-
-@media (min-width: 600px){
-  .main_image{
-    height:400px;
-    object-position: 50% 0%;
-  }
-}
-
-@media (min-width: 700px){
-  .main_image{
-    height:470px;
-    object-position: 50% 0%;
-  }
-}
-
-@media (min-width: 900px)  {
-  .main_image{
-    height:550px;
-    object-position: 50% 0%;
-  }
 }
 
 .logo{

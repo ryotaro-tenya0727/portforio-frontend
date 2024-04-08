@@ -17,9 +17,9 @@ export const userRepository = {
     return response.data;
   },
 
-  getUser: async (token) => {
+  getUser: async (token, params = {}) => {
     const response = await axios
-      .get(`${getUserUrl}/user_info`, {
+      .get(`${getUserUrl}/user_info`, params, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',

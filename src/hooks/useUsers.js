@@ -15,27 +15,27 @@ export const useUsersApi = () => {
     isLoading: isAuthLoading,
   } = useAuth0();
   // const [isLoading, setisLoading] = useState(true);
-  // const useAddUser = () => {
-  //   const queryClient = useQueryClient();
-  //   // mutateメソッドの引数がmutate関数の引数になる。下のcreateUser.mutate
-  //   return useMutation(
-  //     async (params) => {
-  //       setAccessToken(params.accessToken);
-  //       return await userRepository.createUser(
-  //         params.value,
-  //         params.accessToken || ''
-  //       );
-  //     },
-  //     {
-  //       onSuccess: (data) => {
-  //         queryClient.setQueryData('users', data, {
-  //           staleTime: Infinity,
-  //           cacheTime: Infinity,
-  //         });
-  //       },
-  //     }
-  //   );
-  // };
+  const useAddUser = () => {
+    const queryClient = useQueryClient();
+    // mutateメソッドの引数がmutate関数の引数になる。下のcreateUser.mutate
+    return useMutation(
+      async (params) => {
+        setAccessToken(params.accessToken);
+        return await userRepository.createUser(
+          params.value,
+          params.accessToken || ''
+        );
+      },
+      {
+        onSuccess: (data) => {
+          queryClient.setQueryData('users', data, {
+            staleTime: Infinity,
+            cacheTime: Infinity,
+          });
+        },
+      }
+    );
+  };
 
   // const useGetAccesstokenAndCreateUser = async () => {
   // const createUser = useAddUser();
@@ -59,19 +59,13 @@ export const useUsersApi = () => {
   // };
 
   const useGetUser = () => {
-    const queryClient = useQueryClient();
     return useMutation(
       async (accessToken) => {
         setAccessToken(accessToken);
-        return await userRepository.getUser(accessToken || '');
+        return await userRepository.getUser(accessToken);
       },
       {
-        onSuccess: (data) => {
-          queryClient.setQueryData('users', data, {
-            staleTime: Infinity,
-            cacheTime: Infinity,
-          });
-        },
+        onSuccess: (data) => {},
       }
     );
   };
