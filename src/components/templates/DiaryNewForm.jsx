@@ -17,6 +17,8 @@ import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemb
 
 import form from './../../css/templates/form.module.css';
 
+import { validVideoType } from './../../validations/videoValidator';
+
 const DiaryNewForm = ({
   recommendedMemberId,
   recommendedMemberUuid,
@@ -71,29 +73,36 @@ const DiaryNewForm = ({
     setDiaryImageUrls([]);
   };
 
-  const onVideoSubmit = async (e) => {
+  const onVideoSelected = async (e) => {
     const selectedFile = e.target.files[0];
+    console.log(validVideoType(selectedFile.type));
+    const extension = selectedFile.name.match(/[^.]+$/)[0];
+    if (!validVideoType(selectedFile.type)) {
+      alert('動画ファイル以外はアップロードできません');
+      return;
+    }
     const accessToken = await getAccessTokenSilently();
     const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
       {
         presigned_url: {
-          filename: `${crypto.randomUUID()}`,
+          filename: `${crypto.randomUUID()}.${extension}`,
         },
       },
       accessToken
     );
-    console.log(selectedFile.type);
+
     await axios.put(imageUrls.presigned_url, selectedFile, {
       headers: {
         'Content-Type': selectedFile.type,
       },
     });
+    console.log(imageUrls.diary_image_url);
   };
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        <input type='file' accept='video/*' onChange={onVideoSubmit} />
+        <input type='file' accept='video/*' onChange={onVideoSelected} />
         <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
           <p className={form.form_title} style={{ marginTop: '20px' }}>
             {`${recommendedMemberNickname}との日記追加中`}
