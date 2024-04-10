@@ -35,4 +35,22 @@ export const s3PresignedUrlRepository = {
 
     return response.data;
   },
+  getDiaryVideoPresignedUrl: async (params, token) => {
+    const response = await axios
+      .post(
+        `${REST_API_URL}/user/external/aws/s3/presigned_url/diary_videos`,
+        params,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .catch((error) => {
+        console.error(error.response.data);
+      });
+
+    return response.data;
+  },
 };

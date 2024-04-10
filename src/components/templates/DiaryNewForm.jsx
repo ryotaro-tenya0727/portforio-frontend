@@ -82,7 +82,7 @@ const DiaryNewForm = ({
       return;
     }
     const accessToken = await getAccessTokenSilently();
-    const imageUrls = await s3PresignedUrlRepository.getPresignedUrl(
+    const imageUrls = await s3PresignedUrlRepository.getDiaryVideoPresignedUrl(
       {
         presigned_url: {
           filename: `${crypto.randomUUID()}.${extension}`,
@@ -90,13 +90,14 @@ const DiaryNewForm = ({
       },
       accessToken
     );
+    console.log(imageUrls);
 
     await axios.put(imageUrls.presigned_url, selectedFile, {
       headers: {
         'Content-Type': selectedFile.type,
       },
     });
-    console.log(imageUrls.diary_image_url);
+    console.log(imageUrls.diary_video_url);
   };
 
   return (
