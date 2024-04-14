@@ -13,7 +13,7 @@ import { useProfileApi } from './../../hooks/useProfile';
 import { ProfileTrimmingModal } from './../organisms/Organisms';
 
 import button from './../../css/atoms/button.module.scss';
-import form from './../../css/templates/form.module.css';
+import form from './../../css/templates/form.module.scss';
 
 const ProfileEditForm = () => {
   const theme = createTheme({

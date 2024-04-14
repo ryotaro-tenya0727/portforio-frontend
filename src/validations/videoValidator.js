@@ -2,4 +2,8 @@ const validVideoType = (type) => {
   return type.match(/video.*/g);
 };
 
-export { validVideoType };
+const validVideoSize = (size) => {
+  return size <= 104857600;
+};
+
+export { validVideoType, validVideoSize };

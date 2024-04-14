@@ -7,7 +7,7 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
-import form from './../../css/templates/form.module.css';
+import form from './../../css/templates/form.module.scss';
 
 const RecommenedMembersNewForm = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;

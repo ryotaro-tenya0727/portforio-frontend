@@ -55,24 +55,12 @@
 }
 
 .image_up_title {
-  text-align: center;
-  font-size: 17px;
-  margin: 15px 0px 20px 0px;
+  /* font-size: 17px; */
   font-weight: bold;
+  margin-top: 8px;
 }
-
-@media (min-width: 500px) {
-  .image_up_title {
-    font-size: 17px;
-    margin: 15px 0px 40px 0px;
-  }
-}
-
-@media (min-width: 700px) {
-  .image_up_title {
-    font-size: 22px;
-    margin: 15px 0px 30px 0px;
-  }
+.image_description {
+  font-size: 15px;
 }
 
 .text_label {
@@ -86,26 +74,44 @@
   font-weight: bold;
 }
 
-.submit_button {
+@mixin baseButton {
   cursor: pointer;
   background-color: #ffffff;
   border-radius: 5px;
   border: 2px solid;
   padding: 18px 8px 18px 8px;
-  margin: 0px 0px 20px 0px;
   font-weight: bold;
   font-size: 15px;
   font-family: 'M PLUS Rounded 1c', sans-serif;
   color: #ff66d1;
   box-shadow: 2.7px 3.2px 2px 0.3px #938d90;
-  margin-top: 15px;
+}
+
+.submit_button {
+  @include baseButton;
+  padding: 16px 8px 16px 8px;
+  margin: 15px 0px 20px 0px;
+}
+
+.changeVideoButton {
+  @include baseButton;
+  padding: 12px 8px 12px 8px;
+  // float: right
 }
 
 .submit_button:hover {
-  background-color: rgba(255, 199, 227, 0.3)
+  opacity: 0.8
 }
 
 .submit_button:active {
+  box-shadow: none;
+}
+
+.changeVideoButton:hover {
+  opacity: 0.8
+}
+
+.changeVideoButton:active {
   box-shadow: none;
 }
 

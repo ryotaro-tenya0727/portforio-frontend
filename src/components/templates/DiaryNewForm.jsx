@@ -7,17 +7,24 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
+import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
+import PhotoIcon from '@mui/icons-material/Photo';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 
-import { s3PresignedUrlRepository } from './../../repositories/s3PresignedUrlRepository';
+import { s3PresignedUrlRepository } from '../../repositories/external/aws/s3/s3PresignedUrlRepository';
+import { videoConvertStreamingRepository } from '../../repositories/external/cloudflare/stream/videoConvertStreamingRepository';
 
 import { DiaryTrimmingModal } from './../organisms/Organisms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
-import form from './../../css/templates/form.module.css';
+import form from './../../css/templates/form.module.scss';
 
-import { validVideoType } from './../../validations/videoValidator';
+import {
+  validVideoType,
+  validVideoSize,
+  validVideoPlayTime,
+} from './../../validations/videoValidator';
 
 const DiaryNewForm = ({
   recommendedMemberId,
@@ -28,6 +35,7 @@ const DiaryNewForm = ({
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
   const [diaryImageUrls, setDiaryImageUrls] = useState([]);
+  const [displayImageArea, setDisplayImageArea] = useState(true);
   const { getAccessTokenSilently } = useAuth0();
 
   const { control, handleSubmit, formState } = useForm({
@@ -81,6 +89,11 @@ const DiaryNewForm = ({
       alert('動画ファイル以外はアップロードできません');
       return;
     }
+    if (!validVideoSize(selectedFile.size)) {
+      alert('100MBを超える動画ファイルはアップロードできません');
+      return;
+    }
+
     const accessToken = await getAccessTokenSilently();
     const imageUrls = await s3PresignedUrlRepository.getDiaryVideoPresignedUrl(
       {
@@ -90,24 +103,34 @@ const DiaryNewForm = ({
       },
       accessToken
     );
-    console.log(imageUrls);
 
     await axios.put(imageUrls.presigned_url, selectedFile, {
       headers: {
-        'Content-Type': selectedFile.type,
+        'Content-Type': 'video/*',
       },
     });
-    console.log(imageUrls.diary_video_url);
+
+    const response = await videoConvertStreamingRepository.createStreamingVideo(
+      { video_upload: { url: imageUrls.diary_video_url } },
+      accessToken
+    );
+    console.log(response);
   };
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        <input type='file' accept='video/*' onChange={onVideoSelected} />
+        {/* <iframe
+          title='diary-video'
+          src='https://customer-6mlocqu6hlmvu4kt.cloudflarestream.com/5c296f7b17f6a19c8286fd68b56f2021/iframe'
+          style={{ border: 'none' }}
+          height='300'
+          width='600'
+          allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;'
+          allowfullscreen='true'
+        ></iframe> */}
+        {/* <input type='file' accept='video/*' onChange={onVideoSelected} /> */}
         <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
-          <p className={form.form_title} style={{ marginTop: '20px' }}>
-            {`${recommendedMemberNickname}との日記追加中`}
-          </p>
           {isNumberError && (
             <p className={form.text_error}>
               ※2枚を超えて選択された画像は表示されません
@@ -119,22 +142,63 @@ const DiaryNewForm = ({
               以外のファイル形式はアップロードできません
             </p>
           )}
-
-          <p className={form.image_up_title}>日記に使う画像を選択</p>
-          <DiaryTrimmingModal
-            onSetDiaryImageUrlAndIndex={(url, index) => {
-              setDiaryImageUrls([
-                ...diaryImageUrls,
-                { diary_image_index: index, url: url },
-              ]);
-            }}
-            onSetDiaryImageUrls={(urls) => {
-              setDiaryImageUrls(urls);
-            }}
-            diaryImageUrls={diaryImageUrls}
-            onSetIsFileTypeError={(result) => setIsFileTypeError(result)}
-            onSetIsNumberTypeError={(result) => setIsNumberError(result)}
-          />
+          {displayImageArea ? (
+            <div>
+              <label
+                style={{
+                  marginBottom: '0px',
+                  marginTop: '16px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <div>
+                  <PhotoIcon
+                    sx={{
+                      fontSize: '24px',
+                      mb: '-6px',
+                      mr: '10px',
+                      color: '#ff66d1',
+                    }}
+                  />
+                  日記に使う画像を2枚選択
+                </div>
+                <button
+                  className={form.changeVideoButton}
+                  onClick={() => {
+                    setDisplayImageArea(false);
+                  }}
+                >
+                  <OndemandVideoIcon
+                    sx={{
+                      fontSize: '24px',
+                      mb: '-6px',
+                      mr: '10px',
+                      color: '#ff66d1',
+                    }}
+                  />
+                  動画にする
+                </button>
+              </label>
+              <DiaryTrimmingModal
+                onSetDiaryImageUrlAndIndex={(url, index) => {
+                  setDiaryImageUrls([
+                    ...diaryImageUrls,
+                    { diary_image_index: index, url: url },
+                  ]);
+                }}
+                onSetDiaryImageUrls={(urls) => {
+                  setDiaryImageUrls(urls);
+                }}
+                diaryImageUrls={diaryImageUrls}
+                onSetIsFileTypeError={(result) => setIsFileTypeError(result)}
+                onSetIsNumberTypeError={(result) => setIsNumberError(result)}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
 
           <br />
           <label htmlFor='event_name'>

@@ -10,7 +10,7 @@ import { Button } from './../atoms/atoms';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 
 import button from './../../css/atoms/button.module.scss';
-import form from './../../css/templates/form.module.css';
+import form from './../../css/templates/form.module.scss';
 
 const RecommenedMemberEditForm = ({
   recommendedMemberUuid,

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { REST_API_URL } from '../urls/index';
+import { REST_API_URL } from '../../../../urls/index';
 
 export const s3PresignedUrlRepository = {
   getPresignedUrl: async (params, token) => {

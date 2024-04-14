@@ -9,7 +9,7 @@ import 'react-image-crop/dist/ReactCrop.css';
 import axios from 'axios';
 
 import { ProfileSampleImageButton, Circular } from '../../atoms/atoms';
-import { s3PresignedUrlRepository } from '../../../repositories/s3PresignedUrlRepository';
+import { s3PresignedUrlRepository } from '../../../repositories/external/aws/s3/s3PresignedUrlRepository';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { useImageCrop } from '../../../hooks/usefulFunction/useImageCrop';
