@@ -3,6 +3,7 @@ export { default as LoginUserDiaryCard } from './LoginUserDiaryCard';
 export { default as RecommendedMemberCard } from './RecommendedMemberCard';
 export { default as Sidebar } from './Sidebar';
 export { default as DiaryTrimmingModal } from './trimmingModal/DiaryTrimmingModal';
+export { default as DiaryVideoUploadArea } from './trimmingModal/DiaryVideoUploadArea';
 export { default as ProfileTrimmingModal } from './trimmingModal/ProfileTrimmingModal';
 export { default as AdminUserCard } from './AdminUserCard';
 export { default as GeneralUserDiaryCard } from './GeneralUserDiaryCard';

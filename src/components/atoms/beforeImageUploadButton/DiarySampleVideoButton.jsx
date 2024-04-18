@@ -2,21 +2,21 @@ import PhotoIcon from '@mui/icons-material/Photo';
 
 import button from './../../../css/atoms/button.module.scss';
 
-const DiarySampleImageButton = ({ onClick }) => {
+const DiarySampleVideoButton = () => {
   return (
     <button
-      className={button.diarySampleButtonImage}
-      onClick={onClick}
+      className={button.diarySampleButtonVideo}
+      // onClick={onClick}
       type='button'
     >
-      <p className={button.diarySampleButtonImageText}>
+      <p className={button.diarySampleButtonVideoText}>
         <PhotoIcon
           sx={{ fontSize: '22px', mb: '-6px', mr: '8px', color: '#ff66d1' }}
         />
-        画像を設定する
+        動画をアップロード
       </p>
     </button>
   );
 };
 
-export default DiarySampleImageButton;
+export default DiarySampleVideoButton;

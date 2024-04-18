@@ -74,39 +74,6 @@
   font-weight: bold;
 }
 
-@mixin baseButton {
-  cursor: pointer;
-  background-color: #ffffff;
-  border-radius: 5px;
-  border: 2px solid;
-  padding: 18px 8px 18px 8px;
-  font-weight: bold;
-  font-size: 15px;
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  color: #ff66d1;
-  box-shadow: 2.7px 3.2px 2px 0.3px #938d90;
-}
-
-.submit_button {
-  @include baseButton;
-  padding: 16px 8px 16px 8px;
-  margin: 15px 0px 20px 0px;
-}
-
-.changeVideoButton {
-  @include baseButton;
-  padding: 12px 8px 12px 8px;
-  // float: right
-}
-
-.submit_button:hover {
-  opacity: 0.8
-}
-
-.submit_button:active {
-  box-shadow: none;
-}
-
 .changeVideoButton:hover {
   opacity: 0.8
 }
@@ -131,7 +98,6 @@
   .images {
     display: flex;
     flex-direction: column;
-    /*コレ*/
     align-items: center;
   }
 }
@@ -147,3 +113,9 @@
     width: 90%;
   }
 }
+
+.uploadVideo {
+  text-align: center;
+}
+
+.contentsWrapper {margin: 40px 0px 0px 0px;}

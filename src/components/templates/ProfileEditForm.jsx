@@ -191,7 +191,7 @@ const ProfileEditForm = () => {
             <div style={{ textAlign: 'center' }}>
               <input
                 type='submit'
-                className={form.submit_button}
+                className={button.submit_button}
                 value='この内容で登録'
               />
             </div>

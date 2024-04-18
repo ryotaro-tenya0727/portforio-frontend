@@ -37,21 +37,27 @@
   }
 }
 
-label{
+.formTitle{
   display:block;
   font-size: 14px;
   font-weight: bold;
   margin: 0px 0px 18px 0px
 }
 
+.formTitleContents {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 @media(min-width: 500px) {
-label{
+.formTitle, .formTitleContents{
   font-size: 15px;
   }
 }
 
 @media(min-width: 800px) {
-label{
+.formTitle, .formTitleContents{
   font-size: 19px;
   }
 }

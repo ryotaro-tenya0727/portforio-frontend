@@ -43,7 +43,7 @@ const GeneralUserDiaryCard = ({
           {DiaryMemberNickname}との思い出
         </p>
         <Link to={showUrl}>
-          <Button className={button.button_card} onClick={returnTop}>
+          <Button className={button.buttonCard} onClick={returnTop}>
             <AppRegistrationIcon
               sx={{
                 fontSize: '25px',

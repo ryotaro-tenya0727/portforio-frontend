@@ -49,7 +49,7 @@ const LoginUserDiaryCard = ({
         ) : (
           <div className={card.card_diary_button_list}>
             <Link to={showUrl}>
-              <Button className={button.button_card} onClick={returnTop}>
+              <Button className={button.buttonCard} onClick={returnTop}>
                 <AppRegistrationIcon
                   sx={{
                     fontSize: '23px',
@@ -65,7 +65,7 @@ const LoginUserDiaryCard = ({
               </Button>
             </Link>
             <Link to={editUrl}>
-              <Button className={button.button_card} onClick={returnTop}>
+              <Button className={button.buttonCard} onClick={returnTop}>
                 日記を編集する
               </Button>
             </Link>

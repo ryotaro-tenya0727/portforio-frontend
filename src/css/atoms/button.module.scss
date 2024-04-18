@@ -1,3 +1,16 @@
+@mixin baseButton {
+  cursor: pointer;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid;
+  padding: 18px 8px 18px 8px;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  color: #ff66d1;
+  box-shadow: 2.7px 3.2px 2px 0.3px #938d90;
+}
+
 @mixin buttonStandardStyle {
   text-align: center;
   cursor: pointer;
@@ -12,18 +25,29 @@
   font-size: 11px;
 }
 
-@mixin baseBeforeImageUploadButtonStyle {
+@mixin baseBeforeUploadButtonStyle {
   cursor: pointer;
   background-color: #ffe8e8;
   border: dashed 2px #ff96df;
+  margin: 16px 0px 8px 0px;
 }
 
-@mixin baseBeforeImageUploadButtonHoverStyle {
+@mixin baseBeforeUploadButtonHoverStyle {
   opacity: 0.7;
   background-color: #ffdfdf;
 }
 
-.button_card{
+@mixin baseBeforeUploadButtonTextStyle {
+  height: 30px;
+  border: dashed 2px #ff64db;
+  border-radius: 5px;
+  padding: 20px 0px 10px 0px;
+  background-color: #ffffff;
+  text-align: center;
+  font-size: 15px;
+}
+
+.buttonCard{
   @include buttonStandardStyle;
 }
 
@@ -33,18 +57,18 @@
 }
 
 @media (min-width: 700px) {
-  .button_card, .profileEdit{
+  .buttonCard, .profileEdit{
     font-size: 13px;
     padding: 11px 5px 13px 5px;
   }
 
 }
 
-.button_card:hover, .profileEdit:hover {
+.buttonCard:hover, .profileEdit:hover {
   background-color: rgba(255, 238, 162, 0.3)
 }
 
-.button_trimming{
+.buttonTrimming{
   text-align: center;
   cursor: pointer;
   background-color: #ffffff;
@@ -57,31 +81,54 @@
   margin-top: 10px;
 }
 
-.button_trimming:hover {
+.buttonTrimming:hover {
   opacity: 0.7
 }
 
-.diary_sample_button_image{
+.diarySampleButtonImage{
   width: 200px;
   height: 266.7px;
-  @include baseBeforeImageUploadButtonStyle
-}
-.diary_sample_button_image:hover {
-  @include baseBeforeImageUploadButtonHoverStyle
+  @include baseBeforeUploadButtonStyle;
 }
 
-.diary_sample_button_image_text{
-  height: 30px;
-  border: dashed 2px #ff64db;
-  border-radius: 5px;
-  padding: 20px 0px 10px 0px;
-  background-color:#ffffff;
-  text-align: center;
-  font-size: 15px;
+@media (max-width: 500px) {
+  .diarySampleButtonImage {
+    margin: 32px 0px 0px 0px;
+  }
 }
+.diarySampleButtonImage:hover {
+  @include baseBeforeUploadButtonHoverStyle
+}
+
+.diarySampleButtonImageText{
+  @include baseBeforeUploadButtonTextStyle
+}
+
+.diarySampleButtonVideo {
+  min-width: 300px;
+  height: 300px;
+  @include baseBeforeUploadButtonStyle
+}
+
+@media (max-width: 500px) {
+  .diarySampleButtonVideo {
+    margin: 32px 0px 0px 0px;
+  }
+}
+
+.diarySampleButtonVideo:hover {
+  @include baseBeforeUploadButtonHoverStyle;
+}
+
+.diarySampleButtonVideoText {
+  @include baseBeforeUploadButtonTextStyle;
+  width: 200px;
+  margin: 0 auto;
+}
+
 
 .profile_sample_button_image {
-  @include baseBeforeImageUploadButtonStyle;
+  @include baseBeforeUploadButtonStyle;
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -89,7 +136,7 @@
 }
 
 .profile_sample_button_image:hover {
-  @include baseBeforeImageUploadButtonHoverStyle
+  @include baseBeforeUploadButtonHoverStyle
 }
 
 .profile_sample_button_image_text {
@@ -117,6 +164,36 @@
   height: 33px;
   border-radius: 50%;
   margin: -10px 0px 10px -10px;
+}
+
+.changeVideoButton {
+  @include baseButton;
+  padding: 8px 6px 8px 6px;
+  font-size: 10px;
+  // float: right
+}
+
+@media (min-width: 500px) {
+  .changeVideoButton {
+    padding: 14px 6px 14px 6px;
+    margin: 20px 0px 30px 0px;
+  }
+}
+
+@media (min-width: 700px) {
+  .changeVideoButton {
+    padding: 14px 6px 14px 6px;
+    font-size: 14px;
+    margin: 20px 0px 25px 0px;
+  }
+}
+
+.changeVideoButton:hover {
+  opacity: 0.8
+}
+
+.changeVideoButton:active {
+  box-shadow: none;
 }
 
 .recommended_and_diary_button{
@@ -306,4 +383,18 @@
 
 .unlike:hover {
   opacity: 0.8
+}
+
+.submit_button {
+  @include baseButton;
+  padding: 16px 8px 16px 8px;
+  margin: 15px 0px 20px 0px;
+}
+
+.submit_button:hover {
+  opacity: 0.8
+}
+
+.submit_button:active {
+  box-shadow: none;
 }

@@ -16,14 +16,15 @@ import { s3PresignedUrlRepository } from '../../repositories/external/aws/s3/s3P
 import { videoConvertStreamingRepository } from '../../repositories/external/cloudflare/stream/videoConvertStreamingRepository';
 
 import { DiaryTrimmingModal } from './../organisms/Organisms';
+import { DiaryVideoUploadArea } from './../organisms/Organisms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
 import form from './../../css/templates/form.module.scss';
+import button from './../../css/atoms/button.module.scss';
 
 import {
   validVideoType,
   validVideoSize,
-  validVideoPlayTime,
 } from './../../validations/videoValidator';
 
 const DiaryNewForm = ({
@@ -144,16 +145,15 @@ const DiaryNewForm = ({
           )}
           {displayImageArea ? (
             <div>
-              <label
+              <div
                 style={{
-                  marginBottom: '0px',
-                  marginTop: '16px',
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
                 }}
+                class={form.contentsWrapper}
               >
-                <div>
+                <div class='formTitleContents'>
                   <PhotoIcon
                     sx={{
                       fontSize: '24px',
@@ -162,25 +162,30 @@ const DiaryNewForm = ({
                       color: '#ff66d1',
                     }}
                   />
-                  日記に使う画像を2枚選択
+                  日記の画像を2枚選択
                 </div>
                 <button
-                  className={form.changeVideoButton}
+                  className={button.changeVideoButton}
                   onClick={() => {
                     setDisplayImageArea(false);
                   }}
                 >
                   <OndemandVideoIcon
                     sx={{
-                      fontSize: '24px',
-                      mb: '-6px',
-                      mr: '10px',
-                      color: '#ff66d1',
+                      fontSize: '18.5px',
+                      mr: 1,
+                      mb: '-5.5px',
+                      color: '#ff6fc8',
+                      '@media screen and (max-width:700px)': {
+                        fontSize: '14.5px',
+                        mr: 0.5,
+                        mb: '-3.5px',
+                      },
                     }}
                   />
                   動画にする
                 </button>
-              </label>
+              </div>
               <DiaryTrimmingModal
                 onSetDiaryImageUrlAndIndex={(url, index) => {
                   setDiaryImageUrls([
@@ -197,17 +202,63 @@ const DiaryNewForm = ({
               />
             </div>
           ) : (
-            <></>
+            <div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+                class={form.contentsWrapper}
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+              >
+                <div class='formTitleContents'>
+                  <OndemandVideoIcon
+                    sx={{
+                      fontSize: '24px',
+                      mb: '-6px',
+                      mr: '10px',
+                      color: '#ff66d1',
+                    }}
+                  />
+                  日記の動画をアップロード
+                </div>
+                <button
+                  className={button.changeVideoButton}
+                  onClick={() => {
+                    setDisplayImageArea(true);
+                  }}
+                >
+                  <PhotoIcon
+                    sx={{
+                      fontSize: '18.5px',
+                      mr: 1,
+                      mb: '-5.5px',
+                      color: '#ff6fc8',
+                      '@media screen and (max-width:700px)': {
+                        fontSize: '14.5px',
+                        mr: 0.5,
+                        mb: '-3.5px',
+                      },
+                    }}
+                  />
+                  画像にする
+                </button>
+              </div>
+              <DiaryVideoUploadArea />
+            </div>
           )}
 
           <br />
-          <label htmlFor='event_name'>
+          <div htmlFor='event_name' class='formTitle'>
             {' '}
             <LibraryMusicIcon
               sx={{ fontSize: '24px', mb: '-7px', mr: '10px', color: 'red' }}
             />
             イベント名 (25文字以内)
-          </label>
+          </div>
           <Controller
             defaultValue=''
             rules={{ maxLength: 25 }}
@@ -216,8 +267,8 @@ const DiaryNewForm = ({
             render={({ field }) => (
               <TextField
                 id='event_name'
-                label={
-                  <span className={form.text_label}>
+                div={
+                  <span className={form.text_div}>
                     {' '}
                     <LibraryMusicIcon
                       sx={{
@@ -239,7 +290,7 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <label htmlFor='event_date'>
+          <div htmlFor='event_date' class='formTitle'>
             {' '}
             <CalendarMonthIcon
               sx={{
@@ -250,7 +301,7 @@ const DiaryNewForm = ({
               }}
             />
             イベントの日付
-          </label>
+          </div>
           <Controller
             defaultValue=''
             name='diary.event_date'
@@ -258,8 +309,8 @@ const DiaryNewForm = ({
             render={({ field }) => (
               <TextField
                 id='event_date'
-                label={
-                  <span className={form.text_label}>
+                div={
+                  <span className={form.text_div}>
                     {' '}
                     <CalendarMonthIcon
                       sx={{
@@ -282,7 +333,7 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <label htmlFor='event_venue'>
+          <div htmlFor='event_venue' class='formTitle'>
             {' '}
             <AccountBalanceIcon
               sx={{
@@ -293,7 +344,7 @@ const DiaryNewForm = ({
               }}
             />
             イベント会場 (25文字以内)
-          </label>
+          </div>
           <Controller
             defaultValue=''
             rules={{ maxLength: 25 }}
@@ -302,8 +353,8 @@ const DiaryNewForm = ({
             render={({ field }) => (
               <TextField
                 id='event_venue'
-                label={
-                  <span className={form.text_label}>
+                div={
+                  <span className={form.text_div}>
                     {' '}
                     <AccountBalanceIcon
                       sx={{
@@ -325,7 +376,7 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <label htmlFor='event_polaroid_count'>
+          <div htmlFor='event_polaroid_count' class='formTitle'>
             <PhotoCameraBackIcon
               sx={{
                 fontSize: '23px',
@@ -335,7 +386,7 @@ const DiaryNewForm = ({
               }}
             />
             この日のチェキ枚数 (99枚以内)
-          </label>
+          </div>
           <Controller
             defaultValue='0'
             name='diary.event_polaroid_count'
@@ -344,8 +395,8 @@ const DiaryNewForm = ({
             render={({ field }) => (
               <TextField
                 id='event_polaroid_count'
-                label={
-                  <span className={form.text_label}>
+                div={
+                  <span className={form.text_div}>
                     <PhotoCameraBackIcon
                       sx={{
                         fontSize: '23px',
@@ -368,9 +419,9 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <label htmlFor='impressive_memory'>
+          <div htmlFor='impressive_memory' class='formTitle'>
             印象に残った出来事 (30文字以内)
-          </label>
+          </div>
           <Controller
             defaultValue=''
             name='diary.impressive_memory'
@@ -379,8 +430,8 @@ const DiaryNewForm = ({
             render={({ field }) => (
               <TextField
                 id='impressive_memory'
-                label={
-                  <span className={form.text_label}>
+                div={
+                  <span className={form.text_div}>
                     印象に残った出来事を入力
                   </span>
                 }
@@ -393,9 +444,9 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <label htmlFor='impressive_memory_detail'>
+          <div htmlFor='impressive_memory_detail' class='formTitle'>
             印象に残った出来事の詳細
-          </label>
+          </div>
           <Controller
             defaultValue=''
             name='diary.impressive_memory_detail'
@@ -404,8 +455,8 @@ const DiaryNewForm = ({
             render={({ field }) => (
               <TextField
                 id='impressive_memory_detail'
-                label={
-                  <span className={form.text_label}>
+                div={
+                  <span className={form.text_div}>
                     印象に残った出来事を入力
                   </span>
                 }
@@ -420,7 +471,9 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <label htmlFor='status'>トップページでの公開を許可する？</label>
+          <div htmlFor='status' class='formTitle'>
+            トップページでの公開を許可する？
+          </div>
           <Controller
             defaultValue=''
             name='diary.status'
@@ -434,7 +487,7 @@ const DiaryNewForm = ({
                   select={true}
                   focused
                   sx={{ backgroundColor: '#fff', width: '50%' }}
-                  label={'公開設定'}
+                  div={'公開設定'}
                 >
                   <MenuItem value={'published'}>する</MenuItem>
                   <MenuItem value={'non_published'}>しない</MenuItem>
@@ -491,7 +544,7 @@ const DiaryNewForm = ({
           <div style={{ textAlign: 'center' }}>
             <input
               type='submit'
-              className={form.submit_button}
+              className={button.submit_button}
               value='この内容で登録'
             />
           </div>

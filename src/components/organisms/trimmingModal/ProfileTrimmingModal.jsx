@@ -269,7 +269,7 @@ const ProfileTrimmingModal = ({
               circularCrop
             />
           </div>
-          <button onClick={registerImage} className={button.button_trimming}>
+          <button onClick={registerImage} className={button.buttonTrimming}>
             トリミング
           </button>
         </Box>

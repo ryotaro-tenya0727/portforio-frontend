@@ -66,7 +66,7 @@ const TimeLineCard = ({
               }}
             >
               <Link to={showUrl}>
-                <Button className={button.button_card} onClick={returnTop}>
+                <Button className={button.buttonCard} onClick={returnTop}>
                   <AppRegistrationIcon
                     sx={{
                       fontSize: '25px',

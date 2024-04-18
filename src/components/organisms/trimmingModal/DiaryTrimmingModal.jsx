@@ -329,10 +329,9 @@ const DiaryTrimmingModal = ({
             ></img>
           </div>
         ) : (
-          <DiarySampleImageButton onClick={firstFileClick} />
+          <DiarySampleImageButton />
         )}
-        <br />
-        <br />
+
         {secondImage !== null ? (
           <div
             style={{
@@ -416,7 +415,7 @@ const DiaryTrimmingModal = ({
           </div>
           <button
             onClick={registerFirstImage}
-            className={button.button_trimming}
+            className={button.buttonTrimming}
           >
             トリミング
           </button>
@@ -449,7 +448,7 @@ const DiaryTrimmingModal = ({
           </div>
           <button
             onClick={registerSecondImage}
-            className={button.button_trimming}
+            className={button.buttonTrimming}
           >
             トリミング
           </button>
