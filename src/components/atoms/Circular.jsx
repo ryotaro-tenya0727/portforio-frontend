@@ -5,8 +5,9 @@ const Circular = ({
   large,
   small,
   top = '10px',
+  bottom,
   color = '#ff94df',
-  circleStyle = { textAlign: 'center', marginTop: top },
+  circleStyle = { textAlign: 'center', marginTop: top, marginBottom: bottom },
 }) => {
   const isWide = useMedia({ minWidth: '700px' });
   return (

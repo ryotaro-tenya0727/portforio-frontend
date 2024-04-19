@@ -287,7 +287,7 @@ const DiaryTrimmingModal = ({
           <div
             style={{
               position: 'relative',
-              marginTop: '25px',
+              marginTop: '32px',
             }}
           >
             <button
@@ -321,22 +321,24 @@ const DiaryTrimmingModal = ({
                   ? {
                       border: '4px solid #ff99c5',
                       filter: 'brightness(50%)',
+                      marginTop: '32px',
                     }
                   : {
                       border: '4px solid #ff99c5',
+                      marginTop: '32px',
                     }
               }
             ></img>
           </div>
         ) : (
-          <DiarySampleImageButton />
+          <DiarySampleImageButton onClick={firstFileClick} />
         )}
 
         {secondImage !== null ? (
           <div
             style={{
               position: 'relative',
-              marginTop: '25px',
+              marginTop: '32px',
             }}
           >
             <button
@@ -370,9 +372,11 @@ const DiaryTrimmingModal = ({
                   ? {
                       border: '4px solid #ff99c5',
                       filter: 'brightness(50%)',
+                      marginTop: '32px',
                     }
                   : {
                       border: '4px solid #ff99c5',
+                      marginTop: '32px',
                     }
               }
             ></img>

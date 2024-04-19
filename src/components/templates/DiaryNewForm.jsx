@@ -36,6 +36,7 @@ const DiaryNewForm = ({
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
   const [diaryImageUrls, setDiaryImageUrls] = useState([]);
+  const [diaryVideoInformations, SetDiaryVideoInformations] = useState({});
   const [displayImageArea, setDisplayImageArea] = useState(true);
   const { getAccessTokenSilently } = useAuth0();
 
@@ -247,7 +248,11 @@ const DiaryNewForm = ({
                   画像にする
                 </button>
               </div>
-              <DiaryVideoUploadArea />
+              <DiaryVideoUploadArea
+                onSetDiaryVideoInformations={(url) => {
+                  SetDiaryVideoInformations(url);
+                }}
+              />
             </div>
           )}
 
