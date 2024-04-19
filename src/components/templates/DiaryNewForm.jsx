@@ -10,10 +10,6 @@ import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import PhotoIcon from '@mui/icons-material/Photo';
 import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
-
-import { s3PresignedUrlRepository } from '../../repositories/external/aws/s3/s3PresignedUrlRepository';
-import { videoConvertStreamingRepository } from '../../repositories/external/cloudflare/stream/videoConvertStreamingRepository';
 
 import { DiaryTrimmingModal } from './../organisms/Organisms';
 import { DiaryVideoUploadArea } from './../organisms/Organisms';
@@ -21,11 +17,6 @@ import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemb
 
 import form from './../../css/templates/form.module.scss';
 import button from './../../css/atoms/button.module.scss';
-
-import {
-  validVideoType,
-  validVideoSize,
-} from './../../validations/videoValidator';
 
 const DiaryNewForm = ({
   recommendedMemberId,
@@ -36,9 +27,8 @@ const DiaryNewForm = ({
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
   const [diaryImageUrls, setDiaryImageUrls] = useState([]);
-  const [diaryVideoInformations, SetDiaryVideoInformations] = useState({});
+  const [diaryVideoInformations, setDiaryVideoInformations] = useState({});
   const [displayImageArea, setDisplayImageArea] = useState(true);
-  const { getAccessTokenSilently } = useAuth0();
 
   const { control, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
@@ -74,49 +64,20 @@ const DiaryNewForm = ({
         diary_image_url: diaryImageUrls[index].url,
       });
     });
-    createRecommendedMemberDiary.mutate({
+    const params = {
       diary: {
         ...data.diary,
         diary_images_attributes: paramsDiaryImageUrls,
       },
-    });
+    };
+    console.log(diaryVideoInformations);
+    if (Object.keys(diaryVideoInformations).length !== 0) {
+      params.diary.diary_videos = diaryVideoInformations;
+    }
+    console.log(params);
+    createRecommendedMemberDiary.mutate(params);
     setDiaryImageUrls([]);
-  };
-
-  const onVideoSelected = async (e) => {
-    const selectedFile = e.target.files[0];
-    console.log(validVideoType(selectedFile.type));
-    const extension = selectedFile.name.match(/[^.]+$/)[0];
-    if (!validVideoType(selectedFile.type)) {
-      alert('動画ファイル以外はアップロードできません');
-      return;
-    }
-    if (!validVideoSize(selectedFile.size)) {
-      alert('100MBを超える動画ファイルはアップロードできません');
-      return;
-    }
-
-    const accessToken = await getAccessTokenSilently();
-    const imageUrls = await s3PresignedUrlRepository.getDiaryVideoPresignedUrl(
-      {
-        presigned_url: {
-          filename: `${crypto.randomUUID()}.${extension}`,
-        },
-      },
-      accessToken
-    );
-
-    await axios.put(imageUrls.presigned_url, selectedFile, {
-      headers: {
-        'Content-Type': 'video/*',
-      },
-    });
-
-    const response = await videoConvertStreamingRepository.createStreamingVideo(
-      { video_upload: { url: imageUrls.diary_video_url } },
-      accessToken
-    );
-    console.log(response);
+    setDiaryVideoInformations({});
   };
 
   return (
@@ -131,7 +92,6 @@ const DiaryNewForm = ({
           allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;'
           allowfullscreen='true'
         ></iframe> */}
-        {/* <input type='file' accept='video/*' onChange={onVideoSelected} /> */}
         <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
           {isNumberError && (
             <p className={form.text_error}>
@@ -249,8 +209,8 @@ const DiaryNewForm = ({
                 </button>
               </div>
               <DiaryVideoUploadArea
-                onSetDiaryVideoInformations={(url) => {
-                  SetDiaryVideoInformations(url);
+                onSetDiaryVideoInformations={(informations) => {
+                  setDiaryVideoInformations(informations);
                 }}
               />
             </div>

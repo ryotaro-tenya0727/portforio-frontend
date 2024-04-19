@@ -60,8 +60,11 @@ const DiaryVideoUploadArea = ({ onSetDiaryVideoInformations }) => {
       { video_upload: { url: imageUrls.diary_video_url } },
       accessToken
     );
+    onSetDiaryVideoInformations({
+      thumbnail_url: response.thumbnail_url,
+      video_uid: response.video_uid,
+    });
     setIsUploading(false);
-    console.log(response);
   };
 
   return (

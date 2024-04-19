@@ -57,10 +57,10 @@ export const useRecommendedMemberDiariesApi = () => {
           console.warn(err);
         },
         onSuccess: () => {
-          navigate(
-            `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
-          );
-          returnTop();
+          // navigate(
+          //   `/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`
+          // );
+          // returnTop();
         },
       }
     );

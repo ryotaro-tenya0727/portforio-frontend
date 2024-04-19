@@ -2,11 +2,11 @@ import PhotoIcon from '@mui/icons-material/Photo';
 
 import button from './../../../css/atoms/button.module.scss';
 
-const DiarySampleVideoButton = () => {
+const DiarySampleVideoButton = ({ onClick }) => {
   return (
     <button
       className={button.diarySampleButtonVideo}
-      // onClick={onClick}
+      onClick={onClick}
       type='button'
     >
       <p className={button.diarySampleButtonVideoText}>
