@@ -144,6 +144,7 @@ const LoginUserDiaryCard = ({
                       style={{
                         border: '2px solid #ff99c5',
                         borderRadius: '5px',
+                        aspectRatio: '3/4',
                       }}
                     />
                   </Zoom>

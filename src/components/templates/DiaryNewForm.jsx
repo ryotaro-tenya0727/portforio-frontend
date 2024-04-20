@@ -70,11 +70,9 @@ const DiaryNewForm = ({
         diary_images_attributes: paramsDiaryImageUrls,
       },
     };
-    console.log(diaryVideoInformations);
     if (Object.keys(diaryVideoInformations).length !== 0) {
       params.diary.diary_videos = diaryVideoInformations;
     }
-    console.log(params);
     createRecommendedMemberDiary.mutate(params);
     setDiaryImageUrls([]);
     setDiaryVideoInformations({});
@@ -83,15 +81,6 @@ const DiaryNewForm = ({
   return (
     <>
       <ThemeProvider theme={theme}>
-        {/* <iframe
-          title='diary-video'
-          src='https://customer-6mlocqu6hlmvu4kt.cloudflarestream.com/5c296f7b17f6a19c8286fd68b56f2021/iframe'
-          style={{ border: 'none' }}
-          height='300'
-          width='600'
-          allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;'
-          allowfullscreen='true'
-        ></iframe> */}
         <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
           {isNumberError && (
             <p className={form.text_error}>

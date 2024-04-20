@@ -282,108 +282,106 @@ const DiaryTrimmingModal = ({
         onChange={(event) => openSecondDiaryTrimmingModal(event)}
         hidden
       />
-      <div className={form.images}>
-        {firstImage !== null ? (
-          <div
-            style={{
-              position: 'relative',
-              marginTop: '32px',
-            }}
-          >
-            <button
-              className={button.image_cancel_button}
-              type='button'
-              onClick={() => handleCancel(0)}
+      <div className={form.imagesWrapper}>
+        <div className={form.images}>
+          {firstImage !== null ? (
+            <div
+              style={{
+                position: 'relative',
+              }}
             >
-              <DeleteForeverIcon />
-            </button>
-            {firstLoading && (
-              <Circular
-                large={45}
-                small={45}
-                circleStyle={{
-                  position: 'absolute',
-                  top: '120px',
-                  left: '85px',
-                  zIndex: '1',
-                }}
-                color='#fff'
-              />
-            )}
+              <button
+                className={button.image_cancel_button}
+                type='button'
+                onClick={() => handleCancel(0)}
+              >
+                <DeleteForeverIcon />
+              </button>
+              {firstLoading && (
+                <Circular
+                  large={45}
+                  small={45}
+                  circleStyle={{
+                    position: 'absolute',
+                    top: '120px',
+                    left: '85px',
+                    zIndex: '1',
+                  }}
+                  color='#fff'
+                />
+              )}
 
-            <img
-              src={window.URL.createObjectURL(firstImage)}
-              alt={`あなたの写真 `}
-              width='200'
-              height='266.7'
-              style={
-                firstLoading
-                  ? {
-                      border: '4px solid #ff99c5',
-                      filter: 'brightness(50%)',
-                      marginTop: '32px',
-                    }
-                  : {
-                      border: '4px solid #ff99c5',
-                      marginTop: '32px',
-                    }
-              }
-            ></img>
-          </div>
-        ) : (
-          <DiarySampleImageButton onClick={firstFileClick} />
-        )}
+              <img
+                src={window.URL.createObjectURL(firstImage)}
+                alt={`あなたの写真 `}
+                width='200'
+                height='266.7'
+                class={form.imagePreview}
+                style={
+                  firstLoading
+                    ? {
+                        border: '4px solid #ff99c5',
+                        filter: 'brightness(50%)',
+                      }
+                    : {
+                        border: '4px solid #ff99c5',
+                      }
+                }
+              ></img>
+            </div>
+          ) : (
+            <DiarySampleImageButton onClick={firstFileClick} />
+          )}
 
-        {secondImage !== null ? (
-          <div
-            style={{
-              position: 'relative',
-              marginTop: '32px',
-            }}
-          >
-            <button
-              className={button.image_cancel_button}
-              type='button'
-              onClick={() => handleCancel(1)}
+          {secondImage !== null ? (
+            <div
+              style={{
+                position: 'relative',
+              }}
             >
-              <DeleteForeverIcon />
-            </button>
-            {secondLoading && (
-              <Circular
-                large={45}
-                small={45}
-                circleStyle={{
-                  position: 'absolute',
-                  top: '120px',
-                  left: '85px',
-                  zIndex: '1',
-                }}
-                color='#fff'
-              />
-            )}
+              <button
+                className={button.image_cancel_button}
+                type='button'
+                onClick={() => handleCancel(1)}
+              >
+                <DeleteForeverIcon />
+              </button>
+              {secondLoading && (
+                <Circular
+                  large={45}
+                  small={45}
+                  circleStyle={{
+                    position: 'absolute',
+                    top: '120px',
+                    left: '85px',
+                    zIndex: '1',
+                  }}
+                  color='#fff'
+                />
+              )}
 
-            <img
-              src={window.URL.createObjectURL(secondImage)}
-              alt={`あなたの写真 `}
-              width='200'
-              height='266.7'
-              style={
-                secondLoading
-                  ? {
-                      border: '4px solid #ff99c5',
-                      filter: 'brightness(50%)',
-                      marginTop: '32px',
-                    }
-                  : {
-                      border: '4px solid #ff99c5',
-                      marginTop: '32px',
-                    }
-              }
-            ></img>
-          </div>
-        ) : (
-          <DiarySampleImageButton onClick={secondFileClick} />
-        )}
+              <img
+                src={window.URL.createObjectURL(secondImage)}
+                alt={`あなたの写真 `}
+                width='200'
+                height='266.7'
+                class={form.imagePreview}
+                style={
+                  secondLoading
+                    ? {
+                        border: '4px solid #ff99c5',
+                        filter: 'brightness(50%)',
+                      }
+                    : {
+                        border: '4px solid #ff99c5',
+                      }
+                }
+              ></img>
+            </div>
+          ) : (
+            <DiarySampleImageButton onClick={secondFileClick} />
+          )}
+        </div>
       </div>
       <Modal
         open={firstOpen}

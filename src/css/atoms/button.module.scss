@@ -29,7 +29,6 @@
   cursor: pointer;
   background-color: #ffe8e8;
   border: dashed 2px #ff96df;
-  margin: 16px 0px 8px 0px;
 }
 
 @mixin baseBeforeUploadButtonHoverStyle {
@@ -93,7 +92,7 @@
 
 @media (max-width: 500px) {
   .diarySampleButtonImage {
-    margin: 32px 0px 0px 0px;
+    margin: 32px 0px 32px 0px;
   }
 }
 .diarySampleButtonImage:hover {
@@ -153,7 +152,13 @@
   border: none;
   border-radius: 5px;
   position: absolute;
-  top: 6px;
+  top: -26px;
+}
+
+@media (max-width: 500px) {
+  .image_cancel_button {
+    top: 5px;
+  }
 }
 
 .profile_image_cancel_button {

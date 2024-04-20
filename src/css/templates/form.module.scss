@@ -90,7 +90,15 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  margin: 32px 0px 32px 0px;
   width: 80%;
+
+}
+
+.imagesWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
 
@@ -99,6 +107,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 32px 0px 0px 0px;
   }
 }
 
@@ -119,3 +128,19 @@
 }
 
 .contentsWrapper {margin: 40px 0px 0px 0px;}
+
+.videoPreview{
+  aspect-ratio: 4 / 3;
+  max-width: 400px
+}
+
+.videoPreviewWrapper {
+  text-align: center;
+  margin: 32px 0px 32px 0px
+}
+
+@media (max-width: 500px) {
+  .imagePreview {
+    margin: 32px 0px 32px 0px;
+  }
+}

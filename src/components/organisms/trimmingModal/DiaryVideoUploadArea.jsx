@@ -20,6 +20,7 @@ const DiaryVideoUploadArea = ({ onSetDiaryVideoInformations }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [videoUid, setVideoUid] = useState(null);
   const [videoThumnnailUrl, setvideoThumnnailUrl] = useState(null);
+  const [videoUrl, setVideolUrl] = useState(null);
   const { getAccessTokenSilently } = useAuth0();
 
   const videoRefClick = () => {
@@ -63,6 +64,7 @@ const DiaryVideoUploadArea = ({ onSetDiaryVideoInformations }) => {
       { video_upload: { url: imageUrls.diary_video_url } },
       accessToken
     );
+    setVideolUrl(imageUrls.diary_video_url);
     onSetDiaryVideoInformations({
       thumbnail_url: response.thumbnail_url,
       video_uid: response.video_uid,
@@ -72,23 +74,32 @@ const DiaryVideoUploadArea = ({ onSetDiaryVideoInformations }) => {
     setIsUploading(false);
   };
 
+  const resetVideo = () => {
+    setVideoUid(null);
+    setvideoThumnnailUrl(null);
+    setVideolUrl(null);
+  };
   return (
     <>
       {(() => {
         if (isUploading) {
           return <Circular large={64} small={64} top={128} bottom={128} />;
         } else if (!!videoThumnnailUrl && !!videoUid) {
-          console.log(videoUid);
           return (
-            <iframe
-              title='diary-video'
-              src={`${process.env.REACT_APP_CLOUDFLARE_CUSTOMER_SUBDOMAIN}/${videoUid}/iframe`}
-              style={{ border: 'none' }}
-              height='300'
-              width='600'
-              allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;'
-              allowfullscreen='true'
-            ></iframe>
+            // <iframe
+            //   title='diary-video'
+            //   src={`${process.env.REACT_APP_CLOUDFLARE_CUSTOMER_SUBDOMAIN}/${videoUid}/iframe`}
+            //   style={{ border: 'none' }}
+            //   height='300'
+            //   width='600'
+            //   allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;'
+            //   allowfullscreen='true'
+            // ></iframe>
+            <div class={form.videoPreviewWrapper}>
+              <video controls class={form.videoPreview}>
+                <source src={`${videoUrl}`} type='video/webm' />
+              </video>
+            </div>
           );
         } else {
           return (
