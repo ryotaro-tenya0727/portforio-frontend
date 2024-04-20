@@ -114,7 +114,7 @@ const DiaryNewForm = ({
                 }}
                 class={form.contentsWrapper}
               >
-                <div class='formTitleContents'>
+                <label class='formTitleContents'>
                   <PhotoIcon
                     sx={{
                       fontSize: '24px',
@@ -124,7 +124,7 @@ const DiaryNewForm = ({
                     }}
                   />
                   日記の画像を2枚選択
-                </div>
+                </label>
                 <button
                   className={button.changeVideoButton}
                   onClick={() => {
@@ -217,13 +217,13 @@ const DiaryNewForm = ({
           )}
 
           <br />
-          <div htmlFor='event_name' class='formTitle'>
+          <label htmlFor='event_name'>
             {' '}
             <LibraryMusicIcon
               sx={{ fontSize: '24px', mb: '-7px', mr: '10px', color: 'red' }}
             />
             イベント名 (25文字以内)
-          </div>
+          </label>
           <Controller
             defaultValue=''
             rules={{ maxLength: 25 }}
@@ -233,7 +233,7 @@ const DiaryNewForm = ({
               <TextField
                 id='event_name'
                 div={
-                  <span className={form.text_div}>
+                  <span className={form.text_label}>
                     {' '}
                     <LibraryMusicIcon
                       sx={{
@@ -275,7 +275,7 @@ const DiaryNewForm = ({
               <TextField
                 id='event_date'
                 div={
-                  <span className={form.text_div}>
+                  <span className={form.text_label}>
                     {' '}
                     <CalendarMonthIcon
                       sx={{
@@ -319,7 +319,7 @@ const DiaryNewForm = ({
               <TextField
                 id='event_venue'
                 div={
-                  <span className={form.text_div}>
+                  <span className={form.text_label}>
                     {' '}
                     <AccountBalanceIcon
                       sx={{
@@ -361,7 +361,7 @@ const DiaryNewForm = ({
               <TextField
                 id='event_polaroid_count'
                 div={
-                  <span className={form.text_div}>
+                  <span className={form.text_label}>
                     <PhotoCameraBackIcon
                       sx={{
                         fontSize: '23px',
@@ -396,7 +396,7 @@ const DiaryNewForm = ({
               <TextField
                 id='impressive_memory'
                 div={
-                  <span className={form.text_div}>
+                  <span className={form.text_label}>
                     印象に残った出来事を入力
                   </span>
                 }
@@ -421,7 +421,7 @@ const DiaryNewForm = ({
               <TextField
                 id='impressive_memory_detail'
                 div={
-                  <span className={form.text_div}>
+                  <span className={form.text_label}>
                     印象に残った出来事を入力
                   </span>
                 }
