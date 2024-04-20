@@ -66,13 +66,7 @@ const ProfileTrimmingModal = ({
     setImageFileName(`${crypto.randomUUID()}.${extension}`);
     resetErrors();
     if (
-      ![
-        'image/gif',
-        'image/jpeg',
-        'image/png',
-        'image/bmp',
-        'image/webp',
-      ].includes(file.type)
+      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
     ) {
       onSetIsFileTypeError(true);
       return;
@@ -254,6 +248,7 @@ const ProfileTrimmingModal = ({
                 // imageRef.width = '300px';
                 // src={FirstimageToCrop}で画像が読み込まれたらこの関数が実行される。
                 setImageRef(imageRef);
+                resetErrors();
               }}
               // リサイズ中(マウスを持っているとき)
               onChange={(cropConfig) => {

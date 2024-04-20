@@ -43,7 +43,11 @@ const DiaryTrimmingModal = ({
   const [secondLoading, setSecondLoading] = useState(false);
 
   const [firstOpen, setFirstOpen] = useState(false);
-  const handleFirstClose = () => setFirstOpen(false);
+  const handleFirstClose = () => {
+    setFirstOpen(false);
+    setFirstImageToCrop(undefined);
+    SetCroppedFirstImage(null);
+  };
   const firstInputRef = useRef(null);
   const [firstImageToCrop, setFirstImageToCrop] = useState(undefined);
   const [croppedFirstImage, SetCroppedFirstImage] = useState(null);
@@ -51,7 +55,11 @@ const DiaryTrimmingModal = ({
   const [firstImageFileName, setFirstImageFileName] = useState(null);
 
   const [secondOpen, setSecondOpen] = useState(false);
-  const handleSecondClose = () => setSecondOpen(false);
+  const handleSecondClose = () => {
+    setSecondOpen(false);
+    setSecondImageToCrop(undefined);
+    SetCroppedSecondImage(null);
+  };
   const secondInputRef = useRef(null);
   const [secondImageToCrop, setSecondImageToCrop] = useState(undefined);
   const [croppedSecondImage, SetCroppedSecondImage] = useState(null);
@@ -96,13 +104,7 @@ const DiaryTrimmingModal = ({
     setFirstImageFileName(`${crypto.randomUUID()}.${extension}`);
     resetErrors();
     if (
-      ![
-        'image/gif',
-        'image/jpeg',
-        'image/png',
-        'image/bmp',
-        'image/webp',
-      ].includes(file.type)
+      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
     ) {
       onSetIsFileTypeError(true);
       return;
@@ -402,6 +404,7 @@ const DiaryTrimmingModal = ({
                 // imageRef.width = '300px';
                 // src={FirstimageToCrop}で画像が読み込まれたらこの関数が実行される。
                 setFirstImageRef(imageRef);
+                resetErrors();
               }}
               // リサイズ中(マウスを持っているとき)
               onChange={(cropConfig) => {

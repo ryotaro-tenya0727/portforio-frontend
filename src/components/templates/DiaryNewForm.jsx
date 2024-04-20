@@ -82,17 +82,6 @@ const DiaryNewForm = ({
     <>
       <ThemeProvider theme={theme}>
         <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
-          {isNumberError && (
-            <p className={form.text_error}>
-              ※2枚を超えて選択された画像は表示されません
-            </p>
-          )}
-          {isFileTypeError && (
-            <p className={form.text_error}>
-              ※jpeg, png, bmp, gif, webp
-              以外のファイル形式はアップロードできません
-            </p>
-          )}
           {displayImageArea ? (
             <div>
               <div
@@ -114,6 +103,7 @@ const DiaryNewForm = ({
                   />
                   日記の画像を2枚選択
                 </div>
+
                 <button
                   className={button.changeVideoButton}
                   onClick={() => {
@@ -136,6 +126,17 @@ const DiaryNewForm = ({
                   動画にする
                 </button>
               </div>
+              {isNumberError && (
+                <p className={form.text_error}>
+                  ※2枚を超えて選択された画像は表示されません
+                </p>
+              )}
+              {isFileTypeError && (
+                <p className={form.text_error}>
+                  ※jpeg, png, bmp, gif
+                  以外のファイル形式はアップロードできません
+                </p>
+              )}
               <DiaryTrimmingModal
                 onSetDiaryImageUrlAndIndex={(url, index) => {
                   setDiaryImageUrls([

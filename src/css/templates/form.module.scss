@@ -74,6 +74,12 @@
   font-weight: bold;
 }
 
+@media (max-width: 500px) {
+  .text_error {
+    margin-top: 24px;
+  }
+}
+
 .changeVideoButton:hover {
   opacity: 0.8
 }
