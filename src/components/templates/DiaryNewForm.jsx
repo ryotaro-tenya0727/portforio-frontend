@@ -232,7 +232,7 @@ const DiaryNewForm = ({
             render={({ field }) => (
               <TextField
                 id='event_name'
-                div={
+                label={
                   <span className={form.text_label}>
                     {' '}
                     <LibraryMusicIcon
@@ -255,7 +255,7 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <div htmlFor='event_date' class='formTitle'>
+          <label htmlFor='event_date'>
             {' '}
             <CalendarMonthIcon
               sx={{
@@ -266,7 +266,7 @@ const DiaryNewForm = ({
               }}
             />
             イベントの日付
-          </div>
+          </label>
           <Controller
             defaultValue=''
             name='diary.event_date'
@@ -274,7 +274,7 @@ const DiaryNewForm = ({
             render={({ field }) => (
               <TextField
                 id='event_date'
-                div={
+                label={
                   <span className={form.text_label}>
                     {' '}
                     <CalendarMonthIcon
@@ -298,7 +298,7 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <div htmlFor='event_venue' class='formTitle'>
+          <label htmlFor='event_venue'>
             {' '}
             <AccountBalanceIcon
               sx={{
@@ -309,7 +309,7 @@ const DiaryNewForm = ({
               }}
             />
             イベント会場 (25文字以内)
-          </div>
+          </label>
           <Controller
             defaultValue=''
             rules={{ maxLength: 25 }}
@@ -318,7 +318,7 @@ const DiaryNewForm = ({
             render={({ field }) => (
               <TextField
                 id='event_venue'
-                div={
+                label={
                   <span className={form.text_label}>
                     {' '}
                     <AccountBalanceIcon
@@ -341,7 +341,7 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <div htmlFor='event_polaroid_count' class='formTitle'>
+          <label htmlFor='event_polaroid_count'>
             <PhotoCameraBackIcon
               sx={{
                 fontSize: '23px',
@@ -351,7 +351,7 @@ const DiaryNewForm = ({
               }}
             />
             この日のチェキ枚数 (99枚以内)
-          </div>
+          </label>
           <Controller
             defaultValue='0'
             name='diary.event_polaroid_count'
@@ -360,7 +360,7 @@ const DiaryNewForm = ({
             render={({ field }) => (
               <TextField
                 id='event_polaroid_count'
-                div={
+                label={
                   <span className={form.text_label}>
                     <PhotoCameraBackIcon
                       sx={{
@@ -384,9 +384,9 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <div htmlFor='impressive_memory' class='formTitle'>
+          <label htmlFor='impressive_memory'>
             印象に残った出来事 (30文字以内)
-          </div>
+          </label>
           <Controller
             defaultValue=''
             name='diary.impressive_memory'
@@ -395,7 +395,7 @@ const DiaryNewForm = ({
             render={({ field }) => (
               <TextField
                 id='impressive_memory'
-                div={
+                label={
                   <span className={form.text_label}>
                     印象に残った出来事を入力
                   </span>
@@ -409,9 +409,9 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <div htmlFor='impressive_memory_detail' class='formTitle'>
+          <label htmlFor='impressive_memory_detail'>
             印象に残った出来事の詳細
-          </div>
+          </label>
           <Controller
             defaultValue=''
             name='diary.impressive_memory_detail'
@@ -420,7 +420,7 @@ const DiaryNewForm = ({
             render={({ field }) => (
               <TextField
                 id='impressive_memory_detail'
-                div={
+                label={
                   <span className={form.text_label}>
                     印象に残った出来事を入力
                   </span>
@@ -436,9 +436,7 @@ const DiaryNewForm = ({
           />
           <br />
           <br />
-          <div htmlFor='status' class='formTitle'>
-            トップページでの公開を許可する？
-          </div>
+          <label htmlFor='status'>トップページでの公開を許可する？</label>
           <Controller
             defaultValue=''
             name='diary.status'
@@ -452,7 +450,7 @@ const DiaryNewForm = ({
                   select={true}
                   focused
                   sx={{ backgroundColor: '#fff', width: '50%' }}
-                  div={'公開設定'}
+                  label={'公開設定'}
                 >
                   <MenuItem value={'published'}>する</MenuItem>
                   <MenuItem value={'non_published'}>しない</MenuItem>
