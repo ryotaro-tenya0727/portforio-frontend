@@ -3,7 +3,7 @@ const validVideoType = (type) => {
 };
 
 const validVideoSize = (size) => {
-  return size <= 104857600;
+  return size <= 54857600;
 };
 
 export { validVideoType, validVideoSize };

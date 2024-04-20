@@ -18,10 +18,11 @@ import {
 const DiaryVideoUploadArea = ({ onSetDiaryVideoInformations }) => {
   const videoRef = useRef(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [videoUid, setVideoUid] = useState(null);
+  const [videoThumnnailUrl, setvideoThumnnailUrl] = useState(null);
   const { getAccessTokenSilently } = useAuth0();
 
   const videoRefClick = () => {
-    console.log(videoRef);
     videoRef.current.click();
   };
 
@@ -32,10 +33,12 @@ const DiaryVideoUploadArea = ({ onSetDiaryVideoInformations }) => {
     const extension = selectedFile.name.match(/[^.]+$/)[0];
     if (!validVideoType(selectedFile.type)) {
       alert('動画ファイル以外はアップロードできません');
+      setIsUploading(false);
       return;
     }
     if (!validVideoSize(selectedFile.size)) {
-      alert('100MBを超える動画ファイルはアップロードできません');
+      alert('50MBを超える動画ファイルはアップロードできません');
+      setIsUploading(false);
       return;
     }
 
@@ -64,25 +67,44 @@ const DiaryVideoUploadArea = ({ onSetDiaryVideoInformations }) => {
       thumbnail_url: response.thumbnail_url,
       video_uid: response.video_uid,
     });
+    setvideoThumnnailUrl(response.thumbnail_url);
+    setVideoUid(response.video_uid);
     setIsUploading(false);
   };
 
   return (
     <>
-      {isUploading ? (
-        <Circular large={64} small={64} top={128} bottom={128} />
-      ) : (
-        <div class={form.uploadVideo}>
-          <input
-            ref={videoRef}
-            type='file'
-            accept='video/*'
-            onChange={(event) => onVideoSelected(event)}
-            hidden
-          />
-          <DiarySampleVideoButton onClick={videoRefClick} />
-        </div>
-      )}
+      {(() => {
+        if (isUploading) {
+          return <Circular large={64} small={64} top={128} bottom={128} />;
+        } else if (!!videoThumnnailUrl && !!videoUid) {
+          console.log(videoUid);
+          return (
+            <iframe
+              title='diary-video'
+              src={`${process.env.REACT_APP_CLOUDFLARE_CUSTOMER_SUBDOMAIN}/${videoUid}/iframe`}
+              style={{ border: 'none' }}
+              height='300'
+              width='600'
+              allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;'
+              allowfullscreen='true'
+            ></iframe>
+          );
+        } else {
+          return (
+            <div class={form.uploadVideo}>
+              <input
+                ref={videoRef}
+                type='file'
+                accept='video/*'
+                onChange={(event) => onVideoSelected(event)}
+                hidden
+              />
+              <DiarySampleVideoButton onClick={videoRefClick} />
+            </div>
+          );
+        }
+      })()}
     </>
   );
 };

@@ -114,7 +114,7 @@ const DiaryNewForm = ({
                 }}
                 class={form.contentsWrapper}
               >
-                <label class='formTitleContents'>
+                <div class='formTitleContents'>
                   <PhotoIcon
                     sx={{
                       fontSize: '24px',
@@ -124,7 +124,7 @@ const DiaryNewForm = ({
                     }}
                   />
                   日記の画像を2枚選択
-                </label>
+                </div>
                 <button
                   className={button.changeVideoButton}
                   onClick={() => {
