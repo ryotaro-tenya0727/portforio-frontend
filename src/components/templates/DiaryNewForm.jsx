@@ -234,7 +234,6 @@ const DiaryNewForm = ({
           )}
 
           <label htmlFor='event_name'>
-            {' '}
             <LibraryMusicIcon
               sx={{ fontSize: '24px', mb: '-7px', mr: '10px', color: 'red' }}
             />

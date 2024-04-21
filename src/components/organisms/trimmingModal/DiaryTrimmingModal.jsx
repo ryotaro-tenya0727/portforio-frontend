@@ -287,11 +287,7 @@ const DiaryTrimmingModal = ({
       <div className={form.imagesWrapper}>
         <div className={form.images}>
           {firstImage !== null ? (
-            <div
-              style={{
-                position: 'relative',
-              }}
-            >
+            <div className={form.diaryPreviewImageFirst}>
               <button
                 className={button.image_cancel_button}
                 type='button'
