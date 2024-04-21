@@ -89,6 +89,8 @@ const DiaryNewForm = ({
         setDiaryImageUrls([]);
         setDisplayImageArea(false);
         return;
+      } else {
+        return;
       }
     }
     setDisplayImageArea(false);
@@ -103,6 +105,8 @@ const DiaryNewForm = ({
       ) {
         setDiaryVideoInformations({});
         setDisplayImageArea(true);
+        return;
+      } else {
         return;
       }
     }
