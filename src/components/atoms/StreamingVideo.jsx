@@ -6,9 +6,12 @@ const StreamingVideo = ({ videoUid, height, width }) => {
         <iframe
           title='diary-video'
           src={`${process.env.REACT_APP_CLOUDFLARE_CUSTOMER_SUBDOMAIN}/${videoUid}/iframe`}
-          style={{ border: 'none' }}
-          height={height}
-          width={width}
+          style={{
+            border: 'none',
+            width: '100%',
+            maxWidth: width,
+            maxHeight: '400px',
+          }}
           allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;'
           allowfullscreen='true'
         ></iframe>

@@ -267,6 +267,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                         recommended_member_diary_show.data.attributes
                           .diary_video_uid
                       }
+                      width={400}
                     />
                   );
                 } else {
