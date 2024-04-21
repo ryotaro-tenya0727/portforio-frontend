@@ -136,11 +136,10 @@
 
 @media (max-width: 500px) {
   .uploadVideo {
-    margin: 32px 0px 32px 0px;
+    // margin: 32px 0px 32px 0px;
   }
 }
 
-.contentsWrapper {margin: 40px 0px 0px 0px;}
 
 .videoPreview{
   aspect-ratio: 4 / 3;
@@ -165,5 +164,18 @@
 @media (max-width: 500px) {
   .diaryPreviewImageFirst {
     margin: 16px 0px 0px 0px;
+  }
+}
+
+.contentsWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 32px 0px 0px 0px;
+}
+
+@media (max-width: 500px) {
+  .contentsWrapper {
+    margin: 32px 0px 0px 0px;
   }
 }

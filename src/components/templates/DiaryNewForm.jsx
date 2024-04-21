@@ -115,14 +115,7 @@ const DiaryNewForm = ({
         <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
           {displayImageArea ? (
             <div>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-                class={form.contentsWrapper}
-              >
+              <div class={form.contentsWrapper}>
                 <div class='formTitleContents'>
                   <PhotoIcon
                     sx={{
@@ -184,11 +177,6 @@ const DiaryNewForm = ({
           ) : (
             <div>
               <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
                 class={form.contentsWrapper}
                 onClick={(e) => {
                   e.preventDefault();
