@@ -76,6 +76,37 @@ const DiaryNewForm = ({
     createRecommendedMemberDiary.mutate(params);
     setDiaryImageUrls([]);
     setDiaryVideoInformations({});
+    console.log(params);
+  };
+
+  const changeToVideoContents = () => {
+    if (diaryImageUrls.length > 0) {
+      if (
+        window.confirm(
+          'アップロードした画像はリセットされます。動画に変更しますか？'
+        )
+      ) {
+        setDiaryImageUrls([]);
+        setDisplayImageArea(false);
+        return;
+      }
+    }
+    setDisplayImageArea(false);
+  };
+
+  const changeToImageContents = () => {
+    if (Object.keys(diaryVideoInformations).length !== 0) {
+      if (
+        window.confirm(
+          'アップロードした動画はリセットされます。画像に変更しますか？'
+        )
+      ) {
+        setDiaryVideoInformations({});
+        setDisplayImageArea(true);
+        return;
+      }
+    }
+    setDisplayImageArea(true);
   };
 
   return (
@@ -106,9 +137,7 @@ const DiaryNewForm = ({
 
                 <button
                   className={button.changeVideoButton}
-                  onClick={() => {
-                    setDisplayImageArea(false);
-                  }}
+                  onClick={changeToVideoContents}
                 >
                   <OndemandVideoIcon
                     sx={{
@@ -178,9 +207,7 @@ const DiaryNewForm = ({
                 </div>
                 <button
                   className={button.changeVideoButton}
-                  onClick={() => {
-                    setDisplayImageArea(true);
-                  }}
+                  onClick={changeToImageContents}
                 >
                   <PhotoIcon
                     sx={{
@@ -206,7 +233,6 @@ const DiaryNewForm = ({
             </div>
           )}
 
-          <br />
           <label htmlFor='event_name'>
             {' '}
             <LibraryMusicIcon

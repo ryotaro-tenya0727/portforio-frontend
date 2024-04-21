@@ -109,11 +109,6 @@
   @include baseBeforeUploadButtonStyle
 }
 
-@media (max-width: 500px) {
-  .diarySampleButtonVideo {
-    margin: 32px 0px 0px 0px;
-  }
-}
 
 .diarySampleButtonVideo:hover {
   @include baseBeforeUploadButtonHoverStyle;

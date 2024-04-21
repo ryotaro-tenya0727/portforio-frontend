@@ -131,6 +131,13 @@
 
 .uploadVideo {
   text-align: center;
+  margin: 32px 0px 32px 0px;
+}
+
+@media (max-width: 500px) {
+  .uploadVideo {
+    margin: 32px 0px 32px 0px;
+  }
 }
 
 .contentsWrapper {margin: 40px 0px 0px 0px;}

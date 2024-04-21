@@ -30,7 +30,6 @@ const DiaryVideoUploadArea = ({ onSetDiaryVideoInformations }) => {
   const onVideoSelected = async (e) => {
     setIsUploading(true);
     const selectedFile = e.target.files[0];
-    console.log(validVideoType(selectedFile.type));
     const extension = selectedFile.name.match(/[^.]+$/)[0];
     if (!validVideoType(selectedFile.type)) {
       alert('動画ファイル以外はアップロードできません');
@@ -86,15 +85,6 @@ const DiaryVideoUploadArea = ({ onSetDiaryVideoInformations }) => {
           return <Circular large={64} small={64} top={128} bottom={128} />;
         } else if (!!videoThumnnailUrl && !!videoUid) {
           return (
-            // <iframe
-            //   title='diary-video'
-            //   src={`${process.env.REACT_APP_CLOUDFLARE_CUSTOMER_SUBDOMAIN}/${videoUid}/iframe`}
-            //   style={{ border: 'none' }}
-            //   height='300'
-            //   width='600'
-            //   allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;'
-            //   allowfullscreen='true'
-            // ></iframe>
             <div class={form.videoPreviewWrapper}>
               <video controls class={form.videoPreview}>
                 <source src={`${videoUrl}`} type='video/webm' />
