@@ -10,3 +10,4 @@ export { default as UnFollowButton } from './UnFollowButton';
 export { default as LikeButton } from './LikeButton';
 export { default as UnLikeButton } from './UnLikeButton';
 export { default as Circular } from './Circular';
+export { default as StreamingVideo } from './StreamingVideo';

@@ -8,7 +8,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 
-import { Circular } from './../atoms/atoms';
+import { Circular, StreamingVideo } from './../atoms/atoms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 import diary from './../../css/templates/diary.module.css';
 
@@ -18,6 +18,7 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
 
   let { data: recommended_member_diary_show, isLoading } =
     useShowRecommendedMemberDiary(diaryId);
+  console.log(recommended_member_diary_show);
 
   const theme2 = createTheme({
     palette: {
@@ -219,9 +220,9 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
 
               <p className={diary.diary_sub_text_wrapper}>
                 <span className={diary.diary_sub_text}>
-                  <p className={diary.diary_sub_text_property}>
+                  <span className={diary.diary_sub_text_property}>
                     印象に残った出来事の詳細：
-                  </p>
+                  </span>
 
                   <span
                     style={{
@@ -235,22 +236,43 @@ const RecommenedMemberDiaryShowDetail = ({ diaryId }) => {
                   </span>
                 </span>
               </p>
-
-              <div className={diary.diary_images}>
-                {recommended_member_diary_show.data.attributes.diary_images.map(
-                  (diaryImageUrl, index) => {
-                    return (
-                      <Zoom zoomMargin={40} key={index}>
-                        <img
-                          src={`${diaryImageUrl}`}
-                          alt='picture'
-                          className={diary.diary_image}
-                        />
-                      </Zoom>
-                    );
-                  }
-                )}
-              </div>
+              {(() => {
+                if (
+                  recommended_member_diary_show.data.attributes.diary_images
+                    .length > 0
+                ) {
+                  return (
+                    <div className={diary.diary_images}>
+                      {recommended_member_diary_show.data.attributes.diary_images.map(
+                        (diaryImageUrl, index) => {
+                          return (
+                            <Zoom zoomMargin={40} key={index}>
+                              <img
+                                src={`${diaryImageUrl}`}
+                                alt='picture'
+                                className={diary.diary_image}
+                              />
+                            </Zoom>
+                          );
+                        }
+                      )}
+                    </div>
+                  );
+                } else if (
+                  recommended_member_diary_show.data.attributes.diary_video_uid
+                ) {
+                  return (
+                    <StreamingVideo
+                      videoUid={
+                        recommended_member_diary_show.data.attributes
+                          .diary_video_uid
+                      }
+                    />
+                  );
+                } else {
+                  return;
+                }
+              })()}
             </div>
           </div>
         </>
