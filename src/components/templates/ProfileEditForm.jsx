@@ -36,7 +36,11 @@ const ProfileEditForm = () => {
   });
 
   const onSubmit = (data) => {
-    data.profile.user_image = diaryImageUrl;
+    if (diaryImageUrl) {
+      data.profile.user_image = diaryImageUrl;
+    } else {
+      data.profile.user_image = userData.user_image;
+    }
     putProfile.mutate(data);
   };
   if (isLoading) {
