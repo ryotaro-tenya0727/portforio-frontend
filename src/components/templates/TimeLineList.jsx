@@ -18,7 +18,6 @@ import { API_URL } from '../../urls/index';
 import button from './../../css/atoms/button.module.scss';
 
 const TimeLineList = ({ isAuthenticated }) => {
-  const isWide = useMedia({ minWidth: '700px' });
   const [diaries, setDiaries] = useState([]);
   const { accessToken, setAccessToken } = useContext(AuthGuardContext);
   const { getAccessTokenSilently } = useAuth0();
@@ -222,12 +221,13 @@ const TimeLineList = ({ isAuthenticated }) => {
                 eventDate={diary.attributes.event_date}
                 eventVenue={diary.attributes.event_venue}
                 DiaryMemberNickname={diary.attributes.diary_member_nickname}
-                diaryImage={diary.attributes.diary_image}
+                diaryImageUrl={diary.attributes.diary_image}
                 eventPolaroidCount={diary.attributes.event_polaroid_count}
                 ImpressiveMemory={diary.attributes.impressive_memory}
                 showUrl={`/diaries/show/${diary.attributes.id}}`}
                 liked={diary.attributes.liked}
                 me={diary.attributes.me}
+                videoThumbnailUrl={diary.attributes.diary_video_thumbnail_url}
               />
             ))}
           </InfiniteScroll>

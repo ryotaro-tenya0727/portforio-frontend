@@ -286,16 +286,19 @@
   }
 }
 
-.timeline{
-  display : flex;
-}
 
-@media (min-width: 700px){
-  .timeline{
-    display : flex;
-  }
-}
 
 .dummy_general_diary_image {
   width: 130px;
+}
+.timeline {
+  display: flex;
+  align-items: flex-end
+
+
+}
+.timeline_header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 0px 16px 0px
 }
