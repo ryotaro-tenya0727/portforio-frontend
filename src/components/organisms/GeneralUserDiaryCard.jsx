@@ -20,6 +20,7 @@ const GeneralUserDiaryCard = ({
   diaryImages,
   ImpressiveMemory,
   showUrl,
+  videoThumbnailUrl,
 }) => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
   const diaryImageUrl = diaryImages[0];
@@ -83,7 +84,7 @@ const GeneralUserDiaryCard = ({
       </div>
       <div className={card.card_general_detail}>
         <div className={card.card_general_text_wrapper}>
-          <p className={card.card_text} style={{ marginTop: '20px' }}>
+          <p className={card.card_text}>
             <span className={card.card_text_property}>
               <LibraryMusicIcon
                 sx={{ fontSize: '19px', mb: '-4px', color: 'red' }}
@@ -132,27 +133,26 @@ const GeneralUserDiaryCard = ({
             </Zoom>
           </div>
         )}
-      </div>
-
-      {/* <div className={card.card_photo_list}>
-        {diaryImages.map((diaryImageUrl, index) => {
-          return (
+        {videoThumbnailUrl && (
+          <div class={card.general_diary_image}>
             <Zoom zoomMargin={40}>
               <img
-                key={index}
-                src={`${diaryImageUrl}`}
+                src={`${videoThumbnailUrl}`}
                 alt='picture'
                 width='130'
-                height='173'
                 style={{
                   border: '2px solid #ff99c5',
                   borderRadius: '5px',
+                  marginBottom: '50%',
                 }}
               />
             </Zoom>
-          );
-        })}
-      </div> */}
+          </div>
+        )}
+        {!videoThumbnailUrl && !diaryImageUrl && (
+          <div class={card.dummy_general_diary_image}></div>
+        )}
+      </div>
     </Card>
   );
 };

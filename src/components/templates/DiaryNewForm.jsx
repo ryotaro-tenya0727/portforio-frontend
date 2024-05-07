@@ -9,7 +9,6 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import PhotoIcon from '@mui/icons-material/Photo';
-import { useAuth0 } from '@auth0/auth0-react';
 
 import { DiaryTrimmingModal } from './../organisms/Organisms';
 import { DiaryVideoUploadArea } from './../organisms/Organisms';

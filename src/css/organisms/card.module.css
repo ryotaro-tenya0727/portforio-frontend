@@ -107,19 +107,17 @@
 
 .card_general_detail {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  margin: 16px 0px 0px 0px;
+  justify-content: space-around;
+  /* align-items: center; */
 }
 
 
 .card_general_text_wrapper {
-  width: 65%
+  width: 65%;
+  margin: 0px 16px 0px 0px;
 }
 
-.general_diary_image{
-  text-align: center;
-  margin: 0 10px 13px 20px;
-}
 
 .card_text{
   border-bottom: 2px dashed #ff8a8a;
@@ -296,4 +294,8 @@
   .timeline{
     display : flex;
   }
+}
+
+.dummy_general_diary_image {
+  width: 130px;
 }
