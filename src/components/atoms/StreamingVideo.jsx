@@ -10,7 +10,7 @@ const StreamingVideo = ({ videoUid, height, width }) => {
             border: 'none',
             width: '100%',
             maxWidth: width,
-            maxHeight: '400px',
+            height: '300px',
           }}
           allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;'
           allowfullscreen='true'

@@ -27,6 +27,8 @@ const GeneralDiaryShow = () => {
     isLoading,
   } = useShowGeneralDiaries(diary_id);
 
+  console.log(general_diary_show);
+
   return (
     <>
       {isIdle || isLoading ? (
