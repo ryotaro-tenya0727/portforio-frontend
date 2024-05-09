@@ -1,5 +1,5 @@
 import diary from './../../css/templates/diary.module.css';
-const StreamingVideo = ({ videoUid, height, width }) => {
+const StreamingVideo = ({ videoUid, width }) => {
   return (
     <div className={diary.streamingVideoWrapper}>
       <div className={diary.streamingVideo}>
