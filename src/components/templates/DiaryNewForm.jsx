@@ -75,7 +75,6 @@ const DiaryNewForm = ({
     createRecommendedMemberDiary.mutate(params);
     setDiaryImageUrls([]);
     setDiaryVideoInformations({});
-    console.log(params);
   };
 
   const changeToVideoContents = () => {

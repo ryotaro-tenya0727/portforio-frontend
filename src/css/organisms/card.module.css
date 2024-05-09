@@ -1,5 +1,5 @@
 .card_general_whole{
-  padding: 10px 10px 5px 10px;
+  padding: 8px 8px 8px 8px;
   position: relative;
   margin: 0 auto;
   width: 85%;
@@ -57,7 +57,7 @@
 }
 
 .card_whole{
-  padding: 10px 10px 5px 10px;
+  padding: 8px 8px 8px 8px;
   position: relative;
   margin: 0 auto;
   width: 92%;
@@ -301,4 +301,16 @@
   display: flex;
   justify-content: space-between;
   margin: 0px 0px 16px 0px
+}
+
+.LoginUserDiaryTextAndContentWrapper{
+  display: flex;
+  margin: 32px 0px 0px 0px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.LoginUserDiaryTextWrapper{
+  width: 65%;
+  margin: 0px 16px 0px 0px;
 }

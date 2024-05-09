@@ -33,6 +33,7 @@ const RecommendedMemberDiariesList = ({
     isIdle,
     isLoading,
   } = useGetRecommendedMemberDiaries(recommendedMemberId);
+  console.log(recommendedMemberDiaries);
 
   const returnTop = () => {
     window.scrollTo({
@@ -87,7 +88,7 @@ const RecommendedMemberDiariesList = ({
       },
     },
   });
-  // isIdle || isLoading
+
   return (
     <div className={list.list}>
       <ThemeProvider theme={theme}>
@@ -213,6 +214,9 @@ const RecommendedMemberDiariesList = ({
                     status={diary.attributes.status}
                     diaryImages={diary.attributes.diary_images}
                     eventPolaroidCount={diary.attributes.event_polaroid_count}
+                    videoThumbnailUrl={
+                      diary.attributes.diary_video_thumbnail_url
+                    }
                     showUrl={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/show/${diary.attributes.id}?recommended_member_nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                     editUrl={`/recommended-member/${recommendedMemberUuid}/diaries/${recommendedMemberId}/edit/${diary.attributes.id}?nickname=${recommendedMemberNickname}&group=${recommendedMemberGroup}`}
                   />
