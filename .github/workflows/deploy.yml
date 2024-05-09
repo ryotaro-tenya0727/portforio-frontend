@@ -27,7 +27,7 @@ jobs:
           REACT_APP_REST_URL=${{ secrets.REACT_APP_REST_URL }}
           REACT_APP_PUSHER_KEY=${{ secrets.REACT_APP_PUSHER_KEY }}
           REACT_APP_PUSHER_CLUSTER=${{ secrets.REACT_APP_PUSHER_CLUSTER }}
-          REACT_CLOUDFLARE_CUSTOMER_SUBDOMAIN=${{ secrets.REACT_CLOUDFLARE_CUSTOMER_SUBDOMAIN }}
+          REACT_APP_CLOUDFLARE_CUSTOMER_SUBDOMAIN=${{ secrets.REACT_APP_CLOUDFLARE_CUSTOMER_SUBDOMAIN }}
           EOF
       - name: AWS CLI installation
         uses: aws-actions/configure-aws-credentials@v2
