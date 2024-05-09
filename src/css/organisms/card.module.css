@@ -1,5 +1,5 @@
 .card_general_whole{
-  padding: 10px 10px 5px 10px;
+  padding: 8px 8px 8px 8px;
   position: relative;
   margin: 0 auto;
   width: 85%;
@@ -57,7 +57,7 @@
 }
 
 .card_whole{
-  padding: 10px 10px 5px 10px;
+  padding: 8px 8px 8px 8px;
   position: relative;
   margin: 0 auto;
   width: 92%;
@@ -107,19 +107,17 @@
 
 .card_general_detail {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  margin: 16px 0px 0px 0px;
+  justify-content: space-around;
+  /* align-items: center; */
 }
 
 
 .card_general_text_wrapper {
-  width: 65%
+  width: 65%;
+  margin: 0px 16px 0px 0px;
 }
 
-.general_diary_image{
-  text-align: center;
-  margin: 0 10px 13px 20px;
-}
 
 .card_text{
   border-bottom: 2px dashed #ff8a8a;
@@ -288,12 +286,31 @@
   }
 }
 
-.timeline{
-  display : flex;
+
+
+.dummy_general_diary_image {
+  width: 130px;
+}
+.timeline {
+  display: flex;
+  align-items: flex-end
+
+
+}
+.timeline_header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 0px 16px 0px
 }
 
-@media (min-width: 700px){
-  .timeline{
-    display : flex;
-  }
+.LoginUserDiaryTextAndContentWrapper{
+  display: flex;
+  margin: 32px 0px 0px 0px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.LoginUserDiaryTextWrapper{
+  width: 65%;
+  margin: 0px 16px 0px 0px;
 }

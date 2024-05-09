@@ -55,24 +55,12 @@
 }
 
 .image_up_title {
-  text-align: center;
-  font-size: 17px;
-  margin: 15px 0px 20px 0px;
+  /* font-size: 17px; */
   font-weight: bold;
+  margin-top: 8px;
 }
-
-@media (min-width: 500px) {
-  .image_up_title {
-    font-size: 17px;
-    margin: 15px 0px 40px 0px;
-  }
-}
-
-@media (min-width: 700px) {
-  .image_up_title {
-    font-size: 22px;
-    margin: 15px 0px 30px 0px;
-  }
+.image_description {
+  font-size: 15px;
 }
 
 .text_label {
@@ -86,26 +74,17 @@
   font-weight: bold;
 }
 
-.submit_button {
-  cursor: pointer;
-  background-color: #ffffff;
-  border-radius: 5px;
-  border: 2px solid;
-  padding: 18px 8px 18px 8px;
-  margin: 0px 0px 20px 0px;
-  font-weight: bold;
-  font-size: 15px;
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  color: #ff66d1;
-  box-shadow: 2.7px 3.2px 2px 0.3px #938d90;
-  margin-top: 15px;
+@media (max-width: 500px) {
+  .text_error {
+    margin-top: 24px;
+  }
 }
 
-.submit_button:hover {
-  background-color: rgba(255, 199, 227, 0.3)
+.changeVideoButton:hover {
+  opacity: 0.8
 }
 
-.submit_button:active {
+.changeVideoButton:active {
   box-shadow: none;
 }
 
@@ -117,7 +96,15 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  margin: 32px 0px 32px 0px;
   width: 80%;
+
+}
+
+.imagesWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
 
@@ -125,8 +112,8 @@
   .images {
     display: flex;
     flex-direction: column;
-    /*コレ*/
     align-items: center;
+    margin: 0px 0px 0px 0px;
   }
 }
 
@@ -139,5 +126,58 @@
 @media (min-width: 750px) and (max-width: 900px) {
   .images {
     width: 90%;
+  }
+}
+
+.uploadVideo {
+  text-align: center;
+  margin: 32px 0px 32px 0px;
+}
+
+@media (max-width: 500px) {
+  .uploadVideo {
+    // margin: 32px 0px 32px 0px;
+  }
+}
+
+
+.videoPreview{
+  max-width: 90%
+}
+
+.videoPreviewWrapper {
+  text-align: center;
+  margin: 32px 0px 32px 0px;
+  padding: 32px;
+  border-radius: 32px;
+  background-color: #e4e3e4;
+}
+
+@media (max-width: 500px) {
+  .imagePreview {
+    margin: 32px 0px 32px 0px;
+  }
+}
+
+.diaryPreviewImageFirst {
+  position: relative;
+}
+
+@media (max-width: 500px) {
+  .diaryPreviewImageFirst {
+    margin: 16px 0px 0px 0px;
+  }
+}
+
+.contentsWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 32px 0px 0px 0px;
+}
+
+@media (max-width: 500px) {
+  .contentsWrapper {
+    margin: 32px 0px 0px 0px;
   }
 }

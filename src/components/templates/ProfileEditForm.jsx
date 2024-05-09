@@ -13,7 +13,7 @@ import { useProfileApi } from './../../hooks/useProfile';
 import { ProfileTrimmingModal } from './../organisms/Organisms';
 
 import button from './../../css/atoms/button.module.scss';
-import form from './../../css/templates/form.module.css';
+import form from './../../css/templates/form.module.scss';
 
 const ProfileEditForm = () => {
   const theme = createTheme({
@@ -88,8 +88,7 @@ const ProfileEditForm = () => {
             )}
             {isFileTypeError && (
               <p className={form.text_error}>
-                ※jpeg, png, bmp, gif, webp
-                以外のファイル形式はアップロードできません
+                ※jpeg, png, bmp, gif 以外のファイル形式はアップロードできません
               </p>
             )}
             <br />
@@ -195,7 +194,7 @@ const ProfileEditForm = () => {
             <div style={{ textAlign: 'center' }}>
               <input
                 type='submit'
-                className={form.submit_button}
+                className={button.submit_button}
                 value='この内容で登録'
               />
             </div>

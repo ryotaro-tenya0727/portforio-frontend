@@ -15,7 +15,7 @@ export const recommendedMemberDiaryRepository = {
         }
       )
       .catch((error) => {
-        console.error(error.response.data);
+        console.error(error);
       });
     return response.data;
   },

@@ -12,6 +12,7 @@ import 'react-medium-image-zoom/dist/styles.css';
 
 import { Button } from './../atoms/atoms';
 
+import { Circular, StreamingVideo } from './../atoms/atoms';
 import { useGeneralDiariesApi } from './../../hooks/useGeneralDiary';
 import diary from './../../css/templates/diary.module.css';
 import button from './../../css/atoms/button.module.scss';
@@ -215,21 +216,40 @@ const GeneralDiaryShow = () => {
                 </span>
               </div>
 
-              <div className={diary.diary_images}>
-                {general_diary_show.data.attributes.diary_images.map(
-                  (diaryImageUrl, index) => {
-                    return (
-                      <Zoom zoomMargin={40} key={index}>
-                        <img
-                          src={`${diaryImageUrl}`}
-                          alt='picture'
-                          className={diary.diary_image}
-                        />
-                      </Zoom>
-                    );
-                  }
-                )}
-              </div>
+              {(() => {
+                if (
+                  general_diary_show.data.attributes.diary_images.length > 0
+                ) {
+                  return (
+                    <div className={diary.diary_images}>
+                      {general_diary_show.data.attributes.diary_images.map(
+                        (diaryImageUrl, index) => {
+                          return (
+                            <Zoom zoomMargin={40} key={index}>
+                              <img
+                                src={`${diaryImageUrl}`}
+                                alt='picture'
+                                className={diary.diary_image}
+                              />
+                            </Zoom>
+                          );
+                        }
+                      )}
+                    </div>
+                  );
+                } else if (general_diary_show.data.attributes.diary_video_uid) {
+                  return (
+                    <StreamingVideo
+                      videoUid={
+                        general_diary_show.data.attributes.diary_video_uid
+                      }
+                      width={400}
+                    />
+                  );
+                } else {
+                  return;
+                }
+              })()}
             </div>
           </div>
         </>

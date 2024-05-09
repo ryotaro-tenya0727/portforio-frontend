@@ -110,10 +110,7 @@ const AdminUserDiaryCard = ({
         <br />
         <br />
         <br />
-        <Button
-          className={button.button_card}
-          onClick={() => deleteAdminUser()}
-        >
+        <Button className={button.buttonCard} onClick={() => deleteAdminUser()}>
           <BrokenImageIcon
             sx={{
               fontSize: '23px',

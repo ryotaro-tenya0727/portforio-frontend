@@ -10,7 +10,7 @@ import { Button } from './../atoms/atoms';
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 
 import button from './../../css/atoms/button.module.scss';
-import form from './../../css/templates/form.module.css';
+import form from './../../css/templates/form.module.scss';
 
 const RecommenedMemberEditForm = ({
   recommendedMemberUuid,
@@ -236,7 +236,7 @@ const RecommenedMemberEditForm = ({
             <div style={{ textAlign: 'center' }}>
               <input
                 type='submit'
-                className={form.submit_button}
+                className={button.submit_button}
                 value='この内容で登録'
               />
             </div>

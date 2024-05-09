@@ -7,11 +7,15 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PhotoCameraBackIcon from '@mui/icons-material/PhotoCameraBack';
+import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
+import PhotoIcon from '@mui/icons-material/Photo';
 
 import { DiaryTrimmingModal } from './../organisms/Organisms';
+import { DiaryVideoUploadArea } from './../organisms/Organisms';
 import { useRecommendedMemberDiariesApi } from './../../hooks/useRecommendedMemberDiaries';
 
-import form from './../../css/templates/form.module.css';
+import form from './../../css/templates/form.module.scss';
+import button from './../../css/atoms/button.module.scss';
 
 const DiaryNewForm = ({
   recommendedMemberId,
@@ -22,6 +26,8 @@ const DiaryNewForm = ({
   const [isNumberError, setIsNumberError] = useState(false);
   const [isFileTypeError, setIsFileTypeError] = useState(false);
   const [diaryImageUrls, setDiaryImageUrls] = useState([]);
+  const [diaryVideoInformations, setDiaryVideoInformations] = useState({});
+  const [displayImageArea, setDisplayImageArea] = useState(true);
 
   const { control, handleSubmit, formState } = useForm({
     mode: 'onSubmit',
@@ -57,53 +63,167 @@ const DiaryNewForm = ({
         diary_image_url: diaryImageUrls[index].url,
       });
     });
-    createRecommendedMemberDiary.mutate({
+    const params = {
       diary: {
         ...data.diary,
         diary_images_attributes: paramsDiaryImageUrls,
       },
-    });
+    };
+    if (Object.keys(diaryVideoInformations).length !== 0) {
+      params.diary.diary_videos = diaryVideoInformations;
+    }
+    createRecommendedMemberDiary.mutate(params);
     setDiaryImageUrls([]);
+    setDiaryVideoInformations({});
+  };
+
+  const changeToVideoContents = () => {
+    if (diaryImageUrls.length > 0) {
+      if (
+        window.confirm(
+          'アップロードした画像はリセットされます。動画に変更しますか？'
+        )
+      ) {
+        setDiaryImageUrls([]);
+        setDisplayImageArea(false);
+        return;
+      } else {
+        return;
+      }
+    }
+    setDisplayImageArea(false);
+  };
+
+  const changeToImageContents = () => {
+    if (Object.keys(diaryVideoInformations).length !== 0) {
+      if (
+        window.confirm(
+          'アップロードした動画はリセットされます。画像に変更しますか？'
+        )
+      ) {
+        setDiaryVideoInformations({});
+        setDisplayImageArea(true);
+        return;
+      } else {
+        return;
+      }
+    }
+    setDisplayImageArea(true);
   };
 
   return (
     <>
       <ThemeProvider theme={theme}>
         <form onSubmit={handleSubmit(onSubmit)} className={form.form}>
-          <p className={form.form_title} style={{ marginTop: '20px' }}>
-            {`${recommendedMemberNickname}との日記追加中`}
-          </p>
-          {isNumberError && (
-            <p className={form.text_error}>
-              ※2枚を超えて選択された画像は表示されません
-            </p>
-          )}
-          {isFileTypeError && (
-            <p className={form.text_error}>
-              ※jpeg, png, bmp, gif, webp
-              以外のファイル形式はアップロードできません
-            </p>
+          {displayImageArea ? (
+            <div>
+              <div class={form.contentsWrapper}>
+                <div class='formTitleContents'>
+                  <PhotoIcon
+                    sx={{
+                      fontSize: '24px',
+                      mb: '-6px',
+                      mr: '10px',
+                      color: '#ff66d1',
+                    }}
+                  />
+                  日記の画像を2枚選択
+                </div>
+
+                <button
+                  className={button.changeVideoButton}
+                  onClick={changeToVideoContents}
+                >
+                  <OndemandVideoIcon
+                    sx={{
+                      fontSize: '18.5px',
+                      mr: 1,
+                      mb: '-5.5px',
+                      color: '#ff6fc8',
+                      '@media screen and (max-width:700px)': {
+                        fontSize: '14.5px',
+                        mr: 0.5,
+                        mb: '-3.5px',
+                      },
+                    }}
+                  />
+                  動画にする
+                </button>
+              </div>
+              {isNumberError && (
+                <p className={form.text_error}>
+                  ※2枚を超えて選択された画像は表示されません
+                </p>
+              )}
+              {isFileTypeError && (
+                <p className={form.text_error}>
+                  ※jpeg, png, bmp, gif
+                  以外のファイル形式はアップロードできません
+                </p>
+              )}
+              <DiaryTrimmingModal
+                onSetDiaryImageUrlAndIndex={(url, index) => {
+                  setDiaryImageUrls([
+                    ...diaryImageUrls,
+                    { diary_image_index: index, url: url },
+                  ]);
+                }}
+                onSetDiaryImageUrls={(urls) => {
+                  setDiaryImageUrls(urls);
+                }}
+                diaryImageUrls={diaryImageUrls}
+                onSetIsFileTypeError={(result) => setIsFileTypeError(result)}
+                onSetIsNumberTypeError={(result) => setIsNumberError(result)}
+              />
+            </div>
+          ) : (
+            <div>
+              <div
+                class={form.contentsWrapper}
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+              >
+                <div class='formTitleContents'>
+                  <OndemandVideoIcon
+                    sx={{
+                      fontSize: '24px',
+                      mb: '-6px',
+                      mr: '10px',
+                      color: '#ff66d1',
+                    }}
+                  />
+                  日記の動画をアップロード
+                </div>
+                <button
+                  className={button.changeVideoButton}
+                  onClick={changeToImageContents}
+                >
+                  <PhotoIcon
+                    sx={{
+                      fontSize: '18.5px',
+                      mr: 1,
+                      mb: '-5.5px',
+                      color: '#ff6fc8',
+                      '@media screen and (max-width:700px)': {
+                        fontSize: '14.5px',
+                        mr: 0.5,
+                        mb: '-3.5px',
+                      },
+                    }}
+                  />
+                  画像にする
+                </button>
+              </div>
+              <DiaryVideoUploadArea
+                onSetDiaryVideoInformations={(informations) => {
+                  setDiaryVideoInformations(informations);
+                }}
+              />
+            </div>
           )}
 
-          <p className={form.image_up_title}>日記に使う画像を選択</p>
-          <DiaryTrimmingModal
-            onSetDiaryImageUrlAndIndex={(url, index) => {
-              setDiaryImageUrls([
-                ...diaryImageUrls,
-                { diary_image_index: index, url: url },
-              ]);
-            }}
-            onSetDiaryImageUrls={(urls) => {
-              setDiaryImageUrls(urls);
-            }}
-            diaryImageUrls={diaryImageUrls}
-            onSetIsFileTypeError={(result) => setIsFileTypeError(result)}
-            onSetIsNumberTypeError={(result) => setIsNumberError(result)}
-          />
-
-          <br />
           <label htmlFor='event_name'>
-            {' '}
             <LibraryMusicIcon
               sx={{ fontSize: '24px', mb: '-7px', mr: '10px', color: 'red' }}
             />
@@ -392,7 +512,7 @@ const DiaryNewForm = ({
           <div style={{ textAlign: 'center' }}>
             <input
               type='submit'
-              className={form.submit_button}
+              className={button.submit_button}
               value='この内容で登録'
             />
           </div>

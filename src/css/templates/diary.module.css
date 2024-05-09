@@ -291,3 +291,16 @@
     width: 270px;
   }
 }
+
+.streamingVideoWrapper {
+
+}
+
+.streamingVideo {
+  text-align: center;
+  margin: 0 auto;
+  padding: 16px;
+  border-radius:16px;
+  background-color: #e4e3e4;
+  width: 90%;
+}

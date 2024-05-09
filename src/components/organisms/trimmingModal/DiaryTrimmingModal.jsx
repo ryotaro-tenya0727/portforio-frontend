@@ -8,12 +8,12 @@ import 'react-image-crop/dist/ReactCrop.css';
 import axios from 'axios';
 
 import { DiarySampleImageButton, Circular } from '../../atoms/atoms';
-import { s3PresignedUrlRepository } from '../../../repositories/s3PresignedUrlRepository';
+import { s3PresignedUrlRepository } from '../../../repositories/external/aws/s3/s3PresignedUrlRepository';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { useImageCrop } from '../../../hooks/usefulFunction/useImageCrop';
 
-import form from './../../../css/templates/form.module.css';
+import form from './../../../css/templates/form.module.scss';
 import button from './../../../css/atoms/button.module.scss';
 import card from './../../../css/organisms/card.module.css';
 
@@ -43,7 +43,11 @@ const DiaryTrimmingModal = ({
   const [secondLoading, setSecondLoading] = useState(false);
 
   const [firstOpen, setFirstOpen] = useState(false);
-  const handleFirstClose = () => setFirstOpen(false);
+  const handleFirstClose = () => {
+    setFirstOpen(false);
+    setFirstImageToCrop(undefined);
+    SetCroppedFirstImage(null);
+  };
   const firstInputRef = useRef(null);
   const [firstImageToCrop, setFirstImageToCrop] = useState(undefined);
   const [croppedFirstImage, SetCroppedFirstImage] = useState(null);
@@ -51,7 +55,11 @@ const DiaryTrimmingModal = ({
   const [firstImageFileName, setFirstImageFileName] = useState(null);
 
   const [secondOpen, setSecondOpen] = useState(false);
-  const handleSecondClose = () => setSecondOpen(false);
+  const handleSecondClose = () => {
+    setSecondOpen(false);
+    setSecondImageToCrop(undefined);
+    SetCroppedSecondImage(null);
+  };
   const secondInputRef = useRef(null);
   const [secondImageToCrop, setSecondImageToCrop] = useState(undefined);
   const [croppedSecondImage, SetCroppedSecondImage] = useState(null);
@@ -96,13 +104,7 @@ const DiaryTrimmingModal = ({
     setFirstImageFileName(`${crypto.randomUUID()}.${extension}`);
     resetErrors();
     if (
-      ![
-        'image/gif',
-        'image/jpeg',
-        'image/png',
-        'image/bmp',
-        'image/webp',
-      ].includes(file.type)
+      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
     ) {
       onSetIsFileTypeError(true);
       return;
@@ -194,7 +196,7 @@ const DiaryTrimmingModal = ({
 
     await axios.put(imageUrls.presigned_url, compressFile, {
       headers: {
-        'Content-Type': 'image/*',
+        'Content-Type': compressFile.type,
       },
     });
     setFirstLoading(false);
@@ -234,10 +236,9 @@ const DiaryTrimmingModal = ({
       croppedSecondImage,
       compressOption
     );
-
     await axios.put(imageUrls.presigned_url, compressFile, {
       headers: {
-        'Content-Type': 'image/*',
+        'Content-Type': compressFile.type,
       },
     });
     setSecondLoading(false);
@@ -283,105 +284,102 @@ const DiaryTrimmingModal = ({
         onChange={(event) => openSecondDiaryTrimmingModal(event)}
         hidden
       />
-      <div className={form.images}>
-        {firstImage !== null ? (
-          <div
-            style={{
-              position: 'relative',
-              marginTop: '25px',
-            }}
-          >
-            <button
-              className={button.image_cancel_button}
-              type='button'
-              onClick={() => handleCancel(0)}
-            >
-              <DeleteForeverIcon />
-            </button>
-            {firstLoading && (
-              <Circular
-                large={45}
-                small={45}
-                circleStyle={{
-                  position: 'absolute',
-                  top: '120px',
-                  left: '85px',
-                  zIndex: '1',
-                }}
-                color='#fff'
-              />
-            )}
+      <div className={form.imagesWrapper}>
+        <div className={form.images}>
+          {firstImage !== null ? (
+            <div className={form.diaryPreviewImageFirst}>
+              <button
+                className={button.image_cancel_button}
+                type='button'
+                onClick={() => handleCancel(0)}
+              >
+                <DeleteForeverIcon />
+              </button>
+              {firstLoading && (
+                <Circular
+                  large={45}
+                  small={45}
+                  circleStyle={{
+                    position: 'absolute',
+                    top: '120px',
+                    left: '85px',
+                    zIndex: '1',
+                  }}
+                  color='#fff'
+                />
+              )}
 
-            <img
-              src={window.URL.createObjectURL(firstImage)}
-              alt={`あなたの写真 `}
-              width='200'
-              height='266.7'
-              style={
-                firstLoading
-                  ? {
-                      border: '4px solid #ff99c5',
-                      filter: 'brightness(50%)',
-                    }
-                  : {
-                      border: '4px solid #ff99c5',
-                    }
-              }
-            ></img>
-          </div>
-        ) : (
-          <DiarySampleImageButton onClick={firstFileClick} />
-        )}
-        <br />
-        <br />
-        {secondImage !== null ? (
-          <div
-            style={{
-              position: 'relative',
-              marginTop: '25px',
-            }}
-          >
-            <button
-              className={button.image_cancel_button}
-              type='button'
-              onClick={() => handleCancel(1)}
-            >
-              <DeleteForeverIcon />
-            </button>
-            {secondLoading && (
-              <Circular
-                large={45}
-                small={45}
-                circleStyle={{
-                  position: 'absolute',
-                  top: '120px',
-                  left: '85px',
-                  zIndex: '1',
-                }}
-                color='#fff'
-              />
-            )}
+              <img
+                src={window.URL.createObjectURL(firstImage)}
+                alt={`あなたの写真 `}
+                width='200'
+                height='266.7'
+                class={form.imagePreview}
+                style={
+                  firstLoading
+                    ? {
+                        border: '4px solid #ff99c5',
+                        filter: 'brightness(50%)',
+                      }
+                    : {
+                        border: '4px solid #ff99c5',
+                      }
+                }
+              ></img>
+            </div>
+          ) : (
+            <DiarySampleImageButton onClick={firstFileClick} />
+          )}
 
-            <img
-              src={window.URL.createObjectURL(secondImage)}
-              alt={`あなたの写真 `}
-              width='200'
-              height='266.7'
-              style={
-                secondLoading
-                  ? {
-                      border: '4px solid #ff99c5',
-                      filter: 'brightness(50%)',
-                    }
-                  : {
-                      border: '4px solid #ff99c5',
-                    }
-              }
-            ></img>
-          </div>
-        ) : (
-          <DiarySampleImageButton onClick={secondFileClick} />
-        )}
+          {secondImage !== null ? (
+            <div
+              style={{
+                position: 'relative',
+              }}
+            >
+              <button
+                className={button.image_cancel_button}
+                type='button'
+                onClick={() => handleCancel(1)}
+              >
+                <DeleteForeverIcon />
+              </button>
+              {secondLoading && (
+                <Circular
+                  large={45}
+                  small={45}
+                  circleStyle={{
+                    position: 'absolute',
+                    top: '120px',
+                    left: '85px',
+                    zIndex: '1',
+                  }}
+                  color='#fff'
+                />
+              )}
+
+              <img
+                src={window.URL.createObjectURL(secondImage)}
+                alt={`あなたの写真 `}
+                width='200'
+                height='266.7'
+                class={form.imagePreview}
+                style={
+                  secondLoading
+                    ? {
+                        border: '4px solid #ff99c5',
+                        filter: 'brightness(50%)',
+                      }
+                    : {
+                        border: '4px solid #ff99c5',
+                      }
+                }
+              ></img>
+            </div>
+          ) : (
+            <DiarySampleImageButton onClick={secondFileClick} />
+          )}
+        </div>
       </div>
       <Modal
         open={firstOpen}
@@ -402,6 +400,7 @@ const DiaryTrimmingModal = ({
                 // imageRef.width = '300px';
                 // src={FirstimageToCrop}で画像が読み込まれたらこの関数が実行される。
                 setFirstImageRef(imageRef);
+                resetErrors();
               }}
               // リサイズ中(マウスを持っているとき)
               onChange={(cropConfig) => {
@@ -417,7 +416,7 @@ const DiaryTrimmingModal = ({
           </div>
           <button
             onClick={registerFirstImage}
-            className={button.button_trimming}
+            className={button.buttonTrimming}
           >
             トリミング
           </button>
@@ -450,7 +449,7 @@ const DiaryTrimmingModal = ({
           </div>
           <button
             onClick={registerSecondImage}
-            className={button.button_trimming}
+            className={button.buttonTrimming}
           >
             トリミング
           </button>

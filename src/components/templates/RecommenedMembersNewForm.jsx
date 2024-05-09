@@ -7,7 +7,8 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
-import form from './../../css/templates/form.module.css';
+import form from './../../css/templates/form.module.scss';
+import button from './../../css/atoms/button.module.scss';
 
 const RecommenedMembersNewForm = () => {
   const imageDomain = process.env.REACT_APP_IMAGE_DOMAIN;
@@ -218,7 +219,7 @@ const RecommenedMembersNewForm = () => {
           <div style={{ textAlign: 'center' }}>
             <input
               type='submit'
-              className={form.submit_button}
+              className={button.submit_button}
               value='この内容で登録'
             />
           </div>

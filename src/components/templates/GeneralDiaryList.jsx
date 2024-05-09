@@ -61,6 +61,7 @@ const GeneralDiaryList = () => {
                 diaryImages={diary.attributes.diary_images}
                 eventPolaroidCount={diary.attributes.event_polaroid_count}
                 ImpressiveMemory={diary.attributes.impressive_memory}
+                videoThumbnailUrl={diary.attributes.diary_video_thumbnail_url}
                 showUrl={`/diaries/show/${diary.attributes.id}}`}
               />
             </SwiperSlide>

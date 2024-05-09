@@ -131,7 +131,7 @@ const RecommendedMemberCard = ({
                 </div>
                 <div className={card.card_right_whole}>
                   <Link to={diaryUrl}>
-                    <Button className={button.button_card} onClick={returnTop}>
+                    <Button className={button.buttonCard} onClick={returnTop}>
                       <AppRegistrationIcon
                         sx={{
                           fontSize: '28px',
@@ -147,7 +147,7 @@ const RecommendedMemberCard = ({
                     </Button>
                   </Link>
                   <Link to={editUrl}>
-                    <Button className={button.button_card} onClick={returnTop}>
+                    <Button className={button.buttonCard} onClick={returnTop}>
                       推しメンの
                       <br />
                       情報を編集

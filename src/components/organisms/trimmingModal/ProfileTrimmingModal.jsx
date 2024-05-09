@@ -9,7 +9,7 @@ import 'react-image-crop/dist/ReactCrop.css';
 import axios from 'axios';
 
 import { ProfileSampleImageButton, Circular } from '../../atoms/atoms';
-import { s3PresignedUrlRepository } from '../../../repositories/s3PresignedUrlRepository';
+import { s3PresignedUrlRepository } from '../../../repositories/external/aws/s3/s3PresignedUrlRepository';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { useImageCrop } from '../../../hooks/usefulFunction/useImageCrop';
@@ -66,13 +66,7 @@ const ProfileTrimmingModal = ({
     setImageFileName(`${crypto.randomUUID()}.${extension}`);
     resetErrors();
     if (
-      ![
-        'image/gif',
-        'image/jpeg',
-        'image/png',
-        'image/bmp',
-        'image/webp',
-      ].includes(file.type)
+      !['image/gif', 'image/jpeg', 'image/png', 'image/bmp'].includes(file.type)
     ) {
       onSetIsFileTypeError(true);
       return;
@@ -254,6 +248,7 @@ const ProfileTrimmingModal = ({
                 // imageRef.width = '300px';
                 // src={FirstimageToCrop}で画像が読み込まれたらこの関数が実行される。
                 setImageRef(imageRef);
+                resetErrors();
               }}
               // リサイズ中(マウスを持っているとき)
               onChange={(cropConfig) => {
@@ -269,7 +264,7 @@ const ProfileTrimmingModal = ({
               circularCrop
             />
           </div>
-          <button onClick={registerImage} className={button.button_trimming}>
+          <button onClick={registerImage} className={button.buttonTrimming}>
             トリミング
           </button>
         </Box>

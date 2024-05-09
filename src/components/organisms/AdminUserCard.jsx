@@ -59,7 +59,7 @@ const AdminUserCard = ({
         <br />
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <Link to={`/admin/${id}/diaries?name=${name}`} onClick={returnTop}>
-            <Button className={button.button_card}>
+            <Button className={button.buttonCard}>
               <AppRegistrationIcon
                 sx={{
                   fontSize: '25px',
@@ -74,7 +74,7 @@ const AdminUserCard = ({
               日記を表示
             </Button>
           </Link>
-          <Button className={button.button_card} onClick={() => deleteUser()}>
+          <Button className={button.buttonCard} onClick={() => deleteUser()}>
             <BrokenImageIcon
               sx={{
                 fontSize: '23px',
