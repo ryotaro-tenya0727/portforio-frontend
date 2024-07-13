@@ -130,7 +130,7 @@ const DiaryNewForm = ({
                   日記の画像を2枚選択
                 </div>
 
-                <button
+                {/* <button
                   className={button.changeVideoButton}
                   onClick={changeToVideoContents}
                 >
@@ -148,7 +148,7 @@ const DiaryNewForm = ({
                     }}
                   />
                   動画にする
-                </button>
+                </button> */}
               </div>
               {isNumberError && (
                 <p className={form.text_error}>
