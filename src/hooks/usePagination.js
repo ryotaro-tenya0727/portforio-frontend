@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRecommendedMembersApi } from './useRecommendedMembers';
 import { recommendedMemberRepository } from './../repositories/recommendedMemberRepository';
 import { useMutation, useQuery } from 'react-query';
@@ -37,23 +37,28 @@ export const usePagination = (data, itemsPerPage) => {
 
 export const useRecommendedMemberPagination = (page) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [totalCount, setTotalCount] = useState(0);
   const [recommendedMembers, setRecommendedMembers] = useState([true]);
   const { getAccessTokenSilently } = useAuth0();
 
-  const currentData = async () => {
+  const fetchData = async (page) => {
     const accessToken = await getAccessTokenSilently();
     const response = await recommendedMemberRepository.getRecommendedMember(
       accessToken,
       page
     );
+    setTotalCount(response.data_count);
     setRecommendedMembers(response.data);
     setIsLoading(false);
   };
 
-  console.log(currentData());
+  useEffect(() => {
+    fetchData(page);
+  }, [page]);
+
   const jump = (page) => {
-    const pageNumber = Math.max(1, page);
+    fetchData(page);
   };
 
-  return { jump, recommendedMembers, isLoading };
+  return { jump, recommendedMembers, isLoading, totalCount };
 };

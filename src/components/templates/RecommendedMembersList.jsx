@@ -19,7 +19,6 @@ import button from './../../css/atoms/button.module.scss';
 import list from './../../css/templates/list.module.css';
 
 const RecommendedMembersList = () => {
-  const { useGetRecommendedMembers } = useRecommendedMembersApi();
   const isWide = useMedia({ minWidth: '710px' });
 
   const returnTop = () => {
@@ -45,12 +44,13 @@ const RecommendedMembersList = () => {
 
   const PER_PAGE = 4;
   const pageStart = 1;
-  const { recommendedMembers, isLoading } =
+  const { recommendedMembers, isLoading, totalCount, jump } =
     useRecommendedMemberPagination(pageStart);
   const handleChange = (_e, p) => {
     setPage(p);
-    recommendedMembers.jump(p);
+    jump(p);
   };
+  const count = Math.ceil(totalCount / PER_PAGE);
 
   const theme = createTheme({
     breakpoints: {
@@ -101,6 +101,7 @@ const RecommendedMembersList = () => {
                 }}
                 size={isWide ? 'medium' : 'small'}
                 className={list.pagination}
+                count={count}
                 page={page}
                 renderItem={(item) => (
                   <PaginationItem

@@ -9,8 +9,9 @@ import {
 export const recommendedMemberRepository = {
   getRecommendedMember: async (token, page) => {
     const startPage = page || 1;
+    console.log('startPage', startPage);
     const response = await axios
-      .get(recommendedMembersIndexUrl, {
+      .get(`${recommendedMembersIndexUrl}?page=${startPage}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
