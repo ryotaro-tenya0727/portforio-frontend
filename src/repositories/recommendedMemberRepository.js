@@ -7,7 +7,8 @@ import {
 } from '../urls';
 
 export const recommendedMemberRepository = {
-  getRecommendedMember: async (token) => {
+  getRecommendedMember: async (token, page) => {
+    const startPage = page || 1;
     const response = await axios
       .get(recommendedMembersIndexUrl, {
         headers: {

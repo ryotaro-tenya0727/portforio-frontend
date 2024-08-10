@@ -12,7 +12,7 @@ export const useRecommendedMembersApi = () => {
       behavior: 'smooth',
     });
   };
-  const useGetRecommendedMembers = () => {
+  const useGetRecommendedMembers = (page) => {
     return useQuery({
       queryKey: 'recommended_members',
       queryFn: async () => {
