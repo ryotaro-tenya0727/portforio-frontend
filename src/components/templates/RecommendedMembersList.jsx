@@ -12,16 +12,13 @@ import useMedia from 'use-media';
 
 import { Button, Circular } from './../atoms/atoms';
 import { RecommendedMemberCard } from './../organisms/Organisms';
-import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
-import { usePagination } from './../../hooks/usePagination';
+import { useRecommendedMemberPagination } from './../../hooks/usePagination';
 
 import button from './../../css/atoms/button.module.scss';
 import list from './../../css/templates/list.module.css';
 
 const RecommendedMembersList = () => {
-  const { useGetRecommendedMembers } = useRecommendedMembersApi();
   const isWide = useMedia({ minWidth: '710px' });
-  const { data: recommendedMembers, isLoading } = useGetRecommendedMembers();
 
   const returnTop = () => {
     window.scrollTo({
@@ -31,27 +28,21 @@ const RecommendedMembersList = () => {
   };
   // ページネーション
   let [page, setPage] = useState(1);
-  const PER_PAGE = 4;
-  let data =
-    recommendedMembers === undefined ? [{ length: 0 }] : recommendedMembers;
-
   // 検索
   const [searchText, setSearchText] = useState('');
   // 検索フィールドが空の場合、ここに入らない
-  const searchKeywords = searchText.trim().match(/[^\s]+/g);
-  if (searchKeywords !== null) {
-    data = recommendedMembers.filter((member) =>
-      searchKeywords.every(
-        (kw) => member.attributes.nickname.indexOf(kw) !== -1
-      )
-    );
-  }
 
-  const count = Math.ceil(data.length / PER_PAGE);
-  const _DATA = usePagination(data, PER_PAGE);
+  const PER_PAGE = 4;
+  const { recommendedMembers, isLoading, totalCount } =
+    useRecommendedMemberPagination(page, searchText);
   const handleChange = (_e, p) => {
     setPage(p);
-    _DATA.jump(p);
+  };
+  const count = Math.ceil(totalCount / PER_PAGE);
+
+  const handleChangeSearchText = (e) => {
+    setSearchText(e.target.value);
+    setPage(1);
   };
 
   const theme = createTheme({
@@ -132,12 +123,12 @@ const RecommendedMembersList = () => {
                 <input
                   className={list.member_search_form}
                   value={searchText}
-                  onChange={(e) => setSearchText(e.target.value)}
+                  onChange={handleChangeSearchText}
                   placeholder={'推しメンの名前で検索'}
                 />
               </div>
             </div>
-            {_DATA.currentData().length === 0 && (
+            {recommendedMembers.length === 0 && (
               <>
                 <div style={{ textAlign: 'center', marginTop: '40px' }}>
                   現在推しメンが登録されていません。
@@ -168,7 +159,7 @@ const RecommendedMembersList = () => {
               </>
             )}
             <Grid container spacing={3}>
-              {_DATA.currentData().map((recommendedMember, index) => {
+              {recommendedMembers.map((recommendedMember, index) => {
                 return (
                   <RecommendedMemberCard
                     key={index}
