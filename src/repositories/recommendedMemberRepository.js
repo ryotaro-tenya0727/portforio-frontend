@@ -7,16 +7,18 @@ import {
 } from '../urls';
 
 export const recommendedMemberRepository = {
-  getRecommendedMember: async (token, page) => {
+  getRecommendedMember: async (token, page, searchWord = null) => {
     const startPage = page || 1;
-    console.log('startPage', startPage);
     const response = await axios
-      .get(`${recommendedMembersIndexUrl}?page=${startPage}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      })
+      .get(
+        `${recommendedMembersIndexUrl}?page=${startPage}&search_word=${searchWord}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
       .catch((error) => {
         console.error(error.response.data);
       });

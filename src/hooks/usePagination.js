@@ -35,17 +35,18 @@ export const usePagination = (data, itemsPerPage) => {
   return { next, prev, jump, currentData, currentPage, maxPage };
 };
 
-export const useRecommendedMemberPagination = (page) => {
+export const useRecommendedMemberPagination = (page, searchWord) => {
   const [isLoading, setIsLoading] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
   const [recommendedMembers, setRecommendedMembers] = useState([true]);
   const { getAccessTokenSilently } = useAuth0();
 
-  const fetchData = async (page) => {
+  const fetchData = async (page, searchWord = null) => {
     const accessToken = await getAccessTokenSilently();
     const response = await recommendedMemberRepository.getRecommendedMember(
       accessToken,
-      page
+      page,
+      searchWord
     );
     setTotalCount(response.data_count);
     setRecommendedMembers(response.data);
@@ -53,12 +54,8 @@ export const useRecommendedMemberPagination = (page) => {
   };
 
   useEffect(() => {
-    fetchData(page);
-  }, [page]);
+    fetchData(page, searchWord);
+  }, [page, searchWord]);
 
-  const jump = (page) => {
-    fetchData(page);
-  };
-
-  return { jump, recommendedMembers, isLoading, totalCount };
+  return { recommendedMembers, isLoading, totalCount };
 };

@@ -12,7 +12,6 @@ import useMedia from 'use-media';
 
 import { Button, Circular } from './../atoms/atoms';
 import { RecommendedMemberCard } from './../organisms/Organisms';
-import { useRecommendedMembersApi } from './../../hooks/useRecommendedMembers';
 import { useRecommendedMemberPagination } from './../../hooks/usePagination';
 
 import button from './../../css/atoms/button.module.scss';
@@ -29,28 +28,22 @@ const RecommendedMembersList = () => {
   };
   // ページネーション
   let [page, setPage] = useState(1);
-
   // 検索
-  // const [searchText, setSearchText] = useState('');
-  // // 検索フィールドが空の場合、ここに入らない
-  // const searchKeywords = searchText.trim().match(/[^\s]+/g);
-  // if (searchKeywords !== null) {
-  //   data = recommendedMembers.filter((member) =>
-  //     searchKeywords.every(
-  //       (kw) => member.attributes.nickname.indexOf(kw) !== -1
-  //     )
-  //   );
-  // }
+  const [searchText, setSearchText] = useState('');
+  // 検索フィールドが空の場合、ここに入らない
 
   const PER_PAGE = 4;
-  const pageStart = 1;
-  const { recommendedMembers, isLoading, totalCount, jump } =
-    useRecommendedMemberPagination(pageStart);
+  const { recommendedMembers, isLoading, totalCount } =
+    useRecommendedMemberPagination(page, searchText);
   const handleChange = (_e, p) => {
     setPage(p);
-    jump(p);
   };
   const count = Math.ceil(totalCount / PER_PAGE);
+
+  const handleChangeSearchText = (e) => {
+    setSearchText(e.target.value);
+    setPage(1);
+  };
 
   const theme = createTheme({
     breakpoints: {
@@ -114,7 +107,7 @@ const RecommendedMembersList = () => {
                 )}
                 onChange={handleChange}
               />
-              {/*
+
               <div>
                 <SavedSearchIcon
                   sx={{
@@ -130,10 +123,10 @@ const RecommendedMembersList = () => {
                 <input
                   className={list.member_search_form}
                   value={searchText}
-                  onChange={(e) => setSearchText(e.target.value)}
+                  onChange={handleChangeSearchText}
                   placeholder={'推しメンの名前で検索'}
                 />
-              </div> */}
+              </div>
             </div>
             {recommendedMembers.length === 0 && (
               <>
